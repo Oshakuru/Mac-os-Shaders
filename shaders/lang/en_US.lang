@@ -80,3 +80,13 @@ screen.BLOCKLIGHT_SETTINGS=Blocklight
 screen.AO_SETTINGS=Ambient Occlusion
 screen.FOG_SETTINGS=Fog and Haze
 screen.SUNBEAM_SETTINGS=Sunbeams
+
+screen.APPLE_SETTINGS=Apple Silicon Experiments
+option.APPLE_SUN_SETUP=Move sunbeam setup to vertices
+option.APPLE_SUN_SETUP.comment=Calculates frame-constant sunbeam inputs at fullscreen vertices. Only affects enabled sunbeams. Benchmark against Off.
+value.APPLE_SUN_SETUP.0=Off (v0.8 path)
+value.APPLE_SUN_SETUP.1=On (experimental)
+option.APPLE_DEPTH_RECONSTRUCTION=Sparse depth reconstruction
+option.APPLE_DEPTH_RECONSTRUCTION.comment=Experimental perspective reconstruction with a general-projection fallback. Default Off; benchmark separately with AO enabled.
+value.APPLE_DEPTH_RECONSTRUCTION.0=Off (v0.8 path)
+value.APPLE_DEPTH_RECONSTRUCTION.1=On (experimental)

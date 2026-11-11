@@ -16,7 +16,25 @@ uniform float rainStrength;
 uniform ivec2 eyeBrightnessSmooth;
 #include "/lib/projection.glsl"
 #endif
+#if MAX_SUNBEAMS == 1 && APPLE_SUN_SETUP == 1
+varying vec3 appleSunWorld;
+varying vec3 appleLightDirection;
+varying vec4 appleStartClip;
+varying float appleShaftStrength;
+#endif
 vec3 maxViewPosition(vec2 coord, float depth) {
+#if APPLE_DEPTH_RECONSTRUCTION == 1
+    // Standard perspective inverse; unusual projections use the original path.
+    mat4 m = gbufferProjectionInverse;
+    if (m[0][1] == 0.0 && m[0][2] == 0.0 && m[0][3] == 0.0 &&
+        m[1][0] == 0.0 && m[1][2] == 0.0 && m[1][3] == 0.0) {
+        float z = depth * 2.0 - 1.0;
+        float w = max(m[2][3] * z + m[3][3], 0.000001);
+        return vec3(m[0][0] * (coord.x * 2.0 - 1.0) + m[2][0] * z + m[3][0],
+                    m[1][1] * (coord.y * 2.0 - 1.0) + m[2][1] * z + m[3][1],
+                    m[2][2] * z + m[3][2]) / w;
+    }
+#endif
     vec4 v = gbufferProjectionInverse * vec4(coord * 2.0 - 1.0, depth * 2.0 - 1.0, 1.0);
     return v.xyz / max(v.w, 0.000001);
 }
@@ -58,17 +76,31 @@ vec3 proMaxLighting(vec3 color) {
     }
 #endif
 #if MAX_SUNBEAMS == 1
+#if APPLE_SUN_SETUP == 1
+    vec3 sunWorld = appleSunWorld;
+    float baseStrength = appleShaftStrength;
+#else
     vec3 sunWorld = mat3(gbufferModelViewInverse) * normalize(sunPosition);
     float daylightAmount = smoothstep(0.02, 0.18, sunWorld.y);
     float skyAccess = smoothstep(0.02, 0.6, float(eyeBrightnessSmooth.y) / 240.0);
     float weather = 1.0 - clamp(rainStrength, 0.0, 1.0) * 0.85;
+    float baseStrength = daylightAmount * skyAccess * weather * MAX_SUNBEAM_STRENGTH;
+#endif
     float rayLength = min(distanceToSurface, shadowDistance * 0.85);
+#if APPLE_SUN_SETUP == 1
+    float facing = max(dot(normalize(position), appleLightDirection), 0.0);
+#else
     float facing = max(dot(normalize(position), normalize(shadowLightPosition)), 0.0);
+ #endif
     float phase = 0.12 + 0.88 * facing * facing * facing * facing;
-    float strength = daylightAmount * skyAccess * weather * phase * MAX_SUNBEAM_STRENGTH;
+    float strength = baseStrength * phase;
     if (strength > 0.001 && rayLength > 2.0) {
         vec3 endView = position * (rayLength / max(distanceToSurface, 0.001));
+#if APPLE_SUN_SETUP == 1
+        vec4 startClip = appleStartClip;
+#else
         vec4 startClip = shadowProjection * shadowModelView * gbufferModelViewInverse * vec4(0.0, 0.0, 0.0, 1.0);
+#endif
         vec4 endClip = shadowProjection * shadowModelView * gbufferModelViewInverse * vec4(endView, 1.0);
         float jitter = fract(dot(gl_FragCoord.xy, vec2(0.754877666, 0.569840296)));
         float lit = 0.0;
