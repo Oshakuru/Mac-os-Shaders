@@ -32,8 +32,16 @@ uniform int renderStage;
 #endif
 #include "/lib/cubic_celestials.glsl"
 #endif
+#if CLOUD_STYLE == 1 && defined(SKY_BASIC) && !defined(NO_SHADOW)
+#if VISUAL_STYLE == 0 && CUBIC_CELESTIALS == 0
+uniform int isEyeInWater;
+uniform float rainStrength;
+uniform int renderStage;
+#endif
+#include "/lib/sdv_clouds.glsl"
+#endif
 #include "/lib/weather.glsl"
-#include "/lib/photon_water.glsl"
+#include "/lib/makeup_water.glsl"
 #include "/lib/wet_ground.glsl"
 #ifdef WET_MASK_OUTPUT
 /* DRAWBUFFERS:01 */
@@ -53,8 +61,8 @@ void main() {
     vec4 color = tint;
 #else
     vec4 surface;
-#if PHOTON_WATER == 1 && defined(PHOTON_WATER_PASS)
-    if (photonWaterMask > 0.5) surface = PHOTON_WATER_COLOR;
+#if MAKEUP_WATER == 1 && defined(MAKEUP_WATER_PASS)
+    if (makeupWaterMask > 0.5) surface = MAKEUP_WATER_COLOR;
     else surface = texture2D(texture, uv);
 #else
 #if defined(WEATHER_PASS) && UNOBTRUSIVE_WEATHER == 1
@@ -64,6 +72,9 @@ void main() {
 #endif
 #endif
     vec4 color = surface * tint;
+#if MAKEUP_WATER == 1 && defined(MAKEUP_WATER_PASS)
+    if (makeupWaterMask > 0.5) color = surface; // MakeUp custom color, no biome-color multiplication.
+#endif
 #endif
     if (color.a < alphaTestRef) discard;
 #if RAIN_PUDDLES == 1 && defined(WET_GROUND_PASS) && defined(WORLD_LIGHTING) && DEBUG_VIEW == 0
@@ -80,6 +91,9 @@ void main() {
         color.rgb = artSky(skyDirection, skySunDirection, styleDay, styleTwilight, rainStrength);
 #if CUBIC_CELESTIALS == 1
         color.rgb = cubicCelestials(color.rgb);
+#endif
+#if CLOUD_STYLE == 1
+        color.rgb = metalSDVClouds(color.rgb);
 #endif
         gl_FragData[0] = color;
         return;
@@ -118,8 +132,8 @@ void main() {
     color.rgb *= evaluateLighting();
 #endif
 #endif
-#if PHOTON_WATER == 1 && defined(PHOTON_WATER_PASS) && DEBUG_VIEW == 0
-    if (photonWaterMask > 0.5) color = applyPhotonWater(color);
+#if MAKEUP_WATER == 1 && defined(MAKEUP_WATER_PASS) && DEBUG_VIEW == 0
+    if (makeupWaterMask > 0.5) color = applyMakeupWater(color);
 #endif
     float fog = clamp((fogDistance - fogStart) / max(fogEnd - fogStart, 0.001), 0.0, 1.0);
     vec3 atmosphereColor = fogColor;
@@ -162,6 +176,9 @@ void main() {
 #endif
 #if CUBIC_CELESTIALS == 1 && defined(SKY_BASIC) && !defined(NO_SHADOW) && DEBUG_VIEW == 0
     if (renderStage == MC_RENDER_STAGE_SKY) color.rgb = cubicCelestials(color.rgb);
+#endif
+#if CLOUD_STYLE == 1 && defined(SKY_BASIC) && !defined(NO_SHADOW) && DEBUG_VIEW == 0
+    if (renderStage == MC_RENDER_STAGE_SKY) color.rgb = metalSDVClouds(color.rgb);
 #endif
     gl_FragData[0] = color;
 }

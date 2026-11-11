@@ -1,9 +1,11 @@
-# Metal 0.9.4
+# Metal 0.9.5
 
-- Restores Fading Clouds; removes the experimental skybox cloud renderer and mask.
-- Broad sun/moon diffusion and lower-sky falloff inspired by the reference sky background, using original Metal code and existing preset palettes.
-- Grass and fern cards use upward-facing lighting in Miyazaki/Dark Fantasy, matching ground-facing direct light and ambient response while retaining geometric shadow receiver normals.
-- Removes the broad 0.9.3 green albedo adjustment; retains the removal of Miyazaki's yellow-green lift.
-- Preserves water, rain/ripples, reflections and labels.
+- Replaces Photon-derived water with a MakeUp Ultra Fast 9.6 adaptation: three scrolling noise layers, .10 rational depth absorption, refraction, squared Fresnel reflection and sun/moon highlights.
+- Adds an opaque scene snapshot in colortex2 for refraction/scene reflections without sampling the active water render target.
+- Water defaults to Sky + Scene reflections; includes Sky-only and Off, plus refraction and absorption settings.
+- Retains Metal rain rings, Fading Clouds, preset tones and Photon-derived rain puddles/wet-ground reflections.
+- Keeps MakeUp's wave texture and LGPL-3.0 notice with modified source and author credit.
 
-This does not copy or redistribute Super Duper Vanilla source/assets. In-game cloud appearance, vegetation matching and FPS need testing. The restored geometry clouds retain their prior geometry-limited range.
+Adapted to Metal's GLSL 120 lighting and LDR pipeline; not pixel-identical to the source pack. No Distant Horizons/Voxy integration is added. New water/refraction/SSR and submerged/dimension behavior require Iris in-game verification. The scene snapshot adds buffer bandwidth and scene reflections add work; FPS must be measured.
+
+- Default clouds now use Super Duper Vanilla v1.3.8's adapted skybox parallax renderer and original cloud map, with Metal's preset tones. Fading Clouds remain selectable as option 2; Vanilla is option 0. Matches the reference skybox mapping and horizon fade independently of terrain render distance. Compositing is adapted to Metal's LDR pipeline; the overall SDV bloom/tone-mapping pipeline is not included.

@@ -91,8 +91,9 @@ value.APPLE_DEPTH_RECONSTRUCTION.1=On (experimental)
 screen.CLOUD_SETTINGS=Clouds
 option.CLOUD_STYLE=Cloud style
 value.CLOUD_STYLE.0=Vanilla
-value.CLOUD_STYLE.1=Fading Clouds
-option.CLOUD_STYLE.comment=Vanilla or the tested Fading Clouds geometry, with preset-specific tint. No experimental skybox cloud masks.
+value.CLOUD_STYLE.1=SDV Skybox
+value.CLOUD_STYLE.2=Fading Clouds
+option.CLOUD_STYLE.comment=SDV Skybox uses the adapted reference renderer and cloud map with Metal preset tones and terrain-independent reach. Fading Clouds and Vanilla remain available.
 option.CLOUD_OPACITY=Custom cloud opacity
 option.CLOUD_OPACITY.comment=Opacity of Fading Clouds. Does not affect Vanilla clouds.
 
@@ -103,16 +104,14 @@ value.CUBIC_CELESTIALS.1=Cubic
 option.CUBIC_CELESTIALS.comment=Embedded Cubic Sun & Moon textures by JoeFly. Cubic is the default and retains all eight moon phases. Game / Resource Pack restores the original celestial rendering.
 
 screen.WATER_SETTINGS=Water
-option.PHOTON_WATER=Water style
-value.PHOTON_WATER.0=Game / Resource Pack
-value.PHOTON_WATER.1=Photon Adaptation
-option.PHOTON_WATER.comment=Lightweight adaptation of Photon waves, depth absorption, sky reflections and sun highlights. Does not include terrain reflections, refraction or Photon volumetric underwater lighting.
+option.MAKEUP_WATER=Water style
+value.MAKEUP_WATER.0=Game / Resource Pack
+value.MAKEUP_WATER.1=MakeUp Adaptation
+option.MAKEUP_WATER.comment=MakeUp Ultra Fast 9.6 adapted waves, depth absorption, refraction and reflections. Turn off for game-textured water.
 
 option.WATER_WAVE_STRENGTH=Water wave strength
 option.WATER_WAVE_STRENGTH.comment=Controls procedural wave normals, without moving the water geometry.
 option.WATER_REFLECTIONS=Water sky reflections
-value.WATER_REFLECTIONS.0=Off
-value.WATER_REFLECTIONS.1=On
 option.WATER_REFLECTIONS.comment=Fresnel sky reflections and sun highlights. Does not reflect terrain, buildings or the cubic celestial sprites.
 
 screen.WET_GROUND_SETTINGS=Puddles and Wet Ground
@@ -130,6 +129,16 @@ screen.WEATHER_SETTINGS=Weather
 option.UNOBTRUSIVE_WEATHER=Unobtrusive weather
 option.UNOBTRUSIVE_WEATHER.comment=Use embedded smaller rain and snow textures. Disable when a resource pack changes the stock weather texture colors.
 option.RAIN_RIPPLES=Rain ripples
-option.RAIN_RIPPLES.comment=Expanding rings on outdoor water during rain. Requires Photon water and Water reflections. Skylight estimates exposure; particles are not spawned.
+option.RAIN_RIPPLES.comment=Expanding rings on outdoor water during rain. Requires MakeUp water and Water reflections. Skylight estimates exposure; particles are not spawned.
 option.RAIN_RIPPLE_STRENGTH=Rain ripple strength
 
+
+option.WATER_REFRACTION=Water refraction
+option.WATER_ABSORPTION=Water absorption
+option.WATER_ABSORPTION.comment=Higher values make deep water more opaque.
+value.WATER_REFLECTIONS.0=Off
+value.WATER_REFLECTIONS.1=Sky
+value.WATER_REFLECTIONS.2=Sky + Scene
+
+option.SDV_CLOUD_STEPS=Skybox cloud depth quality
+option.SDV_CLOUD_STEPS.comment=Reference default is 16. More steps increase sky rendering cost.

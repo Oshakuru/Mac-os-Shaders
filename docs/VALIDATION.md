@@ -31,3 +31,9 @@ User screenshots showed stepped/merged clouds and overly bright grass in both ar
 ## 0.9.4
 
 User rejected the skybox-cloud experiment and reported persistent grass/foliage mismatch. Restored Fading Clouds; new sky-background shaping and upward plant lighting require in-game confirmation.
+
+## 0.9.5
+
+Water renderer and scene snapshot are new. Test shorelines, glass over water, underwater entry, caves, dimensions, reflection screen edges, rain rings and FPS in Iris. Native compilation does not validate framebuffer bindings or visual parity.
+
+0.9.5 additionally replaces default geometry clouds with the adapted SDV skybox renderer and original mask. Check reference cloud shape/range, preset tones, underwater hiding, cloud-mode switching and FPS in game.

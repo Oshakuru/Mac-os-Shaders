@@ -8,11 +8,11 @@ uniform mat4 shadowProjection;
 uniform vec3 shadowLightPosition;
 
 #endif
-#if defined(WORLD_LIGHTING) || VISUAL_STYLE > 0 || (CUBIC_CELESTIALS == 1 && defined(SKY_BASIC) && !defined(NO_SHADOW)) || (PHOTON_WATER == 1 && WATER_REFLECTIONS == 1 && defined(PHOTON_WATER_PASS))
+#if defined(WORLD_LIGHTING) || VISUAL_STYLE > 0 || ((CUBIC_CELESTIALS == 1 || CLOUD_STYLE == 1) && defined(SKY_BASIC) && !defined(NO_SHADOW)) || (MAKEUP_WATER == 1 && (WATER_REFLECTIONS > 0 || WATER_REFRACTION == 1) && defined(MAKEUP_WATER_PASS))
 uniform mat4 gbufferModelViewInverse;
 uniform vec3 sunPosition;
 #endif
-#include "/lib/photon_water.vsh"
+#include "/lib/makeup_water.vsh"
 #include "/lib/wet_ground.vsh"
 #if defined(WET_GROUND_PASS) && defined(WORLD_LIGHTING) && RAIN_PUDDLES == 0
 attribute vec4 mc_Entity;
@@ -31,15 +31,15 @@ void main() {
 #if RAIN_PUDDLES == 1 && defined(WET_GROUND_PASS) && defined(WORLD_LIGHTING)
     prepareWetGround();
 #endif
-#if PHOTON_WATER == 1 && defined(PHOTON_WATER_PASS)
-    preparePhotonWater(viewPos);
+#if MAKEUP_WATER == 1 && defined(MAKEUP_WATER_PASS)
+    prepareMakeupWater(viewPos);
 #endif
     gl_Position = gl_ProjectionMatrix * viewPos;
     uv = (gl_TextureMatrix[0] * gl_MultiTexCoord0).xy;
     // Biome tint, vanilla AO and transparency must survive the lighting stage.
     tint = gl_Color;
     fogDistance = length(viewPos.xyz);
-#if (VISUAL_STYLE > 0 || CUBIC_CELESTIALS == 1) && defined(SKY_BASIC) && !defined(NO_SHADOW)
+#if (VISUAL_STYLE > 0 || CUBIC_CELESTIALS == 1 || CLOUD_STYLE == 1) && defined(SKY_BASIC) && !defined(NO_SHADOW)
     skyDirection = mat3(gbufferModelViewInverse) * viewPos.xyz;
     skySunDirection = mat3(gbufferModelViewInverse) * normalize(sunPosition);
 #endif

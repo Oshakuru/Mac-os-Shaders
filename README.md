@@ -4,14 +4,14 @@
 
 Minecraft Java Edition visual pack developed around Apple Silicon, with selectable art styles, shadows, procedural water and rain puddles.
 
-**Current revision: 0.9.4; in-game-tested baseline: 0.9.** Next revision: **0.9.5**. The earlier Metal 1.0 labels are preserved in the development history; they are not the current release number.
+**Current revision: 0.9.5; in-game-tested baseline: 0.9.** Next revision: **0.9.6**. The earlier Metal 1.0 labels are preserved in the development history; they are not the current release number.
 
 ## Current features
 
 - Default, Miyazaki and Dark Fantasy art styles.
 - Air, Pro and Pro Max quality presets.
-- Fading Clouds by default, with Vanilla available.
-- Photon-derived procedural water waves, depth coloring, sky reflections and sun highlights.
+- SDV skybox clouds by default, with Fading Clouds and Vanilla available.
+- MakeUp Ultra Fast-derived water waves, depth absorption, refraction and Sky + Scene reflections.
 - Rain-driven puddles, wet-ground darkening and optional Sky + Scene reflections.
 - Embedded cubic sun/moon support, including eight moon phases, when built with the separately supplied assets.
 - Vertex sunbeam setup and sparse depth reconstruction optimizations.
@@ -41,7 +41,7 @@ The cubic images carry an all-rights-reserved notice and are not uploaded here. 
 python3 tools/build.py --without-cubic
 ```
 
-Place both generated files from `dist/` into Minecraft's `shaderpacks` folder and select **Metal-v0.9.4.zip** in Iris. The matching settings file carries Dark Fantasy and Sky + Scene puddle settings, with Fading Clouds enabled.
+Place both generated files from `dist/` into Minecraft's `shaderpacks` folder and select **Metal-v0.9.5.zip** in Iris. The matching settings file carries Dark Fantasy and Sky + Scene puddle settings, with the SDV skybox clouds enabled.
 
 For visible terrain/lava reflections select **Atmosphere → Puddles and Wet Ground → Wet ground reflections → Sky + Scene**. Sky mode reflects only the sky and can be subtle on dark rainy nights.
 
@@ -61,7 +61,7 @@ Run `python3 tools/validate.py` before packaging. In-game testing remains necess
 
 Supply Unobtrusive Weather v2.0 with `--weather-pack` to embed its rain and snow in the generated shaderpack. No additional in-game resource pack or Particle Rain mod is needed. Without that build input, vanilla weather is selected automatically. Textures are not included in the public repository because the supplied archive contains no redistribution license notice.
 
-Atmosphere → Weather toggles the embedded weather. Atmosphere → Water contains Rain ripples and their strength. Ripples require Photon water and Water reflections, appear during rain, and use skylight as an approximate outdoor mask. They are an original Metal effect rather than Particle Rain's Java particles. Particle splash sprites remain vanilla.
+Atmosphere → Weather toggles the embedded weather. Atmosphere → Water contains Rain ripples and their strength. Ripples require MakeUp water and Water reflections, appear during rain, and use skylight as an approximate outdoor mask. They are an original Metal effect rather than Particle Rain's Java particles. Particle splash sprites remain vanilla.
 
 See [release notes](RELEASE-NOTES.md) for the pending in-game checks. Iris uses Minecraft's limited legacy text colors for these labels; the exact requested RGB gradient strings are retained in `assets/branding/preset-labels.json`.
 
@@ -76,3 +76,11 @@ Cloud masks now have filtered continuous edges, smaller separated islands and fo
 ## 0.9.4 sky and vegetation
 
 Restores the tested Fading Clouds, removes the experimental skybox cloud renderer, and uses a broad celestial sky-background treatment inspired by Super Duper Vanilla with Metal's own Miyazaki/Dark Fantasy palettes. This is an original implementation rather than copied reference-pack source. Grass/fern lighting uses an upward-facing normal so crossed plant planes no longer receive orientation-dependent direct light. Shadow receiver normals remain geometric. The broad 0.9.3 green albedo adjustment is removed. In-game matching and performance still need verification.
+
+## 0.9.5 water replacement
+
+Water now adapts MakeUp Ultra Fast 9.6 by Javier Garduño (LGPL-3.0), including its scrolling wave texture, depth absorption and squared Fresnel blend. Metal adds a dedicated opaque scene snapshot and a bounded scene-reflection trace. This is an adaptation to Metal's lighting/color/buffer pipeline, not a promise of pixel-identical output. Photon-derived ground puddles remain separate. See THIRD_PARTY_NOTICES.md.
+
+## SDV skybox clouds in 0.9.5
+
+- Default clouds now use Super Duper Vanilla v1.3.8's adapted skybox parallax renderer and original cloud map, with Metal's preset tones. Fading Clouds remain selectable as option 2; Vanilla is option 0. Matches the reference skybox mapping and horizon fade independently of terrain render distance. Compositing is adapted to Metal's LDR pipeline; the overall SDV bloom/tone-mapping pipeline is not included.

@@ -36,14 +36,17 @@ const bool shadowtex0Nearest = true;
 #define APPLE_SUN_SETUP 1 // [0 1]
 #define APPLE_DEPTH_RECONSTRUCTION 1 // [0 1]
 
-#define CLOUD_STYLE 1 // [0 1]
+#define CLOUD_STYLE 1 // [0 1 2]
+#define SDV_CLOUD_STEPS 16 // [8 16 32]
 #define CLOUD_OPACITY 1.0 // [0.4 0.6 0.8 1.0]
 
 #define CUBIC_CELESTIALS 1 // [0 1]
 
-#define PHOTON_WATER 1 // [0 1]
+#define MAKEUP_WATER 1 // [0 1]
+#define WATER_REFRACTION 1 // [0 1]
+#define WATER_ABSORPTION 0.10 // [0.02 0.06 0.10 0.20 0.40]
 #define WATER_WAVE_STRENGTH 1.0 // [0.0 0.5 1.0 1.5]
-#define WATER_REFLECTIONS 1 // [0 1]
+#define WATER_REFLECTIONS 2 // [0 1 2]
 #define RAIN_PUDDLES 1 // [0 1]
 #define WET_GROUND_REFLECTIONS 1 // [0 1 2]
 

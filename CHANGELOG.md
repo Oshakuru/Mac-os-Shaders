@@ -1,5 +1,9 @@
 # Development progression
 
+## 0.9.5
+
+- Replaced water with a credited MakeUp Ultra Fast 9.6 adaptation and added a dedicated opaque refraction/reflection snapshot. Ground puddles remain unchanged.
+
 ## 0.9.4
 
 - Restored Fading Clouds, added a broader sky-background treatment with existing preset tones, and corrected grass-card lighting orientation.
@@ -52,3 +56,5 @@
 Available early development source snapshots are preserved in Git history. Their original identifiers are retained rather than assigning invented Metal release numbers.
 
 - Replaced Fading Clouds with original two-layer skybox clouds, independent of terrain render distance. Vanilla remains selectable. Matches the reference active skybox mode's angular horizon fade: clear sky fades from y=0.1 to y=0.2667; rain raises and softens that fade. Uses an original generated cloud mask, not reference-pack code or assets. No settings title was added.
+
+- Default clouds now use Super Duper Vanilla v1.3.8's adapted skybox parallax renderer and original cloud map, with Metal's preset tones. Fading Clouds remain selectable as option 2; Vanilla is option 0. Matches the reference skybox mapping and horizon fade independently of terrain render distance. Compositing is adapted to Metal's LDR pipeline; the overall SDV bloom/tone-mapping pipeline is not included.

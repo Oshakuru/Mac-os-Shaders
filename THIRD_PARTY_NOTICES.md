@@ -25,3 +25,11 @@ Metal's original contributions use the repository's existing license. Ni no Kuni
 ## Unobtrusive Weather v2.0 — supplied archive
 
 Only rain.png and snow.png are read from the user's local ZIP by tools/build.py. The supplied archive has no author/license notice; no redistribution permission is inferred. These images are omitted from GitHub. Particle Rain-specific and splash textures are not integrated.
+
+## MakeUp Ultra Fast 9.6 — Javier Garduño
+
+Water adaptation in shaders/lib/makeup_water.glsl, related interface/integration files, and shaders/textures/makeup/water_256_RG_8bit.png. Original wave sampling, rational absorption and reflection treatment adapted for Metal's GLSL 120 LDR pipeline and opaque snapshot; the bounded reflection trace and rain-ring integration are modified for Metal. Distributed with corresponding editable shader source, the root GPLv3 text and licenses/MakeUp-UltraFast-LGPL-3.0.txt. Original project: https://github.com/javiergcim/MakeUpUltraFast . Modified 2026-11-10. Photon now supplies only ground-puddle components, not the current water renderer.
+
+## Super Duper Vanilla v1.3.8 — Eldeston / FlameRender (C) Studios
+
+The adapted skybox parallax functions in shaders/lib/sdv_clouds.glsl and the original shaders/textures/sdv/clouds.png retain the FlameRender (C) Studios License v1.6, copied in licenses/Super-Duper-Vanilla-FlameRender.txt. They are not relicensed under the root GPL. Modified for GLSL 120 texture sampling, Metal preset tones and LDR cloud compositing on 2026-11-10. Original project: https://github.com/Eldeston/Super-Duper-Vanilla . The root GPL applies to Metal-authored portions; third-party components retain their stated licenses.

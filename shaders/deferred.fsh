@@ -48,7 +48,13 @@ vec4 wetSceneReflection(vec3 origin, vec3 direction) {
     return vec4(0.0);
 }
 #endif
+#if MAKEUP_WATER == 1
+const bool colortex2Clear = true;
+const vec4 colortex2ClearColor = vec4(0.0, 0.0, 0.0, 0.0);
+/* DRAWBUFFERS:02 */
+#else
 /* DRAWBUFFERS:0 */
+#endif
 void main() {
     vec3 color = texture2D(colortex0, uv).rgb;
 #if RAIN_PUDDLES == 1 && WET_GROUND_REFLECTIONS > 0 && DEBUG_VIEW == 0
@@ -85,4 +91,7 @@ void main() {
     }
 #endif
     gl_FragData[0] = vec4(color, 1.0);
+#if MAKEUP_WATER == 1
+    gl_FragData[1] = vec4(color, 1.0);
+#endif
 }
