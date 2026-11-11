@@ -7,6 +7,8 @@ uniform sampler2D shadowtex0;
 varying vec2 uv;
 #if VISUAL_STYLE == 1 && DEBUG_VIEW == 0
 #include "/lib/dark_fantasy.glsl"
+#elif VISUAL_STYLE == 2 && DEBUG_VIEW == 0
+#include "/lib/cartoon.glsl"
 #endif
 void main() {
 #if DEBUG_VIEW == 2
@@ -17,6 +19,8 @@ void main() {
     vec3 color = texture2D(colortex0, uv).rgb;
 #if VISUAL_STYLE == 1 && DEBUG_VIEW == 0
     color = darkFantasyGrade(color);
+#elif VISUAL_STYLE == 2 && DEBUG_VIEW == 0
+    color = cartoonGrade(color);
 #endif
     gl_FragColor = vec4(color, 1.0);
 #endif

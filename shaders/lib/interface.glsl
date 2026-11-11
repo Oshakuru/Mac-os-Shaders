@@ -18,12 +18,12 @@ varying float daylight;
 varying float horizon;
 #endif
 
-#if VISUAL_STYLE == 1
+#if VISUAL_STYLE > 0
 varying float styleDay;
 varying float styleTwilight;
 #endif
 
-#if VISUAL_STYLE == 1 && defined(SKY_BASIC) && !defined(NO_SHADOW)
+#if VISUAL_STYLE > 0 && defined(SKY_BASIC) && !defined(NO_SHADOW)
 varying vec3 skyDirection;
 varying vec3 skySunDirection;
 #endif

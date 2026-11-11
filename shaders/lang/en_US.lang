@@ -43,4 +43,8 @@ screen.ART_STYLE=Art Style
 screen.LIGHTING=Lighting
 screen.DIAGNOSTICS=Diagnostics
 profile.comment=Performance only: Fast, Balanced or Crisp. Keeps your art style and lighting settings.
-option.VISUAL_STYLE.comment=Choose Default or Dark Fantasy independently of performance. Cartoon is not implemented yet.
+option.VISUAL_STYLE.comment=Choose Default, Dark Fantasy or Cartoon independently of performance.
+
+value.VISUAL_STYLE.2=Cartoon
+option.CARTOON_STRENGTH=Cartoon strength
+option.CARTOON_STRENGTH.comment=Prizma-inspired sky, warm light, violet shade and brighter color. Only affects Cartoon.

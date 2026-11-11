@@ -16,8 +16,10 @@ const bool shadowtex0Nearest = true;
 #define NIGHT_AMBIENT 0.58 // [0.35 0.48 0.58 0.70 0.75 0.80]
 #define MOON_CONTRAST 0.45 // [0.15 0.25 0.45 0.65 1.0]
 
-#define VISUAL_STYLE 0 // [0 1]
+#define VISUAL_STYLE 0 // [0 1 2]
 #define DARK_STYLE_STRENGTH 1.0 // [0.0 0.5 0.75 1.0]
 #define DARK_HAZE 0.30 // [0.0 0.15 0.30 0.45]
 
 #define DARK_LIGHT_TINT 0.50 // [0.0 0.20 0.35 0.50]
+
+#define CARTOON_STRENGTH 1.0 // [0.0 0.5 0.75 1.0]

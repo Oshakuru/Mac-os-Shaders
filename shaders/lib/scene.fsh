@@ -5,7 +5,7 @@ uniform vec3 fogColor;
 uniform float fogStart;
 uniform float fogEnd;
 uniform float alphaTestRef;
-#if VISUAL_STYLE == 1
+#if VISUAL_STYLE > 0
 uniform int isEyeInWater;
 uniform ivec2 eyeBrightnessSmooth;
 #ifndef WORLD_LIGHTING
@@ -18,8 +18,12 @@ uniform vec4 entityColor;
 #ifdef LIT
 #include "/lib/lighting.glsl"
 #endif
-#if VISUAL_STYLE == 1 && !defined(NO_SHADOW)
+#if VISUAL_STYLE > 0 && !defined(NO_SHADOW)
+#if VISUAL_STYLE == 1
 #include "/lib/dark_atmosphere.glsl"
+#else
+#include "/lib/cartoon.glsl"
+#endif
 #if defined(SKY_BASIC) || defined(SKY_TEXTURED)
 uniform int renderStage;
 #endif
@@ -37,7 +41,7 @@ void main() {
     vec4 color = texture2D(texture, uv) * tint;
 #endif
     if (color.a < alphaTestRef) discard;
-#if VISUAL_STYLE == 1 && defined(SKY_TEXTURED) && !defined(NO_SHADOW) && DEBUG_VIEW == 0
+#if VISUAL_STYLE > 0 && defined(SKY_TEXTURED) && !defined(NO_SHADOW) && DEBUG_VIEW == 0
     if (renderStage == MC_RENDER_STAGE_SUN && isEyeInWater == 0) {
         // Keep the supplied sun texture's silhouette and soft outer pixels.
         // Warm the core and rim independently, without an extra texture read.
@@ -45,8 +49,16 @@ void main() {
         float edge = smoothstep(0.06, 0.32, max(abs(uv.x - 0.5), abs(uv.y - 0.5)));
         vec3 core = mix(vec3(1.0, 0.91, 0.73), vec3(1.0, 0.72, 0.36), styleTwilight);
         vec3 rim = mix(vec3(0.94, 0.73, 0.46), vec3(0.94, 0.43, 0.17), styleTwilight);
+        #if VISUAL_STYLE == 2
+        core = mix(vec3(1.0, 0.96, 0.86), vec3(1.0, 0.78, 0.48), styleTwilight);
+        rim = mix(vec3(1.0, 0.85, 0.65), vec3(1.0, 0.56, 0.30), styleTwilight);
+#endif
         vec3 sunColor = originalSun * mix(core, rim, edge * 0.65);
+        #if VISUAL_STYLE == 1
         color.rgb = mix(originalSun, sunColor, DARK_STYLE_STRENGTH);
+#else
+        color.rgb = mix(originalSun, sunColor, CARTOON_STRENGTH);
+#endif
         // Celestial geometry must not receive terrain-distance haze.
         gl_FragData[0] = color;
         return;
@@ -88,6 +100,17 @@ void main() {
     }
 #endif
 #endif
+#if VISUAL_STYLE == 2 && !defined(NO_SHADOW) && DEBUG_VIEW == 0
+    if (isEyeInWater == 0) {
+        float exposure = smoothstep(0.02, 0.65, clamp(float(eyeBrightnessSmooth.y) / 240.0, 0.0, 1.0));
+#ifdef LIT
+        exposure *= smoothstep(0.04, 0.70, lm.y);
+#endif
+        float distanceHaze = clamp((fogDistance - 32.0) / max(fogEnd - 32.0, 1.0), 0.0, 1.0);
+        fog = max(fog, distanceHaze * distanceHaze * 0.18 * CARTOON_STRENGTH * exposure);
+        atmosphereColor = mix(fogColor, cartoonHorizon(styleDay, styleTwilight), 0.60 * CARTOON_STRENGTH * exposure);
+    }
+#endif
     color.rgb = mix(color.rgb, atmosphereColor, fog);
 #ifdef WORLD_LIGHTING
 #if DEBUG_VIEW == 1
@@ -96,11 +119,15 @@ void main() {
     color.rgb = normalize(worldNormal) * 0.5 + 0.5;
 #endif
 #endif
-#if VISUAL_STYLE == 1 && defined(SKY_BASIC) && !defined(NO_SHADOW) && DEBUG_VIEW == 0
+#if VISUAL_STYLE > 0 && defined(SKY_BASIC) && !defined(NO_SHADOW) && DEBUG_VIEW == 0
     // Iris identifies the sky disc separately from stars, sunset and void.
     // Only replace the sky disc; retain the other geometry and its alpha.
     if (renderStage == MC_RENDER_STAGE_SKY && isEyeInWater == 0) {
+        #if VISUAL_STYLE == 1
         color.rgb = mix(color.rgb, fantasySky(skyDirection, skySunDirection, styleDay, styleTwilight, rainStrength), DARK_STYLE_STRENGTH);
+#else
+        color.rgb = mix(color.rgb, cartoonSky(skyDirection, skySunDirection, styleDay, styleTwilight, rainStrength), CARTOON_STRENGTH);
+#endif
     }
 #endif
     gl_FragData[0] = color;

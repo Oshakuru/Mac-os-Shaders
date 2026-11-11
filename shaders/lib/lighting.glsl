@@ -49,6 +49,14 @@ vec3 evaluateLighting() {
     sourceTint /= max(tintLuminance, 0.001);
     lighting *= mix(vec3(1.0), sourceTint, DARK_LIGHT_TINT * DARK_STYLE_STRENGTH);
 #endif
+#if VISUAL_STYLE == 2 && DEBUG_VIEW == 0
+    vec3 shadeTint = mix(vec3(0.85, 0.96, 1.13), vec3(1.04, 0.94, 1.10), styleDay);
+    vec3 sunTint = mix(vec3(1.13, 1.01, 0.85), vec3(1.28, 0.88, 0.63), styleTwilight);
+    vec3 directTint = mix(vec3(0.69, 1.04, 1.25), sunTint, styleDay);
+    vec3 sourceTint = mix(mix(shadeTint, directTint, sunlight * directVisibility), vec3(1.08, 1.01, 0.88), torchProtection);
+    sourceTint /= max(dot(sourceTint, vec3(0.2126, 0.7152, 0.0722)), 0.001);
+    lighting *= mix(vec3(1.0), sourceTint, 0.65 * CARTOON_STRENGTH);
+#endif
     return lighting;
 #else
     return vanilla;
