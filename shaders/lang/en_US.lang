@@ -31,7 +31,7 @@ option.MOON_CONTRAST=§aMoonlight contrast§r
 option.MOON_CONTRAST.comment=Lower values soften directional moonlight shading while retaining the vanilla night lightmap.
 option.VISUAL_STYLE=Visual style
 value.VISUAL_STYLE.0=Default
-value.VISUAL_STYLE.1=DARK FANTASY
+value.VISUAL_STYLE.1=§cDARK FANTASY§r
 option.DARK_STYLE_STRENGTH=§aDark Fantasy strength§r
 option.DARK_STYLE_STRENGTH.comment=Grim palette: muted daylight, cold blue shadows, subdued skies and rusty sunsets. Lower strength for a gentler treatment.
 option.DARK_HAZE=§aDark Fantasy distance haze§r
@@ -43,7 +43,7 @@ screen.DIAGNOSTICS=Diagnostics
 profile.comment=Air is the former Pro. Pro reproduces the saved Custom configuration with FXAA off. Pro Max is the former Pro Max Plus, with FXAA off. Changing a tracked setting shows Custom; art style remains independent. Impact colors: §aGreen = Low§r, §eYellow = Medium§r, §cRed = High§r. Costs depend on the selected mode and scene.
 option.VISUAL_STYLE.comment=Choose Default, Dark Fantasy or Miyazaki independently of performance.
 
-value.VISUAL_STYLE.2=MIYAZAKI
+value.VISUAL_STYLE.2=§bMIYAZAKI§r
 option.CARTOON_STRENGTH=§aMiyazaki strength§r
 option.CARTOON_STRENGTH.comment=Storybook palette: turquoise sky, ivory daylight, cool teal shade, pale gold sunset and blue nights. Preserves texture detail. Only affects Miyazaki.
 
@@ -58,7 +58,7 @@ value.MAX_AO.0=Off
 value.MAX_AO.1=On
 value.MAX_SUNBEAMS.0=Off
 value.MAX_SUNBEAMS.1=On
-option.MAX_AO.comment=MEDIUM impact. Contact shading is disabled in Air, enabled in Pro and Pro Max.
+option.MAX_AO.comment=MEDIUM impact. Contact shading is disabled in Air and Pro, enabled in Pro Max.
 option.MAX_SUNBEAMS.comment=HIGH impact outdoors. Sunbeams are disabled in Air, enabled in Pro and Pro Max.
 
 option.MAX_LIGHTING=§eIndependent lighting§r

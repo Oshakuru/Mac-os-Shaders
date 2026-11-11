@@ -1,5 +1,9 @@
 # Development progression
 
+## 0.9.13
+
+- Refreshed Pro from the latest user Custom configuration. Set DARK FANTASY red and MIYAZAKI light blue.
+
 ## 0.9.12
 
 - Added low/medium/high impact colors to setting labels; removed all formatting from art-style titles. Rendering unchanged.

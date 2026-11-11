@@ -4,7 +4,7 @@
 
 Minecraft Java Edition visual pack developed around Apple Silicon, with selectable art styles, shadows, procedural water and rain puddles.
 
-**Current revision: 0.9.12; in-game-tested baseline: 0.9.** Next revision: **0.9.13**. The earlier Metal 1.0 labels are preserved in the development history; they are not the current release number.
+**Current revision: 0.9.13; in-game-tested baseline: 0.9.** Next revision: **0.9.14**. The earlier Metal 1.0 labels are preserved in the development history; they are not the current release number.
 
 ## Current features
 
@@ -41,7 +41,7 @@ The cubic images carry an all-rights-reserved notice and are not uploaded here. 
 python3 tools/build.py --without-cubic
 ```
 
-Place both generated files from `dist/` into Minecraft's `shaderpacks` folder and select **Metal-v0.9.12.zip** in Iris. The matching settings file carries Dark Fantasy and Sky + Scene puddle settings, with the SDV skybox clouds enabled.
+Place both generated files from `dist/` into Minecraft's `shaderpacks` folder and select **Metal-v0.9.13.zip** in Iris. The matching settings file carries Dark Fantasy and Sky + Scene puddle settings, with the SDV skybox clouds enabled.
 
 For visible terrain/lava reflections select **Atmosphere → Puddles and Wet Ground → Wet ground reflections → Sky + Scene**. Sky mode reflects only the sky and can be subtle on dark rainy nights.
 
@@ -133,3 +133,7 @@ Sky (Light), formerly Sky (Fast), uses flat puddle normals and gates low-coverag
 ## 0.9.12 settings labels
 
 Performance-related settings use standard Minecraft colors: green for low, yellow for medium, red for high potential impact. Mixed-cost categories show the higher tier; actual cost depends on mode, active effects and scene coverage. Strength/color sliders are low arithmetic cost; lowering intensity alone generally does not disable the effect. Existing descriptive tooltips and impact category text remain. DARK FANTASY and MIYAZAKI are plain unformatted ASCII labels. Rendering and preset values are unchanged.
+
+## 0.9.13 Pro refresh
+
+Pro now reconstructs the user's latest 0.9.12 Custom configuration: wind enabled, AO disabled, cloud depth 8 steps, Sky water/wet reflections, shadow distance 48 blocks. Other installed defaults are preserved, including refraction/FXAA off and brightness 0.8/saturation 1.2. Air and Pro Max are unchanged. Art-style labels remain standard Minecraft ALL CAPS, now red for DARK FANTASY and light blue for MIYAZAKI.

@@ -1,7 +1,7 @@
 {
   "Miyazaki": "&#78C2DEᴍ&#82B5DBɪ&#8DA7D8ʏ&#979AD4ᴀ&#A18CD1ᴢ&#BF9EDAᴀ&#DDB0E2ᴋ&#FBC2EBɪ",
   "Dark Fantasy": "&#969696𝓓&#A0A0A0𝓪&#A9A9A9𝓻&#B3B3B3𝓴 &#C6C6C6𝓕&#CFCFCF𝓪&#D9D9D9𝓷&#E2E2E2𝓽&#ECECEC𝓪&#F5F5F5𝓼&#FFFFFF𝔂",
-  "note": "Historical RGB requests above are archived only. Current art-style menu labels are plain ASCII ALL CAPS, without colors or formatting. Performance settings use green/yellow/red impact labels.",
+  "note": "Historical RGB requests above are archived. Current labels: standard Minecraft ALL CAPS; DARK FANTASY red (§c), MIYAZAKI light blue (§b). Settings retain impact color coding.",
   "displayLabels": {
     "Dark Fantasy": "DARK FANTASY",
     "Miyazaki": "MIYAZAKI"
