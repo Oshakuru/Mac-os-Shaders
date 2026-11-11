@@ -4,7 +4,7 @@
 
 Minecraft Java Edition visual pack developed around Apple Silicon, with selectable art styles, shadows, procedural water and rain puddles.
 
-**Current revision: 0.9.13; in-game-tested baseline: 0.9.** Next revision: **0.9.14**. The earlier Metal 1.0 labels are preserved in the development history; they are not the current release number.
+**Current revision: 0.9.14; in-game-tested baseline: 0.9.** Next revision: **0.9.15**. The earlier Metal 1.0 labels are preserved in the development history; they are not the current release number.
 
 ## Current features
 
@@ -41,7 +41,7 @@ The cubic images carry an all-rights-reserved notice and are not uploaded here. 
 python3 tools/build.py --without-cubic
 ```
 
-Place both generated files from `dist/` into Minecraft's `shaderpacks` folder and select **Metal-v0.9.13.zip** in Iris. The matching settings file carries Dark Fantasy and Sky + Scene puddle settings, with the SDV skybox clouds enabled.
+Place both generated files from `dist/` into Minecraft's `shaderpacks` folder and select **Metal-v0.9.14.zip** in Iris. The matching settings file carries Dark Fantasy and Sky + Scene puddle settings, with the SDV skybox clouds enabled.
 
 For visible terrain/lava reflections select **Atmosphere → Puddles and Wet Ground → Wet ground reflections → Sky + Scene**. Sky mode reflects only the sky and can be subtle on dark rainy nights.
 
@@ -137,3 +137,9 @@ Performance-related settings use standard Minecraft colors: green for low, yello
 ## 0.9.13 Pro refresh
 
 Pro now reconstructs the user's latest 0.9.12 Custom configuration: wind enabled, AO disabled, cloud depth 8 steps, Sky water/wet reflections, shadow distance 48 blocks. Other installed defaults are preserved, including refraction/FXAA off and brightness 0.8/saturation 1.2. Air and Pro Max are unchanged. Art-style labels remain standard Minecraft ALL CAPS, now red for DARK FANTASY and light blue for MIYAZAKI.
+
+## 0.9.14 reflection resolution
+
+Performance → Water → Wet reflection resolution selects Half or Full. Half uses a genuinely half-width/half-height reflection target (quarter pixel count) with a separate full-resolution combination pass. Upscaling rejects depth-discontinuous samples and uses the full-resolution wet mask to keep reflections off dry objects. Rejected samples retain base shading. Air/Pro use Half; Pro Max uses Full. Reflection Off disables the reflection pass; the water snapshot combination pass remains when custom water is on. Water shaders and skybox are unchanged. Added pipeline/buffer overhead means FPS gains must be measured, not inferred from the quarter pixel count.
+
+Player shadow is separate in Performance → Shadows. Included Pro settings use Player shadow On, Mob/entity shadows Off, Block entity shadows Off. Terrain shadows remain enabled. All presets keep the local player shadow on; Pro Max additionally retains mob and block-entity shadows.

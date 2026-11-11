@@ -53,6 +53,7 @@ const bool shadowtex0Nearest = true;
 #define WATER_SSR_STEPS 6 // [6 8 10 16]
 #define WATER_REFLECTIONS 1 // [0 1 2]
 #define RAIN_PUDDLES 1 // [0 1]
+#define WET_REFLECTION_RESOLUTION 0 // [0 1]
 #define WET_GROUND_REFLECTIONS 1 // [0 1 2]
 
 #define UNOBTRUSIVE_WEATHER 1 // [0 1]
@@ -62,7 +63,8 @@ const bool shadowtex0Nearest = true;
 #define FOLIAGE_WIND 1 // [0 1]
 #define FOLIAGE_WIND_STRENGTH 0.5 // [0.0 0.5 1.0]
 
-#define ENTITY_SHADOWS 1 // [0 1]
+#define PLAYER_SHADOW 1 // [0 1]
+#define ENTITY_SHADOWS 0 // [0 1]
 #define BLOCK_ENTITY_SHADOWS 0 // [0 1]
 #define FXAA 0 // [0 1]
 #define GRADE_BRIGHTNESS 0.8 // [0.8 0.9 1.0 1.1 1.2]

@@ -1,5 +1,9 @@
 # Development progression
 
+## 0.9.14
+
+- Added true half/full wet-reflection rendering and depth-aware reconstruction, Off/On toggle labels and Sky + naming.
+
 ## 0.9.13
 
 - Refreshed Pro from the latest user Custom configuration. Set DARK FANTASY red and MIYAZAKI light blue.

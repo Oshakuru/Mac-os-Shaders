@@ -81,12 +81,12 @@ screen.SUNBEAM_SETTINGS=§cSunbeams§r
 screen.APPLE_SETTINGS=§aApple Silicon Experiments§r
 option.APPLE_SUN_SETUP=§aSunbeam optimization§r
 option.APPLE_SUN_SETUP.comment=Recommended On. Reduces repeated work when sunbeams are active while keeping their quality.
-value.APPLE_SUN_SETUP.0=Off (v0.8 path)
-value.APPLE_SUN_SETUP.1=On (experimental)
+value.APPLE_SUN_SETUP.0=Off
+value.APPLE_SUN_SETUP.1=On
 option.APPLE_DEPTH_RECONSTRUCTION=§aDepth optimization§r
 option.APPLE_DEPTH_RECONSTRUCTION.comment=Recommended On. Reduces depth reconstruction work for effects such as AO while retaining the general-projection fallback.
-value.APPLE_DEPTH_RECONSTRUCTION.0=Off (v0.8 path)
-value.APPLE_DEPTH_RECONSTRUCTION.1=On (experimental)
+value.APPLE_DEPTH_RECONSTRUCTION.0=Off
+value.APPLE_DEPTH_RECONSTRUCTION.1=On
 
 screen.CLOUD_SETTINGS=§cClouds§r
 option.CLOUD_STYLE=§cCloud style§r
@@ -112,18 +112,18 @@ option.MAKEUP_WATER.comment=MEDIUM to HIGH combined cost. Custom waves and depth
 option.WATER_WAVE_STRENGTH=§aWater wave strength§r
 option.WATER_WAVE_STRENGTH.comment=Controls procedural wave normals, without moving the water geometry.
 option.WATER_REFLECTIONS=§cWater reflections§r
-option.WATER_REFLECTIONS.comment=HIGH impact around water. Sky + Scene traces terrain reflections; Sky avoids that trace. Off disables reflections.
+option.WATER_REFLECTIONS.comment=Sky + includes terrain and object reflections. HIGH impact around water. Sky + traces terrain reflections; Sky avoids that trace. Off disables reflections.
 
 screen.WET_GROUND_SETTINGS=§cPuddles and Wet Ground§r
 option.RAIN_PUDDLES=§eRain puddles§r
 value.RAIN_PUDDLES.0=Off
 value.RAIN_PUDDLES.1=On
-option.RAIN_PUDDLES.comment=LOW to MEDIUM impact on rainy ground without reflections. Adds puddle coverage and wet darkening. Sky + Scene wet reflections add a separate high cost.
+option.RAIN_PUDDLES.comment=LOW to MEDIUM impact on rainy ground without reflections. Adds puddle coverage and wet darkening. Sky + wet reflections add a separate high cost.
 option.WET_GROUND_REFLECTIONS=§cWet ground reflections§r
 value.WET_GROUND_REFLECTIONS.0=Off
 value.WET_GROUND_REFLECTIONS.1=Sky (Light)
-value.WET_GROUND_REFLECTIONS.2=Sky + Scene (Experimental)
-option.WET_GROUND_REFLECTIONS.comment=Sky (Light) uses flat puddle normals, skips faint reflections and fades them earlier with distance. Sky + Scene retains animated normals and terrain tracing. Off keeps wet darkening. Cost still depends on wet screen coverage.
+value.WET_GROUND_REFLECTIONS.2=Sky +
+option.WET_GROUND_REFLECTIONS.comment=Sky + includes terrain and object reflections. Sky (Light) uses flat puddle normals, skips faint reflections and fades them earlier with distance. Sky + retains animated normals and terrain tracing. Off keeps wet darkening. Cost still depends on wet screen coverage.
 
 screen.WEATHER_SETTINGS=§aWeather§r
 option.UNOBTRUSIVE_WEATHER=§aUnobtrusive weather§r
@@ -138,7 +138,7 @@ option.WATER_ABSORPTION=§aWater absorption§r
 option.WATER_ABSORPTION.comment=Higher values make deep water more opaque.
 value.WATER_REFLECTIONS.0=Off
 value.WATER_REFLECTIONS.1=Sky
-value.WATER_REFLECTIONS.2=Sky + Scene
+value.WATER_REFLECTIONS.2=Sky +
 
 option.SDV_CLOUD_STEPS=§cSkybox cloud depth quality§r
 option.SDV_CLOUD_STEPS.comment=MEDIUM to HIGH impact when much of the sky is visible. More steps improve cloud thickness. One layer costs less than two.
@@ -155,7 +155,7 @@ value.MAX_AO_QUALITY.2=8 samples
 option.SUNBEAM_STEPS=§cSunbeam quality§r
 option.SDV_CLOUD_LAYERS=§cCloud layers§r
 option.WATER_SSR_STEPS=§cWater scene reflection quality§r
-option.WATER_SSR_STEPS.comment=HIGH impact only with Sky + Scene water reflections. More samples improve scene tracing but cost more per water pixel.
+option.WATER_SSR_STEPS.comment=HIGH impact only with Sky + water reflections. More samples improve scene tracing but cost more per water pixel.
 
 option.shadowMapResolution.comment=HIGH impact while shadows are enabled. Higher resolution makes finer shadows but uses more graphics memory and shadow rendering work.
 
@@ -177,8 +177,8 @@ screen.PERF_FOLIAGE=§aFoliage (Low impact)§r
 
 screen.PERF_ANTIALIASING=§eEdge smoothing (Medium)§r
 screen.COLOR_GRADING=§aColor grading§r
-option.ENTITY_SHADOWS=§cEntity shadows§r
-option.ENTITY_SHADOWS.comment=Shadows from mobs and players. Disabling can reduce shadow rendering work in busy areas. Requires Shadows.
+option.ENTITY_SHADOWS=§cMob/entity shadows§r
+option.ENTITY_SHADOWS.comment=Shadows from mobs and other entities. Your own player shadow has a separate toggle. Requires Shadows.
 option.BLOCK_ENTITY_SHADOWS=§cBlock entity shadows§r
 option.BLOCK_ENTITY_SHADOWS.comment=Shadows from rendered block entities such as chests. Disabling can reduce shadow rendering work. Requires Shadows.
 option.FXAA=§eFast edge smoothing§r
@@ -188,3 +188,45 @@ option.GRADE_CONTRAST=§aContrast§r
 option.GRADE_SATURATION=§aSaturation§r
 option.GRADE_GREEN_SATURATION=§aGreen saturation§r
 option.GRADE_GREEN_SATURATION.comment=Adjusts green-dominant colors in the final image, including green sky or objects. Does not identify materials.
+
+value.SHADOWS.0=Off
+
+value.SHADOWS.1=On
+
+value.WATER_REFRACTION.0=Off
+
+value.WATER_REFRACTION.1=On
+
+value.UNOBTRUSIVE_WEATHER.0=Off
+
+value.UNOBTRUSIVE_WEATHER.1=On
+
+value.RAIN_RIPPLES.0=Off
+
+value.RAIN_RIPPLES.1=On
+
+value.FOLIAGE_WIND.0=Off
+
+value.FOLIAGE_WIND.1=On
+
+value.ENTITY_SHADOWS.0=Off
+
+value.ENTITY_SHADOWS.1=On
+
+value.BLOCK_ENTITY_SHADOWS.0=Off
+
+value.BLOCK_ENTITY_SHADOWS.1=On
+
+value.FXAA.0=Off
+
+value.FXAA.1=On
+
+option.WET_REFLECTION_RESOLUTION=§cWet reflection resolution§r
+value.WET_REFLECTION_RESOLUTION.0=Half
+value.WET_REFLECTION_RESOLUTION.1=Full
+option.WET_REFLECTION_RESOLUTION.comment=Half traces/shades wet reflections at half width and height (one quarter of pixels), then uses full-resolution wet coverage and depth-aware upscaling. Full retains native detail. Water reflection resolution is unchanged. Savings depend on scene and upscaling overhead.
+
+option.PLAYER_SHADOW=§aPlayer shadow§r
+value.PLAYER_SHADOW.0=Off
+value.PLAYER_SHADOW.1=On
+option.PLAYER_SHADOW.comment=Keep your own player shadow independently of mob/entity shadows. Requires Shadows. For player-only entity shadows, turn this On and Mob/entity shadows and Block entity shadows Off. Terrain shadows remain enabled.

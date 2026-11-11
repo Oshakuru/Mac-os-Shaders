@@ -71,3 +71,9 @@ Reconstructed sparse Custom settings from installed 0.9.9 defaults; applied expl
 Responds to a reported ~20 FPS wet-reflection cost even in Sky mode. New Sky-only simplifications require fixed-scene in-game measurement; deferred-mask bandwidth remains. No FPS gain claimed.
 
 36 targeted native M1 checks passed across all wet reflection modes, art styles and custom water on/off. Profile validation passed for all three tiers/37 controls. In-game performance remains unmeasured.
+
+## 0.9.14
+
+New two-stage pre-transparent reflection pipeline: target 5 at half/full resolution followed by full-resolution composition and target-4 water snapshot. Requires Iris integration, edge/shoreline, odd-size and FPS checks.
+
+495 preset/style native shader checks passed. Offscreen half/full reconstruction tests passed for valid wet pixels, rejection of mismatched depth, protection of dry pixels, and identical composed color/water snapshot. Player-only entity shadow routing follows Iris shadowEntities=false plus shadowPlayer=true; live visibility and FPS remain unverified.

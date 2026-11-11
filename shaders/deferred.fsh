@@ -48,15 +48,15 @@ vec4 wetSceneReflection(vec3 origin, vec3 direction) {
     return vec4(0.0);
 }
 #endif
-#if MAKEUP_WATER == 1
-const bool colortex4Clear = true;
-const vec4 colortex4ClearColor = vec4(0.0, 0.0, 0.0, 0.0);
-/* DRAWBUFFERS:04 */
-#else
-/* DRAWBUFFERS:0 */
-#endif
+// Separate reflection target: half/full resolution selected in shaders.properties.
+const bool colortex5Clear = true;
+const vec4 colortex5ClearColor = vec4(0.0, 0.0, 0.0, -1.0);
+/*
+const int colortex5Format = RGBA16F;
+*/
+/* DRAWBUFFERS:5 */
 void main() {
-    vec3 color = texture2D(colortex0, uv).rgb;
+    vec4 reflectionOutput = vec4(0.0, 0.0, 0.0, -1.0);
 #if RAIN_PUDDLES == 1 && WET_GROUND_REFLECTIONS > 0 && DEBUG_VIEW == 0
     vec4 wet = texture2D(colortex1, uv);
 #if WET_GROUND_REFLECTIONS == 1
@@ -111,12 +111,9 @@ void main() {
                 reflected = mix(reflected, scene.rgb, scene.a);
             }
 #endif
-            color = mix(color, reflected, contribution);
+            reflectionOutput = vec4(reflected, linearDepth(depth, near, far) / far);
         }
     }
 #endif
-    gl_FragData[0] = vec4(color, 1.0);
-#if MAKEUP_WATER == 1
-    gl_FragData[1] = vec4(color, 1.0);
-#endif
+    gl_FragData[0] = reflectionOutput;
 }
