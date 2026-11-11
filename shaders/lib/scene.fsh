@@ -41,6 +41,20 @@ void main() {
     vec4 color = texture2D(texture, uv) * tint;
 #endif
     if (color.a < alphaTestRef) discard;
+#if VISUAL_STYLE > 0 && defined(SKY_BASIC) && !defined(NO_SHADOW) && DEBUG_VIEW == 0
+    // Full-strength styles replace the sky completely. Finish before computing
+    // terrain fog/haze that would otherwise be discarded by that replacement.
+#if VISUAL_STYLE == 1
+    if (DARK_STYLE_STRENGTH >= 1.0 && renderStage == MC_RENDER_STAGE_SKY && isEyeInWater == 0) {
+        color.rgb = fantasySky(skyDirection, skySunDirection, styleDay, styleTwilight, rainStrength);
+#else
+    if (CARTOON_STRENGTH >= 1.0 && renderStage == MC_RENDER_STAGE_SKY && isEyeInWater == 0) {
+        color.rgb = cartoonSky(skyDirection, skySunDirection, styleDay, styleTwilight, rainStrength);
+#endif
+        gl_FragData[0] = color;
+        return;
+    }
+#endif
 #if VISUAL_STYLE > 0 && defined(SKY_TEXTURED) && !defined(NO_SHADOW) && DEBUG_VIEW == 0
     if (renderStage == MC_RENDER_STAGE_SUN && isEyeInWater == 0) {
         // Keep the supplied sun texture's silhouette and soft outer pixels.

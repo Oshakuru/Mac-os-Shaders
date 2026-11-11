@@ -44,12 +44,18 @@ float filteredVisibility(vec3 q) {
 #endif
 }
 float visibility(float ndotl) {
-    float distanceFromCamera = length(playerPos);
-    if (ndotl <= 0.0 || distanceFromCamera >= shadowDistance * 0.95) return 1.0;
+    if (ndotl <= 0.0) return 1.0;
+    // Squared distance rejects distant receivers without a square root.
+    float distanceSquared = dot(playerPos, playerPos);
+    float fadeEnd = shadowDistance * 0.95;
+    if (distanceSquared >= fadeEnd * fadeEnd) return 1.0;
     vec3 q = shadowReceiver;
     if (any(lessThanEqual(q, vec3(0.003))) || any(greaterThanEqual(q, vec3(0.997)))) return 1.0;
     q.z -= (0.00015 + (1.0 - ndotl) * 0.0003) * SHADOW_BIAS;
     float result = filteredVisibility(q);
-    float fade = smoothstep(shadowDistance * 0.75, shadowDistance * 0.95, distanceFromCamera);
+    float fadeStart = shadowDistance * 0.75;
+    // Near receivers have zero fade; only the transition band needs sqrt.
+    if (distanceSquared <= fadeStart * fadeStart) return result;
+    float fade = smoothstep(fadeStart, fadeEnd, sqrt(distanceSquared));
     return mix(result, 1.0, fade);
 }
