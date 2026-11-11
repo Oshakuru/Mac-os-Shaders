@@ -1,8 +1,8 @@
-# Metal cleanup Iris format fix
+# Metal 0.9 current tested baseline
 
 Imported historical development snapshot.
 
-Status: User confirmed loading and working Sky + Scene puddle reflections.
+Status: Current version; user confirmed reflections and good performance.
 
 Import order is reconstructed from saved project artifacts; commits are not backdated. Current users should use Metal 0.9.
 
