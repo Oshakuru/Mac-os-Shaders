@@ -2,8 +2,8 @@ option.shadowMapResolution=§cShadow resolution§r
 option.shadowDistance=§cShadow distance (blocks)§r
 option.SHADOW_STRENGTH=§aShadow strength§r
 option.SHADOW_FILTER=§cShadow filtering§r
-value.SHADOW_FILTER.0=Sharp (one sample)
-value.SHADOW_FILTER.1=Light smoothing (four samples)
+value.SHADOW_FILTER.0=§aLow impact: sharp (1 sample)§r
+value.SHADOW_FILTER.1=§eMedium impact: smooth (4 samples)§r
 option.AMBIENT_LIGHT=§aAmbient light§r
 profile.FAST=Air
 profile.BALANCED=Pro
@@ -30,7 +30,7 @@ option.NIGHT_AMBIENT.comment=Controls nighttime outdoor fill separately from day
 option.MOON_CONTRAST=§aMoonlight contrast§r
 option.MOON_CONTRAST.comment=Lower values soften directional moonlight shading while retaining the vanilla night lightmap.
 option.VISUAL_STYLE=Visual style
-value.VISUAL_STYLE.0=Default
+value.VISUAL_STYLE.0=Vanilla
 value.VISUAL_STYLE.1=§cDARK FANTASY§r
 option.DARK_STYLE_STRENGTH=§aDark Fantasy strength§r
 option.DARK_STYLE_STRENGTH.comment=Grim palette: muted daylight, cold blue shadows, subdued skies and rusty sunsets. Lower strength for a gentler treatment.
@@ -41,13 +41,13 @@ option.DARK_LIGHT_TINT.comment=Original lighting only: separates cool shade, war
 
 screen.DIAGNOSTICS=Diagnostics
 profile.comment=Air is the former Pro. Pro reproduces the saved Custom configuration with FXAA off. Pro Max is the former Pro Max Plus, with FXAA off. Changing a tracked setting shows Custom; art style remains independent. Impact colors: §aGreen = Low§r, §eYellow = Medium§r, §cRed = High§r. Costs depend on the selected mode and scene.
-option.VISUAL_STYLE.comment=Choose Default, Dark Fantasy or Miyazaki independently of performance.
+option.VISUAL_STYLE.comment=Choose Vanilla, Dark Fantasy or Miyazaki independently of performance.
 
 value.VISUAL_STYLE.2=§bMIYAZAKI§r
 option.CARTOON_STRENGTH=§aMiyazaki strength§r
 option.CARTOON_STRENGTH.comment=Storybook palette: turquoise sky, ivory daylight, cool teal shade, pale gold sunset and blue nights. Preserves texture detail. Only affects Miyazaki.
 
-value.SHADOW_FILTER.2=Soft tent (nine samples)
+value.SHADOW_FILTER.2=§cHigh impact: soft (9 samples)§r
 option.SHADOW_FILTER.comment=Air uses one shadow sample, saved Pro four, and Pro Max nine. Shadow resolution and distance are controlled separately.
 
 option.MAX_AO=§eAmbient occlusion§r
@@ -121,8 +121,8 @@ value.RAIN_PUDDLES.1=On
 option.RAIN_PUDDLES.comment=LOW to MEDIUM impact on rainy ground without reflections. Adds puddle coverage and wet darkening. Sky + wet reflections add a separate high cost.
 option.WET_GROUND_REFLECTIONS=§cWet ground reflections§r
 value.WET_GROUND_REFLECTIONS.0=Off
-value.WET_GROUND_REFLECTIONS.1=Sky (Light)
-value.WET_GROUND_REFLECTIONS.2=Sky +
+value.WET_GROUND_REFLECTIONS.1=§aSky (Light): low impact§r
+value.WET_GROUND_REFLECTIONS.2=§cSky +: high impact§r
 option.WET_GROUND_REFLECTIONS.comment=Sky + includes terrain and object reflections. Sky (Light) uses flat puddle normals, skips faint reflections and fades them earlier with distance. Sky + retains animated normals and terrain tracing. Off keeps wet darkening. Cost still depends on wet screen coverage.
 
 screen.WEATHER_SETTINGS=§aWeather§r
@@ -137,8 +137,8 @@ option.WATER_REFRACTION=§eWater refraction§r
 option.WATER_ABSORPTION=§aWater absorption§r
 option.WATER_ABSORPTION.comment=Higher values make deep water more opaque.
 value.WATER_REFLECTIONS.0=Off
-value.WATER_REFLECTIONS.1=Sky
-value.WATER_REFLECTIONS.2=Sky +
+value.WATER_REFLECTIONS.1=§aSky (low impact)§r
+value.WATER_REFLECTIONS.2=§cSky + (high impact)§r
 
 option.SDV_CLOUD_STEPS=§cSkybox cloud depth quality§r
 option.SDV_CLOUD_STEPS.comment=MEDIUM to HIGH impact when much of the sky is visible. More steps improve cloud thickness. One layer costs less than two.
@@ -150,8 +150,8 @@ option.FOLIAGE_WIND_STRENGTH=§aWind strength§r
 option.SHADOWS=§cShadows§r
 option.SHADOWS.comment=Off skips the shadow pass and receiving comparisons. Sunbeams also require shadows.
 option.MAX_AO_QUALITY=§eAO quality§r
-value.MAX_AO_QUALITY.1=4 samples
-value.MAX_AO_QUALITY.2=8 samples
+value.MAX_AO_QUALITY.1=§eMedium impact: 4 samples§r
+value.MAX_AO_QUALITY.2=§cHigh impact: 8 samples§r
 option.SUNBEAM_STEPS=§cSunbeam quality§r
 option.SDV_CLOUD_LAYERS=§cCloud layers§r
 option.WATER_SSR_STEPS=§cWater scene reflection quality§r
@@ -222,11 +222,24 @@ value.FXAA.0=Off
 value.FXAA.1=On
 
 option.WET_REFLECTION_RESOLUTION=§cWet reflection resolution§r
-value.WET_REFLECTION_RESOLUTION.0=Half
-value.WET_REFLECTION_RESOLUTION.1=Full
+value.WET_REFLECTION_RESOLUTION.0=§aHalf: lower impact§r
+value.WET_REFLECTION_RESOLUTION.1=§cFull: higher impact§r
 option.WET_REFLECTION_RESOLUTION.comment=Half traces/shades wet reflections at half width and height (one quarter of pixels), then uses full-resolution wet coverage and depth-aware upscaling. Full retains native detail. Water reflection resolution is unchanged. Savings depend on scene and upscaling overhead.
 
 option.PLAYER_SHADOW=§aPlayer shadow§r
 value.PLAYER_SHADOW.0=Off
 value.PLAYER_SHADOW.1=On
 option.PLAYER_SHADOW.comment=Keep your own player shadow independently of mob/entity shadows. Requires Shadows. For player-only entity shadows, turn this On and Mob/entity shadows and Block entity shadows Off. Terrain shadows remain enabled.
+value.SUNBEAM_STEPS.4=§aLow impact: 4 steps§r
+value.SUNBEAM_STEPS.6=§eMedium impact: 6 steps§r
+value.SUNBEAM_STEPS.8=§cHigh impact: 8 steps§r
+value.SDV_CLOUD_STEPS.4=§aLow impact: 4 steps§r
+value.SDV_CLOUD_STEPS.8=§eMedium impact: 8 steps§r
+value.SDV_CLOUD_STEPS.16=§cHigh impact: 16 steps§r
+value.SDV_CLOUD_STEPS.32=§cVery high impact: 32 steps§r
+value.SDV_CLOUD_LAYERS.1=§eMedium impact: 1 layer§r
+value.SDV_CLOUD_LAYERS.2=§cHigh impact: 2 layers§r
+value.WATER_SSR_STEPS.6=§aLow impact: 6 steps§r
+value.WATER_SSR_STEPS.8=§eMedium impact: 8 steps§r
+value.WATER_SSR_STEPS.10=§cHigh impact: 10 steps§r
+value.WATER_SSR_STEPS.16=§cVery high impact: 16 steps§r

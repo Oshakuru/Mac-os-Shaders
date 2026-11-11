@@ -1,5 +1,13 @@
 # Development progression
 
+## 1.2
+
+- Imported the author-supplied pack's menu labels, compressed public textures, SDV metadata and notice, and exact saved Custom settings.
+- Renamed Default art style to Vanilla. Shader code and profiles unchanged.
+- Corrected release metadata to 1.2; next release is 1.3.
+- Third-party local-only textures remain excluded.
+
+
 ## 1.0 — official release
 
 - Author-designated promotion of audited 0.9.15 to official Metal 1.0. Rendering, assets and preset values unchanged.

@@ -4,11 +4,11 @@
 
 Minecraft Java Edition visual pack developed around Apple Silicon, with selectable art styles, shadows, procedural water and rain puddles.
 
-**Official release: Metal 1.0.** Promoted from the audited 0.9.15 build, with rendering and presets unchanged. Next patch: **1.0.1**. Earlier prototype archives labelled Metal 1.0 remain preserved in development history.
+**Current release: Metal 1.2.** Imported from the author's supplied shaderpack and saved settings. Next release: **1.3**. See [release notes](RELEASE-NOTES.md).
 
 ## Current features
 
-- Default, Miyazaki and Dark Fantasy art styles.
+- Vanilla, Miyazaki and Dark Fantasy art styles.
 - Air, Pro and Pro Max quality presets.
 - SDV skybox clouds by default, with Fading Clouds and Vanilla available.
 - MakeUp Ultra Fast-derived water waves, depth absorption, refraction and Sky + Scene reflections.
@@ -41,7 +41,7 @@ The cubic images carry an all-rights-reserved notice and are not uploaded here. 
 python3 tools/build.py --without-cubic
 ```
 
-Place both generated files from `dist/` into Minecraft's `shaderpacks` folder and select **Metal-v1.0.zip** in Iris. The matching settings file carries Dark Fantasy and Sky + Scene puddle settings, with the SDV skybox clouds enabled.
+Place both generated files from `dist/` into Minecraft's `shaderpacks` folder and select **Metal-v1.2.zip** in Iris. The matching settings file preserves the author's supplied Custom configuration, including Dark Fantasy, AO at 8 samples, sunbeam strength 0.22 and 8 steps, and MakeUp water disabled.
 
 For visible terrain/lava reflections select **Atmosphere → Puddles and Wet Ground → Wet ground reflections → Sky + Scene**. Sky mode reflects only the sky and can be subtle on dark rainy nights.
 
@@ -71,7 +71,7 @@ See [release notes](RELEASE-NOTES.md) for the pending in-game checks. Iris uses 
 
 ## 0.9.3 visual polish
 
-Cloud masks now have filtered continuous edges, smaller separated islands and four fixed texture reads instead of the previous 16. The skybox horizon fade is unchanged. Green terrain is selectively dimmed and desaturated in Miyazaki and Dark Fantasy; Default is unchanged. In-game appearance and FPS require comparison.
+Cloud masks now have filtered continuous edges, smaller separated islands and four fixed texture reads instead of the previous 16. The skybox horizon fade is unchanged. Green terrain is selectively dimmed and desaturated in Miyazaki and Dark Fantasy; Vanilla is unchanged. In-game appearance and FPS require comparison.
 
 ## 0.9.4 sky and vegetation
 

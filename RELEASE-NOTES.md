@@ -1,16 +1,12 @@
-# Metal 1.0 — official release
+# Metal 1.2
 
-The author-designated official 1.0 release, promoted from the audited 0.9.15 build.
+Imported from the author's supplied Metal-v1.2.zip and matching settings file. Next release: **1.3**.
 
-- Air, Pro and Pro Max quality presets, plus Custom detection for manual changes.
-- Default, DARK FANTASY and MIYAZAKI art styles.
-- SDV-derived skybox clouds with preset tones; Fading Clouds and Vanilla alternatives.
-- MakeUp-derived water, refraction and reflections; rain ripples and wet ground.
-- Half/Full wet-ground reflection rendering with depth-aware reconstruction.
-- Independent player, mob/entity and block-entity shadow controls.
-- Lightweight foliage wind, impact-colored settings and optional spatial edge smoothing.
-- Shared shader implementations and audited source structure.
+- Adds impact-colored quality values and renames the Default art style to Vanilla.
+- Imports compressed MakeUp water, Photon puddle-noise and SDV cloud textures, plus updated SDV metadata and notice.
+- Preserves the supplied Custom settings exactly: Dark Fantasy, MakeUp water off, AO on with 8 samples and strength 0.32, sunbeam strength 0.22 with 8 steps, and water-reflection selection 2.
+- Corrects stale internal 1.0 release identity in the repository to 1.2.
 
-Rendering code, assets, labels and preset/settings values are unchanged from 0.9.15. That cleanup passed 495 native profile/style shader checks and preserved all 110 expanded entry points relative to the 0.9.14 baseline. These checks do not replace in-game validation or establish FPS guarantees. Original third-party licenses and local-only build inputs remain in effect.
+Shader programs, shared GLSL and profile definitions match the previous repository source byte for byte. ZIP integrity was checked; no new in-game or FPS testing was performed. The earlier [change report](docs/Metal-v1.0-changes.html) retains its original wording; the supplied settings supersede its Vanilla-settings description.
 
-Install Metal-v1.0.zip alongside Metal-v1.0.zip.txt in shaderpacks. Next changed patch release: 1.0.1.
+Build with tools/build.py and place Metal-v1.2.zip beside Metal-v1.2.zip.txt in shaderpacks. Cubic celestial and weather PNGs remain local-only inputs under the repository's existing distribution policy, so the supplied full ZIP is not published here.
