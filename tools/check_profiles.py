@@ -19,7 +19,7 @@ def check():
         if screen.startswith('PERF_') or screen == 'APPLE_SETTINGS':
             controls.update(token for token in elements.split()
                             if not token.startswith(('[', '<')))
-    assert set(profiles) == {'FAST', 'BALANCED', 'CRISP', 'ULTRA'}
+    assert set(profiles) == {'FAST', 'BALANCED', 'CRISP'}
     for name, options in profiles.items():
         assert controls <= options.keys(), (name, 'untracked menu controls', controls - options.keys())
         for key, value in options.items():
@@ -32,13 +32,16 @@ def check():
                 changed = dict(options, **{key: alternative})
                 assert not any(all(changed.get(k) == v for k, v in other.items())
                                for other in profiles.values()), (name, key, alternative)
-    for name in ['FAST', 'BALANCED']:
+    for name in ['FAST']:
         assert profiles[name]['SDV_CLOUD_LAYERS'] == '1'
         assert all(profiles[name][key] == '0' for key in
                    ['WATER_REFLECTIONS', 'WET_GROUND_REFLECTIONS', 'MAX_AO', 'MAX_SUNBEAMS'])
-    assert profiles['FAST']['SHADOWS'] == '0'
+    assert profiles['FAST']['SHADOWS'] == '1'
+    assert profiles['BALANCED']['FOLIAGE_WIND'] == '0'
+    assert profiles['BALANCED']['WATER_REFRACTION'] == '0'
+    assert all(p['FXAA'] == '0' for p in profiles.values())
     assert 'program.shadow.enabled=false' in text
-    print(f'Validated four profiles and Custom matching for {len(controls)} performance controls.')
+    print(f'Validated three profiles and Custom matching for {len(controls)} performance controls.')
 
 if __name__ == '__main__':
     check()

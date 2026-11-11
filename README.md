@@ -4,12 +4,12 @@
 
 Minecraft Java Edition visual pack developed around Apple Silicon, with selectable art styles, shadows, procedural water and rain puddles.
 
-**Current revision: 0.9.9; in-game-tested baseline: 0.9.** Next revision: **0.9.10**. The earlier Metal 1.0 labels are preserved in the development history; they are not the current release number.
+**Current revision: 0.9.10; in-game-tested baseline: 0.9.** Next revision: **0.9.11**. The earlier Metal 1.0 labels are preserved in the development history; they are not the current release number.
 
 ## Current features
 
 - Default, Miyazaki and Dark Fantasy art styles.
-- Air, Pro, Pro Max and Pro Max Plus quality presets.
+- Air, Pro and Pro Max quality presets.
 - SDV skybox clouds by default, with Fading Clouds and Vanilla available.
 - MakeUp Ultra Fast-derived water waves, depth absorption, refraction and Sky + Scene reflections.
 - Rain-driven puddles, wet-ground darkening and optional Sky + Scene reflections.
@@ -41,7 +41,7 @@ The cubic images carry an all-rights-reserved notice and are not uploaded here. 
 python3 tools/build.py --without-cubic
 ```
 
-Place both generated files from `dist/` into Minecraft's `shaderpacks` folder and select **Metal-v0.9.9.zip** in Iris. The matching settings file carries Dark Fantasy and Sky + Scene puddle settings, with the SDV skybox clouds enabled.
+Place both generated files from `dist/` into Minecraft's `shaderpacks` folder and select **Metal-v0.9.10.zip** in Iris. The matching settings file carries Dark Fantasy and Sky + Scene puddle settings, with the SDV skybox clouds enabled.
 
 For visible terrain/lava reflections select **Atmosphere → Puddles and Wet Ground → Wet ground reflections → Sky + Scene**. Sky mode reflects only the sky and can be subtle on dark rainy nights.
 
@@ -115,3 +115,13 @@ Performance is a dedicated tuning hub with impact-labelled groups for shadows, c
 ## 0.9.9 refinement
 
 Adds low-contribution reflection trace skipping, refined water-hit rejection, separate entity/block-entity shadow controls, optional spatial edge smoothing, and neutral-by-default brightness/contrast/saturation/green controls. No bloom. Half-resolution reflection rendering remains deferred until the current water is confirmed stable in-game, as proposed in the review; it needs a dedicated reflection pass and depth-aware reconstruction rather than merely lowering sample count.
+
+## 0.9.10 — three presets
+
+| New tier | Starting configuration |
+|---|---|
+| Air | Former Pro: 512 shadows at 48 blocks, one cloud layer, no reflections, AO or sunbeams |
+| Pro | User's saved 0.9.9 Custom state, with FXAA disabled |
+| Pro Max | Former Pro Max Plus, with FXAA disabled |
+
+The old Air and old Pro Max tiers are retired. Pro has 512 shadows at 64 blocks, four-tap filtering, two 16-step cloud layers, AO, sunbeams and independent lighting; water reflections use six trace steps, refraction and wind are off. Pro retains the supplied brightness 0.8 and saturation 1.2. Unlisted settings were reconstructed from the installed 0.9.9 shader defaults. FXAA remains available manually but is off in all three presets. Art style stays independent; the supplied settings retain Dark Fantasy. Other tracked changes, including grading changes, display Custom. Earlier four-tier comparisons and 25% targets describe previous releases and no longer define this ladder.

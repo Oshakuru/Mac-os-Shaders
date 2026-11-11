@@ -40,7 +40,7 @@ option.DARK_LIGHT_TINT=Dark Fantasy light color
 option.DARK_LIGHT_TINT.comment=Original lighting only: separates cool shade, warm sunlight and block light. Independent lighting uses its own palette. Sky, fog and grading are controlled separately.
 
 screen.DIAGNOSTICS=Diagnostics
-profile.comment=Select a quality tier, then tune its controls in Performance. Changing a performance setting shows Custom. Art style stays independent. Air and Pro have one cloud layer and no reflections, AO or sunbeams. FPS gaps are approximate targets.
+profile.comment=Air is the former Pro. Pro reproduces the saved Custom configuration with FXAA off. Pro Max is the former Pro Max Plus, with FXAA off. Changing a tracked setting shows Custom; art style remains independent.
 option.VISUAL_STYLE.comment=Choose Default, Dark Fantasy or Miyazaki independently of performance.
 
 value.VISUAL_STYLE.2=§7MIYAZAK§fI§r
@@ -48,7 +48,7 @@ option.CARTOON_STRENGTH=Miyazaki strength
 option.CARTOON_STRENGTH.comment=Storybook palette: turquoise sky, ivory daylight, cool teal shade, pale gold sunset and blue nights. Preserves texture detail. Only affects Miyazaki.
 
 value.SHADOW_FILTER.2=Soft tent (nine samples)
-option.SHADOW_FILTER.comment=HIGH impact across lit surfaces: 1, 4 or 9 shadow comparisons. Lower this before reducing resolution if softer edges are less important.
+option.SHADOW_FILTER.comment=Air uses one shadow sample, saved Pro four, and Pro Max nine. Shadow resolution and distance are controlled separately.
 
 option.MAX_AO=Ambient occlusion
 option.MAX_AO_STRENGTH=Occlusion strength
@@ -58,8 +58,8 @@ value.MAX_AO.0=Off
 value.MAX_AO.1=On
 value.MAX_SUNBEAMS.0=Off
 value.MAX_SUNBEAMS.1=On
-option.MAX_AO.comment=MEDIUM impact. Adds contact/corner shading to nearby terrain; Off skips this effect. Air and Pro disable it.
-option.MAX_SUNBEAMS.comment=HIGH impact in outdoor scenes. Samples shadow visibility along view rays. Air and Pro disable it.
+option.MAX_AO.comment=MEDIUM impact. Contact shading is disabled in Air, enabled in Pro and Pro Max.
+option.MAX_SUNBEAMS.comment=HIGH impact outdoors. Sunbeams are disabled in Air, enabled in Pro and Pro Max.
 
 option.MAX_LIGHTING=Independent lighting
 value.MAX_LIGHTING.0=Original
@@ -147,7 +147,6 @@ option.FOLIAGE_WIND=Foliage wind
 option.FOLIAGE_WIND.comment=LOW impact. Vertex-only sway with matching shadows, fading out by 48 blocks. No extra wind textures or screen effects. Off removes animation work.
 option.FOLIAGE_WIND_STRENGTH=Wind strength
 
-profile.ULTRA=Pro Max Plus
 option.SHADOWS=Shadows
 option.SHADOWS.comment=Off skips the shadow pass and receiving comparisons. Sunbeams also require shadows.
 option.MAX_AO_QUALITY=AO quality

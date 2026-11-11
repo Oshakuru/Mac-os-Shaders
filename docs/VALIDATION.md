@@ -61,3 +61,7 @@ M1 native-driver validation: all 624 profile/style/program compile/link combinat
 New trace gates, hit rejection, shadow-caster directives, spatial smoothing and grading require in-game checks. No reflection-resolution rewrite or bloom added.
 
 All 624 preset/style/program combinations compiled and linked on Apple M1. Offscreen edge-filter execution softened a high-contrast edge, retained a flat region and produced finite output. Profile checks cover all 37 performance controls. No measured in-game FPS result or half-resolution reflection feature claimed.
+
+## 0.9.10
+
+Reconstructed sparse Custom settings from installed 0.9.9 defaults; applied explicit FXAA=0. Air/Pro Max retain their source quality configurations except FXAA, with neutral extra controls. No empirical FPS ordering/gaps claimed for the new ladder.

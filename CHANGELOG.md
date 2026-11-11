@@ -1,5 +1,9 @@
 # Development progression
 
+## 0.9.10
+
+- Consolidated into three presets: former Pro → Air, saved Custom → Pro, former Plus → Pro Max. FXAA off throughout.
+
 ## 0.9.9
 
 - Reflection visibility/rejection improvements, separate shadow-caster controls, optional edge smoothing and basic grading. No bloom. Reflection-resolution restructuring remains deferred.
