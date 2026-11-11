@@ -17,8 +17,8 @@ vec3 maxIllumination(vec3 vanilla) {
     vec3 sun = mix(vec3(0.64, 0.75, 1.0), vec3(1.0, 0.90, 0.73), daylight);
     vec3 skyTint = mix(vec3(0.57, 0.70, 1.0), vec3(0.77, 0.88, 1.0), daylight);
 #if VISUAL_STYLE == 1
-    sun = mix(sun, mix(vec3(0.65, 0.57, 1.0), vec3(1.0, 0.80, 0.48), daylight), DARK_STYLE_STRENGTH);
-    skyTint = mix(skyTint, vec3(0.66, 0.85, 0.88), DARK_STYLE_STRENGTH * daylight);
+    sun = mix(sun, mix(vec3(0.48, 0.60, 0.88), vec3(0.88, 0.80, 0.63), daylight), DARK_STYLE_STRENGTH);
+    skyTint = mix(skyTint, vec3(0.53, 0.67, 0.73), DARK_STYLE_STRENGTH * daylight);
 #elif VISUAL_STYLE == 2
     vec3 paintedSun = mix(vec3(0.58, 0.76, 1.0), vec3(1.0, 0.94, 0.77), daylight);
     paintedSun = mix(paintedSun, vec3(1.0, 0.81, 0.55), styleTwilight * 0.65);

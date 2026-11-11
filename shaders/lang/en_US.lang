@@ -33,6 +33,7 @@ option.VISUAL_STYLE=Visual style
 value.VISUAL_STYLE.0=Default
 value.VISUAL_STYLE.1=Dark Fantasy
 option.DARK_STYLE_STRENGTH=Dark Fantasy strength
+option.DARK_STYLE_STRENGTH.comment=Grim palette: muted daylight, cold blue shadows, subdued skies and rusty sunsets. Lower strength for a gentler treatment.
 option.DARK_HAZE=Dark Fantasy distance haze
 option.DARK_HAZE.comment=Outdoor distance haze, reduced in caves and strengthened during rain. Not volumetric fog.
 option.DARK_LIGHT_TINT=Dark Fantasy light color

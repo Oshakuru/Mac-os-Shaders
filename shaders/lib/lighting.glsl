@@ -45,8 +45,8 @@ vec3 evaluateLighting() {
 #if VISUAL_STYLE == 1 && DEBUG_VIEW == 0
     // Reference-driven separation of light roles. This uses the existing block
     // light coordinate, not a list of emitters or a colored-light transport pass.
-    vec3 shadeTint = mix(vec3(0.86, 0.88, 1.15), vec3(0.82, 1.00, 1.04), styleDay);
-    vec3 sunTint = mix(vec3(1.16, 1.04, 0.72), vec3(1.38, 0.84, 0.48), styleTwilight);
+    vec3 shadeTint = mix(vec3(0.74, 0.84, 1.12), vec3(0.73, 0.88, 1.0), styleDay);
+    vec3 sunTint = mix(vec3(1.08, 1.01, 0.82), vec3(1.23, 0.85, 0.60), styleTwilight);
     vec3 directTint = mix(vec3(0.87, 0.81, 1.24), sunTint, styleDay);
     vec3 skyTint = mix(shadeTint, directTint, sunlight * directVisibility);
     vec3 sourceTint = mix(skyTint, vec3(1.08, 1.015, 0.88), torchProtection);
