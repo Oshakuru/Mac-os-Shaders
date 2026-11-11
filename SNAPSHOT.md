@@ -1,8 +1,8 @@
-# Cartoon palette study
+# Cartoon Storybook
 
 Imported historical development snapshot.
 
-Status: Unreleased palette study, superseded by the reference-led Storybook style.
+Status: Ni no Kuni and user-supplied animation references.
 
 Import order is reconstructed from saved project artifacts; commits are not backdated. Current users should use Metal 0.9.
 

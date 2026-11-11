@@ -3,6 +3,10 @@ uniform mat4 gbufferModelView;
 uniform mat4 gbufferModelViewInverse;
 uniform vec3 cameraPosition;
 uniform float cloudHeight;
+#if VISUAL_STYLE == 2
+uniform vec3 sunPosition;
+varying vec2 cartoonCloudTime;
+#endif
 varying vec4 cloudTint;
 varying vec2 cloudUV;
 varying vec3 cloudPlayerPosition;
@@ -26,5 +30,11 @@ void main() {
 #endif
     cloudPlayerPosition = player;
     cloudTint = gl_Color;
+#if VISUAL_STYLE == 2
+    float sunHeight = (mat3(gbufferModelViewInverse) * normalize(sunPosition)).y;
+    cartoonCloudTime.x = smoothstep(-0.08, 0.12, sunHeight);
+    cartoonCloudTime.y = (1.0 - smoothstep(0.04, 0.32, abs(sunHeight)))
+                      * smoothstep(-0.14, 0.04, sunHeight);
+#endif
     cloudUV = (gl_TextureMatrix[0] * gl_MultiTexCoord0).xy;
 }

@@ -64,8 +64,8 @@ void main() {
         vec3 core = mix(vec3(1.0, 0.91, 0.73), vec3(1.0, 0.72, 0.36), styleTwilight);
         vec3 rim = mix(vec3(0.94, 0.73, 0.46), vec3(0.94, 0.43, 0.17), styleTwilight);
         #if VISUAL_STYLE == 2
-        core = mix(vec3(1.0, 0.96, 0.88), vec3(1.0, 0.81, 0.57), styleTwilight);
-        rim = mix(vec3(1.0, 0.89, 0.73), vec3(1.0, 0.64, 0.42), styleTwilight);
+        core = mix(vec3(1.0, 0.97, 0.87), vec3(1.0, 0.84, 0.60), styleTwilight);
+        rim = mix(vec3(1.0, 0.91, 0.73), vec3(1.0, 0.69, 0.43), styleTwilight);
 #endif
         vec3 sunColor = originalSun * mix(core, rim, edge * 0.65);
         #if VISUAL_STYLE == 1
@@ -125,7 +125,7 @@ void main() {
         exposure *= smoothstep(0.04, 0.70, lm.y);
 #endif
         float distanceHaze = clamp((fogDistance - 32.0) / max(fogEnd - 32.0, 1.0), 0.0, 1.0);
-        fog = max(fog, distanceHaze * distanceHaze * 0.14 * CARTOON_STRENGTH * exposure);
+        fog = max(fog, distanceHaze * distanceHaze * 0.16 * CARTOON_STRENGTH * exposure);
         atmosphereColor = mix(fogColor, cartoonHorizon(styleDay, styleTwilight), 0.60 * CARTOON_STRENGTH * exposure);
     }
 #endif

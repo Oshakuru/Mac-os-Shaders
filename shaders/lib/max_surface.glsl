@@ -20,8 +20,10 @@ vec3 maxIllumination(vec3 vanilla) {
     sun = mix(sun, mix(vec3(0.65, 0.57, 1.0), vec3(1.0, 0.80, 0.48), daylight), DARK_STYLE_STRENGTH);
     skyTint = mix(skyTint, vec3(0.66, 0.85, 0.88), DARK_STYLE_STRENGTH * daylight);
 #elif VISUAL_STYLE == 2
-    sun = mix(sun, vec3(1.0, 0.91, 0.76), CARTOON_STRENGTH * daylight);
-    skyTint = mix(skyTint, vec3(0.86, 0.87, 1.0), CARTOON_STRENGTH * daylight);
+    vec3 paintedSun = mix(vec3(0.58, 0.76, 1.0), vec3(1.0, 0.94, 0.77), daylight);
+    paintedSun = mix(paintedSun, vec3(1.0, 0.81, 0.55), styleTwilight * 0.65);
+    sun = mix(sun, paintedSun, CARTOON_STRENGTH);
+    skyTint = mix(skyTint, mix(vec3(0.48, 0.69, 1.0), vec3(0.73, 0.91, 0.98), daylight), CARTOON_STRENGTH);
 #endif
     // Sheltered faces keep sky fill; torchlight remains a separate contribution.
     float hemisphere = 0.65 + 0.35 * max(normalize(worldNormal).y, 0.0);

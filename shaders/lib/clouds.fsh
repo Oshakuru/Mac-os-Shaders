@@ -5,6 +5,9 @@ uniform float fogStart;
 uniform float fogEnd;
 uniform float far;
 uniform int isEyeInWater;
+#if VISUAL_STYLE == 2
+varying vec2 cartoonCloudTime;
+#endif
 varying vec4 cloudTint;
 varying vec2 cloudUV;
 varying vec3 cloudPlayerPosition;
@@ -35,6 +38,12 @@ void main() {
 #else
     float fog = clamp((length(cloudPlayerPosition) - fogStart) / max(fogEnd - fogStart, 0.001), 0.0, 1.0);
     color.rgb = mix(color.rgb, fogColor, fog);
+#endif
+#if VISUAL_STYLE == 2 && DEBUG_VIEW == 0
+    // Keep game weather tint and the tested geometry/fade; tint only custom clouds.
+    vec3 paintedCloud = mix(vec3(0.81, 0.94, 1.10), vec3(1.035, 1.02, 0.94), cartoonCloudTime.x);
+    paintedCloud = mix(paintedCloud, vec3(1.08, 0.94, 0.83), cartoonCloudTime.y * 0.65);
+    color.rgb *= mix(vec3(1.0), paintedCloud, CARTOON_STRENGTH);
 #endif
     // The supplied Story Mode fade can go negative; clamp before blending.
     color.a = clamp(color.a, 0.0, 1.0);
