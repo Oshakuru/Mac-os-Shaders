@@ -8,12 +8,15 @@ uniform mat4 shadowProjection;
 uniform vec3 shadowLightPosition;
 
 #endif
-#if defined(WORLD_LIGHTING) || VISUAL_STYLE > 0 || ((CUBIC_CELESTIALS == 1 || CLOUD_STYLE == 1) && defined(SKY_BASIC) && !defined(NO_SHADOW)) || (PHOTON_WATER == 1 && WATER_REFLECTIONS == 1 && defined(PHOTON_WATER_PASS))
+#if defined(WORLD_LIGHTING) || VISUAL_STYLE > 0 || (CUBIC_CELESTIALS == 1 && defined(SKY_BASIC) && !defined(NO_SHADOW)) || (PHOTON_WATER == 1 && WATER_REFLECTIONS == 1 && defined(PHOTON_WATER_PASS))
 uniform mat4 gbufferModelViewInverse;
 uniform vec3 sunPosition;
 #endif
 #include "/lib/photon_water.vsh"
 #include "/lib/wet_ground.vsh"
+#if defined(WET_GROUND_PASS) && defined(WORLD_LIGHTING) && RAIN_PUDDLES == 0
+attribute vec4 mc_Entity;
+#endif
 #if defined(WEATHER_PASS) && UNOBTRUSIVE_WEATHER == 1
 uniform sampler2D texture;
 #endif
@@ -36,7 +39,7 @@ void main() {
     // Biome tint, vanilla AO and transparency must survive the lighting stage.
     tint = gl_Color;
     fogDistance = length(viewPos.xyz);
-#if (VISUAL_STYLE > 0 || CUBIC_CELESTIALS == 1 || CLOUD_STYLE == 1) && defined(SKY_BASIC) && !defined(NO_SHADOW)
+#if (VISUAL_STYLE > 0 || CUBIC_CELESTIALS == 1) && defined(SKY_BASIC) && !defined(NO_SHADOW)
     skyDirection = mat3(gbufferModelViewInverse) * viewPos.xyz;
     skySunDirection = mat3(gbufferModelViewInverse) * normalize(sunPosition);
 #endif
@@ -47,8 +50,15 @@ void main() {
     vec3 viewNormal = normalize(gl_NormalMatrix * gl_Normal);
     worldNormal = normalize(mat3(gbufferModelViewInverse) * viewNormal);
     playerPos = (gbufferModelViewInverse * viewPos).xyz;
-    lightCosine = dot(viewNormal, normalize(shadowLightPosition));
-    ambientHemisphere = 0.82 + 0.18 * max(worldNormal.y, 0.0);
+    vec3 lightingNormal = worldNormal;
+#if defined(WET_GROUND_PASS) && VISUAL_STYLE > 0
+    // Keep the geometric normal for shadow receiver placement. Only lighting
+    // uses the ground-facing normal so adjacent plant cards share grass-top light.
+    if (abs(mc_Entity.x - 10003.0) < 0.5) lightingNormal = vec3(0.0, 1.0, 0.0);
+#endif
+    vec3 lightWorld = mat3(gbufferModelViewInverse) * normalize(shadowLightPosition);
+    lightCosine = dot(lightingNormal, lightWorld);
+    ambientHemisphere = 0.82 + 0.18 * max(lightingNormal.y, 0.0);
     float sunHeight = (mat3(gbufferModelViewInverse) * normalize(sunPosition)).y;
     daylight = daylightFactor(sunHeight);
     horizon = smoothstep(0.01, 0.15, abs(sunHeight));

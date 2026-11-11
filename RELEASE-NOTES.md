@@ -1,10 +1,9 @@
-# Metal 0.9.3
+# Metal 0.9.4
 
-- Smooth filtered cloud edges and smaller, separated cloud islands.
-- Removed mask morphing that mixed cloud shapes; composited a subtle upper layer.
-- Reduced cloud mask reads from 16 to four per eligible sky pixel, removing the depth quality setting.
-- Preserved the skybox horizon reach, weather fade and preset-specific colors.
-- Reduced green terrain brightness/saturation in Miyazaki and Dark Fantasy before lighting, and removed Miyazaki's extra yellow-green lift. Default and non-green surfaces retain their existing response.
-- Carries forward weather, water ripples, labels and working reflection settings.
+- Restores Fading Clouds; removes the experimental skybox cloud renderer and mask.
+- Broad sun/moon diffusion and lower-sky falloff inspired by the reference sky background, using original Metal code and existing preset palettes.
+- Grass and fern cards use upward-facing lighting in Miyazaki/Dark Fantasy, matching ground-facing direct light and ambient response while retaining geometric shadow receiver normals.
+- Removes the broad 0.9.3 green albedo adjustment; retains the removal of Miyazaki's yellow-green lift.
+- Preserves water, rain/ripples, reflections and labels.
 
-Needs in-game visual and performance verification. Shader-driver checks do not validate Iris rendering appearance.
+This does not copy or redistribute Super Duper Vanilla source/assets. In-game cloud appearance, vegetation matching and FPS need testing. The restored geometry clouds retain their prior geometry-limited range.

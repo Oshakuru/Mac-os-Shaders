@@ -1,19 +1,18 @@
 #ifndef METAL_CARTOON
 #define METAL_CARTOON
+#include "/lib/sky_background.glsl"
 // Reference-led storybook palette. Existing sky/final passes, no new samples.
 vec3 cartoonHorizon(float day, float twilight) {
     vec3 horizon = mix(vec3(0.045, 0.13, 0.21), vec3(0.71, 0.86, 0.83), day);
     return mix(horizon, vec3(0.98, 0.76, 0.52), twilight * 0.80);
 }
 vec3 cartoonSky(vec3 direction, vec3 sunDirection, float day, float twilight, float rain) {
-    vec3 ray = normalize(direction);
     vec3 zenith = mix(vec3(0.018, 0.055, 0.12), vec3(0.15, 0.53, 0.76), day);
     zenith = mix(zenith, vec3(0.37, 0.43, 0.56), twilight * 0.62);
-    vec3 c = mix(cartoonHorizon(day, twilight), zenith, smoothstep(0.0, 0.8, max(ray.y, 0.0)));
-    float facing = max(dot(ray, normalize(sunDirection)), 0.0);
-    float glow = facing * facing; glow *= glow; glow *= glow; glow *= glow;
     float wet = clamp(rain, 0.0, 1.0);
-    c = mix(c, mix(vec3(1.0, 0.96, 0.82), vec3(1.0, 0.79, 0.51), twilight), glow * day * 0.38 * (1.0 - wet));
+    vec3 warm = mix(vec3(1.0, 0.96, 0.82), vec3(1.0, 0.79, 0.51), twilight);
+    vec3 c = metalSkyBackground(direction, sunDirection, cartoonHorizon(day, twilight),
+        zenith, warm, vec3(0.25, 0.40, 0.65), day, wet);
     float gray = dot(c, vec3(0.2126, 0.7152, 0.0722));
     return mix(c, vec3(gray) * vec3(0.90, 0.97, 1.0) * 0.8, wet * 0.7);
 }

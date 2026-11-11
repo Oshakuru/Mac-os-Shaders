@@ -1,5 +1,10 @@
 # Development progression
 
+## 0.9.4
+
+- Restored Fading Clouds, added a broader sky-background treatment with existing preset tones, and corrected grass-card lighting orientation.
+- Removed the unsuccessful general green albedo adjustment.
+
 ## 0.9.3
 
 - Smoothed and separated skybox clouds; reduced cloud sampling cost.

@@ -4,13 +4,13 @@
 
 Minecraft Java Edition visual pack developed around Apple Silicon, with selectable art styles, shadows, procedural water and rain puddles.
 
-**Current revision: 0.9.3; in-game-tested baseline: 0.9.** Next revision: **0.9.4**. The earlier Metal 1.0 labels are preserved in the development history; they are not the current release number.
+**Current revision: 0.9.4; in-game-tested baseline: 0.9.** Next revision: **0.9.5**. The earlier Metal 1.0 labels are preserved in the development history; they are not the current release number.
 
 ## Current features
 
 - Default, Miyazaki and Dark Fantasy art styles.
 - Air, Pro and Pro Max quality presets.
-- Two-layer skybox clouds by default, with Vanilla available.
+- Fading Clouds by default, with Vanilla available.
 - Photon-derived procedural water waves, depth coloring, sky reflections and sun highlights.
 - Rain-driven puddles, wet-ground darkening and optional Sky + Scene reflections.
 - Embedded cubic sun/moon support, including eight moon phases, when built with the separately supplied assets.
@@ -41,7 +41,7 @@ The cubic images carry an all-rights-reserved notice and are not uploaded here. 
 python3 tools/build.py --without-cubic
 ```
 
-Place both generated files from `dist/` into Minecraft's `shaderpacks` folder and select **Metal-v0.9.3.zip** in Iris. The matching settings file carries Dark Fantasy and Sky + Scene puddle settings, with the new skybox clouds enabled.
+Place both generated files from `dist/` into Minecraft's `shaderpacks` folder and select **Metal-v0.9.4.zip** in Iris. The matching settings file carries Dark Fantasy and Sky + Scene puddle settings, with Fading Clouds enabled.
 
 For visible terrain/lava reflections select **Atmosphere → Puddles and Wet Ground → Wet ground reflections → Sky + Scene**. Sky mode reflects only the sky and can be subtle on dark rainy nights.
 
@@ -72,3 +72,7 @@ See [release notes](RELEASE-NOTES.md) for the pending in-game checks. Iris uses 
 ## 0.9.3 visual polish
 
 Cloud masks now have filtered continuous edges, smaller separated islands and four fixed texture reads instead of the previous 16. The skybox horizon fade is unchanged. Green terrain is selectively dimmed and desaturated in Miyazaki and Dark Fantasy; Default is unchanged. In-game appearance and FPS require comparison.
+
+## 0.9.4 sky and vegetation
+
+Restores the tested Fading Clouds, removes the experimental skybox cloud renderer, and uses a broad celestial sky-background treatment inspired by Super Duper Vanilla with Metal's own Miyazaki/Dark Fantasy palettes. This is an original implementation rather than copied reference-pack source. Grass/fern lighting uses an upward-facing normal so crossed plant planes no longer receive orientation-dependent direct light. Shadow receiver normals remain geometric. The broad 0.9.3 green albedo adjustment is removed. In-game matching and performance still need verification.

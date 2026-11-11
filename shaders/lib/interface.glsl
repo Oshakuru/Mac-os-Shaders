@@ -26,7 +26,7 @@ varying float styleDay;
 varying float styleTwilight;
 #endif
 
-#if (VISUAL_STYLE > 0 || CUBIC_CELESTIALS == 1 || CLOUD_STYLE == 1) && defined(SKY_BASIC) && !defined(NO_SHADOW)
+#if (VISUAL_STYLE > 0 || CUBIC_CELESTIALS == 1) && defined(SKY_BASIC) && !defined(NO_SHADOW)
 varying vec3 skyDirection;
 varying vec3 skySunDirection;
 #endif

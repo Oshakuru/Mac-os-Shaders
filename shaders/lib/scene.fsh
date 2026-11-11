@@ -32,14 +32,6 @@ uniform int renderStage;
 #endif
 #include "/lib/cubic_celestials.glsl"
 #endif
-#if CLOUD_STYLE == 1 && defined(SKY_BASIC) && !defined(NO_SHADOW)
-#if VISUAL_STYLE == 0 && CUBIC_CELESTIALS == 0
-uniform int isEyeInWater;
-uniform float rainStrength;
-uniform int renderStage;
-#endif
-#include "/lib/skybox_clouds.glsl"
-#endif
 #include "/lib/weather.glsl"
 #include "/lib/photon_water.glsl"
 #include "/lib/wet_ground.glsl"
@@ -74,18 +66,6 @@ void main() {
     vec4 color = surface * tint;
 #endif
     if (color.a < alphaTestRef) discard;
-#if defined(WET_GROUND_PASS) && VISUAL_STYLE > 0 && DEBUG_VIEW == 0
-    // Restrain green terrain albedo before lighting; leave sky, water and neutrals alone.
-    float greenWeight = smoothstep(0.025, 0.14, color.g - max(color.r, color.b));
-    float greenLuma = dot(color.rgb, vec3(0.2126, 0.7152, 0.0722));
-#if VISUAL_STYLE == 1
-    vec3 restrainedGreen = mix(vec3(greenLuma), color.rgb, 0.70) * 0.76;
-    color.rgb = mix(color.rgb, restrainedGreen, greenWeight * DARK_STYLE_STRENGTH);
-#else
-    vec3 restrainedGreen = mix(vec3(greenLuma), color.rgb, 0.85) * 0.84;
-    color.rgb = mix(color.rgb, restrainedGreen, greenWeight * CARTOON_STRENGTH);
-#endif
-#endif
 #if RAIN_PUDDLES == 1 && defined(WET_GROUND_PASS) && defined(WORLD_LIGHTING) && DEBUG_VIEW == 0
     vec4 wetSurface = wetGroundSurface();
 #ifdef WET_MASK_OUTPUT
@@ -100,9 +80,6 @@ void main() {
         color.rgb = artSky(skyDirection, skySunDirection, styleDay, styleTwilight, rainStrength);
 #if CUBIC_CELESTIALS == 1
         color.rgb = cubicCelestials(color.rgb);
-#endif
-#if CLOUD_STYLE == 1
-        color.rgb = metalSkyboxClouds(color.rgb);
 #endif
         gl_FragData[0] = color;
         return;
@@ -185,9 +162,6 @@ void main() {
 #endif
 #if CUBIC_CELESTIALS == 1 && defined(SKY_BASIC) && !defined(NO_SHADOW) && DEBUG_VIEW == 0
     if (renderStage == MC_RENDER_STAGE_SKY) color.rgb = cubicCelestials(color.rgb);
-#endif
-#if CLOUD_STYLE == 1 && defined(SKY_BASIC) && !defined(NO_SHADOW) && DEBUG_VIEW == 0
-    if (renderStage == MC_RENDER_STAGE_SKY) color.rgb = metalSkyboxClouds(color.rgb);
 #endif
     gl_FragData[0] = color;
 }

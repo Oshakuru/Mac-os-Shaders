@@ -91,10 +91,10 @@ value.APPLE_DEPTH_RECONSTRUCTION.1=On (experimental)
 screen.CLOUD_SETTINGS=Clouds
 option.CLOUD_STYLE=Cloud style
 value.CLOUD_STYLE.0=Vanilla
-value.CLOUD_STYLE.1=Skybox clouds
-option.CLOUD_STYLE.comment=Vanilla uses game cloud geometry. Skybox clouds extend independently of terrain distance with two moving layers and a weather-dependent horizon fade.
+value.CLOUD_STYLE.1=Fading Clouds
+option.CLOUD_STYLE.comment=Vanilla or the tested Fading Clouds geometry, with preset-specific tint. No experimental skybox cloud masks.
 option.CLOUD_OPACITY=Custom cloud opacity
-option.CLOUD_OPACITY.comment=Opacity of skybox clouds. Does not affect Vanilla clouds.
+option.CLOUD_OPACITY.comment=Opacity of Fading Clouds. Does not affect Vanilla clouds.
 
 screen.CELESTIAL_SETTINGS=Sun and Moon
 option.CUBIC_CELESTIALS=Sun and moon style

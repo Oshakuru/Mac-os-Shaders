@@ -27,3 +27,7 @@ Skybox renderer: all 150 standard native-driver program checks passed on Apple M
 ## 0.9.3
 
 User screenshots showed stepped/merged clouds and overly bright grass in both art styles. This revision changes cloud filtering/masks/composition and green terrain albedo. In-game confirmation is pending.
+
+## 0.9.4
+
+User rejected the skybox-cloud experiment and reported persistent grass/foliage mismatch. Restored Fading Clouds; new sky-background shaping and upward plant lighting require in-game confirmation.
