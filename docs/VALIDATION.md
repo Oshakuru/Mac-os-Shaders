@@ -23,3 +23,7 @@ Additional 150 targeted water/reflection/ripple/wave/weather option combinations
 0.9.2 skybox replacement requires in-game checks for sky coverage, terrain occlusion, day/night/weather, underwater behavior and performance. Previous Fading Clouds confirmations do not cover this renderer.
 
 Skybox renderer: all 150 standard native-driver program checks passed on Apple M1.
+
+## 0.9.3
+
+User screenshots showed stepped/merged clouds and overly bright grass in both art styles. This revision changes cloud filtering/masks/composition and green terrain albedo. In-game confirmation is pending.

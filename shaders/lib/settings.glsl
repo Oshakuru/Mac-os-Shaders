@@ -37,7 +37,6 @@ const bool shadowtex0Nearest = true;
 #define APPLE_DEPTH_RECONSTRUCTION 1 // [0 1]
 
 #define CLOUD_STYLE 1 // [0 1]
-#define SKYBOX_CLOUD_STEPS 8 // [4 8 16]
 #define CLOUD_OPACITY 1.0 // [0.4 0.6 0.8 1.0]
 
 #define CUBIC_CELESTIALS 1 // [0 1]

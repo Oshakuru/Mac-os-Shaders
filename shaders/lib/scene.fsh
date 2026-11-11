@@ -74,6 +74,18 @@ void main() {
     vec4 color = surface * tint;
 #endif
     if (color.a < alphaTestRef) discard;
+#if defined(WET_GROUND_PASS) && VISUAL_STYLE > 0 && DEBUG_VIEW == 0
+    // Restrain green terrain albedo before lighting; leave sky, water and neutrals alone.
+    float greenWeight = smoothstep(0.025, 0.14, color.g - max(color.r, color.b));
+    float greenLuma = dot(color.rgb, vec3(0.2126, 0.7152, 0.0722));
+#if VISUAL_STYLE == 1
+    vec3 restrainedGreen = mix(vec3(greenLuma), color.rgb, 0.70) * 0.76;
+    color.rgb = mix(color.rgb, restrainedGreen, greenWeight * DARK_STYLE_STRENGTH);
+#else
+    vec3 restrainedGreen = mix(vec3(greenLuma), color.rgb, 0.85) * 0.84;
+    color.rgb = mix(color.rgb, restrainedGreen, greenWeight * CARTOON_STRENGTH);
+#endif
+#endif
 #if RAIN_PUDDLES == 1 && defined(WET_GROUND_PASS) && defined(WORLD_LIGHTING) && DEBUG_VIEW == 0
     vec4 wetSurface = wetGroundSurface();
 #ifdef WET_MASK_OUTPUT

@@ -25,9 +25,7 @@ vec3 cartoonGrade(vec3 source) {
     // Preserve texture variations: no global posterization or halftone.
     float shade = 1.0 - smoothstep(0.08, 0.55, luma);
     c *= mix(vec3(1.0), vec3(0.975, 1.005, 1.035), shade * 0.40);
-    // Small yellow-green lift, restricted to green-dominant midtones.
-    float green = max(c.g - max(c.r, c.b), 0.0);
-    c.r += green * luma * (1.0 - luma) * 0.16;
+    // Keep greens natural; terrain-specific restraint is applied before lighting.
     c = clamp(c, 0.0, 1.0);
     c += 0.12 * c * (1.0 - c);
     c = mix(c, c * c * (3.0 - 2.0 * c), 0.08);

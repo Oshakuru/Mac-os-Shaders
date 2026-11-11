@@ -1,5 +1,10 @@
 # Development progression
 
+## 0.9.3
+
+- Smoothed and separated skybox clouds; reduced cloud sampling cost.
+- Restrained bright green terrain in Miyazaki and Dark Fantasy.
+
 ## 0.9.2
 
 - Updated Dark Fantasy and Miyazaki lettering and label color approximations from the supplied designs. Removed Dark Fantasy bold/italic formatting.

@@ -133,5 +133,3 @@ option.RAIN_RIPPLES=Rain ripples
 option.RAIN_RIPPLES.comment=Expanding rings on outdoor water during rain. Requires Photon water and Water reflections. Skylight estimates exposure; particles are not spawned.
 option.RAIN_RIPPLE_STRENGTH=Rain ripple strength
 
-option.SKYBOX_CLOUD_STEPS=Cloud depth quality
-option.SKYBOX_CLOUD_STEPS.comment=Steps for skybox cloud thickness. More steps increase sky rendering cost.
