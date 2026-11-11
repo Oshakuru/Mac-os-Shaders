@@ -4,7 +4,7 @@
 
 Minecraft Java Edition visual pack developed around Apple Silicon, with selectable art styles, shadows, procedural water and rain puddles.
 
-**Current revision: 0.9.1; in-game-tested baseline: 0.9.** Next revision: **0.9.2**. The earlier Metal 1.0 labels are preserved in the development history; they are not the current release number.
+**Current revision: 0.9.2; in-game-tested baseline: 0.9.** Next revision: **0.9.3**. The earlier Metal 1.0 labels are preserved in the development history; they are not the current release number.
 
 ## Current features
 
@@ -41,7 +41,7 @@ The cubic images carry an all-rights-reserved notice and are not uploaded here. 
 python3 tools/build.py --without-cubic
 ```
 
-Place both generated files from `dist/` into Minecraft's `shaderpacks` folder and select **Metal-v0.9.1.zip** in Iris. The matching settings file carries the tested Dark Fantasy, Fading Clouds (formerly Story Mode clouds) and Sky + Scene puddle configuration.
+Place both generated files from `dist/` into Minecraft's `shaderpacks` folder and select **Metal-v0.9.2.zip** in Iris. The matching settings file carries the tested Dark Fantasy, Fading Clouds (formerly Story Mode clouds) and Sky + Scene puddle configuration.
 
 For visible terrain/lava reflections select **Atmosphere → Puddles and Wet Ground → Wet ground reflections → Sky + Scene**. Sky mode reflects only the sky and can be subtle on dark rainy nights.
 

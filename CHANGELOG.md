@@ -1,5 +1,10 @@
 # Development progression
 
+## 0.9.2
+
+- Updated Dark Fantasy and Miyazaki lettering and label color approximations from the supplied designs. Removed Dark Fantasy bold/italic formatting.
+- Rendering unchanged.
+
 ## 0.9.1
 
 - Renamed Cartoon to Miyazaki, added styled preset labels, and made Fading Clouds the default.
