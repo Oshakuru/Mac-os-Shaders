@@ -1,11 +1,10 @@
-# Metal 0.9.8
+# Metal 0.9.9
 
-- Adds Pro Max Plus with all production effects, 2048 shadows, 32-step two-layer clouds, 16-step water reflections, 8-sample AO and 8-sample sunbeams.
-- Air and Pro use a single cloud layer and disable water/wet-ground reflections, AO and sunbeams.
-- Air additionally disables shadow rendering, custom water, wet ground, wind, rain ripples and optional celestial/weather replacements.
-- Pro Max balances 1024 shadows, four shadow-filter taps, 16-step two-layer clouds, eight water-reflection steps, four AO taps and four beam samples.
-- Profiles reset every quality/cost switch and retain the selected art style and Apple optimizations.
-- Targets: Pro roughly 25% higher FPS than Pro Max, and Pro Max roughly 25% above Plus. Actual gaps are unmeasured and require controlled in-game comparison.
-- Shipped settings select Pro Max.
+- Skip water and wet-ground scene traces whose contribution is below 1.5%; retain sky fallback.
+- Reject invalid refined water reflection hits.
+- Separate entity and block-entity shadow switches. Air/Pro disable both; Pro Max enables entity shadows; Plus enables both.
+- Optional lightweight spatial edge smoothing, enabled on Pro Max/Plus. No temporal history, extra render pass or bloom.
+- Neutral brightness, contrast, saturation and green-saturation controls in Style → Color grading. Color controls are independent of quality profiles.
+- Performance controls continue to select Custom when changed.
 
-- Adds a dedicated Performance hub with impact labels and tuning tooltips. All its controls participate in native Iris profile matching: changing one shows Custom.
+Reflection resolution is deliberately deferred until the repaired water is confirmed stable in-game. This release does not claim half-resolution SSR or measured FPS gains. Visual effects still require in-game testing.

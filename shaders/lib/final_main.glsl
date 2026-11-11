@@ -12,13 +12,24 @@ varying vec2 uv;
 #if (MAX_AO == 1 || (MAX_SUNBEAMS == 1 && SHADOWS == 1)) && !defined(NO_MAX_LIGHTING) && DEBUG_VIEW == 0
 #include "/lib/pro_max.glsl"
 #endif
+#if FXAA == 1 && DEBUG_VIEW == 0
+#if !((MAX_AO == 1 || (MAX_SUNBEAMS == 1 && SHADOWS == 1)) && !defined(NO_MAX_LIGHTING))
+uniform float viewWidth;
+uniform float viewHeight;
+#endif
+#include "/lib/fxaa.glsl"
+#endif
 void main() {
 #if DEBUG_VIEW == 2
     // Unmodified depth display: no contrast clipping to hide useful ranges.
     float depth = texture2D(shadowtex0, uv).r;
     gl_FragColor = vec4(vec3(depth), 1.0);
 #else
+#if FXAA == 1 && DEBUG_VIEW == 0
+    vec3 color = metalFXAA(uv);
+#else
     vec3 color = texture2D(colortex0, uv).rgb;
+#endif
 #if (MAX_AO == 1 || (MAX_SUNBEAMS == 1 && SHADOWS == 1)) && !defined(NO_MAX_LIGHTING) && DEBUG_VIEW == 0
     color = proMaxLighting(color);
 #endif
@@ -26,6 +37,14 @@ void main() {
     color = darkFantasyGrade(color);
 #elif VISUAL_STYLE == 2 && DEBUG_VIEW == 0
     color = cartoonGrade(color);
+#endif
+#if DEBUG_VIEW == 0
+    color *= GRADE_BRIGHTNESS;
+    color = (color - 0.5) * GRADE_CONTRAST + 0.5;
+    float gradeLuma = dot(color, vec3(0.2126, 0.7152, 0.0722));
+    float greenWeight = smoothstep(0.02, 0.16, color.g - max(color.r, color.b));
+    color = mix(vec3(gradeLuma), color, GRADE_SATURATION * mix(1.0, GRADE_GREEN_SATURATION, greenWeight));
+    color = clamp(color, 0.0, 1.0);
 #endif
     gl_FragColor = vec4(color, 1.0);
 #endif

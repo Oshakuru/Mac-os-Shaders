@@ -55,3 +55,9 @@ M1 verification: 156 standard compile/link checks and 24 wind-toggle/style/puddl
 Quality profiles are targeted cost tiers, not measured FPS ratios. Validate Air shadow-pass disabling, one-layer clouds and absence of reflection effects; tier transitions should reset all quality switches while retaining art style. Plus must enable all production effects. Benchmark targets require fixed-scene in-game measurements.
 
 M1 native-driver validation: all 624 profile/style/program compile/link combinations passed. Static profile checks cover exact supported option values and confirm that each alternate value for all 34 Performance controls stops matching named profiles. The native Iris UI displays Custom when no profile matches. Local and missing-external-asset fallback builds passed packaging checks. No controlled in-game FPS ratios measured.
+
+## 0.9.9
+
+New trace gates, hit rejection, shadow-caster directives, spatial smoothing and grading require in-game checks. No reflection-resolution rewrite or bloom added.
+
+All 624 preset/style/program combinations compiled and linked on Apple M1. Offscreen edge-filter execution softened a high-contrast edge, retained a flat region and produced finite output. Profile checks cover all 37 performance controls. No measured in-game FPS result or half-resolution reflection feature claimed.

@@ -4,7 +4,7 @@
 
 Minecraft Java Edition visual pack developed around Apple Silicon, with selectable art styles, shadows, procedural water and rain puddles.
 
-**Current revision: 0.9.8; in-game-tested baseline: 0.9.** Next revision: **0.9.9**. The earlier Metal 1.0 labels are preserved in the development history; they are not the current release number.
+**Current revision: 0.9.9; in-game-tested baseline: 0.9.** Next revision: **0.9.10**. The earlier Metal 1.0 labels are preserved in the development history; they are not the current release number.
 
 ## Current features
 
@@ -41,7 +41,7 @@ The cubic images carry an all-rights-reserved notice and are not uploaded here. 
 python3 tools/build.py --without-cubic
 ```
 
-Place both generated files from `dist/` into Minecraft's `shaderpacks` folder and select **Metal-v0.9.8.zip** in Iris. The matching settings file carries Dark Fantasy and Sky + Scene puddle settings, with the SDV skybox clouds enabled.
+Place both generated files from `dist/` into Minecraft's `shaderpacks` folder and select **Metal-v0.9.9.zip** in Iris. The matching settings file carries Dark Fantasy and Sky + Scene puddle settings, with the SDV skybox clouds enabled.
 
 For visible terrain/lava reflections select **Atmosphere → Puddles and Wet Ground → Wet ground reflections → Sky + Scene**. Sky mode reflects only the sky and can be subtle on dark rainy nights.
 
@@ -111,3 +111,7 @@ Air disables other optional effects such as custom celestial sprites, custom wea
 The tuning targets Pro at approximately 1.25× Pro Max FPS, and Pro Max at approximately 1.25× Pro Max Plus FPS. These are unmeasured targets, not benchmark results. If Plus achieves 100 FPS, the corresponding targets are Max 125 and Pro 156.25. Compare all presets from the same position, camera angle, weather, time, resolution and render distance after chunk loading settles. Scene content and CPU/GPU limits can change the gaps. The included settings file selects Pro Max.
 
 Performance is a dedicated tuning hub with impact-labelled groups for shadows, clouds, water, lighting effects and foliage. Tooltips explain the largest costs. Every control in this hub is included in each quality profile, so a changed value displays Iris's Custom label; restoring a complete matching profile restores its name. Art style is intentionally independent. Public builds without optional external textures keep those unavailable replacements disabled in every profile.
+
+## 0.9.9 refinement
+
+Adds low-contribution reflection trace skipping, refined water-hit rejection, separate entity/block-entity shadow controls, optional spatial edge smoothing, and neutral-by-default brightness/contrast/saturation/green controls. No bloom. Half-resolution reflection rendering remains deferred until the current water is confirmed stable in-game, as proposed in the review; it needs a dedicated reflection pass and depth-aware reconstruction rather than merely lowering sample count.

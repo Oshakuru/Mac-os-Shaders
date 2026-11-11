@@ -79,14 +79,16 @@ void main() {
 #endif
         float highlight = pow(max(dot(r, normalize(sun)), 0.0), 128.0) * day * (1.0 - rainStrength);
         reflected += vec3(1.0, 0.92, 0.76) * highlight;
-#if WET_GROUND_REFLECTIONS == 2
-        vec4 scene = wetSceneReflection(position + viewNormal * 0.08, reflectedView);
-        reflected = mix(reflected, scene.rgb, scene.a);
-#endif
         float edge = 1.0 - max(dot(v, viewNormal), 0.0);
         float edge2 = edge * edge;
         float fresnel = 0.02 + 0.98 * edge2 * edge2 * edge;
         float distanceFade = 1.0 - smoothstep(far * 0.55, far * 0.95, length(position));
+#if WET_GROUND_REFLECTIONS == 2
+        if (wet.b * fresnel * distanceFade > 0.015) {
+            vec4 scene = wetSceneReflection(position + viewNormal * 0.08, reflectedView);
+            reflected = mix(reflected, scene.rgb, scene.a);
+        }
+#endif
         color = mix(color, reflected, clamp(wet.b * fresnel * distanceFade, 0.0, 1.0));
     }
 #endif

@@ -62,4 +62,11 @@ const bool shadowtex0Nearest = true;
 #define FOLIAGE_WIND 1 // [0 1]
 #define FOLIAGE_WIND_STRENGTH 0.5 // [0.0 0.5 1.0]
 
+#define ENTITY_SHADOWS 1 // [0 1]
+#define BLOCK_ENTITY_SHADOWS 1 // [0 1]
+#define FXAA 0 // [0 1]
+#define GRADE_BRIGHTNESS 1.0 // [0.8 0.9 1.0 1.1 1.2]
+#define GRADE_CONTRAST 1.0 // [0.8 0.9 1.0 1.1 1.2]
+#define GRADE_SATURATION 1.0 // [0.6 0.8 1.0 1.1 1.2]
+#define GRADE_GREEN_SATURATION 1.0 // [0.6 0.8 1.0 1.1 1.2]
 #endif

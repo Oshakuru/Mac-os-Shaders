@@ -175,3 +175,17 @@ screen.PERF_CLOUDS=Clouds (Medium-High)
 screen.PERF_WATER=Water (High impact)
 screen.PERF_EFFECTS=Lighting effects (High)
 screen.PERF_FOLIAGE=Foliage (Low impact)
+
+screen.PERF_ANTIALIASING=Edge smoothing (Medium)
+screen.COLOR_GRADING=Color grading
+option.ENTITY_SHADOWS=Entity shadows
+option.ENTITY_SHADOWS.comment=Shadows from mobs and players. Disabling can reduce shadow rendering work in busy areas. Requires Shadows.
+option.BLOCK_ENTITY_SHADOWS=Block entity shadows
+option.BLOCK_ENTITY_SHADOWS.comment=Shadows from rendered block entities such as chests. Disabling can reduce shadow rendering work. Requires Shadows.
+option.FXAA=Fast edge smoothing
+option.FXAA.comment=MEDIUM impact: spatial smoothing without history buffers. Reduces jagged edges but can soften texture detail. Does not eliminate temporal foliage shimmer.
+option.GRADE_BRIGHTNESS=Brightness
+option.GRADE_CONTRAST=Contrast
+option.GRADE_SATURATION=Saturation
+option.GRADE_GREEN_SATURATION=Green saturation
+option.GRADE_GREEN_SATURATION.comment=Adjusts green-dominant colors in the final image, including green sky or objects. Does not identify materials.

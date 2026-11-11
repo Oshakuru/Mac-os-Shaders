@@ -66,6 +66,10 @@ vec4 makeupSceneReflection(vec3 origin, vec3 direction) {
             }
             vec4 hit = gbufferProjection * vec4(origin + direction * high, 1.0);
             screen = clamp(hit.xy / hit.w * 0.5 + 0.5, 0.0, 1.0);
+            vec3 finalPoint = origin + direction * high;
+            float hitDepth = texture2D(depthtex1, screen).r;
+            float finalDelta = -finalPoint.z - linearDepth(hitDepth, near, far);
+            if (hitDepth >= 0.999999 || finalDelta < -0.05 || finalDelta > 0.25 + high * 0.08) return vec4(0.0);
             float border = min(min(screen.x, 1.0 - screen.x), min(screen.y, 1.0 - screen.y));
             return vec4(texture2D(colortex4, screen).rgb, smoothstep(0.01, 0.09, border));
         }
@@ -119,14 +123,17 @@ vec4 applyMakeupWater(vec4 litColor) {
     reflected = mix(fogColor, skyColor, smoothstep(0.0, 1.0, pow(max(reflectedWorld.y, 0.0001), 0.333)));
 #endif
     reflected *= exposure;
+    float edge = 1.0 - clamp(dot(normal, viewDirection), 0.0, 1.0);
+    float reflectionWeight = edge * edge * 0.7;
 #if WATER_REFLECTIONS == 2
+    if (reflectionWeight > 0.015) {
     vec3 reflectedView = reflect(normalize(makeupViewPosition), normalize(mat3(gbufferModelView) * normal));
     vec3 viewNormal = normalize(mat3(gbufferModelView) * normal);
     vec4 scene = makeupSceneReflection(makeupViewPosition + viewNormal * 0.08, reflectedView);
     reflected = mix(reflected, scene.rgb, scene.a);
+    }
 #endif
-    float edge = 1.0 - clamp(dot(normal, viewDirection), 0.0, 1.0);
-    body = mix(body, reflected, edge * edge * 0.7);
+    body = mix(body, reflected, reflectionWeight);
     vec3 astro = makeupTimeOfDay.x > 0.5 ? makeupSunDirection : -makeupSunDirection;
     float highlight = smoothstep(0.995, 1.0, max(dot(reflectedWorld, normalize(astro)), 0.0));
     body += vec3(1.0, 0.94, 0.82) * highlight * (1.0 - rainStrength) * exposure * 0.45;

@@ -1,5 +1,9 @@
 # Development progression
 
+## 0.9.9
+
+- Reflection visibility/rejection improvements, separate shadow-caster controls, optional edge smoothing and basic grading. No bloom. Reflection-resolution restructuring remains deferred.
+
 ## 0.9.8
 
 - Added Pro Max Plus and rebalanced all four quality profiles with a real shadows-off path, cloud-layer control, and scalable AO/sunbeam/water-reflection sampling.
