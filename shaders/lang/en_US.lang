@@ -31,7 +31,7 @@ option.MOON_CONTRAST=Moonlight contrast
 option.MOON_CONTRAST.comment=Lower values soften directional moonlight shading while retaining the vanilla night lightmap.
 option.VISUAL_STYLE=Visual style
 value.VISUAL_STYLE.0=Default
-value.VISUAL_STYLE.1=§7𝓓§7𝓪§7𝓻§7𝓴 §7𝓕§7𝓪§f𝓷§f𝓽§f𝓪§f𝓼§f𝔂§r
+value.VISUAL_STYLE.1=§7DARK FA§fNTASY§r
 option.DARK_STYLE_STRENGTH=Dark Fantasy strength
 option.DARK_STYLE_STRENGTH.comment=Grim palette: muted daylight, cold blue shadows, subdued skies and rusty sunsets. Lower strength for a gentler treatment.
 option.DARK_HAZE=Dark Fantasy distance haze
@@ -43,7 +43,7 @@ screen.DIAGNOSTICS=Diagnostics
 profile.comment=Air, Pro and Pro Max configure shadows, surface lighting, AO and sunbeams. Art style, clouds, water and wet ground stay independent.
 option.VISUAL_STYLE.comment=Choose Default, Dark Fantasy or Miyazaki independently of performance.
 
-value.VISUAL_STYLE.2=§7ᴍ§7ɪ§7ʏ§7ᴀ§7ᴢ§7ᴀ§7ᴋ§fɪ§r
+value.VISUAL_STYLE.2=§7MIYAZAK§fI§r
 option.CARTOON_STRENGTH=Miyazaki strength
 option.CARTOON_STRENGTH.comment=Storybook palette: turquoise sky, ivory daylight, cool teal shade, pale gold sunset and blue nights. Preserves texture detail. Only affects Miyazaki.
 

@@ -1,5 +1,9 @@
 {
   "Miyazaki": "&#78C2DEᴍ&#82B5DBɪ&#8DA7D8ʏ&#979AD4ᴀ&#A18CD1ᴢ&#BF9EDAᴀ&#DDB0E2ᴋ&#FBC2EBɪ",
   "Dark Fantasy": "&#969696𝓓&#A0A0A0𝓪&#A9A9A9𝓻&#B3B3B3𝓴 &#C6C6C6𝓕&#CFCFCF𝓪&#D9D9D9𝓷&#E2E2E2𝓽&#ECECEC𝓪&#F5F5F5𝓼&#FFFFFF𝔂",
-  "note": "Exact requested RGB strings. Iris shader language labels use the standard Minecraft legacy palette; ampersand hex chat-plugin syntax is not parsed by Iris."
+  "note": "Earlier requested RGB designs are retained above for reference. Current menu labels use standard Minecraft lettering in ALL CAPS, with supported legacy colors.",
+  "displayLabels": {
+    "Dark Fantasy": "DARK FANTASY",
+    "Miyazaki": "MIYAZAKI"
+  }
 }
