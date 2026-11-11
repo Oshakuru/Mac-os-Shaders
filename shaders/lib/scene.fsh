@@ -111,6 +111,9 @@ void main() {
     color.rgb *= evaluateLighting();
 #endif
 #endif
+#if FRESH_WATER == 1 && defined(FRESH_WATER_PASS) && DEBUG_VIEW == 0
+    if (freshWaterMask > 0.5) color = applyPhotonWater(color);
+#endif
     float fog = clamp((fogDistance - fogStart) / max(fogEnd - fogStart, 0.001), 0.0, 1.0);
     vec3 atmosphereColor = fogColor;
 #if VISUAL_STYLE == 1 && !defined(NO_SHADOW)

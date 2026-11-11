@@ -1,8 +1,8 @@
-# Fresh Water and Rain experiment
+# Photon water adaptation
 
 Imported historical development snapshot.
 
-Status: Superseded; water/rain texture assets excluded from public history.
+Status: Replaces Fresh Water with waves, absorption and sky reflections.
 
 Import order is reconstructed from saved project artifacts; commits are not backdated. Current users should use Metal 0.9.
 
