@@ -7,7 +7,7 @@ uniform mat4 gbufferProjection;
 uniform mat4 gbufferProjectionInverse;
 uniform mat4 gbufferModelView;
 uniform mat4 gbufferModelViewInverse;
-uniform vec3 sunPosition;
+
 uniform vec3 fogColor;
 uniform vec3 skyColor;
 uniform float rainStrength;
@@ -15,21 +15,13 @@ uniform int isEyeInWater;
 uniform float near;
 uniform float far;
 varying vec2 uv;
+varying vec3 wetSunWorld;
+varying vec2 wetTimeOfDay;
 const bool colortex1Clear = true;
 const vec4 colortex1ClearColor = vec4(0.0);
 const int colortex1Format = RGBA8;
-#if VISUAL_STYLE == 1
-#include "/lib/dark_atmosphere.glsl"
-#elif VISUAL_STYLE == 2
-#include "/lib/cartoon.glsl"
-#endif
-float wetLinearDepth(float d) {
-    return near * far / max(far - d * (far - near), 0.0001);
-}
-vec3 wetViewPosition(vec2 coord, float d) {
-    vec4 p = gbufferProjectionInverse * vec4(coord * 2.0 - 1.0, d * 2.0 - 1.0, 1.0);
-    return p.xyz / max(p.w, 0.000001);
-}
+#include "/lib/art_sky.glsl"
+#include "/lib/depth.glsl"
 #if WET_GROUND_REFLECTIONS == 2
 vec4 wetSceneReflection(vec3 origin, vec3 direction) {
     // Twelve bounded view-space steps; no history or recursive reflections.
@@ -43,7 +35,7 @@ vec4 wetSceneReflection(vec3 origin, vec3 direction) {
         vec2 sampleUV = clip.xy / clip.w * 0.5 + 0.5;
         if (any(lessThan(sampleUV, vec2(0.005))) || any(greaterThan(sampleUV, vec2(0.995)))) break;
         float depth = texture2D(depthtex0, sampleUV).r;
-        float delta = -point.z - wetLinearDepth(depth);
+        float delta = -point.z - linearDepth(depth, near, far);
         if (depth < 0.999999 && previousDelta < 0.0 && delta >= 0.0 && delta < 0.30 + travel * 0.06) {
             float border = min(min(sampleUV.x, 1.0 - sampleUV.x), min(sampleUV.y, 1.0 - sampleUV.y));
             float confidence = smoothstep(0.005, 0.08, border) * (1.0 - smoothstep(16.0, 28.0, travel));
@@ -61,21 +53,19 @@ void main() {
     vec4 wet = texture2D(colortex1, uv);
     if (wet.b > 0.001 && isEyeInWater == 0) {
         float depth = texture2D(depthtex0, uv).r;
-        vec3 position = wetViewPosition(uv, depth);
+        vec3 position = reconstructViewPosition(uv, depth, gbufferProjectionInverse);
         vec2 normalXZ = wet.rg * 2.0 - 1.0;
         vec3 worldNormal = normalize(vec3(normalXZ.x, sqrt(max(1.0 - dot(normalXZ, normalXZ), 0.001)), normalXZ.y));
         vec3 viewNormal = normalize(mat3(gbufferModelView) * worldNormal);
         vec3 v = normalize(-position);
         vec3 reflectedView = reflect(-v, viewNormal);
         vec3 r = normalize(mat3(gbufferModelViewInverse) * reflectedView);
-        vec3 sun = mat3(gbufferModelViewInverse) * normalize(sunPosition);
-        float day = smoothstep(-0.08, 0.12, sun.y);
-        float twilight = (1.0 - smoothstep(0.04, 0.32, abs(sun.y))) * smoothstep(-0.14, 0.04, sun.y);
+        vec3 sun = wetSunWorld;
+        float day = wetTimeOfDay.x;
+        float twilight = wetTimeOfDay.y;
         vec3 reflected;
-#if VISUAL_STYLE == 1
-        reflected = fantasySky(r, sun, day, twilight, rainStrength);
-#elif VISUAL_STYLE == 2
-        reflected = cartoonSky(r, sun, day, twilight, rainStrength);
+#if VISUAL_STYLE > 0
+        reflected = artSky(r, sun, day, twilight, rainStrength);
 #else
         reflected = mix(fogColor, skyColor, smoothstep(0.0, 0.8, max(r.y, 0.0)));
 #endif

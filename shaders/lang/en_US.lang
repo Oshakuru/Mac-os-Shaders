@@ -37,13 +37,10 @@ option.DARK_STYLE_STRENGTH.comment=Grim palette: muted daylight, cold blue shado
 option.DARK_HAZE=Dark Fantasy distance haze
 option.DARK_HAZE.comment=Outdoor distance haze, reduced in caves and strengthened during rain. Not volumetric fog.
 option.DARK_LIGHT_TINT=Dark Fantasy light color
-option.DARK_LIGHT_TINT.comment=Separates cool shade, warm sunlight and warm block-lit areas. Zero disables source-light tint; sky, fog and final grading remain independent.
+option.DARK_LIGHT_TINT.comment=Original lighting only: separates cool shade, warm sunlight and block light. Independent lighting uses its own palette. Sky, fog and grading are controlled separately.
 
-screen.PERFORMANCE=Performance
-screen.ART_STYLE=Art Style
-screen.LIGHTING=Lighting
 screen.DIAGNOSTICS=Diagnostics
-profile.comment=Performance only: Air, Pro or Pro Max. Keeps your art style and lighting settings.
+profile.comment=Air, Pro and Pro Max configure shadows, surface lighting, AO and sunbeams. Art style, clouds, water and wet ground stay independent.
 option.VISUAL_STYLE.comment=Choose Default, Dark Fantasy or Cartoon independently of performance.
 
 value.VISUAL_STYLE.2=Cartoon
@@ -53,7 +50,6 @@ option.CARTOON_STRENGTH.comment=Storybook palette: turquoise sky, ivory daylight
 value.SHADOW_FILTER.2=Soft tent (nine samples)
 option.SHADOW_FILTER.comment=Air uses one shadow sample; Pro uses four; Pro Max uses nine for a wider smooth edge.
 
-screen.MAX_EFFECTS=Pro Max lighting effects
 option.MAX_AO=Ambient occlusion
 option.MAX_AO_STRENGTH=Occlusion strength
 option.MAX_SUNBEAMS=Sunbeams
