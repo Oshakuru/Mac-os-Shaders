@@ -105,3 +105,13 @@ option.CUBIC_CELESTIALS=Sun and moon style
 value.CUBIC_CELESTIALS.0=Game / Resource Pack
 value.CUBIC_CELESTIALS.1=Cubic
 option.CUBIC_CELESTIALS.comment=Embedded Cubic Sun & Moon textures by JoeFly. Cubic is the default and retains all eight moon phases. Game / Resource Pack restores the original celestial rendering.
+
+screen.WATER_RAIN_SETTINGS=Water and Rain
+option.FRESH_WATER=Fresh Water textures
+value.FRESH_WATER.0=Game / Resource Pack
+value.FRESH_WATER.1=Fresh Water
+option.FRESH_WATER.comment=Embedded animated water textures. Top faces use the still sheet; side faces use flowing water. Retains biome tint, lighting and fog. Flow direction on sloped surfaces is approximated.
+option.FRESH_RAIN=Fresh Rain texture
+value.FRESH_RAIN.0=Game / Resource Pack
+value.FRESH_RAIN.1=Fresh Rain
+option.FRESH_RAIN.comment=Embedded blue-grey rain streaks. Snow uses the original texture in snowy camera biomes. Mixed weather at biome boundaries and high-altitude snowfall may need this option Off.

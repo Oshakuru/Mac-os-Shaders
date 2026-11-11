@@ -36,6 +36,7 @@ uniform int renderStage;
 #endif
 #include "/lib/cubic_celestials.glsl"
 #endif
+#include "/lib/fresh_water.glsl"
 /* DRAWBUFFERS:0 */
 void main() {
 #ifdef WORLD_LIGHTING
@@ -46,7 +47,18 @@ void main() {
 #ifdef UNTEXTURED
     vec4 color = tint;
 #else
-    vec4 color = texture2D(texture, uv) * tint;
+    vec4 surface;
+#if FRESH_WATER == 1 && defined(FRESH_WATER_PASS)
+    if (freshWaterMask > 0.5) surface = sampleFreshWater();
+    else surface = texture2D(texture, uv);
+#elif FRESH_RAIN == 1 && defined(FRESH_WEATHER_PASS)
+    // Preserve snow when the camera is in a snowy biome.
+    if (biome_precipitation == 1) surface = texture2D(freshRainTexture, uv);
+    else surface = texture2D(texture, uv);
+#else
+    surface = texture2D(texture, uv);
+#endif
+    vec4 color = surface * tint;
 #endif
     if (color.a < alphaTestRef) discard;
 #if VISUAL_STYLE > 0 && defined(SKY_BASIC) && !defined(NO_SHADOW) && DEBUG_VIEW == 0
