@@ -49,9 +49,9 @@ vec4 wetSceneReflection(vec3 origin, vec3 direction) {
 }
 #endif
 #if MAKEUP_WATER == 1
-const bool colortex2Clear = true;
-const vec4 colortex2ClearColor = vec4(0.0, 0.0, 0.0, 0.0);
-/* DRAWBUFFERS:02 */
+const bool colortex4Clear = true;
+const vec4 colortex4ClearColor = vec4(0.0, 0.0, 0.0, 0.0);
+/* DRAWBUFFERS:04 */
 #else
 /* DRAWBUFFERS:0 */
 #endif

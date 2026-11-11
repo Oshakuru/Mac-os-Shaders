@@ -37,3 +37,9 @@ User rejected the skybox-cloud experiment and reported persistent grass/foliage 
 Water renderer and scene snapshot are new. Test shorelines, glass over water, underwater entry, caves, dimensions, reflection screen edges, rain rings and FPS in Iris. Native compilation does not validate framebuffer bindings or visual parity.
 
 0.9.5 additionally replaces default geometry clouds with the adapted SDV skybox renderer and original mask. Check reference cloud shape/range, preset tones, underwater hiding, cloud-mode switching and FPS in game.
+
+## 0.9.6
+
+User confirmed the SDV skybox looks good but water displayed a block-atlas mosaic. IrisSamplers.addRenderTargetSamplers explicitly starts at color target 4 for non-fullscreen passes. The water used target 2 and therefore had an unbound scene sampler. Native shader compilation missed this. Fixed both snapshot output and sampler to target 4; added a static pipeline-binding check. Iris source: https://github.com/IrisShaders/Iris/blob/1.21.11/common/src/main/java/net/irisshaders/iris/samplers/IrisSamplers.java .
+
+Offscreen M1 regression: when only Iris-supported gbuffers scene samplers are bound, the old water fails to reproduce an input scene gradient (delta 0.0); repaired water reproduces it (delta 0.4487). 156 standard shader programs compiled/linked with no failures. This is a simulated binding/render test, not in-game Iris confirmation.

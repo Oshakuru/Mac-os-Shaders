@@ -4,7 +4,7 @@
 
 Minecraft Java Edition visual pack developed around Apple Silicon, with selectable art styles, shadows, procedural water and rain puddles.
 
-**Current revision: 0.9.5; in-game-tested baseline: 0.9.** Next revision: **0.9.6**. The earlier Metal 1.0 labels are preserved in the development history; they are not the current release number.
+**Current revision: 0.9.6; in-game-tested baseline: 0.9.** Next revision: **0.9.7**. The earlier Metal 1.0 labels are preserved in the development history; they are not the current release number.
 
 ## Current features
 
@@ -41,7 +41,7 @@ The cubic images carry an all-rights-reserved notice and are not uploaded here. 
 python3 tools/build.py --without-cubic
 ```
 
-Place both generated files from `dist/` into Minecraft's `shaderpacks` folder and select **Metal-v0.9.5.zip** in Iris. The matching settings file carries Dark Fantasy and Sky + Scene puddle settings, with the SDV skybox clouds enabled.
+Place both generated files from `dist/` into Minecraft's `shaderpacks` folder and select **Metal-v0.9.6.zip** in Iris. The matching settings file carries Dark Fantasy and Sky + Scene puddle settings, with the SDV skybox clouds enabled.
 
 For visible terrain/lava reflections select **Atmosphere → Puddles and Wet Ground → Wet ground reflections → Sky + Scene**. Sky mode reflects only the sky and can be subtle on dark rainy nights.
 
@@ -84,3 +84,7 @@ Water now adapts MakeUp Ultra Fast 9.6 by Javier Garduño (LGPL-3.0), including 
 ## SDV skybox clouds in 0.9.5
 
 - Default clouds now use Super Duper Vanilla v1.3.8's adapted skybox parallax renderer and original cloud map, with Metal's preset tones. Fading Clouds remain selectable as option 2; Vanilla is option 0. Matches the reference skybox mapping and horizon fade independently of terrain render distance. Compositing is adapted to Metal's LDR pipeline; the overall SDV bloom/tone-mapping pipeline is not included.
+
+## 0.9.6 water binding fix
+
+Moves the opaque scene snapshot from colortex2 to colortex4. Iris only binds scene targets 4+ in gbuffers passes; the old water sampler was unbound and sampled the block atlas. The skybox and its preset tones are unchanged.

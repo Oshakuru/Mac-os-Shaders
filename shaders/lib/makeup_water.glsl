@@ -4,7 +4,7 @@
 #if MAKEUP_WATER == 1 && defined(MAKEUP_WATER_PASS)
 uniform float frameTimeCounter;
 uniform sampler2D makeupWaveTexture;
-uniform sampler2D colortex2;
+uniform sampler2D colortex4;
 uniform sampler2D depthtex1;
 uniform float near;
 uniform float far;
@@ -67,7 +67,7 @@ vec4 makeupSceneReflection(vec3 origin, vec3 direction) {
             vec4 hit = gbufferProjection * vec4(origin + direction * high, 1.0);
             screen = clamp(hit.xy / hit.w * 0.5 + 0.5, 0.0, 1.0);
             float border = min(min(screen.x, 1.0 - screen.x), min(screen.y, 1.0 - screen.y));
-            return vec4(texture2D(colortex2, screen).rgb, smoothstep(0.01, 0.09, border));
+            return vec4(texture2D(colortex4, screen).rgb, smoothstep(0.01, 0.09, border));
         }
         previousTravel = travel;
     }
@@ -108,7 +108,7 @@ vec4 applyMakeupWater(vec4 litColor) {
 #endif
     float thickness = max(linearDepth(texture2D(depthtex1, refractedUV).r, near, far) - surfaceDepth, 0.0);
     float absorption = 1.0 - 1.0 / (thickness * thickness * WATER_ABSORPTION + 1.125);
-    vec3 body = mix(texture2D(colortex2, refractedUV).rgb, litColor.rgb, absorption);
+    vec3 body = mix(texture2D(colortex4, refractedUV).rgb, litColor.rgb, absorption);
 #if WATER_REFLECTIONS > 0
     vec3 reflectedWorld = reflect(-viewDirection, normal);
     float exposure = smoothstep(0.1, 0.85, lm.y);

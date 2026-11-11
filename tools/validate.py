@@ -25,6 +25,14 @@ def main():
             if not format_name.isdigit() and not re.search(r'#define\s+' + re.escape(format_name) + r'\b', active):
                 raise ValueError(f'{file.name}: {name} format is undeclared GLSL; use the documented block comment')
         count += 1
+    # Iris only binds scene color targets 4+ during gbuffers rendering.
+    water = (ROOT / 'shaders/lib/makeup_water.glsl').read_text()
+    if re.search(r'uniform\s+sampler2D\s+(?:colortex[0-3]|gcolor|gdepth|gnormal|composite)\s*;', water):
+        raise ValueError('Water cannot sample scene color targets 0-3 in Iris gbuffers; use target 4 or higher')
+    for dimension in ['', 'world-1/', 'world1/']:
+        snapshot = (ROOT / 'shaders' / (dimension + 'deferred.fsh')).read_text()
+        if 'DRAWBUFFERS:04' not in snapshot or 'gl_FragData[1] = vec4(color, 1.0)' not in snapshot:
+            raise ValueError('Deferred must populate scene snapshot target 4 in every dimension')
     print(f'Validated includes and Iris-sensitive directives in {count} source files.')
     print('Cubic PNGs are intentionally external. Run tools/build.py to assemble the pack.')
 

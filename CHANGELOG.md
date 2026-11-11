@@ -1,5 +1,9 @@
 # Development progression
 
+## 0.9.6
+
+- Fixed water sampling the block atlas by moving its scene snapshot to an Iris-supported gbuffers target (colortex4). Skybox unchanged.
+
 ## 0.9.5
 
 - Replaced water with a credited MakeUp Ultra Fast 9.6 adaptation and added a dedicated opaque refraction/reflection snapshot. Ground puddles remain unchanged.
