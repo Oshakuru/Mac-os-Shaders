@@ -142,3 +142,7 @@ value.WATER_REFLECTIONS.2=Sky + Scene
 
 option.SDV_CLOUD_STEPS=Skybox cloud depth quality
 option.SDV_CLOUD_STEPS.comment=Reference default is 16. More steps increase sky rendering cost.
+
+option.FOLIAGE_WIND=Foliage wind
+option.FOLIAGE_WIND.comment=Lightweight Overworld vertex sway for grass, ferns, crops and leaves. Anchored roots, matching shadows, fades from 24 to 48 blocks. No wind texture reads or extra buffers. Off removes the wind shader path.
+option.FOLIAGE_WIND_STRENGTH=Wind strength

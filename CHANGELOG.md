@@ -1,5 +1,9 @@
 # Development progression
 
+## 0.9.7
+
+- Added vertex-only foliage wind with distance culling, anchored plant bases and matching shadow movement.
+
 ## 0.9.6
 
 - Changed art-preset labels to standard Minecraft lettering in ALL CAPS.

@@ -17,6 +17,10 @@ uniform vec3 sunPosition;
 #if defined(WET_GROUND_PASS) && defined(WORLD_LIGHTING) && RAIN_PUDDLES == 0
 attribute vec4 mc_Entity;
 #endif
+#if FOLIAGE_WIND == 1 && defined(WET_GROUND_PASS) && defined(WORLD_LIGHTING)
+uniform mat4 gbufferModelView;
+#include "/lib/foliage_wind.glsl"
+#endif
 #if defined(WEATHER_PASS) && UNOBTRUSIVE_WEATHER == 1
 uniform sampler2D texture;
 #endif
@@ -28,6 +32,12 @@ void main() {
     weatherIsRain = step(0.1, weatherProbe.b - weatherProbe.r);
 #endif
     vec4 viewPos = gl_ModelViewMatrix * gl_Vertex;
+#if FOLIAGE_WIND == 1 && defined(WET_GROUND_PASS) && defined(WORLD_LIGHTING)
+    if (metalWindMaterial(mc_Entity.x)) {
+        vec3 windPosition = (gbufferModelViewInverse * viewPos).xyz;
+        viewPos.xyz += mat3(gbufferModelView) * metalFoliageOffset(windPosition, mc_Entity.x);
+    }
+#endif
 #if RAIN_PUDDLES == 1 && defined(WET_GROUND_PASS) && defined(WORLD_LIGHTING)
     prepareWetGround();
 #endif
@@ -54,7 +64,7 @@ void main() {
 #if defined(WET_GROUND_PASS) && VISUAL_STYLE > 0
     // Keep the geometric normal for shadow receiver placement. Only lighting
     // uses the ground-facing normal so adjacent plant cards share grass-top light.
-    if (abs(mc_Entity.x - 10003.0) < 0.5) lightingNormal = vec3(0.0, 1.0, 0.0);
+    if (mc_Entity.x > 10002.5 && mc_Entity.x < 10005.5) lightingNormal = vec3(0.0, 1.0, 0.0);
 #endif
     vec3 lightWorld = mat3(gbufferModelViewInverse) * normalize(shadowLightPosition);
     lightCosine = dot(lightingNormal, lightWorld);

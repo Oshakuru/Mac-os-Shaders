@@ -54,4 +54,7 @@ const bool shadowtex0Nearest = true;
 #define RAIN_RIPPLES 1 // [0 1]
 #define RAIN_RIPPLE_STRENGTH 0.6 // [0.0 0.3 0.6 1.0]
 
+#define FOLIAGE_WIND 1 // [0 1]
+#define FOLIAGE_WIND_STRENGTH 0.5 // [0.0 0.5 1.0]
+
 #endif

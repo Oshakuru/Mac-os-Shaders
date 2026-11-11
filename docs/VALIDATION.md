@@ -43,3 +43,9 @@ Water renderer and scene snapshot are new. Test shorelines, glass over water, un
 User confirmed the SDV skybox looks good but water displayed a block-atlas mosaic. IrisSamplers.addRenderTargetSamplers explicitly starts at color target 4 for non-fullscreen passes. The water used target 2 and therefore had an unbound scene sampler. Native shader compilation missed this. Fixed both snapshot output and sampler to target 4; added a static pipeline-binding check. Iris source: https://github.com/IrisShaders/Iris/blob/1.21.11/common/src/main/java/net/irisshaders/iris/samplers/IrisSamplers.java .
 
 Offscreen M1 regression: when only Iris-supported gbuffers scene samplers are bound, the old water fails to reproduce an input scene gradient (delta 0.0); repaired water reproduces it (delta 0.4487). 156 standard shader programs compiled/linked with no failures. This is a simulated binding/render test, not in-game Iris confirmation.
+
+## 0.9.7
+
+Foliage wind adds no texture/framebuffer/pass resources. Validate grass roots, tall-plant seam continuity, leaf connections, shadow alignment, crop age geometry and motion/fps with wind toggled. No in-game result yet.
+
+M1 verification: 156 standard compile/link checks and 24 wind-toggle/style/puddle checks passed. Offscreen GPU execution confirmed anchored short/tall roots, equal tall-half seam offsets, moving plant tops, smaller leaf movement and zero movement beyond 48 blocks. No in-game FPS benchmark performed.
