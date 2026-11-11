@@ -28,6 +28,14 @@ uniform vec4 entityColor;
 uniform int renderStage;
 #endif
 #endif
+#if CUBIC_CELESTIALS == 1 && defined(SKY_BASIC) && !defined(NO_SHADOW)
+#if VISUAL_STYLE == 0
+uniform int isEyeInWater;
+uniform float rainStrength;
+uniform int renderStage;
+#endif
+#include "/lib/cubic_celestials.glsl"
+#endif
 /* DRAWBUFFERS:0 */
 void main() {
 #ifdef WORLD_LIGHTING
@@ -50,6 +58,9 @@ void main() {
 #else
     if (CARTOON_STRENGTH >= 1.0 && renderStage == MC_RENDER_STAGE_SKY && isEyeInWater == 0) {
         color.rgb = cartoonSky(skyDirection, skySunDirection, styleDay, styleTwilight, rainStrength);
+#endif
+#if CUBIC_CELESTIALS == 1
+        color.rgb = cubicCelestials(color.rgb);
 #endif
         gl_FragData[0] = color;
         return;
@@ -147,6 +158,9 @@ void main() {
         color.rgb = mix(color.rgb, cartoonSky(skyDirection, skySunDirection, styleDay, styleTwilight, rainStrength), CARTOON_STRENGTH);
 #endif
     }
+#endif
+#if CUBIC_CELESTIALS == 1 && defined(SKY_BASIC) && !defined(NO_SHADOW) && DEBUG_VIEW == 0
+    if (renderStage == MC_RENDER_STAGE_SKY) color.rgb = cubicCelestials(color.rgb);
 #endif
     gl_FragData[0] = color;
 }

@@ -7,7 +7,7 @@ uniform mat4 shadowProjection;
 uniform vec3 shadowLightPosition;
 
 #endif
-#if defined(WORLD_LIGHTING) || VISUAL_STYLE > 0
+#if defined(WORLD_LIGHTING) || VISUAL_STYLE > 0 || (CUBIC_CELESTIALS == 1 && defined(SKY_BASIC) && !defined(NO_SHADOW))
 uniform mat4 gbufferModelViewInverse;
 uniform vec3 sunPosition;
 #endif
@@ -18,7 +18,7 @@ void main() {
     // Biome tint, vanilla AO and transparency must survive the lighting stage.
     tint = gl_Color;
     fogDistance = length(viewPos.xyz);
-#if VISUAL_STYLE > 0 && defined(SKY_BASIC) && !defined(NO_SHADOW)
+#if (VISUAL_STYLE > 0 || CUBIC_CELESTIALS == 1) && defined(SKY_BASIC) && !defined(NO_SHADOW)
     skyDirection = mat3(gbufferModelViewInverse) * viewPos.xyz;
     skySunDirection = mat3(gbufferModelViewInverse) * normalize(sunPosition);
 #endif
