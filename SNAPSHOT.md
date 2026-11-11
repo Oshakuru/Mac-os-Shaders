@@ -1,4 +1,4 @@
-# M1-Light v0.6
+# M1-Light v0.6.1
 
 Imported historical development snapshot.
 
