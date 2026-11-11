@@ -90,3 +90,11 @@ option.APPLE_DEPTH_RECONSTRUCTION=Sparse depth reconstruction
 option.APPLE_DEPTH_RECONSTRUCTION.comment=Experimental perspective reconstruction with a general-projection fallback. Default Off; benchmark separately with AO enabled.
 value.APPLE_DEPTH_RECONSTRUCTION.0=Off (v0.8 path)
 value.APPLE_DEPTH_RECONSTRUCTION.1=On (experimental)
+
+screen.CLOUD_SETTINGS=Clouds
+option.CLOUD_STYLE=Cloud style
+value.CLOUD_STYLE.0=Vanilla
+value.CLOUD_STYLE.1=Story Mode
+option.CLOUD_STYLE.comment=Vanilla preserves the original v0.8 cloud path. Story Mode adapts a 10-block cloud layer, flatter color and a vertical opacity fade. Uses existing Fancy cloud geometry.
+option.CLOUD_OPACITY=Custom cloud opacity
+option.CLOUD_OPACITY.comment=Only affects Story Mode. Clouds require Fancy geometry; custom styles request Fancy automatically.

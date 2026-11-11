@@ -1,3 +1,5 @@
+#ifndef M1_SETTINGS_INCLUDED
+#define M1_SETTINGS_INCLUDED
 const int shadowMapResolution = 1024; // [512 1024 2048]
 const float shadowDistance = 48.0; // [32.0 48.0 64.0 80.0]
 const float shadowDistanceRenderMul = 1.0;
@@ -32,4 +34,9 @@ const bool shadowtex0Nearest = true;
 #define MAX_LIGHTING 0 // [0 1]
 
 #define APPLE_SUN_SETUP 1 // [0 1]
-#define APPLE_DEPTH_RECONSTRUCTION 0 // [0 1]
+#define APPLE_DEPTH_RECONSTRUCTION 1 // [0 1]
+
+#define CLOUD_STYLE 0 // [0 1]
+#define CLOUD_OPACITY 1.0 // [0.4 0.6 0.8 1.0]
+
+#endif
