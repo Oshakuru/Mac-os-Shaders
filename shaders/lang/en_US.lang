@@ -63,3 +63,8 @@ value.MAX_SUNBEAMS.0=Off
 value.MAX_SUNBEAMS.1=On
 option.MAX_AO.comment=Subtle screen-space corner shading. Enabled by Pro Max; Air and Pro switch it off.
 option.MAX_SUNBEAMS.comment=Six shadow samples along the view ray for daylight shafts. Enabled by Pro Max; Air and Pro switch it off.
+
+option.MAX_LIGHTING=Independent lighting
+value.MAX_LIGHTING.0=Original
+value.MAX_LIGHTING.1=Sun / sky / block light
+option.MAX_LIGHTING.comment=Pro Max surface lighting: separate light sources, linear-space shading and highlight compression. Air and Pro retain original lighting.

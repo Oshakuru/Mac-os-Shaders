@@ -82,7 +82,11 @@ void main() {
     color.rgb = mix(color.rgb, entityColor.rgb, entityColor.a);
 #endif
 #ifdef LIT
+#if MAX_LIGHTING == 1 && defined(WORLD_LIGHTING) && DEBUG_VIEW == 0
+    color.rgb = maxSurface(color.rgb, evaluateLighting());
+#else
     color.rgb *= evaluateLighting();
+#endif
 #endif
     float fog = clamp((fogDistance - fogStart) / max(fogEnd - fogStart, 0.001), 0.0, 1.0);
     vec3 atmosphereColor = fogColor;
