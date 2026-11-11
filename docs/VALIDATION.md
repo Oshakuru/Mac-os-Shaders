@@ -65,3 +65,9 @@ All 624 preset/style/program combinations compiled and linked on Apple M1. Offsc
 ## 0.9.10
 
 Reconstructed sparse Custom settings from installed 0.9.9 defaults; applied explicit FXAA=0. Air/Pro Max retain their source quality configurations except FXAA, with neutral extra controls. No empirical FPS ordering/gaps claimed for the new ladder.
+
+## 0.9.11
+
+Responds to a reported ~20 FPS wet-reflection cost even in Sky mode. New Sky-only simplifications require fixed-scene in-game measurement; deferred-mask bandwidth remains. No FPS gain claimed.
+
+36 targeted native M1 checks passed across all wet reflection modes, art styles and custom water on/off. Profile validation passed for all three tiers/37 controls. In-game performance remains unmeasured.

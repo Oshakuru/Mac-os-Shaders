@@ -17,7 +17,7 @@ vec4 wetGroundSurface() {
     float noise = texture2D(puddleNoise, (playerPos.xz + cameraPosition.xz) * 0.025).a;
     float puddle = clamp((noise - 0.45) / 0.10, 0.0, 1.0) * damp;
     float coverage = max(puddle, damp * 0.12);
-#if WET_GROUND_REFLECTIONS > 0
+#if WET_GROUND_REFLECTIONS == 2
     // Lightweight animated ripple normals using the source's two directions.
     vec2 coord = (playerPos.xz + cameraPosition.xz) * 0.3;
     vec2 a = vec2(0.6, 0.8);

@@ -1,8 +1,9 @@
-# Metal 0.9.10
+# Metal 0.9.11
 
-- Returns to Air, Pro and Pro Max.
-- New Air is the former Pro; removes the former Air tier.
-- New Pro reconstructs the user's saved Custom state against the installed 0.9.9 defaults, with FXAA explicitly off.
-- New Pro Max is the former Pro Max Plus, with FXAA explicitly off; the old middle Pro Max tier is retired.
-- All tiers track grading/settings consistently, while art style remains independent. Manual changes show Custom.
-- Includes the user's Dark Fantasy Pro configuration. No rendering algorithm changes; preset/default values only.
+- Optimizes wet-ground Sky reflections with flat normals; animated puddle normals remain only in Sky + Scene.
+- Rejects low coverage and checks reflection visibility before reflection direction, sky color and highlight shading.
+- Earlier distance fade for Sky mode; preserves puddle coverage and wet-ground darkening.
+- Renames Sky (Fast) to Sky (Light), without claiming a fixed FPS gain.
+- Keeps water, skybox and quality-preset selections unchanged.
+
+This does not remove the mask/output bandwidth or introduce half-resolution reflections. Measure Off → Sky (Light) → Sky + Scene in a fixed in-game scene. The provided Pro settings retain Sky + Scene, so select Sky (Light) to test this optimization.

@@ -1,5 +1,9 @@
 # Development progression
 
+## 0.9.11
+
+- Optimized wet-ground Sky shading with flat normals, early visibility gating and earlier distance fading. Water/skybox unchanged.
+
 ## 0.9.10
 
 - Consolidated into three presets: former Pro → Air, saved Custom → Pro, former Plus → Pro Max. FXAA off throughout.

@@ -121,9 +121,9 @@ value.RAIN_PUDDLES.1=On
 option.RAIN_PUDDLES.comment=LOW to MEDIUM impact on rainy ground without reflections. Adds puddle coverage and wet darkening. Sky + Scene wet reflections add a separate high cost.
 option.WET_GROUND_REFLECTIONS=Wet ground reflections
 value.WET_GROUND_REFLECTIONS.0=Off
-value.WET_GROUND_REFLECTIONS.1=Sky (Fast)
+value.WET_GROUND_REFLECTIONS.1=Sky (Light)
 value.WET_GROUND_REFLECTIONS.2=Sky + Scene (Experimental)
-option.WET_GROUND_REFLECTIONS.comment=HIGH impact in rain when wet ground covers the screen. Sky + Scene traces terrain; Sky is cheaper. Off keeps wet darkening without reflections.
+option.WET_GROUND_REFLECTIONS.comment=Sky (Light) uses flat puddle normals, skips faint reflections and fades them earlier with distance. Sky + Scene retains animated normals and terrain tracing. Off keeps wet darkening. Cost still depends on wet screen coverage.
 
 screen.WEATHER_SETTINGS=Weather
 option.UNOBTRUSIVE_WEATHER=Unobtrusive weather

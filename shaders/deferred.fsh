@@ -59,37 +59,60 @@ void main() {
     vec3 color = texture2D(colortex0, uv).rgb;
 #if RAIN_PUDDLES == 1 && WET_GROUND_REFLECTIONS > 0 && DEBUG_VIEW == 0
     vec4 wet = texture2D(colortex1, uv);
-    if (wet.b > 0.001 && isEyeInWater == 0) {
+#if WET_GROUND_REFLECTIONS == 1
+    const float minCoverage = 0.02;
+#else
+    const float minCoverage = 0.001;
+#endif
+    if (wet.b > minCoverage && isEyeInWater == 0) {
         float depth = texture2D(depthtex0, uv).r;
         vec3 position = reconstructViewPosition(uv, depth, gbufferProjectionInverse);
+#if WET_GROUND_REFLECTIONS == 1
+        // Eligible puddle receivers are upward terrain; no animated normal decode.
+        vec3 viewNormal = normalize(gbufferModelView[1].xyz);
+        float fadeEnd = min(far * 0.65, 96.0);
+        float fadeStart = min(far * 0.30, 40.0);
+        float distanceFade = 1.0 - smoothstep(fadeStart * fadeStart, fadeEnd * fadeEnd, dot(position, position));
+#else
         vec2 normalXZ = wet.rg * 2.0 - 1.0;
         vec3 worldNormal = normalize(vec3(normalXZ.x, sqrt(max(1.0 - dot(normalXZ, normalXZ), 0.001)), normalXZ.y));
         vec3 viewNormal = normalize(mat3(gbufferModelView) * worldNormal);
-        vec3 v = normalize(-position);
-        vec3 reflectedView = reflect(-v, viewNormal);
-        vec3 r = normalize(mat3(gbufferModelViewInverse) * reflectedView);
-        vec3 sun = wetSunWorld;
-        float day = wetTimeOfDay.x;
-        float twilight = wetTimeOfDay.y;
-        vec3 reflected;
-#if VISUAL_STYLE > 0
-        reflected = artSky(r, sun, day, twilight, rainStrength);
-#else
-        reflected = mix(fogColor, skyColor, smoothstep(0.0, 0.8, max(r.y, 0.0)));
+        float distanceFade = 1.0 - smoothstep(far * 0.55, far * 0.95, length(position));
 #endif
-        float highlight = pow(max(dot(r, normalize(sun)), 0.0), 128.0) * day * (1.0 - rainStrength);
-        reflected += vec3(1.0, 0.92, 0.76) * highlight;
+        vec3 v = normalize(-position);
         float edge = 1.0 - max(dot(v, viewNormal), 0.0);
         float edge2 = edge * edge;
         float fresnel = 0.02 + 0.98 * edge2 * edge2 * edge;
-        float distanceFade = 1.0 - smoothstep(far * 0.55, far * 0.95, length(position));
-#if WET_GROUND_REFLECTIONS == 2
-        if (wet.b * fresnel * distanceFade > 0.015) {
-            vec4 scene = wetSceneReflection(position + viewNormal * 0.08, reflectedView);
-            reflected = mix(reflected, scene.rgb, scene.a);
-        }
+        float contribution = clamp(wet.b * fresnel * distanceFade, 0.0, 1.0);
+#if WET_GROUND_REFLECTIONS == 1
+        // Gate BEFORE reflection direction, sky palette and sun highlight work.
+        float shadingThreshold = 0.004;
+        contribution *= smoothstep(0.004, 0.012, contribution);
+#else
+        float shadingThreshold = 0.001;
 #endif
-        color = mix(color, reflected, clamp(wet.b * fresnel * distanceFade, 0.0, 1.0));
+        if (contribution > shadingThreshold) {
+            vec3 reflectedView = reflect(-v, viewNormal);
+            vec3 r = normalize(mat3(gbufferModelViewInverse) * reflectedView);
+            vec3 sun = wetSunWorld;
+            float day = wetTimeOfDay.x;
+            float twilight = wetTimeOfDay.y;
+            vec3 reflected;
+#if VISUAL_STYLE > 0
+            reflected = artSky(r, sun, day, twilight, rainStrength);
+#else
+            reflected = mix(fogColor, skyColor, smoothstep(0.0, 0.8, max(r.y, 0.0)));
+#endif
+            float highlight = pow(max(dot(r, normalize(sun)), 0.0), 128.0) * day * (1.0 - rainStrength);
+            reflected += vec3(1.0, 0.92, 0.76) * highlight;
+#if WET_GROUND_REFLECTIONS == 2
+            if (contribution > 0.015) {
+                vec4 scene = wetSceneReflection(position + viewNormal * 0.08, reflectedView);
+                reflected = mix(reflected, scene.rgb, scene.a);
+            }
+#endif
+            color = mix(color, reflected, contribution);
+        }
     }
 #endif
     gl_FragData[0] = vec4(color, 1.0);

@@ -4,7 +4,7 @@
 
 Minecraft Java Edition visual pack developed around Apple Silicon, with selectable art styles, shadows, procedural water and rain puddles.
 
-**Current revision: 0.9.10; in-game-tested baseline: 0.9.** Next revision: **0.9.11**. The earlier Metal 1.0 labels are preserved in the development history; they are not the current release number.
+**Current revision: 0.9.11; in-game-tested baseline: 0.9.** Next revision: **0.9.12**. The earlier Metal 1.0 labels are preserved in the development history; they are not the current release number.
 
 ## Current features
 
@@ -41,7 +41,7 @@ The cubic images carry an all-rights-reserved notice and are not uploaded here. 
 python3 tools/build.py --without-cubic
 ```
 
-Place both generated files from `dist/` into Minecraft's `shaderpacks` folder and select **Metal-v0.9.10.zip** in Iris. The matching settings file carries Dark Fantasy and Sky + Scene puddle settings, with the SDV skybox clouds enabled.
+Place both generated files from `dist/` into Minecraft's `shaderpacks` folder and select **Metal-v0.9.11.zip** in Iris. The matching settings file carries Dark Fantasy and Sky + Scene puddle settings, with the SDV skybox clouds enabled.
 
 For visible terrain/lava reflections select **Atmosphere → Puddles and Wet Ground → Wet ground reflections → Sky + Scene**. Sky mode reflects only the sky and can be subtle on dark rainy nights.
 
@@ -125,3 +125,7 @@ Adds low-contribution reflection trace skipping, refined water-hit rejection, se
 | Pro Max | Former Pro Max Plus, with FXAA disabled |
 
 The old Air and old Pro Max tiers are retired. Pro has 512 shadows at 64 blocks, four-tap filtering, two 16-step cloud layers, AO, sunbeams and independent lighting; water reflections use six trace steps, refraction and wind are off. Pro retains the supplied brightness 0.8 and saturation 1.2. Unlisted settings were reconstructed from the installed 0.9.9 shader defaults. FXAA remains available manually but is off in all three presets. Art style stays independent; the supplied settings retain Dark Fantasy. Other tracked changes, including grading changes, display Custom. Earlier four-tier comparisons and 25% targets describe previous releases and no longer define this ladder.
+
+## 0.9.11 wet-ground Sky mode
+
+Sky (Light), formerly Sky (Fast), uses flat puddle normals and gates low-coverage/low-contribution pixels before sky reflection shading. It fades reflections earlier (40–96 block caps, also limited by render distance). Puddle coverage and wet darkening remain intact. The existing mask/deferred-pass bandwidth cost remains; no fixed FPS improvement is promised. Water and skybox rendering are unchanged. For a controlled comparison use the same preset, position, direction, weather and time, changing only Wet ground reflections between Off, Sky (Light), and Sky + Scene. The shipped Pro configuration retains its previous Sky + Scene setting; select Sky (Light) explicitly for the new path.
