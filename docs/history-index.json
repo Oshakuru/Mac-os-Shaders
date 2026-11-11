@@ -1,0 +1,275 @@
+[
+  {
+    "index": 0,
+    "label": "M1-Light v0.5.5",
+    "status": "Historical snapshot; not the current release",
+    "sourceName": "M1-Light-v0.5.5.zip",
+    "omittedAssets": [],
+    "originalArchiveSha256": "9be9a7ce3fbd7615b3a276e891f337f14845b4560022da0d5d8d42d0fe68122f",
+    "commit": "8591d962fded47c6edac52dbe17735d707defd57"
+  },
+  {
+    "index": 1,
+    "label": "M1-Light v0.5.6",
+    "status": "Historical snapshot; not the current release",
+    "sourceName": "M1-Light-v0.5.6.zip",
+    "omittedAssets": [],
+    "originalArchiveSha256": "e2e26dd692aa74133c67b3189622fbaa44240f5ef9f00c4c2ed4512f240c98ab",
+    "commit": "b770e21abc192442569f5eb645340cc8d5183761"
+  },
+  {
+    "index": 2,
+    "label": "M1-Light v0.6",
+    "status": "Historical snapshot; not the current release",
+    "sourceName": "M1-Light-v0.6.zip",
+    "omittedAssets": [],
+    "originalArchiveSha256": "a92d47edf7039694a04ca574990ed6b05be74c3003c7f10eeaf163e28968dfde",
+    "commit": "743906c94faaf98161825e75747f978fb0545eb5"
+  },
+  {
+    "index": 3,
+    "label": "M1-Light v0.6.1",
+    "status": "Historical snapshot; not the current release",
+    "sourceName": "M1-Light-v0.6.1.zip",
+    "omittedAssets": [],
+    "originalArchiveSha256": "7ac1a5fa27110e3ca8392846852150e3c46677b9fbc79b650d08ce0c844e9146",
+    "commit": "474d4a4dfcc8ba270da4c64fe4078e29ff1ca3a9"
+  },
+  {
+    "index": 4,
+    "label": "M1-Light v0.6.2",
+    "status": "Historical snapshot; not the current release",
+    "sourceName": "M1-Light-v0.6.2.zip",
+    "omittedAssets": [],
+    "originalArchiveSha256": "378c4a8ee79b6180786e87b4e58569e531fcd6d6b0e13f0f0c2fb6bd162511c0",
+    "commit": "277bd5bf11a496e5720c881e8d3828617cb0a288"
+  },
+  {
+    "index": 5,
+    "label": "M1-Light v0.6.3",
+    "status": "Historical snapshot; not the current release",
+    "sourceName": "M1-Light-v0.6.3.zip",
+    "omittedAssets": [],
+    "originalArchiveSha256": "8b06a7b65f98f1251ecb08db8001353e51dd035a973f9bcb17dcfade228ba235",
+    "commit": "138f882c5b9dd0c7f390ed2ffde54992756dfd44"
+  },
+  {
+    "index": 6,
+    "label": "M1-Light v0.7",
+    "status": "Historical snapshot; not the current release",
+    "sourceName": "M1-Light-v0.7.zip",
+    "omittedAssets": [],
+    "originalArchiveSha256": "09431f758f809693ea9ffd9affafaae0d7575816da5c9372a16ba479d3a51d4d",
+    "commit": "ef08c411c3e834b74bfa47de1537e04f20587797"
+  },
+  {
+    "index": 7,
+    "label": "M1-Light v0.8 baseline",
+    "status": "User-selected visual/performance baseline",
+    "sourceName": "M1-Light-v0.8.zip",
+    "omittedAssets": [],
+    "originalArchiveSha256": "c2f91654b12fd9364830abb55e45a9f10c70c1d2bfa7e84977d7ffd74a18d712",
+    "commit": "73cfadf0bac36bc2a7fd5102911969ebe020739f"
+  },
+  {
+    "index": 8,
+    "label": "M1-Light v0.8.1 atmosphere experiment",
+    "status": "User reported 20–30 FPS below v0.8; rejected as baseline",
+    "sourceName": "M1-Light-v0.8.1.zip",
+    "omittedAssets": [],
+    "originalArchiveSha256": "737867c9c642451eb4f8568a8aa5e93b574df4e03f6914bb74eb0cb7a4aad426",
+    "commit": "36f1688ffa96f02f483cd92f15052920d58dca5c"
+  },
+  {
+    "index": 9,
+    "label": "M1-Light v0.8 settings layout",
+    "status": "Complementary-inspired menu organization",
+    "sourceName": "menu-v08",
+    "omittedAssets": [],
+    "originalArchiveSha256": null,
+    "commit": "a486f1651bb9a9e0a0b2fc56d8d9c071630451e5"
+  },
+  {
+    "index": 10,
+    "label": "M1-Light v0.8 Apple optimization experiment",
+    "status": "User confirmed sunbeam gain and 203 to 215 FPS average with sparse reconstruction",
+    "sourceName": "M1-Light-v0.8-Apple-Experimental.zip",
+    "omittedAssets": [],
+    "originalArchiveSha256": "0b9bebe0d2d14a70d86d5a167261e6d0a2e7d6570406457b79de47187639e07b",
+    "commit": "a7a18cb5b03c3278712fd57f04a35d461abacfcf"
+  },
+  {
+    "index": 11,
+    "label": "M1-Light v0.8 Story Mode clouds",
+    "status": "User confirmed cloud appearance and maintained performance",
+    "sourceName": "M1-Light-v0.8-Story-Clouds.zip",
+    "omittedAssets": [],
+    "originalArchiveSha256": "8a7f926ea844eee536ea1c4d3d75418ba03d6e9b1daa37cc3c3abade8756b491",
+    "commit": "09e129e6227b0e4f856e251184e87bf0e74d6f1e"
+  },
+  {
+    "index": 12,
+    "label": "Cartoon palette study",
+    "status": "Unreleased palette study, superseded by the reference-led Storybook style",
+    "sourceName": "cartoon-polish",
+    "omittedAssets": [],
+    "originalArchiveSha256": null,
+    "commit": "075d1847e1333979d963fa024ca0f212b254f24f"
+  },
+  {
+    "index": 13,
+    "label": "Cartoon Storybook",
+    "status": "Ni no Kuni and user-supplied animation references",
+    "sourceName": "M1-Light-v0.8-Cartoon-Storybook.zip",
+    "omittedAssets": [],
+    "originalArchiveSha256": "d30f694de7372bd0bf9ca554765d74590e4b343fb1cecca7a77f3f4ddb7071ab",
+    "commit": "66906b34c516eaca2838067de77cae8d06fb5203"
+  },
+  {
+    "index": 14,
+    "label": "Dark Fantasy Grim",
+    "status": "Colder shadows and more subdued atmosphere",
+    "sourceName": "M1-Light-v0.8-Dark-Grim.zip",
+    "omittedAssets": [],
+    "originalArchiveSha256": "d8465d4122ff1e56ccc56f2dc011022b13d7eb0bf0b9489f2cd0e93752c744b1",
+    "commit": "f6a27b9e23d4d9f407d29171e5296f9ec7ce27a8"
+  },
+  {
+    "index": 15,
+    "label": "Cubic Sun and Moon integration",
+    "status": "Embedded-sprite integration; restricted textures excluded from public history",
+    "sourceName": "M1-Light-v0.8-Cubic-Sky.zip",
+    "omittedAssets": [
+      "shaders/textures/cubic/sun.png",
+      "shaders/textures/cubic/moon_phases.png"
+    ],
+    "originalArchiveSha256": "b8c9c9a4b86b901c65673f7ece509af77d91a54176109c10a95b27482d3c2a55",
+    "commit": "af992dda919e2ff608702b4f52eb06130c1131fb"
+  },
+  {
+    "index": 16,
+    "label": "Fresh Water and Rain experiment",
+    "status": "Superseded; water/rain texture assets excluded from public history",
+    "sourceName": "M1-Light-v0.8-Fresh-Water.zip",
+    "omittedAssets": [
+      "shaders/textures/fresh/water_flow.png",
+      "shaders/textures/fresh/water_still.png",
+      "shaders/textures/fresh/rain.png",
+      "shaders/textures/cubic/sun.png",
+      "shaders/textures/cubic/moon_phases.png"
+    ],
+    "originalArchiveSha256": "45629af86db34e1104c28ec9412340ca9c27814a5ea67eb9bc684afce7e99ebb",
+    "commit": "33d52b11c544603d03177501f025d81ef34e7f36"
+  },
+  {
+    "index": 17,
+    "label": "Photon water adaptation",
+    "status": "Replaces Fresh Water with waves, absorption and sky reflections",
+    "sourceName": "M1-Light-v0.8-Photon-Water.zip",
+    "omittedAssets": [
+      "shaders/textures/fresh/water_flow.png",
+      "shaders/textures/fresh/water_still.png",
+      "shaders/textures/fresh/rain.png",
+      "shaders/textures/cubic/sun.png",
+      "shaders/textures/cubic/moon_phases.png"
+    ],
+    "originalArchiveSha256": "4997b98b9d90a3bafa1e9b14f51af4db0b27d33a62edfb6e27cb18fc5f78e467",
+    "commit": "213085512480f067ed0a223b7e7b26cd83f65357"
+  },
+  {
+    "index": 18,
+    "label": "Photon puddles and wet ground",
+    "status": "Removes Fresh Rain; adds puddles and optional scene reflections",
+    "sourceName": "M1-Light-v0.8-Photon-Puddles.zip",
+    "omittedAssets": [
+      "shaders/textures/cubic/sun.png",
+      "shaders/textures/cubic/moon_phases.png"
+    ],
+    "originalArchiveSha256": "1a594ac12bcf4f7ecb6d9e843f6de89a414ee0e8e51ff3bf7ea21772fce13492",
+    "commit": "a8e1f11e1d14544f167a6cc89628475cc880495f"
+  },
+  {
+    "index": 19,
+    "label": "Rename M1-Light to Metal 1.0",
+    "status": "Former branding/version, later relabeled 0.9; contained two Iris loading issues",
+    "sourceName": "Metal-v1.0.zip",
+    "omittedAssets": [
+      "shaders/textures/cubic/sun.png",
+      "shaders/textures/cubic/moon_phases.png"
+    ],
+    "originalArchiveSha256": "38382f506a061195191d981947477162ca70983ce8e64ec2b50787c353ae59bb",
+    "commit": "e47874b056cd3271569cd697927b1f508fb3d7c0"
+  },
+  {
+    "index": 20,
+    "label": "Metal 1.0 cleanup candidate",
+    "status": "Shared helpers and conditional work elimination; contained Iris metadata issues",
+    "sourceName": "Metal-v1.0-cleanup.zip",
+    "omittedAssets": [
+      "shaders/textures/cubic/moon_phases.png",
+      "shaders/textures/cubic/sun.png"
+    ],
+    "originalArchiveSha256": "88b95a813c0e04c2f1424ec0684d2a65eb19cc5a51cb99990bfab8cf53985d77",
+    "commit": "5dae7c08a670eb4bcd45e20b3a757bd6bc7762c2"
+  },
+  {
+    "index": 21,
+    "label": "Metal 1.0 Iris clear-color fix",
+    "status": "Four-component clear color; RGBA8 issue still present",
+    "sourceName": "Metal-v1.0-IrisFix.zip",
+    "omittedAssets": [
+      "shaders/textures/cubic/sun.png",
+      "shaders/textures/cubic/moon_phases.png"
+    ],
+    "originalArchiveSha256": "04dee0abaa22fd0a3350b8d4323fd031f17e31695e9c111fc75df29463b99194",
+    "commit": "e15247c60611a7bef6ee0d402d0f725add87aef1"
+  },
+  {
+    "index": 22,
+    "label": "Metal cleanup Iris clear-color fix",
+    "status": "Four-component clear color; RGBA8 issue still present",
+    "sourceName": "Metal-v1.0-cleanup-IrisFix.zip",
+    "omittedAssets": [
+      "shaders/textures/cubic/moon_phases.png",
+      "shaders/textures/cubic/sun.png"
+    ],
+    "originalArchiveSha256": "61188497a42bd6c9048aff7b54f3695678393895fc3b981472aa95b0e515cae9",
+    "commit": "9e05935d68dc3e35a7b1ce5c95c9b1187f888028"
+  },
+  {
+    "index": 23,
+    "label": "Metal 1.0 Iris format fix",
+    "status": "User confirmed pack loads after both Iris fixes",
+    "sourceName": "Metal-v1.0-IrisFix2",
+    "omittedAssets": [
+      "shaders/textures/cubic/sun.png",
+      "shaders/textures/cubic/moon_phases.png"
+    ],
+    "originalArchiveSha256": null,
+    "commit": "227345b21fa43574a7923d0bd22deaab9553a08e"
+  },
+  {
+    "index": 24,
+    "label": "Metal cleanup Iris format fix",
+    "status": "User confirmed loading and working Sky + Scene puddle reflections",
+    "sourceName": "Metal-v1.0-cleanup-IrisFix2.zip",
+    "omittedAssets": [
+      "shaders/textures/cubic/moon_phases.png",
+      "shaders/textures/cubic/sun.png"
+    ],
+    "originalArchiveSha256": "d32eefa54022b5d4d34ca1bdd677940426faf0e7d58b49138400349c309edc8c",
+    "commit": "7e7458d7240e47f735f8a5e7b7cbadfeac82f6c1"
+  },
+  {
+    "index": 25,
+    "label": "Metal 0.9 current tested baseline",
+    "status": "Current version; user confirmed reflections and good performance",
+    "sourceName": "Metal-v0.9.zip",
+    "omittedAssets": [
+      "shaders/textures/cubic/moon_phases.png",
+      "shaders/textures/cubic/sun.png"
+    ],
+    "originalArchiveSha256": "9ee022c02c7b7292f58497dcd9f6c8d1293ebdb53ee7a1a07a17f582f634c1bb",
+    "commit": "661f96bdbc6953dc0847f422fd43af0f8af58020"
+  }
+]

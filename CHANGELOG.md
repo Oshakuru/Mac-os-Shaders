@@ -1,0 +1,31 @@
+# Development progression
+
+## 0.9 — current baseline
+
+- Relabeled the tested Metal cleanup + Iris Fix 2 build as 0.9.
+- Preserved the successful optimization switches, art styles, Story Mode clouds, Photon water and Sky + Scene puddle settings.
+- Established patch increments: next 0.9.1, then 0.9.2.
+- User confirmed in-game loading, visible scene reflections and good performance.
+
+## Former Metal 1.0 labels
+
+- Adopted the Metal name and vintage Macintosh-inspired capital M identity.
+- Refactored shared sky, depth, daylight and water logic; reduced unnecessary reflection work.
+- Fixed Iris clear-color parsing with four explicit components.
+- Fixed the undeclared RGBA8 error by placing the format directive in Iris's documented block-comment form.
+- Native-driver tests alone missed both Iris-specific integration assumptions; validation now checks them explicitly.
+
+## M1-Light 0.8 development
+
+- Selected 0.8 as the visual/performance baseline; 0.8.1 was reported 20–30 FPS slower.
+- Added organized settings menus and separate art styles.
+- Moved sunbeam setup to vertices and added sparse depth reconstruction.
+- Added selectable Story Mode clouds.
+- Developed Cartoon Storybook using Ni no Kuni and animation references; darkened Dark Fantasy.
+- Integrated cubic celestial support.
+- Tried Fresh Water/Fresh Rain, then removed them.
+- Adapted Photon water, puddles and optional screen-space ground reflections.
+
+## M1-Light 0.5.5–0.7
+
+Available early development source snapshots are preserved in Git history. Their original identifiers are retained rather than assigning invented Metal release numbers.
