@@ -68,3 +68,8 @@ option.MAX_LIGHTING=Independent lighting
 value.MAX_LIGHTING.0=Original
 value.MAX_LIGHTING.1=Sun / sky / block light
 option.MAX_LIGHTING.comment=Pro Max surface lighting: separate light sources, linear-space shading and highlight compression. Air and Pro retain original lighting.
+
+option.EXTERNAL_ATMOSPHERE=Sky and atmosphere source
+value.EXTERNAL_ATMOSPHERE.0=Shader
+value.EXTERNAL_ATMOSPHERE.1=Atmospherics / Game
+option.EXTERNAL_ATMOSPHERE.comment=Use the game or Atmospherics sky, sun and fog without shader palette replacements. Overall art-style grading remains active.

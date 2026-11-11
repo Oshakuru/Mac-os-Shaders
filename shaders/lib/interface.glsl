@@ -23,7 +23,7 @@ varying float styleDay;
 varying float styleTwilight;
 #endif
 
-#if VISUAL_STYLE > 0 && defined(SKY_BASIC) && !defined(NO_SHADOW)
+#if VISUAL_STYLE > 0 && defined(SKY_BASIC) && !defined(NO_SHADOW) && EXTERNAL_ATMOSPHERE == 0
 varying vec3 skyDirection;
 varying vec3 skySunDirection;
 #endif
