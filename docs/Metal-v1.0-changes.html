@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Metal v1.0: what changed</title>
+<style>
+:root{--bg:#f3f6f7;--ink:#14232b;--mute:#4f636d;--line:#cbd7dc;--accent:#0b6e7f;--green:#1c7c3f;--yellow:#946200;--red:#b3261e}
+@media (prefers-color-scheme:dark){:root{--bg:#10191e;--ink:#e3edf0;--mute:#9fb3bb;--line:#2a3b43;--accent:#5cc3d4;--green:#58c27d;--yellow:#e0b04a;--red:#f07a72}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 Georgia,"Times New Roman",serif}
+main{max-width:46rem;margin:0 auto;padding:3rem 1.25rem 4rem}
+h1{font:700 2.1rem/1.2 "Avenir Next","Segoe UI",system-ui,sans-serif;margin:0 0 .5rem}
+h2{font:600 1.25rem/1.3 "Avenir Next","Segoe UI",system-ui,sans-serif;margin:2.5rem 0 .75rem;padding-top:1.25rem;border-top:1px solid var(--line)}
+p,li{max-width:40rem}
+.lead{color:var(--mute);font-size:1.05rem}
+ul{padding-left:1.2rem}
+li{margin:.35rem 0}
+.table{overflow-x:auto;margin:1rem 0}
+table{border-collapse:collapse;width:100%;font:15px/1.45 system-ui,sans-serif;min-width:34rem}
+th,td{text-align:left;padding:.55rem .7rem;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600}
+.g{color:var(--green);font-weight:600}.y{color:var(--yellow);font-weight:600}.r{color:var(--red);font-weight:600}
+code{font:.9em ui-monospace,Menlo,monospace;background:color-mix(in srgb,var(--accent) 12%,transparent);padding:.1em .35em;border-radius:3px}
+.note{border-left:3px solid var(--accent);padding:.1rem 1rem;margin:1.25rem 0;color:var(--mute)}
+</style>
+</head>
+<body>
+<main>
+<h1>Metal v1.0: what changed</h1>
+<p class="lead">Work on <code>Metal-v1.0.zip</code>, an Iris shader pack for Minecraft, tuned for Apple Silicon. No shader code changed; the edits are textures, menu labels and docs.</p>
+
+<h2>Analysis</h2>
+<ul>
+<li>Reviewed all 110 shader entry points and the shared library code (about 1,600 lines). It was already tightly factored, with no unused functions or settings.</li>
+<li>Built a test that preprocesses every shader across 57 setting combinations (6,270 builds, no errors) to prove an edit leaves the output identical.</li>
+<li>Tried replacing repeated conditions with shared flags. It saved about 300 bytes and added lines, so I reverted it.</li>
+</ul>
+
+<h2>Size</h2>
+<ul>
+<li>Recompressed the 7 PNG textures losslessly; every pixel matches the original.</li>
+<li>The zip went from 5.7 MB to 4.85 MB, about 15% smaller.</li>
+<li>The cubic sun and moon textures are all-rights-reserved. Only their compression changed, but keep that in mind if you redistribute.</li>
+</ul>
+
+<h2>Performance labels in the menu</h2>
+<p>Each heavy option now shows its cost, colored <span class="g">green</span> for low, <span class="y">yellow</span> for medium and <span class="r">red</span> for high. Only the display text changed; defaults and presets behave as before.</p>
+<div class="table">
+<table>
+<tr><th>Setting</th><th>Low</th><th>Medium</th><th>High</th></tr>
+<tr><td>Shadow filtering</td><td class="g">1 sample</td><td class="y">4 samples</td><td class="r">9 samples</td></tr>
+<tr><td>Sunbeam quality</td><td class="g">4 steps</td><td class="y">6 steps</td><td class="r">8 steps</td></tr>
+<tr><td>Skybox cloud depth</td><td class="g">4 steps</td><td class="y">8 steps</td><td class="r">16 and 32 steps</td></tr>
+<tr><td>Cloud layers</td><td></td><td class="y">1 layer</td><td class="r">2 layers</td></tr>
+<tr><td>Water scene reflection quality</td><td class="g">6 steps</td><td class="y">8 steps</td><td class="r">10 and 16 steps</td></tr>
+<tr><td>Water reflections</td><td class="g">Sky</td><td></td><td class="r">Sky +</td></tr>
+<tr><td>Wet ground reflections</td><td class="g">Sky (Light)</td><td></td><td class="r">Sky +</td></tr>
+<tr><td>Wet reflection resolution</td><td class="g">Half</td><td></td><td class="r">Full</td></tr>
+<tr><td>AO quality</td><td></td><td class="y">4 samples</td><td class="r">8 samples</td></tr>
+</table>
+</div>
+<p>Setting names were already colored by impact, so I left them. Ambient occlusion only has two quality steps; its low tier is the separate on/off toggle.</p>
+
+<h2>Renamed style</h2>
+<ul>
+<li>The visual style called "Default" is now "Vanilla" in the menu, README and release notes. It was already the pack's default (value 0).</li>
+<li>The existing "Vanilla" cloud option is untouched, so there are now two options with that name.</li>
+</ul>
+
+<h2>Files</h2>
+<ul>
+<li><code>Metal-v1.0.zip</code>: the updated pack.</li>
+<li><code>Metal-v1.0.zip.txt</code>: matching settings file with <code>VISUAL_STYLE=0</code>. It replaces the earlier Dark Fantasy file.</li>
+<li>Both need the dotted names and must sit next to each other in <code>shaderpacks</code>.</li>
+</ul>
+
+<h2>Questions answered</h2>
+<ul>
+<li><strong>Ambient occlusion:</strong> darkens corners and creases using the depth buffer. Off in the Air and Pro presets, on in Pro Max.</li>
+<li><strong>Godrays:</strong> the pack already has them as Sunbeams (Atmosphere, then Sunbeams). Raising sunbeam strength to 0.22 and quality to 6 or 8 steps is the cheapest way to make them stronger. A separate screen-space version is possible but unmeasured.</li>
+</ul>
+
+<p class="note">Not tested in Iris and no frame rates measured. Check the labels, colors and performance in-game.</p>
+</main>
+</body>
+</html>
