@@ -1,5 +1,6 @@
 #include "/lib/settings.glsl"
 #include "/lib/interface.glsl"
+#include "/lib/daylight.glsl"
 #ifdef WORLD_LIGHTING
 
 uniform mat4 shadowModelView;
@@ -7,7 +8,7 @@ uniform mat4 shadowProjection;
 uniform vec3 shadowLightPosition;
 
 #endif
-#if defined(WORLD_LIGHTING) || VISUAL_STYLE > 0 || (CUBIC_CELESTIALS == 1 && defined(SKY_BASIC) && !defined(NO_SHADOW)) || (PHOTON_WATER == 1 && defined(PHOTON_WATER_PASS))
+#if defined(WORLD_LIGHTING) || VISUAL_STYLE > 0 || (CUBIC_CELESTIALS == 1 && defined(SKY_BASIC) && !defined(NO_SHADOW)) || (PHOTON_WATER == 1 && WATER_REFLECTIONS == 1 && defined(PHOTON_WATER_PASS))
 uniform mat4 gbufferModelViewInverse;
 uniform vec3 sunPosition;
 #endif
@@ -16,7 +17,7 @@ uniform vec3 sunPosition;
 void main() {
     vec4 viewPos = gl_ModelViewMatrix * gl_Vertex;
 #if RAIN_PUDDLES == 1 && defined(WET_GROUND_PASS) && defined(WORLD_LIGHTING)
-    prepareWetGround(viewPos);
+    prepareWetGround();
 #endif
 #if PHOTON_WATER == 1 && defined(PHOTON_WATER_PASS)
     preparePhotonWater(viewPos);
@@ -40,7 +41,7 @@ void main() {
     lightCosine = dot(viewNormal, normalize(shadowLightPosition));
     ambientHemisphere = 0.82 + 0.18 * max(worldNormal.y, 0.0);
     float sunHeight = (mat3(gbufferModelViewInverse) * normalize(sunPosition)).y;
-    daylight = smoothstep(-0.08, 0.12, sunHeight);
+    daylight = daylightFactor(sunHeight);
     horizon = smoothstep(0.01, 0.15, abs(sunHeight));
     // Orthographic shadow projection is linear. Move its matrix products to
     // vertices; keep the nonlinear focusing and depth comparison per pixel.
@@ -61,10 +62,9 @@ void main() {
     float styleSunHeight = sunHeight;
 #else
     float styleSunHeight = (mat3(gbufferModelViewInverse) * normalize(sunPosition)).y;
-    styleDay = smoothstep(-0.08, 0.12, styleSunHeight);
+    styleDay = daylightFactor(styleSunHeight);
 #endif
-    styleTwilight = (1.0 - smoothstep(0.04, 0.32, abs(styleSunHeight)))
-                  * smoothstep(-0.14, 0.04, styleSunHeight);
+    styleTwilight = twilightFactor(styleSunHeight);
 #endif
 
 }

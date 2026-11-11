@@ -1,4 +1,4 @@
-# Metal 1.0 Iris clear-color fix
+# Metal cleanup Iris clear-color fix
 
 Imported historical development snapshot.
 
@@ -8,5 +8,5 @@ Import order is reconstructed from saved project artifacts; commits are not back
 
 Third-party image assets omitted from this public snapshot:
 
-- shaders/textures/cubic/sun.png
 - shaders/textures/cubic/moon_phases.png
+- shaders/textures/cubic/sun.png

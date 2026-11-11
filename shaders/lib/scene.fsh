@@ -19,11 +19,7 @@ uniform vec4 entityColor;
 #include "/lib/lighting.glsl"
 #endif
 #if VISUAL_STYLE > 0 && !defined(NO_SHADOW)
-#if VISUAL_STYLE == 1
-#include "/lib/dark_atmosphere.glsl"
-#else
-#include "/lib/cartoon.glsl"
-#endif
+#include "/lib/art_sky.glsl"
 #if defined(SKY_BASIC) || defined(SKY_TEXTURED)
 uniform int renderStage;
 #endif
@@ -38,13 +34,13 @@ uniform int renderStage;
 #endif
 #include "/lib/photon_water.glsl"
 #include "/lib/wet_ground.glsl"
-#if RAIN_PUDDLES == 1 && !defined(NO_SHADOW)
+#ifdef WET_MASK_OUTPUT
 /* DRAWBUFFERS:01 */
 #else
 /* DRAWBUFFERS:0 */
 #endif
 void main() {
-#if RAIN_PUDDLES == 1 && !defined(NO_SHADOW)
+#ifdef WET_MASK_OUTPUT
     gl_FragData[1] = vec4(0.0, 0.0, 0.0, 1.0);
 #endif
 #ifdef WORLD_LIGHTING
@@ -57,7 +53,7 @@ void main() {
 #else
     vec4 surface;
 #if PHOTON_WATER == 1 && defined(PHOTON_WATER_PASS)
-    if (photonWaterMask > 0.5) surface = samplePhotonWater();
+    if (photonWaterMask > 0.5) surface = PHOTON_WATER_COLOR;
     else surface = texture2D(texture, uv);
 #else
     surface = texture2D(texture, uv);
@@ -67,19 +63,16 @@ void main() {
     if (color.a < alphaTestRef) discard;
 #if RAIN_PUDDLES == 1 && defined(WET_GROUND_PASS) && defined(WORLD_LIGHTING) && DEBUG_VIEW == 0
     vec4 wetSurface = wetGroundSurface();
+#ifdef WET_MASK_OUTPUT
     gl_FragData[1] = wetSurface;
+#endif
     color.rgb *= 1.0 - 0.33 * wetSurface.b;
 #endif
 #if VISUAL_STYLE > 0 && defined(SKY_BASIC) && !defined(NO_SHADOW) && DEBUG_VIEW == 0
     // Full-strength styles replace the sky completely. Finish before computing
     // terrain fog/haze that would otherwise be discarded by that replacement.
-#if VISUAL_STYLE == 1
-    if (DARK_STYLE_STRENGTH >= 1.0 && renderStage == MC_RENDER_STAGE_SKY && isEyeInWater == 0) {
-        color.rgb = fantasySky(skyDirection, skySunDirection, styleDay, styleTwilight, rainStrength);
-#else
-    if (CARTOON_STRENGTH >= 1.0 && renderStage == MC_RENDER_STAGE_SKY && isEyeInWater == 0) {
-        color.rgb = cartoonSky(skyDirection, skySunDirection, styleDay, styleTwilight, rainStrength);
-#endif
+    if (ART_STYLE_STRENGTH >= 1.0 && renderStage == MC_RENDER_STAGE_SKY && isEyeInWater == 0) {
+        color.rgb = artSky(skyDirection, skySunDirection, styleDay, styleTwilight, rainStrength);
 #if CUBIC_CELESTIALS == 1
         color.rgb = cubicCelestials(color.rgb);
 #endif
@@ -125,43 +118,26 @@ void main() {
 #endif
     float fog = clamp((fogDistance - fogStart) / max(fogEnd - fogStart, 0.001), 0.0, 1.0);
     vec3 atmosphereColor = fogColor;
-#if VISUAL_STYLE == 1 && !defined(NO_SHADOW)
-    // A distance-haze approximation, not a volumetric scattering pass.
-    // Preserve underwater/lava/powder-snow fog and the diagnostic modes.
-#if DEBUG_VIEW == 0
-    if (isEyeInWater == 0) {
-        float hazeRange = max(fogEnd - 24.0, 1.0);
-        float hazeDistance = clamp((fogDistance - 24.0) / hazeRange, 0.0, 1.0);
-        // Viewer skylight keeps outdoor atmosphere out of deep caves.
-        // Surface skylight also protects sheltered lit geometry.
-        float skyExposure = smoothstep(0.02, 0.65, clamp(float(eyeBrightnessSmooth.y) / 240.0, 0.0, 1.0));
-#ifdef LIT
-        skyExposure *= smoothstep(0.04, 0.70, lm.y);
-#endif
-        float wetWeather = clamp(rainStrength, 0.0, 1.0);
-        float haze = min(0.85, DARK_HAZE * (1.0 + 0.75 * wetWeather))
-                   * DARK_STYLE_STRENGTH * skyExposure * hazeDistance * hazeDistance;
-        fog = max(fog, haze);
-        vec3 mist = fantasyHorizon(styleDay, styleTwilight);
-        // A gentle dusk bridge avoids carrying the daytime teal target
-        // unchanged into low-sun scenes. It is not an atmosphere simulation.
-        // Dusk color is shared with the sky horizon.
-        // Rain softens the dusk warmth without adding a screen-space pass.
-        float mistLuma = dot(mist, vec3(0.2126, 0.7152, 0.0722));
-        mist = mix(mist, vec3(mistLuma) * vec3(0.96, 1.0, 1.04), wetWeather * 0.55);
-        atmosphereColor = mix(fogColor, mist, 0.55 * DARK_STYLE_STRENGTH * skyExposure);
-    }
-#endif
-#endif
-#if VISUAL_STYLE == 2 && !defined(NO_SHADOW) && DEBUG_VIEW == 0
+#if VISUAL_STYLE > 0 && !defined(NO_SHADOW) && DEBUG_VIEW == 0
     if (isEyeInWater == 0) {
         float exposure = smoothstep(0.02, 0.65, clamp(float(eyeBrightnessSmooth.y) / 240.0, 0.0, 1.0));
 #ifdef LIT
         exposure *= smoothstep(0.04, 0.70, lm.y);
 #endif
+#if VISUAL_STYLE == 1
+        float distanceHaze = clamp((fogDistance - 24.0) / max(fogEnd - 24.0, 1.0), 0.0, 1.0);
+        float wet = clamp(rainStrength, 0.0, 1.0);
+        fog = max(fog, min(0.85, DARK_HAZE * (1.0 + 0.75 * wet))
+            * DARK_STYLE_STRENGTH * exposure * distanceHaze * distanceHaze);
+        vec3 mist = fantasyHorizon(styleDay, styleTwilight);
+        float luma = dot(mist, vec3(0.2126, 0.7152, 0.0722));
+        mist = mix(mist, vec3(luma) * vec3(0.96, 1.0, 1.04), wet * 0.55);
+        atmosphereColor = mix(fogColor, mist, 0.55 * DARK_STYLE_STRENGTH * exposure);
+#else
         float distanceHaze = clamp((fogDistance - 32.0) / max(fogEnd - 32.0, 1.0), 0.0, 1.0);
         fog = max(fog, distanceHaze * distanceHaze * 0.16 * CARTOON_STRENGTH * exposure);
         atmosphereColor = mix(fogColor, cartoonHorizon(styleDay, styleTwilight), 0.60 * CARTOON_STRENGTH * exposure);
+#endif
     }
 #endif
     color.rgb = mix(color.rgb, atmosphereColor, fog);
@@ -176,11 +152,7 @@ void main() {
     // Iris identifies the sky disc separately from stars, sunset and void.
     // Only replace the sky disc; retain the other geometry and its alpha.
     if (renderStage == MC_RENDER_STAGE_SKY && isEyeInWater == 0) {
-        #if VISUAL_STYLE == 1
-        color.rgb = mix(color.rgb, fantasySky(skyDirection, skySunDirection, styleDay, styleTwilight, rainStrength), DARK_STYLE_STRENGTH);
-#else
-        color.rgb = mix(color.rgb, cartoonSky(skyDirection, skySunDirection, styleDay, styleTwilight, rainStrength), CARTOON_STRENGTH);
-#endif
+        color.rgb = mix(color.rgb, artSky(skyDirection, skySunDirection, styleDay, styleTwilight, rainStrength), ART_STYLE_STRENGTH);
     }
 #endif
 #if CUBIC_CELESTIALS == 1 && defined(SKY_BASIC) && !defined(NO_SHADOW) && DEBUG_VIEW == 0

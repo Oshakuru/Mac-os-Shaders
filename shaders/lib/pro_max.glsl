@@ -22,28 +22,13 @@ varying vec3 appleLightDirection;
 varying vec4 appleStartClip;
 varying float appleShaftStrength;
 #endif
-vec3 maxViewPosition(vec2 coord, float depth) {
-#if APPLE_DEPTH_RECONSTRUCTION == 1
-    // Standard perspective inverse; unusual projections use the original path.
-    mat4 m = gbufferProjectionInverse;
-    if (m[0][1] == 0.0 && m[0][2] == 0.0 && m[0][3] == 0.0 &&
-        m[1][0] == 0.0 && m[1][2] == 0.0 && m[1][3] == 0.0) {
-        float z = depth * 2.0 - 1.0;
-        float w = max(m[2][3] * z + m[3][3], 0.000001);
-        return vec3(m[0][0] * (coord.x * 2.0 - 1.0) + m[2][0] * z + m[3][0],
-                    m[1][1] * (coord.y * 2.0 - 1.0) + m[2][1] * z + m[3][1],
-                    m[2][2] * z + m[3][2]) / w;
-    }
-#endif
-    vec4 v = gbufferProjectionInverse * vec4(coord * 2.0 - 1.0, depth * 2.0 - 1.0, 1.0);
-    return v.xyz / max(v.w, 0.000001);
-}
+#include "/lib/depth.glsl"
 #if MAX_AO == 1
 float maxAOTap(vec2 coord, vec3 center, vec3 normal) {
     if (any(lessThan(coord, vec2(0.0))) || any(greaterThan(coord, vec2(1.0)))) return 0.0;
     float depth = texture2D(depthtex2, coord).r;
     if (depth >= 0.999999) return 0.0;
-    vec3 delta = maxViewPosition(coord, depth) - center;
+    vec3 delta = reconstructViewPosition(coord, depth, gbufferProjectionInverse) - center;
     float d2 = dot(delta, delta);
     float planeHeight = dot(normal, delta);
     // Restrict to a local neighborhood and reject separated silhouettes.
@@ -53,7 +38,7 @@ float maxAOTap(vec2 coord, vec3 center, vec3 normal) {
 vec3 proMaxLighting(vec3 color) {
     float depth = texture2D(depthtex0, uv).r;
     float solidDepth = texture2D(depthtex2, uv).r;
-    vec3 position = maxViewPosition(uv, depth);
+    vec3 position = reconstructViewPosition(uv, depth, gbufferProjectionInverse);
 #if MAX_AO == 1
     // Derivatives must execute on all pixels, before medium/geometry branches.
     vec3 n = cross(dFdx(position), dFdy(position));
@@ -91,7 +76,7 @@ vec3 proMaxLighting(vec3 color) {
     float facing = max(dot(normalize(position), appleLightDirection), 0.0);
 #else
     float facing = max(dot(normalize(position), normalize(shadowLightPosition)), 0.0);
- #endif
+#endif
     float phase = 0.12 + 0.88 * facing * facing * facing * facing;
     float strength = baseStrength * phase;
     if (strength > 0.001 && rayLength > 2.0) {
