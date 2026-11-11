@@ -27,6 +27,28 @@ float depthCompare(vec2 coord, float receiverDepth) {
 float filteredVisibility(vec3 q) {
 #if SHADOW_FILTER == 0
     return depthCompare(q.xy, q.z);
+#elif SHADOW_FILTER == 2
+    // Two-by-two average of bilinear PCF footprints, collapsed to nine
+    // unique depth comparisons. Fractional weights keep texel transitions
+    // continuous; receiver-plane correction applies to every comparison.
+    float size = float(shadowMapResolution);
+    vec2 pixel = q.xy * size - 1.0;
+    vec2 fraction = fract(pixel);
+    vec2 base = (floor(pixel) + 1.5) / size;
+    vec2 dx = vec2(1.0 / size, 0.0);
+    vec2 dy = dx.yx;
+    vec3 wx = vec3(0.5 * (1.0 - fraction.x), 0.5, 0.5 * fraction.x);
+    vec3 wy = vec3(0.5 * (1.0 - fraction.y), 0.5, 0.5 * fraction.y);
+    float row0 = depthCompare(base - dx - dy, q.z) * wx.x
+               + depthCompare(base - dy, q.z) * wx.y
+               + depthCompare(base + dx - dy, q.z) * wx.z;
+    float row1 = depthCompare(base - dx, q.z) * wx.x
+               + depthCompare(base, q.z) * wx.y
+               + depthCompare(base + dx, q.z) * wx.z;
+    float row2 = depthCompare(base - dx + dy, q.z) * wx.x
+               + depthCompare(base + dy, q.z) * wx.y
+               + depthCompare(base + dx + dy, q.z) * wx.z;
+    return dot(vec3(row0, row1, row2), wy);
 #else
     // Bilinear PCF: blend four depth COMPARISONS, never blend raw depths.
     // Texel-center sampling and fractional weights avoid the old quarter-step

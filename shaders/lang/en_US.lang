@@ -7,7 +7,7 @@ value.SHADOW_FILTER.1=Light smoothing (four samples)
 option.AMBIENT_LIGHT=Ambient light
 profile.FAST=Air
 profile.BALANCED=Pro
-profile.CRISP=Prox Max
+profile.CRISP=Pro Max
 option.TORCH_FALLOFF=Torch light falloff
 value.TORCH_FALLOFF.1=Broad
 value.TORCH_FALLOFF.2=Balanced
@@ -42,9 +42,12 @@ screen.PERFORMANCE=Performance
 screen.ART_STYLE=Art Style
 screen.LIGHTING=Lighting
 screen.DIAGNOSTICS=Diagnostics
-profile.comment=Performance only: Air, Pro or Prox Max. Keeps your art style and lighting settings.
+profile.comment=Performance only: Air, Pro or Pro Max. Keeps your art style and lighting settings.
 option.VISUAL_STYLE.comment=Choose Default, Dark Fantasy or Cartoon independently of performance.
 
 value.VISUAL_STYLE.2=Cartoon
 option.CARTOON_STRENGTH=Cartoon strength
 option.CARTOON_STRENGTH.comment=Prizma-inspired sky, warm light, violet shade and brighter color. Only affects Cartoon.
+
+value.SHADOW_FILTER.2=Soft tent (nine samples)
+option.SHADOW_FILTER.comment=Air uses one shadow sample; Pro uses four; Pro Max uses nine for a wider smooth edge.
