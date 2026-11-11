@@ -36,9 +36,17 @@ uniform int renderStage;
 #endif
 #include "/lib/cubic_celestials.glsl"
 #endif
-#include "/lib/fresh_water.glsl"
+#include "/lib/photon_water.glsl"
+#include "/lib/wet_ground.glsl"
+#if RAIN_PUDDLES == 1 && !defined(NO_SHADOW)
+/* DRAWBUFFERS:01 */
+#else
 /* DRAWBUFFERS:0 */
+#endif
 void main() {
+#if RAIN_PUDDLES == 1 && !defined(NO_SHADOW)
+    gl_FragData[1] = vec4(0.0, 0.0, 0.0, 1.0);
+#endif
 #ifdef WORLD_LIGHTING
     // Derivatives must be evaluated on the full fragment group, before any
     // alpha discard and before evaluateLighting's early-outs.
@@ -48,12 +56,8 @@ void main() {
     vec4 color = tint;
 #else
     vec4 surface;
-#if FRESH_WATER == 1 && defined(FRESH_WATER_PASS)
-    if (freshWaterMask > 0.5) surface = sampleFreshWater();
-    else surface = texture2D(texture, uv);
-#elif FRESH_RAIN == 1 && defined(FRESH_WEATHER_PASS)
-    // Preserve snow when the camera is in a snowy biome.
-    if (biome_precipitation == 1) surface = texture2D(freshRainTexture, uv);
+#if PHOTON_WATER == 1 && defined(PHOTON_WATER_PASS)
+    if (photonWaterMask > 0.5) surface = samplePhotonWater();
     else surface = texture2D(texture, uv);
 #else
     surface = texture2D(texture, uv);
@@ -61,6 +65,11 @@ void main() {
     vec4 color = surface * tint;
 #endif
     if (color.a < alphaTestRef) discard;
+#if RAIN_PUDDLES == 1 && defined(WET_GROUND_PASS) && defined(WORLD_LIGHTING) && DEBUG_VIEW == 0
+    vec4 wetSurface = wetGroundSurface();
+    gl_FragData[1] = wetSurface;
+    color.rgb *= 1.0 - 0.33 * wetSurface.b;
+#endif
 #if VISUAL_STYLE > 0 && defined(SKY_BASIC) && !defined(NO_SHADOW) && DEBUG_VIEW == 0
     // Full-strength styles replace the sky completely. Finish before computing
     // terrain fog/haze that would otherwise be discarded by that replacement.
@@ -111,8 +120,8 @@ void main() {
     color.rgb *= evaluateLighting();
 #endif
 #endif
-#if FRESH_WATER == 1 && defined(FRESH_WATER_PASS) && DEBUG_VIEW == 0
-    if (freshWaterMask > 0.5) color = applyPhotonWater(color);
+#if PHOTON_WATER == 1 && defined(PHOTON_WATER_PASS) && DEBUG_VIEW == 0
+    if (photonWaterMask > 0.5) color = applyPhotonWater(color);
 #endif
     float fog = clamp((fogDistance - fogStart) / max(fogEnd - fogStart, 0.001), 0.0, 1.0);
     vec3 atmosphereColor = fogColor;

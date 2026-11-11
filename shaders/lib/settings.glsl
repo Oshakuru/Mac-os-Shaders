@@ -41,9 +41,10 @@ const bool shadowtex0Nearest = true;
 
 #define CUBIC_CELESTIALS 1 // [0 1]
 
-#define FRESH_WATER 1 // [0 1]
+#define PHOTON_WATER 1 // [0 1]
 #define WATER_WAVE_STRENGTH 1.0 // [0.0 0.5 1.0 1.5]
 #define WATER_REFLECTIONS 1 // [0 1]
-#define FRESH_RAIN 0 // [0 1]
+#define RAIN_PUDDLES 1 // [0 1]
+#define WET_GROUND_REFLECTIONS 1 // [0 1 2]
 
 #endif

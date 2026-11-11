@@ -7,15 +7,19 @@ uniform mat4 shadowProjection;
 uniform vec3 shadowLightPosition;
 
 #endif
-#if defined(WORLD_LIGHTING) || VISUAL_STYLE > 0 || (CUBIC_CELESTIALS == 1 && defined(SKY_BASIC) && !defined(NO_SHADOW)) || (FRESH_WATER == 1 && defined(FRESH_WATER_PASS))
+#if defined(WORLD_LIGHTING) || VISUAL_STYLE > 0 || (CUBIC_CELESTIALS == 1 && defined(SKY_BASIC) && !defined(NO_SHADOW)) || (PHOTON_WATER == 1 && defined(PHOTON_WATER_PASS))
 uniform mat4 gbufferModelViewInverse;
 uniform vec3 sunPosition;
 #endif
-#include "/lib/fresh_water.vsh"
+#include "/lib/photon_water.vsh"
+#include "/lib/wet_ground.vsh"
 void main() {
     vec4 viewPos = gl_ModelViewMatrix * gl_Vertex;
-#if FRESH_WATER == 1 && defined(FRESH_WATER_PASS)
-    prepareFreshWater(viewPos);
+#if RAIN_PUDDLES == 1 && defined(WET_GROUND_PASS) && defined(WORLD_LIGHTING)
+    prepareWetGround(viewPos);
+#endif
+#if PHOTON_WATER == 1 && defined(PHOTON_WATER_PASS)
+    preparePhotonWater(viewPos);
 #endif
     gl_Position = gl_ProjectionMatrix * viewPos;
     uv = (gl_TextureMatrix[0] * gl_MultiTexCoord0).xy;

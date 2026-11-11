@@ -106,15 +106,11 @@ value.CUBIC_CELESTIALS.0=Game / Resource Pack
 value.CUBIC_CELESTIALS.1=Cubic
 option.CUBIC_CELESTIALS.comment=Embedded Cubic Sun & Moon textures by JoeFly. Cubic is the default and retains all eight moon phases. Game / Resource Pack restores the original celestial rendering.
 
-screen.WATER_RAIN_SETTINGS=Water and Rain
-option.FRESH_WATER=Water style
-value.FRESH_WATER.0=Game / Resource Pack
-value.FRESH_WATER.1=Photon Adaptation
-option.FRESH_WATER.comment=Lightweight adaptation of Photon waves, depth absorption, sky reflections and sun highlights. Does not include terrain reflections, refraction or Photon volumetric underwater lighting.
-option.FRESH_RAIN=Fresh Rain texture
-value.FRESH_RAIN.0=Game / Resource Pack
-value.FRESH_RAIN.1=Fresh Rain
-option.FRESH_RAIN.comment=Embedded blue-grey rain streaks. Snow uses the original texture in snowy camera biomes. Mixed weather at biome boundaries and high-altitude snowfall may need this option Off.
+screen.WATER_SETTINGS=Water
+option.PHOTON_WATER=Water style
+value.PHOTON_WATER.0=Game / Resource Pack
+value.PHOTON_WATER.1=Photon Adaptation
+option.PHOTON_WATER.comment=Lightweight adaptation of Photon waves, depth absorption, sky reflections and sun highlights. Does not include terrain reflections, refraction or Photon volumetric underwater lighting.
 
 option.WATER_WAVE_STRENGTH=Water wave strength
 option.WATER_WAVE_STRENGTH.comment=Controls procedural wave normals, without moving the water geometry.
@@ -122,3 +118,14 @@ option.WATER_REFLECTIONS=Water sky reflections
 value.WATER_REFLECTIONS.0=Off
 value.WATER_REFLECTIONS.1=On
 option.WATER_REFLECTIONS.comment=Fresnel sky reflections and sun highlights. Does not reflect terrain, buildings or the cubic celestial sprites.
+
+screen.WET_GROUND_SETTINGS=Puddles and Wet Ground
+option.RAIN_PUDDLES=Rain puddles
+value.RAIN_PUDDLES.0=Off
+value.RAIN_PUDDLES.1=On
+option.RAIN_PUDDLES.comment=Photon-derived puddle coverage and darkened wet ground on exposed upward terrain. Excludes leaves; fades with weather wetness. No PBR textures required.
+option.WET_GROUND_REFLECTIONS=Wet ground reflections
+value.WET_GROUND_REFLECTIONS.0=Off
+value.WET_GROUND_REFLECTIONS.1=Sky (Fast)
+value.WET_GROUND_REFLECTIONS.2=Sky + Scene (Experimental)
+option.WET_GROUND_REFLECTIONS.comment=Sky reflections are the default. Scene adds 12 screen-space ray steps on wet pixels; offscreen geometry cannot be reflected and edges may flicker.

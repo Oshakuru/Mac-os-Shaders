@@ -2,7 +2,7 @@
 // The squared-sine wave model originates in Photon (credited there to Belmu).
 // Adapted to GLSL 120 with three analytic slopes instead of sampled finite differences.
 // Photon license retained in licenses/Photon-License.txt.
-#if FRESH_WATER == 1 && defined(FRESH_WATER_PASS)
+#if PHOTON_WATER == 1 && defined(PHOTON_WATER_PASS)
 uniform float frameTimeCounter;
 uniform sampler2D depthtex1;
 uniform float near;
@@ -17,9 +17,9 @@ uniform int isEyeInWater;
 uniform float rainStrength;
 #endif
 #endif
-varying float freshWaterMask;
-varying vec3 freshWorldPosition;
-varying vec3 freshWorldNormal;
+varying float photonWaterMask;
+varying vec3 photonWorldPosition;
+varying vec3 photonWorldNormal;
 varying vec3 photonViewPosition;
 varying vec3 photonSunDirection;
 varying vec2 photonTimeOfDay;
@@ -28,7 +28,7 @@ vec3 photonWaveNormal(vec3 flatNormal) {
     if (abs(n.y) < 0.5 || WATER_WAVE_STRENGTH <= 0.0) return n;
     vec2 direction = vec2(0.8660254, 0.5);
     mat2 rotation = mat2(-0.7373689, 0.6754903, -0.6754903, -0.7373689);
-    vec2 coord = freshWorldPosition.xz;
+    vec2 coord = photonWorldPosition.xz;
     float frequency = 0.7;
     float wavelength = 1.0;
     float amplitude = 1.0;
@@ -44,13 +44,13 @@ vec3 photonWaveNormal(vec3 flatNormal) {
         wavelength *= 1.5;
         direction = rotation * direction;
     }
-    vec3 worldView = normalize(cameraPosition - freshWorldPosition);
+    vec3 worldView = normalize(cameraPosition - photonWorldPosition);
     float grazingFade = smoothstep(0.0, 0.15, abs(dot(n, worldView)));
     slope *= (0.04 + 0.08 * rainStrength) * WATER_WAVE_STRENGTH * grazingFade / 1.75;
     return normalize(n + vec3(-slope.x, 0.0, -slope.y));
 }
-vec4 sampleFreshWater() {
-    // Smooth body color instead of the discarded Fresh Water texture sheets.
+vec4 samplePhotonWater() {
+    // Smooth water body color.
     return vec4(0.16, 0.48, 0.52, 1.0);
 }
 float photonLinearDepth(float z) {
@@ -58,9 +58,9 @@ float photonLinearDepth(float z) {
 }
 vec4 applyPhotonWater(vec4 litColor) {
     if (isEyeInWater != 0) return litColor;
-    vec3 flatNormal = normalize(freshWorldNormal);
+    vec3 flatNormal = normalize(photonWorldNormal);
     vec3 n = photonWaveNormal(flatNormal);
-    vec3 v = normalize(cameraPosition - freshWorldPosition);
+    vec3 v = normalize(cameraPosition - photonWorldPosition);
     if (dot(n, v) < 0.0) n = -n;
     float NoV = clamp(dot(n, v), 0.0, 1.0);
     vec2 screenUV = gl_FragCoord.xy / vec2(viewWidth, viewHeight);
@@ -97,8 +97,4 @@ vec4 applyPhotonWater(vec4 litColor) {
     vec3 premultiplied = body * bodyAlpha * (1.0 - fresnel) + reflected * fresnel;
     return vec4(clamp(premultiplied / max(alpha, 0.001), 0.0, 1.0), alpha);
 }
-#endif
-#if FRESH_RAIN == 1 && defined(FRESH_WEATHER_PASS)
-uniform sampler2D freshRainTexture;
-uniform int biome_precipitation;
 #endif
