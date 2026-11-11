@@ -1,7 +1,7 @@
 # Metal versioning
 
-Current revision: **0.9.15**. Last in-game-tested baseline: **0.9**.
+Official release: **1.0**, promoted by the author from the audited 0.9.15 build.
 
-Each future changed release increments the patch number: **0.9.1**, **0.9.2**, **0.9.3**, and so on. Increment once per delivered revision. Do not advance to 1.0 without the user's instruction.
+Future changed patch releases increment to **1.0.1**, **1.0.2**, and so on, once per delivered revision. Major/minor version changes require the author's direction.
 
-The 0.9 release relabeled the tested cleanup + Iris Fix 2 build; rendering code is unchanged.
+The 0.9.x development history and earlier prototype archives labelled Metal 1.0 remain preserved. This official 1.0 release has the same rendering algorithms, assets, presets and settings as 0.9.15; only release identity/documentation changed.

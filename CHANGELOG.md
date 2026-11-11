@@ -1,5 +1,9 @@
 # Development progression
 
+## 1.0 — official release
+
+- Author-designated promotion of audited 0.9.15 to official Metal 1.0. Rendering, assets and preset values unchanged.
+
 ## 0.9.15
 
 - Consolidated repeated deferred implementations and tidied source formatting without rendering changes.
