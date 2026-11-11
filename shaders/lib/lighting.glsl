@@ -1,7 +1,11 @@
 uniform sampler2D lightmap;
 #ifdef WORLD_LIGHTING
 uniform float rainStrength;
+#if SHADOWS == 1
 #include "/lib/shadow_sampling.glsl"
+#else
+float visibility(float ndotl) { return 1.0; }
+#endif
 #endif
 #if MAX_LIGHTING == 1 && defined(WORLD_LIGHTING) && DEBUG_VIEW == 0
 #include "/lib/max_surface.glsl"
@@ -9,7 +13,7 @@ uniform float rainStrength;
 vec3 evaluateLighting() {
     // Retain Minecraft's time of day and existing light colors with one fetch.
     vec3 vanilla = texture2D(lightmap, clamp(lm, vec2(0.03125), vec2(0.96875))).rgb;
-#ifndef WORLD_LIGHTING
+#if !defined(WORLD_LIGHTING) || (SHADOWS == 0 && MAX_LIGHTING == 0)
     return vanilla;
 #elif MAX_LIGHTING == 1 && DEBUG_VIEW == 0
     return maxIllumination(vanilla);

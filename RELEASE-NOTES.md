@@ -1,10 +1,11 @@
-# Metal 0.9.7
+# Metal 0.9.8
 
-- Adds lightweight Overworld wind for leaves, grass, ferns and crops, enabled at subtle strength.
-- Two sine evaluations for moving vertices, with squared-distance fade from 24 to 48 blocks and early rejection outside that range.
-- Anchors plant roots and matches tall-plant halves at their shared seam; leaves use a smaller displacement.
-- Uses the same deformation in the terrain and shadow vertex shaders. No new textures, buffers, passes or fragment-shader wind work.
-- Performance menu has wind on/off and strength. Off compiles out the path.
-- Preserves the SDV skybox, MakeUp water binding fix, rain effects and standard-font art-preset labels.
+- Adds Pro Max Plus with all production effects, 2048 shadows, 32-step two-layer clouds, 16-step water reflections, 8-sample AO and 8-sample sunbeams.
+- Air and Pro use a single cloud layer and disable water/wet-ground reflections, AO and sunbeams.
+- Air additionally disables shadow rendering, custom water, wet ground, wind, rain ripples and optional celestial/weather replacements.
+- Pro Max balances 1024 shadows, four shadow-filter taps, 16-step two-layer clouds, eight water-reflection steps, four AO taps and four beam samples.
+- Profiles reset every quality/cost switch and retain the selected art style and Apple optimizations.
+- Targets: Pro roughly 25% higher FPS than Pro Max, and Pro Max roughly 25% above Plus. Actual gaps are unmeasured and require controlled in-game comparison.
+- Shipped settings select Pro Max.
 
-In-game motion, shadow alignment, crop shapes, and FPS comparison still need testing. No quantified performance claim is made.
+- Adds a dedicated Performance hub with impact labels and tuning tooltips. All its controls participate in native Iris profile matching: changing one shows Custom.

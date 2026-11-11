@@ -49,3 +49,9 @@ Offscreen M1 regression: when only Iris-supported gbuffers scene samplers are bo
 Foliage wind adds no texture/framebuffer/pass resources. Validate grass roots, tall-plant seam continuity, leaf connections, shadow alignment, crop age geometry and motion/fps with wind toggled. No in-game result yet.
 
 M1 verification: 156 standard compile/link checks and 24 wind-toggle/style/puddle checks passed. Offscreen GPU execution confirmed anchored short/tall roots, equal tall-half seam offsets, moving plant tops, smaller leaf movement and zero movement beyond 48 blocks. No in-game FPS benchmark performed.
+
+## 0.9.8
+
+Quality profiles are targeted cost tiers, not measured FPS ratios. Validate Air shadow-pass disabling, one-layer clouds and absence of reflection effects; tier transitions should reset all quality switches while retaining art style. Plus must enable all production effects. Benchmark targets require fixed-scene in-game measurements.
+
+M1 native-driver validation: all 624 profile/style/program compile/link combinations passed. Static profile checks cover exact supported option values and confirm that each alternate value for all 34 Performance controls stops matching named profiles. The native Iris UI displays Custom when no profile matches. Local and missing-external-asset fallback builds passed packaging checks. No controlled in-game FPS ratios measured.

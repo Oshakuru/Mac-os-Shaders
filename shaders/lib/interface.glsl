@@ -14,7 +14,9 @@ varying vec2 lm;
 #ifdef WORLD_LIGHTING
 varying vec3 playerPos;
 varying vec3 worldNormal;
+#if SHADOWS == 1
 varying vec3 shadowClip;
+#endif
 varying float lightCosine;
 varying float ambientHemisphere;
 varying float daylight;

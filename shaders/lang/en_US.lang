@@ -40,7 +40,7 @@ option.DARK_LIGHT_TINT=Dark Fantasy light color
 option.DARK_LIGHT_TINT.comment=Original lighting only: separates cool shade, warm sunlight and block light. Independent lighting uses its own palette. Sky, fog and grading are controlled separately.
 
 screen.DIAGNOSTICS=Diagnostics
-profile.comment=Air, Pro and Pro Max configure shadows, surface lighting, AO and sunbeams. Art style, clouds, water and wet ground stay independent.
+profile.comment=Select a quality tier, then tune its controls in Performance. Changing a performance setting shows Custom. Art style stays independent. Air and Pro have one cloud layer and no reflections, AO or sunbeams. FPS gaps are approximate targets.
 option.VISUAL_STYLE.comment=Choose Default, Dark Fantasy or Miyazaki independently of performance.
 
 value.VISUAL_STYLE.2=§7MIYAZAK§fI§r
@@ -48,7 +48,7 @@ option.CARTOON_STRENGTH=Miyazaki strength
 option.CARTOON_STRENGTH.comment=Storybook palette: turquoise sky, ivory daylight, cool teal shade, pale gold sunset and blue nights. Preserves texture detail. Only affects Miyazaki.
 
 value.SHADOW_FILTER.2=Soft tent (nine samples)
-option.SHADOW_FILTER.comment=Air uses one shadow sample; Pro uses four; Pro Max uses nine for a wider smooth edge.
+option.SHADOW_FILTER.comment=HIGH impact across lit surfaces: 1, 4 or 9 shadow comparisons. Lower this before reducing resolution if softer edges are less important.
 
 option.MAX_AO=Ambient occlusion
 option.MAX_AO_STRENGTH=Occlusion strength
@@ -58,15 +58,15 @@ value.MAX_AO.0=Off
 value.MAX_AO.1=On
 value.MAX_SUNBEAMS.0=Off
 value.MAX_SUNBEAMS.1=On
-option.MAX_AO.comment=Subtle screen-space corner shading. Enabled by Pro Max; Air and Pro switch it off.
-option.MAX_SUNBEAMS.comment=Six shadow samples along the view ray for daylight shafts. Enabled by Pro Max; Air and Pro switch it off.
+option.MAX_AO.comment=MEDIUM impact. Adds contact/corner shading to nearby terrain; Off skips this effect. Air and Pro disable it.
+option.MAX_SUNBEAMS.comment=HIGH impact in outdoor scenes. Samples shadow visibility along view rays. Air and Pro disable it.
 
 option.MAX_LIGHTING=Independent lighting
 value.MAX_LIGHTING.0=Original
 value.MAX_LIGHTING.1=Sun / sky / block light
-option.MAX_LIGHTING.comment=Pro Max surface lighting: separate light sources, linear-space shading and highlight compression. Air and Pro retain original lighting.
+option.MAX_LIGHTING.comment=LOW to MEDIUM impact. Separates sky, sun and local lighting with highlight compression. Air and Pro use the simpler lighting path.
 
-screen.PERFORMANCE_SETTINGS=Performance Settings
+screen.PERFORMANCE_SETTINGS=Performance
 screen.STYLE_SETTINGS=Style Settings
 screen.LIGHTING_SETTINGS=Lighting Settings
 screen.ATMOSPHERE_SETTINGS=Atmosphere Settings
@@ -79,12 +79,12 @@ screen.FOG_SETTINGS=Fog and Haze
 screen.SUNBEAM_SETTINGS=Sunbeams
 
 screen.APPLE_SETTINGS=Apple Silicon Experiments
-option.APPLE_SUN_SETUP=Move sunbeam setup to vertices
-option.APPLE_SUN_SETUP.comment=Calculates frame-constant sunbeam inputs at fullscreen vertices. Only affects enabled sunbeams. Benchmark against Off.
+option.APPLE_SUN_SETUP=Sunbeam optimization
+option.APPLE_SUN_SETUP.comment=Recommended On. Reduces repeated work when sunbeams are active while keeping their quality.
 value.APPLE_SUN_SETUP.0=Off (v0.8 path)
 value.APPLE_SUN_SETUP.1=On (experimental)
-option.APPLE_DEPTH_RECONSTRUCTION=Sparse depth reconstruction
-option.APPLE_DEPTH_RECONSTRUCTION.comment=Experimental perspective reconstruction with a general-projection fallback. Default Off; benchmark separately with AO enabled.
+option.APPLE_DEPTH_RECONSTRUCTION=Depth optimization
+option.APPLE_DEPTH_RECONSTRUCTION.comment=Recommended On. Reduces depth reconstruction work for effects such as AO while retaining the general-projection fallback.
 value.APPLE_DEPTH_RECONSTRUCTION.0=Off (v0.8 path)
 value.APPLE_DEPTH_RECONSTRUCTION.1=On (experimental)
 
@@ -95,41 +95,41 @@ value.CLOUD_STYLE.1=SDV Skybox
 value.CLOUD_STYLE.2=Fading Clouds
 option.CLOUD_STYLE.comment=SDV Skybox uses the adapted reference renderer and cloud map with Metal preset tones and terrain-independent reach. Fading Clouds and Vanilla remain available.
 option.CLOUD_OPACITY=Custom cloud opacity
-option.CLOUD_OPACITY.comment=Opacity of Fading Clouds. Does not affect Vanilla clouds.
+option.CLOUD_OPACITY.comment=Opacity of custom clouds. Does not affect Vanilla clouds.
 
 screen.CELESTIAL_SETTINGS=Sun and Moon
 option.CUBIC_CELESTIALS=Sun and moon style
 value.CUBIC_CELESTIALS.0=Game / Resource Pack
 value.CUBIC_CELESTIALS.1=Cubic
-option.CUBIC_CELESTIALS.comment=Embedded Cubic Sun & Moon textures by JoeFly. Cubic is the default and retains all eight moon phases. Game / Resource Pack restores the original celestial rendering.
+option.CUBIC_CELESTIALS.comment=LOW impact. Uses custom sun/moon sprites and eight moon phases. Air uses the game celestial textures.
 
 screen.WATER_SETTINGS=Water
 option.MAKEUP_WATER=Water style
 value.MAKEUP_WATER.0=Game / Resource Pack
 value.MAKEUP_WATER.1=MakeUp Adaptation
-option.MAKEUP_WATER.comment=MakeUp Ultra Fast 9.6 adapted waves, depth absorption, refraction and reflections. Turn off for game-textured water.
+option.MAKEUP_WATER.comment=MEDIUM to HIGH combined cost. Custom waves and depth-based water add sampling and a scene snapshot. Reflections are the largest optional addition.
 
 option.WATER_WAVE_STRENGTH=Water wave strength
 option.WATER_WAVE_STRENGTH.comment=Controls procedural wave normals, without moving the water geometry.
-option.WATER_REFLECTIONS=Water sky reflections
-option.WATER_REFLECTIONS.comment=Fresnel sky reflections and sun highlights. Does not reflect terrain, buildings or the cubic celestial sprites.
+option.WATER_REFLECTIONS=Water reflections
+option.WATER_REFLECTIONS.comment=HIGH impact around water. Sky + Scene traces terrain reflections; Sky avoids that trace. Off disables reflections.
 
 screen.WET_GROUND_SETTINGS=Puddles and Wet Ground
 option.RAIN_PUDDLES=Rain puddles
 value.RAIN_PUDDLES.0=Off
 value.RAIN_PUDDLES.1=On
-option.RAIN_PUDDLES.comment=Photon-derived puddle coverage and darkened wet ground on exposed upward terrain. Excludes leaves; fades with weather wetness. No PBR textures required.
+option.RAIN_PUDDLES.comment=LOW to MEDIUM impact on rainy ground without reflections. Adds puddle coverage and wet darkening. Sky + Scene wet reflections add a separate high cost.
 option.WET_GROUND_REFLECTIONS=Wet ground reflections
 value.WET_GROUND_REFLECTIONS.0=Off
 value.WET_GROUND_REFLECTIONS.1=Sky (Fast)
 value.WET_GROUND_REFLECTIONS.2=Sky + Scene (Experimental)
-option.WET_GROUND_REFLECTIONS.comment=Sky reflections are the default. Scene adds 12 screen-space ray steps on wet pixels; offscreen geometry cannot be reflected and edges may flicker.
+option.WET_GROUND_REFLECTIONS.comment=HIGH impact in rain when wet ground covers the screen. Sky + Scene traces terrain; Sky is cheaper. Off keeps wet darkening without reflections.
 
 screen.WEATHER_SETTINGS=Weather
 option.UNOBTRUSIVE_WEATHER=Unobtrusive weather
-option.UNOBTRUSIVE_WEATHER.comment=Use embedded smaller rain and snow textures. Disable when a resource pack changes the stock weather texture colors.
+option.UNOBTRUSIVE_WEATHER.comment=LOW impact. Replaces rain and snow texture sampling; does not add particle simulation. Air uses game weather.
 option.RAIN_RIPPLES=Rain ripples
-option.RAIN_RIPPLES.comment=Expanding rings on outdoor water during rain. Requires MakeUp water and Water reflections. Skylight estimates exposure; particles are not spawned.
+option.RAIN_RIPPLES.comment=LOW to MEDIUM impact on rainy water. Requires custom water with refraction or reflections. Off removes the rain-ring calculations.
 option.RAIN_RIPPLE_STRENGTH=Rain ripple strength
 
 
@@ -141,8 +141,37 @@ value.WATER_REFLECTIONS.1=Sky
 value.WATER_REFLECTIONS.2=Sky + Scene
 
 option.SDV_CLOUD_STEPS=Skybox cloud depth quality
-option.SDV_CLOUD_STEPS.comment=Reference default is 16. More steps increase sky rendering cost.
+option.SDV_CLOUD_STEPS.comment=MEDIUM to HIGH impact when much of the sky is visible. More steps improve cloud thickness. One layer costs less than two.
 
 option.FOLIAGE_WIND=Foliage wind
-option.FOLIAGE_WIND.comment=Lightweight Overworld vertex sway for grass, ferns, crops and leaves. Anchored roots, matching shadows, fades from 24 to 48 blocks. No wind texture reads or extra buffers. Off removes the wind shader path.
+option.FOLIAGE_WIND.comment=LOW impact. Vertex-only sway with matching shadows, fading out by 48 blocks. No extra wind textures or screen effects. Off removes animation work.
 option.FOLIAGE_WIND_STRENGTH=Wind strength
+
+profile.ULTRA=Pro Max Plus
+option.SHADOWS=Shadows
+option.SHADOWS.comment=Off skips the shadow pass and receiving comparisons. Sunbeams also require shadows.
+option.MAX_AO_QUALITY=AO quality
+value.MAX_AO_QUALITY.1=4 samples
+value.MAX_AO_QUALITY.2=8 samples
+option.SUNBEAM_STEPS=Sunbeam quality
+option.SDV_CLOUD_LAYERS=Cloud layers
+option.WATER_SSR_STEPS=Water scene reflection quality
+option.WATER_SSR_STEPS.comment=HIGH impact only with Sky + Scene water reflections. More samples improve scene tracing but cost more per water pixel.
+
+option.shadowMapResolution.comment=HIGH impact while shadows are enabled. Higher resolution makes finer shadows but uses more graphics memory and shadow rendering work.
+
+option.shadowDistance.comment=HIGH impact while shadows are enabled. Longer range draws more terrain and foliage into the shadow map.
+
+option.SDV_CLOUD_LAYERS.comment=MEDIUM to HIGH impact in open skies. Two layers run the cloud sampling twice. Air and Pro use one.
+
+option.WATER_REFRACTION.comment=MEDIUM impact over water. Distorts the scene beneath water and uses the scene snapshot. Turn off for simpler water.
+
+option.MAX_AO_QUALITY.comment=MEDIUM impact while AO is on. Eight samples shade more directions than four at greater cost.
+
+option.SUNBEAM_STEPS.comment=HIGH impact while sunbeams are on. More samples smooth the rays but increase sampling work.
+
+screen.PERF_SHADOWS=Shadows (High impact)
+screen.PERF_CLOUDS=Clouds (Medium-High)
+screen.PERF_WATER=Water (High impact)
+screen.PERF_EFFECTS=Lighting effects (High)
+screen.PERF_FOLIAGE=Foliage (Low impact)

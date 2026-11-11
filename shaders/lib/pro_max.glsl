@@ -6,7 +6,7 @@ uniform mat4 gbufferProjectionInverse;
 uniform float viewWidth;
 uniform float viewHeight;
 uniform int isEyeInWater;
-#if MAX_SUNBEAMS == 1
+#if (MAX_SUNBEAMS == 1 && SHADOWS == 1)
 uniform mat4 gbufferModelViewInverse;
 uniform mat4 shadowModelView;
 uniform mat4 shadowProjection;
@@ -16,7 +16,7 @@ uniform float rainStrength;
 uniform ivec2 eyeBrightnessSmooth;
 #include "/lib/projection.glsl"
 #endif
-#if MAX_SUNBEAMS == 1 && APPLE_SUN_SETUP == 1
+#if (MAX_SUNBEAMS == 1 && SHADOWS == 1) && APPLE_SUN_SETUP == 1
 varying vec3 appleSunWorld;
 varying vec3 appleLightDirection;
 varying vec4 appleStartClip;
@@ -56,11 +56,20 @@ vec3 proMaxLighting(vec3 color) {
                  + maxAOTap(uv - vec2(stepUV.x, 0.0), position, n)
                  + maxAOTap(uv + vec2(0.0, stepUV.y), position, n)
                  + maxAOTap(uv - vec2(0.0, stepUV.y), position, n);
+        float weight = 0.25;
+#if MAX_AO_QUALITY == 2
+        vec2 diagonal = stepUV * 0.70710678;
+        ao += maxAOTap(uv + diagonal, position, n)
+            + maxAOTap(uv - diagonal, position, n)
+            + maxAOTap(uv + vec2(diagonal.x, -diagonal.y), position, n)
+            + maxAOTap(uv + vec2(-diagonal.x, diagonal.y), position, n);
+        weight = 0.125;
+#endif
         float fade = 1.0 - smoothstep(40.0, 64.0, distanceToSurface);
-        color *= 1.0 - ao * 0.25 * MAX_AO_STRENGTH * fade;
+        color *= 1.0 - ao * weight * MAX_AO_STRENGTH * fade;
     }
 #endif
-#if MAX_SUNBEAMS == 1
+#if (MAX_SUNBEAMS == 1 && SHADOWS == 1)
 #if APPLE_SUN_SETUP == 1
     vec3 sunWorld = appleSunWorld;
     float baseStrength = appleShaftStrength;
@@ -89,8 +98,8 @@ vec3 proMaxLighting(vec3 color) {
         vec4 endClip = shadowProjection * shadowModelView * gbufferModelViewInverse * vec4(endView, 1.0);
         float jitter = fract(dot(gl_FragCoord.xy, vec2(0.754877666, 0.569840296)));
         float lit = 0.0;
-        for (int i = 0; i < 6; i++) {
-            float t = (float(i) + 0.25 + jitter * 0.5) / 6.0;
+        for (int i = 0; i < SUNBEAM_STEPS; i++) {
+            float t = (float(i) + 0.25 + jitter * 0.5) / float(SUNBEAM_STEPS);
             vec4 clip = mix(startClip, endClip, t);
             vec3 q = focusShadow(clip.xyz / clip.w) * 0.5 + 0.5;
             if (all(greaterThan(q, vec3(0.003))) && all(lessThan(q, vec3(0.997)))) {
@@ -99,7 +108,7 @@ vec3 proMaxLighting(vec3 color) {
         }
         float density = 1.0 - exp(-rayLength * 0.025);
         vec3 shaftColor = mix(vec3(1.0, 0.86, 0.63), vec3(1.0, 0.65, 0.36), 1.0 - smoothstep(0.08, 0.4, sunWorld.y));
-        color = mix(color, shaftColor, clamp(strength * density * lit / 6.0, 0.0, 0.25));
+        color = mix(color, shaftColor, clamp(strength * density * lit / float(SUNBEAM_STEPS), 0.0, 0.25));
     }
 #endif
     return color;

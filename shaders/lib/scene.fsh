@@ -52,7 +52,7 @@ void main() {
 #ifdef WET_MASK_OUTPUT
     gl_FragData[1] = vec4(0.0, 0.0, 0.0, 1.0);
 #endif
-#ifdef WORLD_LIGHTING
+#if defined(WORLD_LIGHTING) && SHADOWS == 1
     // Derivatives must be evaluated on the full fragment group, before any
     // alpha discard and before evaluateLighting's early-outs.
     prepareShadowReceiver();

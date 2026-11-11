@@ -6,6 +6,7 @@ const float shadowDistanceRenderMul = 1.0;
 const float shadowIntervalSize = 2.0;
 const bool shadowHardwareFiltering = false;
 const bool shadowtex0Nearest = true;
+#define SHADOWS 1 // [0 1]
 #define SHADOW_STRENGTH 0.85 // [0.35 0.50 0.70 0.85 1.0]
 #define SHADOW_FILTER 1 // [0 1 2]
 #define AMBIENT_LIGHT 0.58 // [0.35 0.48 0.58 0.70 0.80]
@@ -28,6 +29,8 @@ const bool shadowtex0Nearest = true;
 
 #define MAX_AO 0 // [0 1]
 #define MAX_SUNBEAMS 0 // [0 1]
+#define MAX_AO_QUALITY 1 // [1 2]
+#define SUNBEAM_STEPS 4 // [4 6 8]
 #define MAX_AO_STRENGTH 0.22 // [0.0 0.12 0.22 0.32]
 #define MAX_SUNBEAM_STRENGTH 0.15 // [0.0 0.08 0.15 0.22]
 
@@ -37,7 +40,8 @@ const bool shadowtex0Nearest = true;
 #define APPLE_DEPTH_RECONSTRUCTION 1 // [0 1]
 
 #define CLOUD_STYLE 1 // [0 1 2]
-#define SDV_CLOUD_STEPS 16 // [8 16 32]
+#define SDV_CLOUD_STEPS 16 // [4 8 16 32]
+#define SDV_CLOUD_LAYERS 2 // [1 2]
 #define CLOUD_OPACITY 1.0 // [0.4 0.6 0.8 1.0]
 
 #define CUBIC_CELESTIALS 1 // [0 1]
@@ -46,6 +50,7 @@ const bool shadowtex0Nearest = true;
 #define WATER_REFRACTION 1 // [0 1]
 #define WATER_ABSORPTION 0.10 // [0.02 0.06 0.10 0.20 0.40]
 #define WATER_WAVE_STRENGTH 1.0 // [0.0 0.5 1.0 1.5]
+#define WATER_SSR_STEPS 8 // [6 8 10 16]
 #define WATER_REFLECTIONS 2 // [0 1 2]
 #define RAIN_PUDDLES 1 // [0 1]
 #define WET_GROUND_REFLECTIONS 1 // [0 1 2]

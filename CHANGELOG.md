@@ -1,5 +1,10 @@
 # Development progression
 
+## 0.9.8
+
+- Added Pro Max Plus and rebalanced all four quality profiles with a real shadows-off path, cloud-layer control, and scalable AO/sunbeam/water-reflection sampling.
+- Air/Pro share the requested single cloud layer and disable reflections, AO and sunbeams.
+
 ## 0.9.7
 
 - Added vertex-only foliage wind with distance culling, anchored plant bases and matching shadow movement.

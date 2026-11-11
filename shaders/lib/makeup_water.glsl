@@ -43,8 +43,8 @@ vec3 makeupWaves(vec3 position) {
 #if WATER_REFLECTIONS == 2
 vec4 makeupSceneReflection(vec3 origin, vec3 direction) {
     float previousTravel = 0.12;
-    for (int i = 0; i < 10; i++) {
-        float travel = exp2(float(i) * 0.8) * 0.35;
+    for (int i = 0; i < WATER_SSR_STEPS; i++) {
+        float travel = exp2(float(i) * (8.0 / float(WATER_SSR_STEPS))) * 0.35;
         vec3 point = origin + direction * travel;
         if (point.z >= -near) break;
         vec4 clip = gbufferProjection * vec4(point, 1.0);

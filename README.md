@@ -4,12 +4,12 @@
 
 Minecraft Java Edition visual pack developed around Apple Silicon, with selectable art styles, shadows, procedural water and rain puddles.
 
-**Current revision: 0.9.7; in-game-tested baseline: 0.9.** Next revision: **0.9.8**. The earlier Metal 1.0 labels are preserved in the development history; they are not the current release number.
+**Current revision: 0.9.8; in-game-tested baseline: 0.9.** Next revision: **0.9.9**. The earlier Metal 1.0 labels are preserved in the development history; they are not the current release number.
 
 ## Current features
 
 - Default, Miyazaki and Dark Fantasy art styles.
-- Air, Pro and Pro Max quality presets.
+- Air, Pro, Pro Max and Pro Max Plus quality presets.
 - SDV skybox clouds by default, with Fading Clouds and Vanilla available.
 - MakeUp Ultra Fast-derived water waves, depth absorption, refraction and Sky + Scene reflections.
 - Rain-driven puddles, wet-ground darkening and optional Sky + Scene reflections.
@@ -41,7 +41,7 @@ The cubic images carry an all-rights-reserved notice and are not uploaded here. 
 python3 tools/build.py --without-cubic
 ```
 
-Place both generated files from `dist/` into Minecraft's `shaderpacks` folder and select **Metal-v0.9.7.zip** in Iris. The matching settings file carries Dark Fantasy and Sky + Scene puddle settings, with the SDV skybox clouds enabled.
+Place both generated files from `dist/` into Minecraft's `shaderpacks` folder and select **Metal-v0.9.8.zip** in Iris. The matching settings file carries Dark Fantasy and Sky + Scene puddle settings, with the SDV skybox clouds enabled.
 
 For visible terrain/lava reflections select **Atmosphere → Puddles and Wet Ground → Wet ground reflections → Sky + Scene**. Sky mode reflects only the sky and can be subtle on dark rainy nights.
 
@@ -92,3 +92,22 @@ Moves the opaque scene snapshot from colortex2 to colortex4. Iris only binds sce
 ## 0.9.7 lightweight foliage wind
 
 Performance settings include Foliage wind and Wind strength. Wind uses two sine evaluations per moving vertex, no added texture reads, fragment work, buffers or draw passes. Motion fades between 24 and 48 horizontal blocks; beyond 48 the trigonometry is skipped. Short plant bases and tall lower roots are anchored; tall halves share the same seam displacement. Leaves move subtly. The same helper moves shadow casters. Disable wind to compile out the animation path. This describes the implementation cost, not a measured FPS guarantee; test the same scene with wind on/off.
+
+## 0.9.8 quality ladder
+
+| Setting | Air | Pro | Pro Max | Pro Max Plus |
+|---|---|---|---|---|
+| Shadows | Off | 512 / 48 blocks / 1 tap | 1024 / 64 blocks / 4 taps | 2048 / 80 blocks / 9 taps |
+| Cloud layers × depth steps | 1 × 4 | 1 × 8 | 2 × 16 | 2 × 32 |
+| Water | Game | MakeUp refraction | MakeUp refraction + scene reflections | MakeUp refraction + higher-quality scene reflections |
+| Water reflection trace steps | Off | Off | 8 | 16 |
+| Wet ground | Off | Darkening, no reflections | Sky + Scene | Sky + Scene |
+| AO | Off | Off | 4 samples | 8 samples |
+| Sunbeams | Off | Off | 4 samples | 8 samples |
+| Foliage wind | Off | On | On | On |
+
+Air disables other optional effects such as custom celestial sprites, custom weather and water ripples. It retains the requested single low-cost cloud layer and the selected art palette. Apple optimizations remain enabled in every tier. Pro Max Plus enables all implemented production effects; it does not enable debug modes or maximize aesthetic slider strengths.
+
+The tuning targets Pro at approximately 1.25× Pro Max FPS, and Pro Max at approximately 1.25× Pro Max Plus FPS. These are unmeasured targets, not benchmark results. If Plus achieves 100 FPS, the corresponding targets are Max 125 and Pro 156.25. Compare all presets from the same position, camera angle, weather, time, resolution and render distance after chunk loading settles. Scene content and CPU/GPU limits can change the gaps. The included settings file selects Pro Max.
+
+Performance is a dedicated tuning hub with impact-labelled groups for shadows, clouds, water, lighting effects and foliage. Tooltips explain the largest costs. Every control in this hub is included in each quality profile, so a changed value displays Iris's Custom label; restoring a complete matching profile restores its name. Art style is intentionally independent. Public builds without optional external textures keep those unavailable replacements disabled in every profile.

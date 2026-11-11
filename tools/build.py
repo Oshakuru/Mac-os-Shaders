@@ -43,6 +43,11 @@ def main():
                     data = data.replace(b'#define CUBIC_CELESTIALS 1', b'#define CUBIC_CELESTIALS 0')
                 if not args.weather_pack and name == 'shaders/lib/settings.glsl':
                     data = data.replace(b'#define UNOBTRUSIVE_WEATHER 1', b'#define UNOBTRUSIVE_WEATHER 0')
+                if name == 'shaders/shaders.properties':
+                    if args.without_cubic:
+                        data = data.replace(b'CUBIC_CELESTIALS=1', b'CUBIC_CELESTIALS=0')
+                    if not args.weather_pack:
+                        data = data.replace(b'UNOBTRUSIVE_WEATHER=1', b'UNOBTRUSIVE_WEATHER=0')
                 archive.writestr(name, data)
         for name, data in extra.items():
             archive.writestr(name, data)

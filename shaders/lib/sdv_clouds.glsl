@@ -30,7 +30,9 @@ vec3 metalSDVClouds(vec3 sky) {
     vec2 planeUV = ray.xz * (6.0 / ray.y);
     vec2 planePos = vec2(cameraPosition.x + frameTimeCounter, cameraPosition.z);
     vec2 data = sdvCloudParallax(planeUV, planePos);
+#if SDV_CLOUD_LAYERS == 2
     data = max(sdvCloudParallax(planeUV * 2.0, planePos).yx * 0.25, data);
+#endif
     float fadeTime = clamp(sin(frameTimeCounter * 0.20) * 0.8 + 0.5, 0.0, 1.0);
     float clouds = mix(mix(data.x, data.y, fadeTime), max(data.x, data.y), wet);
     clouds *= heightFade / float(SDV_CLOUD_STEPS);
