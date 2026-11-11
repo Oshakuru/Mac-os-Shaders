@@ -1,5 +1,9 @@
 # Development progression
 
+## 0.9.15
+
+- Consolidated repeated deferred implementations and tidied source formatting without rendering changes.
+
 ## 0.9.14
 
 - Added true half/full wet-reflection rendering and depth-aware reconstruction, Off/On toggle labels and Sky + naming.

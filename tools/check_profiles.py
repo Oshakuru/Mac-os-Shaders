@@ -6,6 +6,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def check():
     text = (ROOT / 'shaders/shaders.properties').read_text()
+    text = re.sub(r'\\\r?\n[ \t]*', ' ', text)
     settings = (ROOT / 'shaders/lib/settings.glsl').read_text()
     allowed = {}
     for line in settings.splitlines():

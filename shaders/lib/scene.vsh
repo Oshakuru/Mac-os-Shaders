@@ -74,7 +74,7 @@ void main() {
     float sunHeight = (mat3(gbufferModelViewInverse) * normalize(sunPosition)).y;
     daylight = daylightFactor(sunHeight);
     horizon = smoothstep(0.01, 0.15, abs(sunHeight));
-    #if SHADOWS == 1
+#if SHADOWS == 1
     // Orthographic shadow projection is linear. Move its matrix products to
     // vertices; keep the nonlinear focusing and depth comparison per pixel.
     float ndotl = max(lightCosine, 0.0);
@@ -87,7 +87,7 @@ void main() {
     vec4 normalClip = shadowProjection * shadowModelView * vec4(worldNormal * normalOffset, 0.0);
     vec4 clip = centerClip + normalClip;
     shadowClip = clip.xyz / clip.w;
-    #endif
+#endif
 #endif
 #if VISUAL_STYLE > 0
 #ifdef WORLD_LIGHTING

@@ -31,6 +31,7 @@ def main():
         raise ValueError('Water cannot sample scene color targets 0-3 in Iris gbuffers; use target 4 or higher')
     for dimension in ['', 'world-1/', 'world1/']:
         snapshot = (ROOT / 'shaders' / (dimension + 'deferred1.fsh')).read_text()
+        snapshot = re.sub(r'#include\s+"/([^"]+)"', lambda m: (ROOT / 'shaders' / m[1]).read_text(), snapshot)
         if 'DRAWBUFFERS:04' not in snapshot or 'gl_FragData[1] = vec4(color, 1.0)' not in snapshot:
             raise ValueError('Deferred must populate scene snapshot target 4 in every dimension')
     print(f'Validated includes and Iris-sensitive directives in {count} source files.')

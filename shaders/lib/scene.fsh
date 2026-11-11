@@ -107,12 +107,12 @@ void main() {
         float edge = smoothstep(0.06, 0.32, max(abs(uv.x - 0.5), abs(uv.y - 0.5)));
         vec3 core = mix(vec3(1.0, 0.91, 0.73), vec3(1.0, 0.72, 0.36), styleTwilight);
         vec3 rim = mix(vec3(0.94, 0.73, 0.46), vec3(0.94, 0.43, 0.17), styleTwilight);
-        #if VISUAL_STYLE == 2
+#if VISUAL_STYLE == 2
         core = mix(vec3(1.0, 0.97, 0.87), vec3(1.0, 0.84, 0.60), styleTwilight);
         rim = mix(vec3(1.0, 0.91, 0.73), vec3(1.0, 0.69, 0.43), styleTwilight);
 #endif
         vec3 sunColor = originalSun * mix(core, rim, edge * 0.65);
-        #if VISUAL_STYLE == 1
+#if VISUAL_STYLE == 1
         color.rgb = mix(originalSun, sunColor, DARK_STYLE_STRENGTH);
 #else
         color.rgb = mix(originalSun, sunColor, CARTOON_STRENGTH);
