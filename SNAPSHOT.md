@@ -1,8 +1,8 @@
-# M1-Light v0.8.1 atmosphere experiment
+# M1-Light v0.8 settings layout
 
 Imported historical development snapshot.
 
-Status: User reported 20–30 FPS below v0.8; rejected as baseline.
+Status: Complementary-inspired menu organization.
 
 Import order is reconstructed from saved project artifacts; commits are not backdated. Current users should use Metal 0.9.
 

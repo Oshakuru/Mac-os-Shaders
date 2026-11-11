@@ -18,13 +18,13 @@ uniform vec4 entityColor;
 #ifdef LIT
 #include "/lib/lighting.glsl"
 #endif
-#if VISUAL_STYLE > 0 && !defined(NO_SHADOW) && EXTERNAL_ATMOSPHERE == 0
+#if VISUAL_STYLE > 0 && !defined(NO_SHADOW)
 #if VISUAL_STYLE == 1
 #include "/lib/dark_atmosphere.glsl"
 #else
 #include "/lib/cartoon.glsl"
 #endif
-#if defined(SKY_BASIC) || defined(SKY_TEXTURED) && EXTERNAL_ATMOSPHERE == 0
+#if defined(SKY_BASIC) || defined(SKY_TEXTURED)
 uniform int renderStage;
 #endif
 #endif
@@ -41,7 +41,7 @@ void main() {
     vec4 color = texture2D(texture, uv) * tint;
 #endif
     if (color.a < alphaTestRef) discard;
-#if VISUAL_STYLE > 0 && defined(SKY_BASIC) && !defined(NO_SHADOW) && DEBUG_VIEW == 0 && EXTERNAL_ATMOSPHERE == 0
+#if VISUAL_STYLE > 0 && defined(SKY_BASIC) && !defined(NO_SHADOW) && DEBUG_VIEW == 0
     // Full-strength styles replace the sky completely. Finish before computing
     // terrain fog/haze that would otherwise be discarded by that replacement.
 #if VISUAL_STYLE == 1
@@ -55,7 +55,7 @@ void main() {
         return;
     }
 #endif
-#if VISUAL_STYLE > 0 && defined(SKY_TEXTURED) && !defined(NO_SHADOW) && DEBUG_VIEW == 0 && EXTERNAL_ATMOSPHERE == 0
+#if VISUAL_STYLE > 0 && defined(SKY_TEXTURED) && !defined(NO_SHADOW) && DEBUG_VIEW == 0
     if (renderStage == MC_RENDER_STAGE_SUN && isEyeInWater == 0) {
         // Keep the supplied sun texture's silhouette and soft outer pixels.
         // Warm the core and rim independently, without an extra texture read.
@@ -90,7 +90,7 @@ void main() {
 #endif
     float fog = clamp((fogDistance - fogStart) / max(fogEnd - fogStart, 0.001), 0.0, 1.0);
     vec3 atmosphereColor = fogColor;
-#if VISUAL_STYLE == 1 && !defined(NO_SHADOW) && EXTERNAL_ATMOSPHERE == 0
+#if VISUAL_STYLE == 1 && !defined(NO_SHADOW)
     // A distance-haze approximation, not a volumetric scattering pass.
     // Preserve underwater/lava/powder-snow fog and the diagnostic modes.
 #if DEBUG_VIEW == 0
@@ -118,7 +118,7 @@ void main() {
     }
 #endif
 #endif
-#if VISUAL_STYLE == 2 && !defined(NO_SHADOW) && DEBUG_VIEW == 0 && EXTERNAL_ATMOSPHERE == 0
+#if VISUAL_STYLE == 2 && !defined(NO_SHADOW) && DEBUG_VIEW == 0
     if (isEyeInWater == 0) {
         float exposure = smoothstep(0.02, 0.65, clamp(float(eyeBrightnessSmooth.y) / 240.0, 0.0, 1.0));
 #ifdef LIT
@@ -137,7 +137,7 @@ void main() {
     color.rgb = normalize(worldNormal) * 0.5 + 0.5;
 #endif
 #endif
-#if VISUAL_STYLE > 0 && defined(SKY_BASIC) && !defined(NO_SHADOW) && DEBUG_VIEW == 0 && EXTERNAL_ATMOSPHERE == 0
+#if VISUAL_STYLE > 0 && defined(SKY_BASIC) && !defined(NO_SHADOW) && DEBUG_VIEW == 0
     // Iris identifies the sky disc separately from stars, sunset and void.
     // Only replace the sky disc; retain the other geometry and its alpha.
     if (renderStage == MC_RENDER_STAGE_SKY && isEyeInWater == 0) {

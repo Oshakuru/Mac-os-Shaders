@@ -30,5 +30,3 @@ const bool shadowtex0Nearest = true;
 #define MAX_SUNBEAM_STRENGTH 0.15 // [0.0 0.08 0.15 0.22]
 
 #define MAX_LIGHTING 0 // [0 1]
-
-#define EXTERNAL_ATMOSPHERE 1 // [0 1]
