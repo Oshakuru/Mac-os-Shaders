@@ -51,3 +51,15 @@ option.CARTOON_STRENGTH.comment=Prizma-inspired sky, warm light, violet shade an
 
 value.SHADOW_FILTER.2=Soft tent (nine samples)
 option.SHADOW_FILTER.comment=Air uses one shadow sample; Pro uses four; Pro Max uses nine for a wider smooth edge.
+
+screen.MAX_EFFECTS=Pro Max lighting effects
+option.MAX_AO=Ambient occlusion
+option.MAX_AO_STRENGTH=Occlusion strength
+option.MAX_SUNBEAMS=Sunbeams
+option.MAX_SUNBEAM_STRENGTH=Sunbeam strength
+value.MAX_AO.0=Off
+value.MAX_AO.1=On
+value.MAX_SUNBEAMS.0=Off
+value.MAX_SUNBEAMS.1=On
+option.MAX_AO.comment=Subtle screen-space corner shading. Enabled by Pro Max; Air and Pro switch it off.
+option.MAX_SUNBEAMS.comment=Six shadow samples along the view ray for daylight shafts. Enabled by Pro Max; Air and Pro switch it off.
