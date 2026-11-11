@@ -47,7 +47,7 @@ option.VISUAL_STYLE.comment=Choose Default, Dark Fantasy or Cartoon independentl
 
 value.VISUAL_STYLE.2=Cartoon
 option.CARTOON_STRENGTH=Cartoon strength
-option.CARTOON_STRENGTH.comment=Prizma-inspired sky, warm light, violet shade and brighter color. Only affects Cartoon.
+option.CARTOON_STRENGTH.comment=Clear blue skies, peach-lavender sunsets, cool nights, warm daylight and vivid midtones. Only affects Cartoon.
 
 value.SHADOW_FILTER.2=Soft tent (nine samples)
 option.SHADOW_FILTER.comment=Air uses one shadow sample; Pro uses four; Pro Max uses nine for a wider smooth edge.
