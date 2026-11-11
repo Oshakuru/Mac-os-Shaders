@@ -20,7 +20,7 @@ uniform vec4 entityColor;
 #endif
 #if VISUAL_STYLE == 1 && !defined(NO_SHADOW)
 #include "/lib/dark_atmosphere.glsl"
-#ifdef SKY_BASIC
+#if defined(SKY_BASIC) || defined(SKY_TEXTURED)
 uniform int renderStage;
 #endif
 #endif
@@ -37,6 +37,21 @@ void main() {
     vec4 color = texture2D(texture, uv) * tint;
 #endif
     if (color.a < alphaTestRef) discard;
+#if VISUAL_STYLE == 1 && defined(SKY_TEXTURED) && !defined(NO_SHADOW) && DEBUG_VIEW == 0
+    if (renderStage == MC_RENDER_STAGE_SUN && isEyeInWater == 0) {
+        // Keep the supplied sun texture's silhouette and soft outer pixels.
+        // Warm the core and rim independently, without an extra texture read.
+        vec3 originalSun = color.rgb;
+        float edge = smoothstep(0.06, 0.32, max(abs(uv.x - 0.5), abs(uv.y - 0.5)));
+        vec3 core = mix(vec3(1.0, 0.91, 0.73), vec3(1.0, 0.72, 0.36), styleTwilight);
+        vec3 rim = mix(vec3(0.94, 0.73, 0.46), vec3(0.94, 0.43, 0.17), styleTwilight);
+        vec3 sunColor = originalSun * mix(core, rim, edge * 0.65);
+        color.rgb = mix(originalSun, sunColor, DARK_STYLE_STRENGTH);
+        // Celestial geometry must not receive terrain-distance haze.
+        gl_FragData[0] = color;
+        return;
+    }
+#endif
 #ifdef ENTITY
     color.rgb = mix(color.rgb, entityColor.rgb, entityColor.a);
 #endif

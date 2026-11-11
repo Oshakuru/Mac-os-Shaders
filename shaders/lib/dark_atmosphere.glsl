@@ -21,9 +21,9 @@ vec3 fantasySky(vec3 direction, vec3 sunDirection, float day, float twilight, fl
     moonGlow *= moonGlow;
     moonGlow *= moonGlow;
     moonGlow *= moonGlow;
-    vec3 warmGlow = mix(vec3(0.96, 0.90, 0.71), vec3(0.98, 0.56, 0.24), twilight);
+    vec3 warmGlow = mix(vec3(0.91, 0.83, 0.68), vec3(0.98, 0.56, 0.24), twilight);
     float wet = clamp(rain, 0.0, 1.0);
-    c = mix(c, warmGlow, sunGlow * day * (0.48 + 0.15 * twilight) * (1.0 - wet));
+    c = mix(c, warmGlow, sunGlow * day * (0.30 + 0.15 * twilight) * (1.0 - wet));
     c = mix(c, vec3(0.35, 0.28, 0.46), moonGlow * (1.0 - day) * 0.62 * (1.0 - wet));
     float gray = dot(c, vec3(0.2126, 0.7152, 0.0722));
     return mix(c, vec3(gray) * vec3(0.91, 0.96, 1.0) * 0.78, wet * 0.75);
