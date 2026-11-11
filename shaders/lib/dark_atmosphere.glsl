@@ -1,3 +1,5 @@
+#ifndef METAL_DARK_ATMOSPHERE
+#define METAL_DARK_ATMOSPHERE
 // Palette authored from supplied visual references, in the existing LDR space.
 vec3 fantasyHorizon(float day, float twilight) {
     vec3 c = mix(vec3(0.065, 0.075, 0.115), vec3(0.49, 0.54, 0.53), day);
@@ -28,3 +30,5 @@ vec3 fantasySky(vec3 direction, vec3 sunDirection, float day, float twilight, fl
     float gray = dot(c, vec3(0.2126, 0.7152, 0.0722));
     return mix(c, vec3(gray) * vec3(0.91, 0.96, 1.0) * 0.78, wet * 0.75);
 }
+
+#endif
