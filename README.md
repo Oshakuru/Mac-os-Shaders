@@ -4,7 +4,7 @@
 
 Minecraft Java Edition visual pack developed around Apple Silicon, with selectable art styles, shadows, procedural water and rain puddles.
 
-**Current revision: 0.9.11; in-game-tested baseline: 0.9.** Next revision: **0.9.12**. The earlier Metal 1.0 labels are preserved in the development history; they are not the current release number.
+**Current revision: 0.9.12; in-game-tested baseline: 0.9.** Next revision: **0.9.13**. The earlier Metal 1.0 labels are preserved in the development history; they are not the current release number.
 
 ## Current features
 
@@ -41,7 +41,7 @@ The cubic images carry an all-rights-reserved notice and are not uploaded here. 
 python3 tools/build.py --without-cubic
 ```
 
-Place both generated files from `dist/` into Minecraft's `shaderpacks` folder and select **Metal-v0.9.11.zip** in Iris. The matching settings file carries Dark Fantasy and Sky + Scene puddle settings, with the SDV skybox clouds enabled.
+Place both generated files from `dist/` into Minecraft's `shaderpacks` folder and select **Metal-v0.9.12.zip** in Iris. The matching settings file carries Dark Fantasy and Sky + Scene puddle settings, with the SDV skybox clouds enabled.
 
 For visible terrain/lava reflections select **Atmosphere → Puddles and Wet Ground → Wet ground reflections → Sky + Scene**. Sky mode reflects only the sky and can be subtle on dark rainy nights.
 
@@ -129,3 +129,7 @@ The old Air and old Pro Max tiers are retired. Pro has 512 shadows at 64 blocks,
 ## 0.9.11 wet-ground Sky mode
 
 Sky (Light), formerly Sky (Fast), uses flat puddle normals and gates low-coverage/low-contribution pixels before sky reflection shading. It fades reflections earlier (40–96 block caps, also limited by render distance). Puddle coverage and wet darkening remain intact. The existing mask/deferred-pass bandwidth cost remains; no fixed FPS improvement is promised. Water and skybox rendering are unchanged. For a controlled comparison use the same preset, position, direction, weather and time, changing only Wet ground reflections between Off, Sky (Light), and Sky + Scene. The shipped Pro configuration retains its previous Sky + Scene setting; select Sky (Light) explicitly for the new path.
+
+## 0.9.12 settings labels
+
+Performance-related settings use standard Minecraft colors: green for low, yellow for medium, red for high potential impact. Mixed-cost categories show the higher tier; actual cost depends on mode, active effects and scene coverage. Strength/color sliders are low arithmetic cost; lowering intensity alone generally does not disable the effect. Existing descriptive tooltips and impact category text remain. DARK FANTASY and MIYAZAKI are plain unformatted ASCII labels. Rendering and preset values are unchanged.

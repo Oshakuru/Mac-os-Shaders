@@ -1,5 +1,9 @@
 # Development progression
 
+## 0.9.12
+
+- Added low/medium/high impact colors to setting labels; removed all formatting from art-style titles. Rendering unchanged.
+
 ## 0.9.11
 
 - Optimized wet-ground Sky shading with flat normals, early visibility gating and earlier distance fading. Water/skybox unchanged.

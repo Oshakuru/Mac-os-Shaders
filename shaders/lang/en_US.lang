@@ -1,59 +1,59 @@
-option.shadowMapResolution=Shadow resolution
-option.shadowDistance=Shadow distance (blocks)
-option.SHADOW_STRENGTH=Shadow strength
-option.SHADOW_FILTER=Shadow filtering
+option.shadowMapResolution=§cShadow resolution§r
+option.shadowDistance=§cShadow distance (blocks)§r
+option.SHADOW_STRENGTH=§aShadow strength§r
+option.SHADOW_FILTER=§cShadow filtering§r
 value.SHADOW_FILTER.0=Sharp (one sample)
 value.SHADOW_FILTER.1=Light smoothing (four samples)
-option.AMBIENT_LIGHT=Ambient light
+option.AMBIENT_LIGHT=§aAmbient light§r
 profile.FAST=Air
 profile.BALANCED=Pro
 profile.CRISP=Pro Max
-option.TORCH_FALLOFF=Torch light falloff
+option.TORCH_FALLOFF=§aTorch light falloff§r
 value.TORCH_FALLOFF.1=Broad
 value.TORCH_FALLOFF.2=Balanced
 value.TORCH_FALLOFF.3=Concentrated
-option.SHADOW_BIAS=Shadow surface offset
+option.SHADOW_BIAS=§aShadow surface offset§r
 option.SHADOW_BIAS.comment=Increase for surface stripes; decrease for detached shadows. Test one step at a time.
 option.DEBUG_VIEW=Diagnostic view
 value.DEBUG_VIEW.0=Normal lighting
 value.DEBUG_VIEW.1=Shadow mask
 value.DEBUG_VIEW.2=Shadow map (raw depth)
 value.DEBUG_VIEW.3=Surface normals
-option.RECEIVER_CORRECTION=Shadow surface correction
+option.RECEIVER_CORRECTION=§aShadow surface correction§r
 value.RECEIVER_CORRECTION.0=Off
 value.RECEIVER_CORRECTION.1=On
 option.RECEIVER_CORRECTION.comment=Correct shadow comparisons for sloping surfaces. Turn off to compare cost and artifacts.
 option.SHADOW_STRENGTH.comment=Controls cast-shadow darkness independently of ambient fill.
 option.AMBIENT_LIGHT.comment=Raises light in shaded outdoor areas. Cave and torch brightness still follows Minecraft's lightmap.
-option.NIGHT_AMBIENT=Night ambient fill
+option.NIGHT_AMBIENT=§aNight ambient fill§r
 option.NIGHT_AMBIENT.comment=Controls nighttime outdoor fill separately from daytime ambient. Does not add cave lights.
-option.MOON_CONTRAST=Moonlight contrast
+option.MOON_CONTRAST=§aMoonlight contrast§r
 option.MOON_CONTRAST.comment=Lower values soften directional moonlight shading while retaining the vanilla night lightmap.
 option.VISUAL_STYLE=Visual style
 value.VISUAL_STYLE.0=Default
-value.VISUAL_STYLE.1=§7DARK FA§fNTASY§r
-option.DARK_STYLE_STRENGTH=Dark Fantasy strength
+value.VISUAL_STYLE.1=DARK FANTASY
+option.DARK_STYLE_STRENGTH=§aDark Fantasy strength§r
 option.DARK_STYLE_STRENGTH.comment=Grim palette: muted daylight, cold blue shadows, subdued skies and rusty sunsets. Lower strength for a gentler treatment.
-option.DARK_HAZE=Dark Fantasy distance haze
+option.DARK_HAZE=§aDark Fantasy distance haze§r
 option.DARK_HAZE.comment=Outdoor distance haze, reduced in caves and strengthened during rain. Not volumetric fog.
-option.DARK_LIGHT_TINT=Dark Fantasy light color
+option.DARK_LIGHT_TINT=§aDark Fantasy light color§r
 option.DARK_LIGHT_TINT.comment=Original lighting only: separates cool shade, warm sunlight and block light. Independent lighting uses its own palette. Sky, fog and grading are controlled separately.
 
 screen.DIAGNOSTICS=Diagnostics
-profile.comment=Air is the former Pro. Pro reproduces the saved Custom configuration with FXAA off. Pro Max is the former Pro Max Plus, with FXAA off. Changing a tracked setting shows Custom; art style remains independent.
+profile.comment=Air is the former Pro. Pro reproduces the saved Custom configuration with FXAA off. Pro Max is the former Pro Max Plus, with FXAA off. Changing a tracked setting shows Custom; art style remains independent. Impact colors: §aGreen = Low§r, §eYellow = Medium§r, §cRed = High§r. Costs depend on the selected mode and scene.
 option.VISUAL_STYLE.comment=Choose Default, Dark Fantasy or Miyazaki independently of performance.
 
-value.VISUAL_STYLE.2=§7MIYAZAK§fI§r
-option.CARTOON_STRENGTH=Miyazaki strength
+value.VISUAL_STYLE.2=MIYAZAKI
+option.CARTOON_STRENGTH=§aMiyazaki strength§r
 option.CARTOON_STRENGTH.comment=Storybook palette: turquoise sky, ivory daylight, cool teal shade, pale gold sunset and blue nights. Preserves texture detail. Only affects Miyazaki.
 
 value.SHADOW_FILTER.2=Soft tent (nine samples)
 option.SHADOW_FILTER.comment=Air uses one shadow sample, saved Pro four, and Pro Max nine. Shadow resolution and distance are controlled separately.
 
-option.MAX_AO=Ambient occlusion
-option.MAX_AO_STRENGTH=Occlusion strength
-option.MAX_SUNBEAMS=Sunbeams
-option.MAX_SUNBEAM_STRENGTH=Sunbeam strength
+option.MAX_AO=§eAmbient occlusion§r
+option.MAX_AO_STRENGTH=§aOcclusion strength§r
+option.MAX_SUNBEAMS=§cSunbeams§r
+option.MAX_SUNBEAM_STRENGTH=§aSunbeam strength§r
 value.MAX_AO.0=Off
 value.MAX_AO.1=On
 value.MAX_SUNBEAMS.0=Off
@@ -61,107 +61,107 @@ value.MAX_SUNBEAMS.1=On
 option.MAX_AO.comment=MEDIUM impact. Contact shading is disabled in Air, enabled in Pro and Pro Max.
 option.MAX_SUNBEAMS.comment=HIGH impact outdoors. Sunbeams are disabled in Air, enabled in Pro and Pro Max.
 
-option.MAX_LIGHTING=Independent lighting
+option.MAX_LIGHTING=§eIndependent lighting§r
 value.MAX_LIGHTING.0=Original
 value.MAX_LIGHTING.1=Sun / sky / block light
-option.MAX_LIGHTING.comment=LOW to MEDIUM impact. Separates sky, sun and local lighting with highlight compression. Air and Pro use the simpler lighting path.
+option.MAX_LIGHTING.comment=LOW to MEDIUM impact. Separates sky, sun and local lighting with highlight compression. Air uses the simpler path; Pro and Pro Max enable independent lighting.
 
 screen.PERFORMANCE_SETTINGS=Performance
 screen.STYLE_SETTINGS=Style Settings
 screen.LIGHTING_SETTINGS=Lighting Settings
 screen.ATMOSPHERE_SETTINGS=Atmosphere Settings
 screen.OTHER_SETTINGS=Other Settings
-screen.SHADOW_SETTINGS=Shadows
-screen.AMBIENT_SETTINGS=Ambient and Moonlight
-screen.BLOCKLIGHT_SETTINGS=Blocklight
-screen.AO_SETTINGS=Ambient Occlusion
-screen.FOG_SETTINGS=Fog and Haze
-screen.SUNBEAM_SETTINGS=Sunbeams
+screen.SHADOW_SETTINGS=§cShadows§r
+screen.AMBIENT_SETTINGS=§aAmbient and Moonlight§r
+screen.BLOCKLIGHT_SETTINGS=§aBlocklight§r
+screen.AO_SETTINGS=§eAmbient Occlusion§r
+screen.FOG_SETTINGS=§aFog and Haze§r
+screen.SUNBEAM_SETTINGS=§cSunbeams§r
 
-screen.APPLE_SETTINGS=Apple Silicon Experiments
-option.APPLE_SUN_SETUP=Sunbeam optimization
+screen.APPLE_SETTINGS=§aApple Silicon Experiments§r
+option.APPLE_SUN_SETUP=§aSunbeam optimization§r
 option.APPLE_SUN_SETUP.comment=Recommended On. Reduces repeated work when sunbeams are active while keeping their quality.
 value.APPLE_SUN_SETUP.0=Off (v0.8 path)
 value.APPLE_SUN_SETUP.1=On (experimental)
-option.APPLE_DEPTH_RECONSTRUCTION=Depth optimization
+option.APPLE_DEPTH_RECONSTRUCTION=§aDepth optimization§r
 option.APPLE_DEPTH_RECONSTRUCTION.comment=Recommended On. Reduces depth reconstruction work for effects such as AO while retaining the general-projection fallback.
 value.APPLE_DEPTH_RECONSTRUCTION.0=Off (v0.8 path)
 value.APPLE_DEPTH_RECONSTRUCTION.1=On (experimental)
 
-screen.CLOUD_SETTINGS=Clouds
-option.CLOUD_STYLE=Cloud style
+screen.CLOUD_SETTINGS=§cClouds§r
+option.CLOUD_STYLE=§cCloud style§r
 value.CLOUD_STYLE.0=Vanilla
 value.CLOUD_STYLE.1=SDV Skybox
 value.CLOUD_STYLE.2=Fading Clouds
 option.CLOUD_STYLE.comment=SDV Skybox uses the adapted reference renderer and cloud map with Metal preset tones and terrain-independent reach. Fading Clouds and Vanilla remain available.
-option.CLOUD_OPACITY=Custom cloud opacity
+option.CLOUD_OPACITY=§aCustom cloud opacity§r
 option.CLOUD_OPACITY.comment=Opacity of custom clouds. Does not affect Vanilla clouds.
 
-screen.CELESTIAL_SETTINGS=Sun and Moon
-option.CUBIC_CELESTIALS=Sun and moon style
+screen.CELESTIAL_SETTINGS=§aSun and Moon§r
+option.CUBIC_CELESTIALS=§aSun and moon style§r
 value.CUBIC_CELESTIALS.0=Game / Resource Pack
 value.CUBIC_CELESTIALS.1=Cubic
-option.CUBIC_CELESTIALS.comment=LOW impact. Uses custom sun/moon sprites and eight moon phases. Air uses the game celestial textures.
+option.CUBIC_CELESTIALS.comment=LOW impact. Uses custom sun/moon sprites and eight moon phases. Available in all three tiers.
 
-screen.WATER_SETTINGS=Water
-option.MAKEUP_WATER=Water style
+screen.WATER_SETTINGS=§cWater§r
+option.MAKEUP_WATER=§cWater style§r
 value.MAKEUP_WATER.0=Game / Resource Pack
 value.MAKEUP_WATER.1=MakeUp Adaptation
 option.MAKEUP_WATER.comment=MEDIUM to HIGH combined cost. Custom waves and depth-based water add sampling and a scene snapshot. Reflections are the largest optional addition.
 
-option.WATER_WAVE_STRENGTH=Water wave strength
+option.WATER_WAVE_STRENGTH=§aWater wave strength§r
 option.WATER_WAVE_STRENGTH.comment=Controls procedural wave normals, without moving the water geometry.
-option.WATER_REFLECTIONS=Water reflections
+option.WATER_REFLECTIONS=§cWater reflections§r
 option.WATER_REFLECTIONS.comment=HIGH impact around water. Sky + Scene traces terrain reflections; Sky avoids that trace. Off disables reflections.
 
-screen.WET_GROUND_SETTINGS=Puddles and Wet Ground
-option.RAIN_PUDDLES=Rain puddles
+screen.WET_GROUND_SETTINGS=§cPuddles and Wet Ground§r
+option.RAIN_PUDDLES=§eRain puddles§r
 value.RAIN_PUDDLES.0=Off
 value.RAIN_PUDDLES.1=On
 option.RAIN_PUDDLES.comment=LOW to MEDIUM impact on rainy ground without reflections. Adds puddle coverage and wet darkening. Sky + Scene wet reflections add a separate high cost.
-option.WET_GROUND_REFLECTIONS=Wet ground reflections
+option.WET_GROUND_REFLECTIONS=§cWet ground reflections§r
 value.WET_GROUND_REFLECTIONS.0=Off
 value.WET_GROUND_REFLECTIONS.1=Sky (Light)
 value.WET_GROUND_REFLECTIONS.2=Sky + Scene (Experimental)
 option.WET_GROUND_REFLECTIONS.comment=Sky (Light) uses flat puddle normals, skips faint reflections and fades them earlier with distance. Sky + Scene retains animated normals and terrain tracing. Off keeps wet darkening. Cost still depends on wet screen coverage.
 
-screen.WEATHER_SETTINGS=Weather
-option.UNOBTRUSIVE_WEATHER=Unobtrusive weather
-option.UNOBTRUSIVE_WEATHER.comment=LOW impact. Replaces rain and snow texture sampling; does not add particle simulation. Air uses game weather.
-option.RAIN_RIPPLES=Rain ripples
+screen.WEATHER_SETTINGS=§aWeather§r
+option.UNOBTRUSIVE_WEATHER=§aUnobtrusive weather§r
+option.UNOBTRUSIVE_WEATHER.comment=LOW impact. Replaces rain and snow texture sampling; does not add particle simulation. Available in all three tiers.
+option.RAIN_RIPPLES=§eRain ripples§r
 option.RAIN_RIPPLES.comment=LOW to MEDIUM impact on rainy water. Requires custom water with refraction or reflections. Off removes the rain-ring calculations.
-option.RAIN_RIPPLE_STRENGTH=Rain ripple strength
+option.RAIN_RIPPLE_STRENGTH=§aRain ripple strength§r
 
 
-option.WATER_REFRACTION=Water refraction
-option.WATER_ABSORPTION=Water absorption
+option.WATER_REFRACTION=§eWater refraction§r
+option.WATER_ABSORPTION=§aWater absorption§r
 option.WATER_ABSORPTION.comment=Higher values make deep water more opaque.
 value.WATER_REFLECTIONS.0=Off
 value.WATER_REFLECTIONS.1=Sky
 value.WATER_REFLECTIONS.2=Sky + Scene
 
-option.SDV_CLOUD_STEPS=Skybox cloud depth quality
+option.SDV_CLOUD_STEPS=§cSkybox cloud depth quality§r
 option.SDV_CLOUD_STEPS.comment=MEDIUM to HIGH impact when much of the sky is visible. More steps improve cloud thickness. One layer costs less than two.
 
-option.FOLIAGE_WIND=Foliage wind
+option.FOLIAGE_WIND=§aFoliage wind§r
 option.FOLIAGE_WIND.comment=LOW impact. Vertex-only sway with matching shadows, fading out by 48 blocks. No extra wind textures or screen effects. Off removes animation work.
-option.FOLIAGE_WIND_STRENGTH=Wind strength
+option.FOLIAGE_WIND_STRENGTH=§aWind strength§r
 
-option.SHADOWS=Shadows
+option.SHADOWS=§cShadows§r
 option.SHADOWS.comment=Off skips the shadow pass and receiving comparisons. Sunbeams also require shadows.
-option.MAX_AO_QUALITY=AO quality
+option.MAX_AO_QUALITY=§eAO quality§r
 value.MAX_AO_QUALITY.1=4 samples
 value.MAX_AO_QUALITY.2=8 samples
-option.SUNBEAM_STEPS=Sunbeam quality
-option.SDV_CLOUD_LAYERS=Cloud layers
-option.WATER_SSR_STEPS=Water scene reflection quality
+option.SUNBEAM_STEPS=§cSunbeam quality§r
+option.SDV_CLOUD_LAYERS=§cCloud layers§r
+option.WATER_SSR_STEPS=§cWater scene reflection quality§r
 option.WATER_SSR_STEPS.comment=HIGH impact only with Sky + Scene water reflections. More samples improve scene tracing but cost more per water pixel.
 
 option.shadowMapResolution.comment=HIGH impact while shadows are enabled. Higher resolution makes finer shadows but uses more graphics memory and shadow rendering work.
 
 option.shadowDistance.comment=HIGH impact while shadows are enabled. Longer range draws more terrain and foliage into the shadow map.
 
-option.SDV_CLOUD_LAYERS.comment=MEDIUM to HIGH impact in open skies. Two layers run the cloud sampling twice. Air and Pro use one.
+option.SDV_CLOUD_LAYERS.comment=MEDIUM to HIGH impact in open skies. Two layers run cloud sampling twice. Air uses one layer; Pro and Pro Max use two.
 
 option.WATER_REFRACTION.comment=MEDIUM impact over water. Distorts the scene beneath water and uses the scene snapshot. Turn off for simpler water.
 
@@ -169,22 +169,22 @@ option.MAX_AO_QUALITY.comment=MEDIUM impact while AO is on. Eight samples shade 
 
 option.SUNBEAM_STEPS.comment=HIGH impact while sunbeams are on. More samples smooth the rays but increase sampling work.
 
-screen.PERF_SHADOWS=Shadows (High impact)
-screen.PERF_CLOUDS=Clouds (Medium-High)
-screen.PERF_WATER=Water (High impact)
-screen.PERF_EFFECTS=Lighting effects (High)
-screen.PERF_FOLIAGE=Foliage (Low impact)
+screen.PERF_SHADOWS=§cShadows (High impact)§r
+screen.PERF_CLOUDS=§cClouds (Medium-High)§r
+screen.PERF_WATER=§cWater (High impact)§r
+screen.PERF_EFFECTS=§cLighting effects (High)§r
+screen.PERF_FOLIAGE=§aFoliage (Low impact)§r
 
-screen.PERF_ANTIALIASING=Edge smoothing (Medium)
-screen.COLOR_GRADING=Color grading
-option.ENTITY_SHADOWS=Entity shadows
+screen.PERF_ANTIALIASING=§eEdge smoothing (Medium)§r
+screen.COLOR_GRADING=§aColor grading§r
+option.ENTITY_SHADOWS=§cEntity shadows§r
 option.ENTITY_SHADOWS.comment=Shadows from mobs and players. Disabling can reduce shadow rendering work in busy areas. Requires Shadows.
-option.BLOCK_ENTITY_SHADOWS=Block entity shadows
+option.BLOCK_ENTITY_SHADOWS=§cBlock entity shadows§r
 option.BLOCK_ENTITY_SHADOWS.comment=Shadows from rendered block entities such as chests. Disabling can reduce shadow rendering work. Requires Shadows.
-option.FXAA=Fast edge smoothing
+option.FXAA=§eFast edge smoothing§r
 option.FXAA.comment=MEDIUM impact: spatial smoothing without history buffers. Reduces jagged edges but can soften texture detail. Does not eliminate temporal foliage shimmer.
-option.GRADE_BRIGHTNESS=Brightness
-option.GRADE_CONTRAST=Contrast
-option.GRADE_SATURATION=Saturation
-option.GRADE_GREEN_SATURATION=Green saturation
+option.GRADE_BRIGHTNESS=§aBrightness§r
+option.GRADE_CONTRAST=§aContrast§r
+option.GRADE_SATURATION=§aSaturation§r
+option.GRADE_GREEN_SATURATION=§aGreen saturation§r
 option.GRADE_GREEN_SATURATION.comment=Adjusts green-dominant colors in the final image, including green sky or objects. Does not identify materials.

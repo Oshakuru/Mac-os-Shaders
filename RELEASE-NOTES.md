@@ -1,9 +1,8 @@
-# Metal 0.9.11
+# Metal 0.9.12
 
-- Optimizes wet-ground Sky reflections with flat normals; animated puddle normals remain only in Sky + Scene.
-- Rejects low coverage and checks reflection visibility before reflection direction, sky color and highlight shading.
-- Earlier distance fade for Sky mode; preserves puddle coverage and wet-ground darkening.
-- Renames Sky (Fast) to Sky (Light), without claiming a fixed FPS gain.
-- Keeps water, skybox and quality-preset selections unchanged.
+- Green setting labels = low impact, yellow = medium, red = high potential impact. Categories and the profile tooltip provide the same guidance.
+- Art-style titles are plain DARK FANTASY and MIYAZAKI, with no colors or formatting.
+- Updates outdated preset tooltip descriptions for the current three-tier layout.
+- Rendering algorithms and saved preset/settings values are unchanged.
 
-This does not remove the mask/output bandwidth or introduce half-resolution reflections. Measure Off → Sky (Light) → Sky + Scene in a fixed in-game scene. The provided Pro settings retain Sky + Scene, so select Sky (Light) to test this optimization.
+Impact labels are qualitative estimates, not measured FPS costs. Lowering a strength slider does not necessarily reduce rendering work. Reflection-resolution control is not included in this UI revision.
