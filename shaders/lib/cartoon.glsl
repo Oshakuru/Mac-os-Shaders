@@ -1,5 +1,3 @@
-#ifndef METAL_CARTOON
-#define METAL_CARTOON
 // Reference-led storybook palette. Existing sky/final passes, no new samples.
 vec3 cartoonHorizon(float day, float twilight) {
     vec3 horizon = mix(vec3(0.045, 0.13, 0.21), vec3(0.71, 0.86, 0.83), day);
@@ -33,5 +31,3 @@ vec3 cartoonGrade(vec3 source) {
     c = mix(c, c * c * (3.0 - 2.0 * c), 0.08);
     return mix(source, clamp(c, 0.0, 1.0), CARTOON_STRENGTH);
 }
-
-#endif

@@ -1,6 +1,6 @@
 #include "/lib/settings.glsl"
 varying vec2 uv;
-#if MAX_SUNBEAMS == 1 && APPLE_SUN_SETUP == 1 && !defined(NO_MAX_LIGHTING) && DEBUG_VIEW == 0
+#if MAX_SUNBEAMS == 1 && APPLE_SUN_SETUP == 1
 uniform mat4 gbufferModelViewInverse;
 uniform mat4 shadowModelView;
 uniform mat4 shadowProjection;
@@ -16,7 +16,7 @@ varying float appleShaftStrength;
 void main() {
     gl_Position = ftransform();
     uv = gl_MultiTexCoord0.xy;
-#if MAX_SUNBEAMS == 1 && APPLE_SUN_SETUP == 1 && !defined(NO_MAX_LIGHTING) && DEBUG_VIEW == 0
+#if MAX_SUNBEAMS == 1 && APPLE_SUN_SETUP == 1
     appleSunWorld = mat3(gbufferModelViewInverse) * normalize(sunPosition);
     appleLightDirection = normalize(shadowLightPosition);
     appleStartClip = shadowProjection * shadowModelView * gbufferModelViewInverse * vec4(0.0, 0.0, 0.0, 1.0);

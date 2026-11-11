@@ -27,13 +27,3 @@ varying float styleTwilight;
 varying vec3 skyDirection;
 varying vec3 skySunDirection;
 #endif
-
-#if RAIN_PUDDLES == 1 && WET_GROUND_REFLECTIONS > 0 && DEBUG_VIEW == 0 && !defined(NO_SHADOW)
-#define WET_MASK_OUTPUT
-#endif
-
-#if VISUAL_STYLE == 1
-#define ART_STYLE_STRENGTH DARK_STYLE_STRENGTH
-#elif VISUAL_STYLE == 2
-#define ART_STYLE_STRENGTH CARTOON_STRENGTH
-#endif
