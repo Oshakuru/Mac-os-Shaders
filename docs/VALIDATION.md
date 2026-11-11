@@ -19,3 +19,7 @@ New weather sampling and original rain-ring normals require in-game verification
 
 Native Apple M1 OpenGL 2.1 driver: 150 program checks compiled and linked successfully across all three art styles and dimensions. This does not replace Iris loading and in-game weather/visual testing.
 Additional 150 targeted water/reflection/ripple/wave/weather option combinations compiled and linked with zero failures. Public fallback builds disable missing weather/cubic texture features automatically.
+
+0.9.2 skybox replacement requires in-game checks for sky coverage, terrain occlusion, day/night/weather, underwater behavior and performance. Previous Fading Clouds confirmations do not cover this renderer.
+
+Skybox renderer: all 150 standard native-driver program checks passed on Apple M1.

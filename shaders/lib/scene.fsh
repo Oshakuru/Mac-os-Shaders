@@ -32,6 +32,14 @@ uniform int renderStage;
 #endif
 #include "/lib/cubic_celestials.glsl"
 #endif
+#if CLOUD_STYLE == 1 && defined(SKY_BASIC) && !defined(NO_SHADOW)
+#if VISUAL_STYLE == 0 && CUBIC_CELESTIALS == 0
+uniform int isEyeInWater;
+uniform float rainStrength;
+uniform int renderStage;
+#endif
+#include "/lib/skybox_clouds.glsl"
+#endif
 #include "/lib/weather.glsl"
 #include "/lib/photon_water.glsl"
 #include "/lib/wet_ground.glsl"
@@ -80,6 +88,9 @@ void main() {
         color.rgb = artSky(skyDirection, skySunDirection, styleDay, styleTwilight, rainStrength);
 #if CUBIC_CELESTIALS == 1
         color.rgb = cubicCelestials(color.rgb);
+#endif
+#if CLOUD_STYLE == 1
+        color.rgb = metalSkyboxClouds(color.rgb);
 #endif
         gl_FragData[0] = color;
         return;
@@ -162,6 +173,9 @@ void main() {
 #endif
 #if CUBIC_CELESTIALS == 1 && defined(SKY_BASIC) && !defined(NO_SHADOW) && DEBUG_VIEW == 0
     if (renderStage == MC_RENDER_STAGE_SKY) color.rgb = cubicCelestials(color.rgb);
+#endif
+#if CLOUD_STYLE == 1 && defined(SKY_BASIC) && !defined(NO_SHADOW) && DEBUG_VIEW == 0
+    if (renderStage == MC_RENDER_STAGE_SKY) color.rgb = metalSkyboxClouds(color.rgb);
 #endif
     gl_FragData[0] = color;
 }

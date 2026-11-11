@@ -40,3 +40,5 @@
 ## M1-Light 0.5.5–0.7
 
 Available early development source snapshots are preserved in Git history. Their original identifiers are retained rather than assigning invented Metal release numbers.
+
+- Replaced Fading Clouds with original two-layer skybox clouds, independent of terrain render distance. Vanilla remains selectable. Matches the reference active skybox mode's angular horizon fade: clear sky fades from y=0.1 to y=0.2667; rain raises and softens that fade. Uses an original generated cloud mask, not reference-pack code or assets. No settings title was added.

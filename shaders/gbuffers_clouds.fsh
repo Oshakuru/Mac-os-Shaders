@@ -3,5 +3,5 @@
 #if CLOUD_STYLE == 0
 #include "/lib/scene.fsh"
 #else
-#include "/lib/fading_clouds.fsh"
+void main() { discard; }
 #endif

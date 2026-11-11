@@ -10,7 +10,7 @@ Minecraft Java Edition visual pack developed around Apple Silicon, with selectab
 
 - Default, Miyazaki and Dark Fantasy art styles.
 - Air, Pro and Pro Max quality presets.
-- Fading Clouds by default, with Vanilla available.
+- Two-layer skybox clouds by default, with Vanilla available.
 - Photon-derived procedural water waves, depth coloring, sky reflections and sun highlights.
 - Rain-driven puddles, wet-ground darkening and optional Sky + Scene reflections.
 - Embedded cubic sun/moon support, including eight moon phases, when built with the separately supplied assets.
@@ -41,7 +41,7 @@ The cubic images carry an all-rights-reserved notice and are not uploaded here. 
 python3 tools/build.py --without-cubic
 ```
 
-Place both generated files from `dist/` into Minecraft's `shaderpacks` folder and select **Metal-v0.9.2.zip** in Iris. The matching settings file carries the tested Dark Fantasy, Fading Clouds (formerly Story Mode clouds) and Sky + Scene puddle configuration.
+Place both generated files from `dist/` into Minecraft's `shaderpacks` folder and select **Metal-v0.9.2.zip** in Iris. The matching settings file carries Dark Fantasy and Sky + Scene puddle settings, with the new skybox clouds enabled.
 
 For visible terrain/lava reflections select **Atmosphere → Puddles and Wet Ground → Wet ground reflections → Sky + Scene**. Sky mode reflects only the sky and can be subtle on dark rainy nights.
 
@@ -64,3 +64,7 @@ Supply Unobtrusive Weather v2.0 with `--weather-pack` to embed its rain and snow
 Atmosphere → Weather toggles the embedded weather. Atmosphere → Water contains Rain ripples and their strength. Ripples require Photon water and Water reflections, appear during rain, and use skylight as an approximate outdoor mask. They are an original Metal effect rather than Particle Rain's Java particles. Particle splash sprites remain vanilla.
 
 See [release notes](RELEASE-NOTES.md) for the pending in-game checks. Iris uses Minecraft's limited legacy text colors for these labels; the exact requested RGB gradient strings are retained in `assets/branding/preset-labels.json`.
+
+## Skybox clouds in 0.9.2
+
+- Replaced Fading Clouds with original two-layer skybox clouds, independent of terrain render distance. Vanilla remains selectable. Matches the reference active skybox mode's angular horizon fade: clear sky fades from y=0.1 to y=0.2667; rain raises and softens that fade. Uses an original generated cloud mask, not reference-pack code or assets. No settings title was added.

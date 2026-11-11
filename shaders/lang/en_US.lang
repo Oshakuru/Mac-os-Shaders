@@ -91,10 +91,10 @@ value.APPLE_DEPTH_RECONSTRUCTION.1=On (experimental)
 screen.CLOUD_SETTINGS=Clouds
 option.CLOUD_STYLE=Cloud style
 value.CLOUD_STYLE.0=Vanilla
-value.CLOUD_STYLE.1=Fading Clouds
-option.CLOUD_STYLE.comment=Vanilla preserves the original v0.8 cloud path. Fading Clouds adapts a 10-block cloud layer, flatter color and a vertical opacity fade. Uses existing Fancy cloud geometry.
+value.CLOUD_STYLE.1=Skybox clouds
+option.CLOUD_STYLE.comment=Vanilla uses game cloud geometry. Skybox clouds extend independently of terrain distance with two moving layers and a weather-dependent horizon fade.
 option.CLOUD_OPACITY=Custom cloud opacity
-option.CLOUD_OPACITY.comment=Only affects Fading Clouds. Clouds require Fancy geometry; custom styles request Fancy automatically.
+option.CLOUD_OPACITY.comment=Opacity of skybox clouds. Does not affect Vanilla clouds.
 
 screen.CELESTIAL_SETTINGS=Sun and Moon
 option.CUBIC_CELESTIALS=Sun and moon style
@@ -132,3 +132,6 @@ option.UNOBTRUSIVE_WEATHER.comment=Use embedded smaller rain and snow textures. 
 option.RAIN_RIPPLES=Rain ripples
 option.RAIN_RIPPLES.comment=Expanding rings on outdoor water during rain. Requires Photon water and Water reflections. Skylight estimates exposure; particles are not spawned.
 option.RAIN_RIPPLE_STRENGTH=Rain ripple strength
+
+option.SKYBOX_CLOUD_STEPS=Cloud depth quality
+option.SKYBOX_CLOUD_STEPS.comment=Steps for skybox cloud thickness. More steps increase sky rendering cost.
