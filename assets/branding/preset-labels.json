@@ -1,0 +1,5 @@
+{
+  "Miyazaki": "&#00BFFFＭ&#44C7F5ｉ&#87CEEBｙ&#AFDEF2ａ&#D7EFF8ｚ&#FFFFFFａ&#E0E0E0ｋ&#C0C0C0ｉ",
+  "Dark Fantasy": "&#969696&l&o𝕯&#A0A0A0&l&o𝖆&#A9A9A9&l&o𝖗&#B3B3B3&l&o𝖐 &#C6C6C6&l&o𝕱&#CFCFCF&l&o𝖆&#D9D9D9&l&o𝖓&#E2E2E2&l&o𝖙&#ECECEC&l&o𝖆&#F5F5F5&l&o𝖘&#FFFFFF&l&o𝖞",
+  "note": "Exact requested RGB strings. Iris shader language labels use the standard Minecraft legacy palette; ampersand hex chat-plugin syntax is not parsed by Iris."
+}

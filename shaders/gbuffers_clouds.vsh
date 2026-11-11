@@ -3,5 +3,5 @@
 #if CLOUD_STYLE == 0
 #include "/lib/scene.vsh"
 #else
-#include "/lib/clouds.vsh"
+#include "/lib/fading_clouds.vsh"
 #endif

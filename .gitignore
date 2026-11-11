@@ -6,3 +6,5 @@ dist/
 # Keep third-party all-rights-reserved textures local.
 shaders/textures/cubic/*.png
 shaders/textures/fresh/*.png
+
+shaders/textures/weather/*.png

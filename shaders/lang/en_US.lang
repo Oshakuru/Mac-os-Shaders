@@ -31,7 +31,7 @@ option.MOON_CONTRAST=Moonlight contrast
 option.MOON_CONTRAST.comment=Lower values soften directional moonlight shading while retaining the vanilla night lightmap.
 option.VISUAL_STYLE=Visual style
 value.VISUAL_STYLE.0=Default
-value.VISUAL_STYLE.1=Dark Fantasy
+value.VISUAL_STYLE.1=§7§l§o𝕯§7§l§o𝖆§7§l§o𝖗§7§l§o𝖐 §7§l§o𝕱§7§l§o𝖆§f§l§o𝖓§f§l§o𝖙§f§l§o𝖆§f§l§o𝖘§f§l§o𝖞§r
 option.DARK_STYLE_STRENGTH=Dark Fantasy strength
 option.DARK_STYLE_STRENGTH.comment=Grim palette: muted daylight, cold blue shadows, subdued skies and rusty sunsets. Lower strength for a gentler treatment.
 option.DARK_HAZE=Dark Fantasy distance haze
@@ -41,11 +41,11 @@ option.DARK_LIGHT_TINT.comment=Original lighting only: separates cool shade, war
 
 screen.DIAGNOSTICS=Diagnostics
 profile.comment=Air, Pro and Pro Max configure shadows, surface lighting, AO and sunbeams. Art style, clouds, water and wet ground stay independent.
-option.VISUAL_STYLE.comment=Choose Default, Dark Fantasy or Cartoon independently of performance.
+option.VISUAL_STYLE.comment=Choose Default, Dark Fantasy or Miyazaki independently of performance.
 
-value.VISUAL_STYLE.2=Cartoon
-option.CARTOON_STRENGTH=Cartoon strength
-option.CARTOON_STRENGTH.comment=Storybook palette: turquoise sky, ivory daylight, cool teal shade, pale gold sunset and blue nights. Preserves texture detail. Only affects Cartoon.
+value.VISUAL_STYLE.2=§3Ｍ§bｉ§bｙ§fａ§fｚ§fａ§fｋ§7ｉ§r
+option.CARTOON_STRENGTH=Miyazaki strength
+option.CARTOON_STRENGTH.comment=Storybook palette: turquoise sky, ivory daylight, cool teal shade, pale gold sunset and blue nights. Preserves texture detail. Only affects Miyazaki.
 
 value.SHADOW_FILTER.2=Soft tent (nine samples)
 option.SHADOW_FILTER.comment=Air uses one shadow sample; Pro uses four; Pro Max uses nine for a wider smooth edge.
@@ -91,10 +91,10 @@ value.APPLE_DEPTH_RECONSTRUCTION.1=On (experimental)
 screen.CLOUD_SETTINGS=Clouds
 option.CLOUD_STYLE=Cloud style
 value.CLOUD_STYLE.0=Vanilla
-value.CLOUD_STYLE.1=Story Mode
-option.CLOUD_STYLE.comment=Vanilla preserves the original v0.8 cloud path. Story Mode adapts a 10-block cloud layer, flatter color and a vertical opacity fade. Uses existing Fancy cloud geometry.
+value.CLOUD_STYLE.1=Fading Clouds
+option.CLOUD_STYLE.comment=Vanilla preserves the original v0.8 cloud path. Fading Clouds adapts a 10-block cloud layer, flatter color and a vertical opacity fade. Uses existing Fancy cloud geometry.
 option.CLOUD_OPACITY=Custom cloud opacity
-option.CLOUD_OPACITY.comment=Only affects Story Mode. Clouds require Fancy geometry; custom styles request Fancy automatically.
+option.CLOUD_OPACITY.comment=Only affects Fading Clouds. Clouds require Fancy geometry; custom styles request Fancy automatically.
 
 screen.CELESTIAL_SETTINGS=Sun and Moon
 option.CUBIC_CELESTIALS=Sun and moon style
@@ -125,3 +125,10 @@ value.WET_GROUND_REFLECTIONS.0=Off
 value.WET_GROUND_REFLECTIONS.1=Sky (Fast)
 value.WET_GROUND_REFLECTIONS.2=Sky + Scene (Experimental)
 option.WET_GROUND_REFLECTIONS.comment=Sky reflections are the default. Scene adds 12 screen-space ray steps on wet pixels; offscreen geometry cannot be reflected and edges may flicker.
+
+screen.WEATHER_SETTINGS=Weather
+option.UNOBTRUSIVE_WEATHER=Unobtrusive weather
+option.UNOBTRUSIVE_WEATHER.comment=Use embedded smaller rain and snow textures. Disable when a resource pack changes the stock weather texture colors.
+option.RAIN_RIPPLES=Rain ripples
+option.RAIN_RIPPLES.comment=Expanding rings on outdoor water during rain. Requires Photon water and Water reflections. Skylight estimates exposure; particles are not spawned.
+option.RAIN_RIPPLE_STRENGTH=Rain ripple strength

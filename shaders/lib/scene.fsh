@@ -32,6 +32,7 @@ uniform int renderStage;
 #endif
 #include "/lib/cubic_celestials.glsl"
 #endif
+#include "/lib/weather.glsl"
 #include "/lib/photon_water.glsl"
 #include "/lib/wet_ground.glsl"
 #ifdef WET_MASK_OUTPUT
@@ -56,7 +57,11 @@ void main() {
     if (photonWaterMask > 0.5) surface = PHOTON_WATER_COLOR;
     else surface = texture2D(texture, uv);
 #else
+#if defined(WEATHER_PASS) && UNOBTRUSIVE_WEATHER == 1
+    surface = metalWeatherTexture();
+#else
     surface = texture2D(texture, uv);
+#endif
 #endif
     vec4 color = surface * tint;
 #endif

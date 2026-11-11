@@ -36,7 +36,7 @@ const bool shadowtex0Nearest = true;
 #define APPLE_SUN_SETUP 1 // [0 1]
 #define APPLE_DEPTH_RECONSTRUCTION 1 // [0 1]
 
-#define CLOUD_STYLE 0 // [0 1]
+#define CLOUD_STYLE 1 // [0 1]
 #define CLOUD_OPACITY 1.0 // [0.4 0.6 0.8 1.0]
 
 #define CUBIC_CELESTIALS 1 // [0 1]
@@ -46,5 +46,9 @@ const bool shadowtex0Nearest = true;
 #define WATER_REFLECTIONS 1 // [0 1]
 #define RAIN_PUDDLES 1 // [0 1]
 #define WET_GROUND_REFLECTIONS 1 // [0 1 2]
+
+#define UNOBTRUSIVE_WEATHER 1 // [0 1]
+#define RAIN_RIPPLES 1 // [0 1]
+#define RAIN_RIPPLE_STRENGTH 0.6 // [0.0 0.3 0.6 1.0]
 
 #endif

@@ -23,8 +23,12 @@ uniform float rainStrength;
 #include "/lib/depth.glsl"
 const vec4 PHOTON_WATER_COLOR = vec4(0.16, 0.48, 0.52, 1.0);
 #if WATER_REFLECTIONS == 1
+#if RAIN_RIPPLES == 1
+uniform int biome_precipitation;
+#include "/lib/rain_ripples.glsl"
+#endif
 vec3 photonWaveNormal(vec3 n, vec3 viewDirection) {
-    if (abs(n.y) < 0.5 || WATER_WAVE_STRENGTH <= 0.0) return n;
+    if (abs(n.y) < 0.5) return n;
     vec2 direction = vec2(0.8660254, 0.5);
     mat2 rotation = mat2(-0.7373689, 0.6754903, -0.6754903, -0.7373689);
     vec2 coord = photonPlayerPosition.xz + cameraPosition.xz;
@@ -45,6 +49,13 @@ vec3 photonWaveNormal(vec3 n, vec3 viewDirection) {
     }
     float grazingFade = smoothstep(0.0, 0.15, abs(dot(n, viewDirection)));
     slope *= (0.04 + 0.08 * rainStrength) * WATER_WAVE_STRENGTH * grazingFade / 1.75;
+#if RAIN_RIPPLES == 1
+    // Skylight suppresses covered/underground water; rainStrength stops rings in dry weather.
+    if (rainStrength > 0.001 && biome_precipitation == 1 && lm.y > 0.75 && RAIN_RIPPLE_STRENGTH > 0.0) {
+        slope += metalRainRippleSlope(coord) * 0.10 * rainStrength
+            * RAIN_RIPPLE_STRENGTH * smoothstep(0.75, 0.95, lm.y) * grazingFade;
+    }
+#endif
     return normalize(n + vec3(-slope.x, 0.0, -slope.y));
 }
 #endif

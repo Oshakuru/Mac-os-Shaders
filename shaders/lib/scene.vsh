@@ -14,7 +14,16 @@ uniform vec3 sunPosition;
 #endif
 #include "/lib/photon_water.vsh"
 #include "/lib/wet_ground.vsh"
+#if defined(WEATHER_PASS) && UNOBTRUSIVE_WEATHER == 1
+uniform sampler2D texture;
+#endif
 void main() {
+#if defined(WEATHER_PASS) && UNOBTRUSIVE_WEATHER == 1
+    // Stock 1.21.11 rain is blue here; snow is transparent/neutral.
+    // Classify the draw's original texture once per vertex, before replacing it.
+    vec3 weatherProbe = texture2DLod(texture, vec2(0.0546875, 0.025390625), 0.0).rgb;
+    weatherIsRain = step(0.1, weatherProbe.b - weatherProbe.r);
+#endif
     vec4 viewPos = gl_ModelViewMatrix * gl_Vertex;
 #if RAIN_PUDDLES == 1 && defined(WET_GROUND_PASS) && defined(WORLD_LIGHTING)
     prepareWetGround();

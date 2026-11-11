@@ -15,6 +15,7 @@ def main():
     modes = parser.add_mutually_exclusive_group(required=True)
     modes.add_argument('--cubic-pack', type=Path, help='Local Cubic Sun & Moon v1.8.5 ZIP')
     modes.add_argument('--without-cubic', action='store_true', help='Use the existing game celestial option')
+    parser.add_argument('--weather-pack', type=Path, help='Local Unobtrusive Weather v2.0 ZIP; otherwise use vanilla weather')
     parser.add_argument('--output-dir', type=Path, default=ROOT / 'dist')
     args = parser.parse_args()
     version = (ROOT / 'VERSION').read_text().strip()
@@ -25,6 +26,10 @@ def main():
         with zipfile.ZipFile(args.cubic_pack) as archive:
             for destination, source in CUBIC.items():
                 extra[destination] = archive.read(source)
+    if args.weather_pack:
+        with zipfile.ZipFile(args.weather_pack) as weather:
+            for kind in ['rain', 'snow']:
+                extra[f'shaders/textures/weather/{kind}.png'] = weather.read(f'assets/minecraft/textures/environment/{kind}.png')
     with zipfile.ZipFile(output, 'w', zipfile.ZIP_DEFLATED) as archive:
         for folder in ['shaders', 'licenses']:
             for file in sorted((ROOT / folder).rglob('*')):
@@ -36,6 +41,8 @@ def main():
                 data = file.read_bytes()
                 if args.without_cubic and name == 'shaders/lib/settings.glsl':
                     data = data.replace(b'#define CUBIC_CELESTIALS 1', b'#define CUBIC_CELESTIALS 0')
+                if not args.weather_pack and name == 'shaders/lib/settings.glsl':
+                    data = data.replace(b'#define UNOBTRUSIVE_WEATHER 1', b'#define UNOBTRUSIVE_WEATHER 0')
                 archive.writestr(name, data)
         for name, data in extra.items():
             archive.writestr(name, data)
@@ -45,7 +52,9 @@ def main():
                 archive.write(file, name)
         if archive.testzip():
             raise RuntimeError('ZIP integrity check failed')
-    settings = (ROOT / 'config/Metal-v0.9.zip.txt').read_text()
+    settings = (ROOT / f'config/Metal-v{version}.zip.txt').read_text()
+    if not args.weather_pack:
+        settings = settings.replace('UNOBTRUSIVE_WEATHER=1', 'UNOBTRUSIVE_WEATHER=0')
     if args.without_cubic:
         settings = settings.replace('CUBIC_CELESTIALS=1', 'CUBIC_CELESTIALS=0')
         if 'CUBIC_CELESTIALS=' not in settings:

@@ -21,3 +21,7 @@ The code experiment is preserved in imported source history, but its user-suppli
 ## Original work and references
 
 Metal's original contributions use the repository's existing license. Ni no Kuni and user-supplied animation images guided palette decisions; trailers and reference images are not included. The logo and alternate concepts were generated during project development; the vintage M is the selected identity. No Apple logo is included.
+
+## Unobtrusive Weather v2.0 — supplied archive
+
+Only rain.png and snow.png are read from the user's local ZIP by tools/build.py. The supplied archive has no author/license notice; no redistribution permission is inferred. These images are omitted from GitHub. Particle Rain-specific and splash textures are not integrated.

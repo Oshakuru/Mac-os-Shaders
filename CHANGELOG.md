@@ -1,5 +1,11 @@
 # Development progression
 
+## 0.9.1
+
+- Renamed Cartoon to Miyazaki, added styled preset labels, and made Fading Clouds the default.
+- Integrated locally supplied Unobtrusive Weather rain/snow and original shader-based water rain ripples.
+- See RELEASE-NOTES.md for test status and font/texture limitations.
+
 ## 0.9 — current baseline
 
 - Relabeled the tested Metal cleanup + Iris Fix 2 build as 0.9.

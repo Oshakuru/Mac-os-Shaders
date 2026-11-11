@@ -14,7 +14,7 @@ varying float cloudObserverHeight;
 void main() {
     vec4 texel = texture2D(texture, cloudUV);
     vec4 color = texel * cloudTint;
-    // Story Mode adaptation: flatter cloud face lighting and a shorter layer.
+    // Fading Clouds adaptation: flatter cloud face lighting and a shorter layer.
     // Retain the game's time/weather cloud tint; lift face contrast toward it.
     float faceLight = max(max(cloudTint.r, cloudTint.g), cloudTint.b);
     vec3 flatTint = mix(cloudTint.rgb, vec3(faceLight), 0.65);
@@ -33,7 +33,7 @@ void main() {
     // Keep game weather tint and the tested geometry/fade; tint only custom clouds.
     color.rgb *= cartoonCloudTint;
 #endif
-    // The supplied Story Mode fade can go negative; clamp before blending.
+    // The cloud fade can go negative; clamp before blending.
     color.a = clamp(color.a, 0.0, 1.0);
     gl_FragData[0] = color;
 }
