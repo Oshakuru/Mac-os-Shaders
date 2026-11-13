@@ -26,7 +26,8 @@ vec3 bloomLevel(float lod) {
           + texture2D(colortex6, uv + vec2(o.x, -o.y), lod) + texture2D(colortex6, uv + vec2(-o.x, o.y), lod)).rgb * 0.25;
 }
 vec3 bloom() {
-    return bloomLevel(2.0) * 0.30 + bloomLevel(3.5) * 0.40 + bloomLevel(5.0) * 0.30;
+    // Small radius only: a halo hugging the light source, no screen-wide haze.
+    return bloomLevel(1.5) * 0.55 + bloomLevel(3.0) * 0.45;
 }
 #endif
 #if FXAA == 1 && DEBUG_VIEW == 0

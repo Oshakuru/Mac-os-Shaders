@@ -246,7 +246,7 @@ value.WATER_SSR_STEPS.16=§cVery high impact: 16 steps§r
 
 screen.BLOOM_SETTINGS=§eBloom§r
 option.BLOOM=§eBloom§r
-option.BLOOM.comment=MEDIUM impact. Soft glow around bright light sources such as torches, candles, lava, portals and the sun. Adds one full-screen pass. Off in Air, on in Pro and Pro Max.
+option.BLOOM.comment=MEDIUM impact. Tight glow around bright light sources such as torches, candles, lava, portals and the sun. Adds one full-screen pass. Off in Air, on in Pro and Pro Max.
 value.BLOOM.0=Off
 value.BLOOM.1=On
 option.BLOOM_STRENGTH=§aBloom strength§r
