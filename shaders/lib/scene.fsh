@@ -44,7 +44,7 @@ uniform int renderStage;
 #include "/lib/sdv_clouds.glsl"
 #endif
 #include "/lib/weather.glsl"
-#include "/lib/makeup_water.glsl"
+#include "/lib/water.glsl"
 #include "/lib/wet_ground.glsl"
 #ifdef WET_MASK_OUTPUT
 /* DRAWBUFFERS:01 */
@@ -74,8 +74,8 @@ void main() {
     vec4 color = tint;
 #else
     vec4 surface;
-#if MAKEUP_WATER == 1 && defined(MAKEUP_WATER_PASS)
-    if (makeupWaterMask > 0.5) surface = MAKEUP_WATER_COLOR;
+#if CUSTOM_WATER == 1 && defined(WATER_PASS)
+    if (waterMask > 0.5) surface = CUSTOM_WATER_COLOR;
     else surface = texture2D(texture, uv);
 #else
 #if defined(WEATHER_PASS) && UNOBTRUSIVE_WEATHER == 1
@@ -85,8 +85,8 @@ void main() {
 #endif
 #endif
     vec4 color = surface * tint;
-#if MAKEUP_WATER == 1 && defined(MAKEUP_WATER_PASS)
-    if (makeupWaterMask > 0.5) color = surface; // MakeUp custom color, no biome-color multiplication.
+#if CUSTOM_WATER == 1 && defined(WATER_PASS)
+    if (waterMask > 0.5) color = surface; // Custom water colour, no biome-colour multiplication.
 #endif
 #endif
     if (color.a < alphaTestRef) discard;
@@ -145,8 +145,8 @@ void main() {
     color.rgb *= evaluateLighting();
 #endif
 #endif
-#if MAKEUP_WATER == 1 && defined(MAKEUP_WATER_PASS) && DEBUG_VIEW == 0
-    if (makeupWaterMask > 0.5) color = applyMakeupWater(color);
+#if CUSTOM_WATER == 1 && defined(WATER_PASS) && DEBUG_VIEW == 0
+    if (waterMask > 0.5) color = applyWater(color);
 #endif
     float fog = clamp((fogDistance - fogStart) / max(fogEnd - fogStart, 0.001), 0.0, 1.0);
     vec3 atmosphereColor = fogColor;

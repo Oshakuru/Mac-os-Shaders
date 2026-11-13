@@ -10,11 +10,11 @@ uniform mat4 shadowProjection;
 uniform vec3 shadowLightPosition;
 
 #endif
-#if defined(WORLD_LIGHTING) || VISUAL_STYLE > 0 || ((CUBIC_CELESTIALS == 1 || CLOUD_STYLE == 1) && defined(SKY_BASIC) && !defined(NO_SHADOW)) || (MAKEUP_WATER == 1 && (WATER_REFLECTIONS > 0 || WATER_REFRACTION == 1) && defined(MAKEUP_WATER_PASS))
+#if defined(WORLD_LIGHTING) || VISUAL_STYLE > 0 || ((CUBIC_CELESTIALS == 1 || CLOUD_STYLE == 1) && defined(SKY_BASIC) && !defined(NO_SHADOW)) || (CUSTOM_WATER == 1 && defined(WATER_PASS))
 uniform mat4 gbufferModelViewInverse;
 uniform vec3 sunPosition;
 #endif
-#include "/lib/makeup_water.vsh"
+#include "/lib/water.vsh"
 #include "/lib/wet_ground.vsh"
 #if defined(WET_GROUND_PASS) && defined(WORLD_LIGHTING) && RAIN_PUDDLES == 0
 attribute vec4 mc_Entity;
@@ -43,8 +43,8 @@ void main() {
 #if RAIN_PUDDLES == 1 && defined(WET_GROUND_PASS) && defined(WORLD_LIGHTING)
     prepareWetGround();
 #endif
-#if MAKEUP_WATER == 1 && defined(MAKEUP_WATER_PASS)
-    prepareMakeupWater(viewPos);
+#if CUSTOM_WATER == 1 && defined(WATER_PASS)
+    prepareWater(viewPos);
 #endif
     gl_Position = gl_ProjectionMatrix * viewPos;
     uv = (gl_TextureMatrix[0] * gl_MultiTexCoord0).xy;

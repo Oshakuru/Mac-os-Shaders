@@ -1,6 +1,6 @@
 # macOS Shaders versioning
 
-In development: **macOS Shaders 1.2**, not yet released. **1.0** is Metal 1.2 under the new name, with no rendering changes; **1.1** added bloom; **1.2** adds the sunbeam rework and screen-space sun rays. Last released version: **Metal 1.2**.
+In development: **macOS Shaders 1.3**, not yet released. **1.0** is Metal 1.2 under the new name, with no rendering changes; **1.1** added bloom; **1.2** added the sunbeam rework, screen-space sun rays, lens flare and sun size; **1.3** replaces the water. Last released version: **Metal 1.2**.
 
 The pack was called Metal through Metal 1.2. The author renamed it to macOS Shaders and restarted numbering at 1.0; macOS Shaders 1.0 follows Metal 1.2 and is unrelated to the earlier Metal 1.0.
 

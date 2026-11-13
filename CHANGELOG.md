@@ -1,6 +1,13 @@
 # Development progression
 
-## macOS Shaders 1.2 — in development
+## macOS Shaders 1.3 — in development
+
+- Replaced the water with original blended water (depth fog, swell, procedural ripples, Fresnel reflections; Off/Sky/Sky + Shore/Screen-space). Refraction and the MakeUp texture removed.
+- Pro preset and defaults updated to the author's latest saved settings.
+
+## macOS Shaders 1.2
+
+- Added lens flare and a Sun size option (75% default).
 
 - Reworked sunbeams (contrast, wider angle, denser air, strength up to 0.40) and added screen-space sun rays through canopies.
 - Pro preset and shader defaults now match the author's saved Custom settings; Dark Fantasy is the default style and keeps its original colours.

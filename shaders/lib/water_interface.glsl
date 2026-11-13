@@ -1,18 +1,16 @@
 #ifndef METAL_WATER_INTERFACE
 #define METAL_WATER_INTERFACE
-#if MAKEUP_WATER == 1 && defined(MAKEUP_WATER_PASS)
-varying float makeupWaterMask;
-varying vec3 makeupViewPosition;
-#if WATER_REFLECTIONS > 0 || WATER_REFRACTION == 1
+#if CUSTOM_WATER == 1 && defined(WATER_PASS)
+varying float waterMask;
+varying vec3 waterViewPosition;
 #ifdef WORLD_LIGHTING
-#define makeupPlayerPosition playerPos
-#define makeupWorldNormal worldNormal
+#define waterPlayerPosition playerPos
+#define waterWorldNormal worldNormal
 #else
-varying vec3 makeupPlayerPosition;
-varying vec3 makeupWorldNormal;
+varying vec3 waterPlayerPosition;
+varying vec3 waterWorldNormal;
 #endif
-varying vec3 makeupSunDirection;
-varying vec2 makeupTimeOfDay;
-#endif
+varying vec3 waterSunDirection;
+varying vec2 waterTimeOfDay;
 #endif
 #endif

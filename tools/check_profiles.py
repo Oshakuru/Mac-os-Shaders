@@ -39,7 +39,6 @@ def check():
                    ['WATER_REFLECTIONS', 'WET_GROUND_REFLECTIONS', 'MAX_AO', 'MAX_SUNBEAMS'])
     assert profiles['FAST']['SHADOWS'] == '1'
     assert profiles['BALANCED']['FOLIAGE_WIND'] == '1'
-    assert profiles['BALANCED']['WATER_REFRACTION'] == '0'
     assert all(p['FXAA'] == '0' for p in profiles.values())
     assert 'program.shadow.enabled=false' in text
     print(f'Validated three profiles and Custom matching for {len(controls)} performance controls.')

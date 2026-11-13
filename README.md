@@ -4,14 +4,14 @@
 
 Minecraft Java Edition visual pack developed around Apple Silicon, with selectable art styles, shadows, procedural water and rain puddles.
 
-**In development: macOS Shaders 1.2**, not yet released. The pack was formerly called Metal; macOS Shaders 1.0 is Metal 1.2 under the new name, 1.1 added bloom, and 1.2 adds reworked sunbeams, screen-space sun rays and an updated Pro preset. See [release notes](RELEASE-NOTES.md).
+**In development: macOS Shaders 1.3**, not yet released. The pack was formerly called Metal; macOS Shaders 1.0 is Metal 1.2 under the new name, 1.1 added bloom, 1.2 added reworked sunbeams, sun rays and lens flare, and 1.3 replaces the water with a lighter design. See [release notes](RELEASE-NOTES.md).
 
 ## Current features
 
 - Vanilla, Miyazaki and Dark Fantasy art styles.
 - Air, Pro and Pro Max quality presets.
 - SDV skybox clouds by default, with Fading Clouds and Vanilla available.
-- MakeUp Ultra Fast-derived water waves, depth absorption, refraction and Sky + Scene reflections.
+- Original blended water with depth fog, procedural waves and Off / Sky / Sky + Shore / Screen-space reflections.
 - Rain-driven puddles, wet-ground darkening and optional Sky + Scene reflections.
 - Embedded cubic sun/moon support, including eight moon phases, when built with the separately supplied assets.
 - Vertex sunbeam setup and sparse depth reconstruction optimizations.
@@ -41,7 +41,7 @@ The cubic images carry an all-rights-reserved notice and are not uploaded here. 
 python3 tools/build.py --without-cubic
 ```
 
-Place both generated files from `dist/` into Minecraft's `shaderpacks` folder and select **macOS-Shaders-v1.2.zip** in Iris. The matching settings file preserves the author's supplied Custom configuration, including Dark Fantasy, AO at 8 samples, sunbeam strength 0.22 and 8 steps, and MakeUp water disabled.
+Place both generated files from `dist/` into Minecraft's `shaderpacks` folder and select **macOS-Shaders-v1.3.zip** in Iris. The matching settings file is the author's latest saved configuration, which the Pro preset now matches: Dark Fantasy, AO at 0.32, sunbeams at 0.40 with 6 steps, Sky water reflections and half-resolution wet-ground reflections.
 
 For visible terrain/lava reflections select **Atmosphere → Puddles and Wet Ground → Wet ground reflections → Sky + Scene**. Sky mode reflects only the sky and can be subtle on dark rainy nights.
 
@@ -61,7 +61,7 @@ Run `python3 tools/validate.py` before packaging. In-game testing remains necess
 
 Supply Unobtrusive Weather v2.0 with `--weather-pack` to embed its rain and snow in the generated shaderpack. No additional in-game resource pack or Particle Rain mod is needed. Without that build input, vanilla weather is selected automatically. Textures are not included in the public repository because the supplied archive contains no redistribution license notice.
 
-Atmosphere → Weather toggles the embedded weather. Atmosphere → Water contains Rain ripples and their strength. Ripples require MakeUp water and Water reflections, appear during rain, and use skylight as an approximate outdoor mask. They are an original Metal effect rather than Particle Rain's Java particles. Particle splash sprites remain vanilla.
+Atmosphere → Weather toggles the embedded weather. Atmosphere → Water contains Rain ripples and their strength. Ripples require the pack's custom water, appear during rain, and use skylight as an approximate outdoor mask. They are an original Metal effect rather than Particle Rain's Java particles. Particle splash sprites remain vanilla.
 
 See [release notes](RELEASE-NOTES.md) for the pending in-game checks. Iris uses Minecraft's limited legacy text colors for these labels; the exact requested RGB gradient strings are retained in `assets/branding/preset-labels.json`.
 
