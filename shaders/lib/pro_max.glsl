@@ -125,6 +125,29 @@ vec3 proMaxLighting(vec3 color) {
         vec2 toSun = sunUV - uv;
         float screenDistance = length(toSun * vec2(viewWidth / viewHeight, 1.0));
         float reach = 1.0 - smoothstep(0.0, 1.1, screenDistance);
+#if LENS_FLARE == 1
+        // Small, crisp ghosts mirrored through the screen centre, scaled by how
+        // much of the sun is unblocked. No blur and no full-screen streaks.
+        float sunVisible = 0.0;
+        for (int i = 0; i < 5; i++) {
+            vec2 o = vec2(float(i == 1) - float(i == 2), float(i == 3) - float(i == 4)) * 0.008;
+            vec2 q = sunUV + o;
+            if (all(greaterThanEqual(q, vec2(0.0))) && all(lessThanEqual(q, vec2(1.0))))
+                sunVisible += step(0.999999, texture2D(depthtex0, q).r) * 0.2;
+        }
+        if (sunVisible > 0.0) {
+            vec2 aspect = vec2(viewWidth / viewHeight, 1.0);
+            vec2 axis = sunUV - 0.5;
+            float centred = 1.0 - smoothstep(0.35, 0.9, length(axis * aspect));
+            vec3 flare = vec3(0.0);
+            // (position along the axis, radius, colour)
+            vec2 g0 = 0.5 - axis * 0.45; flare += vec3(1.00, 0.80, 0.50) * (1.0 - smoothstep(0.020, 0.032, length((uv - g0) * aspect)));
+            vec2 g1 = 0.5 - axis * 0.80; flare += vec3(0.55, 0.85, 0.65) * (1.0 - smoothstep(0.045, 0.060, length((uv - g1) * aspect))) * 0.6;
+            vec2 g2 = 0.5 - axis * 1.25; flare += vec3(0.60, 0.65, 1.00) * (1.0 - smoothstep(0.070, 0.085, length((uv - g2) * aspect))) * 0.4;
+            vec2 g3 = 0.5 + axis * 0.30; flare += vec3(1.00, 0.70, 0.45) * (1.0 - smoothstep(0.010, 0.016, length((uv - g3) * aspect))) * 0.8;
+            color += flare * sunVisible * centred * baseStrength / MAX_SUNBEAM_STRENGTH * LENS_FLARE_STRENGTH * 0.25;
+        }
+#endif
         if (reach > 0.001) {
             const int SCREEN_SHAFT_SAMPLES = 16;
             vec2 stepUV = toSun / float(SCREEN_SHAFT_SAMPLES);

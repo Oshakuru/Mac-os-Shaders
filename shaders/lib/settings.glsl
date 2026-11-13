@@ -49,6 +49,9 @@ const bool shadowtex0Nearest = true;
 #define CLOUD_OPACITY 1.0 // [0.4 0.6 0.8 1.0]
 
 #define CUBIC_CELESTIALS 1 // [0 1]
+#define SUN_SIZE 0.75 // [0.50 0.60 0.75 0.90 1.00]
+#define LENS_FLARE 1 // [0 1]
+#define LENS_FLARE_STRENGTH 0.30 // [0.15 0.30 0.50]
 
 #define MAKEUP_WATER 1 // [0 1]
 #define WATER_REFRACTION 0 // [0 1]
