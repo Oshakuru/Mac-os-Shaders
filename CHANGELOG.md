@@ -1,10 +1,17 @@
 # Development progression
 
-## macOS Shaders 1.0 — in development
+## macOS Shaders 1.1 — in development
 
-- Renamed the pack from Metal to macOS Shaders and restarted version numbering at 1.0. 1.0 is not yet released.
+- Added optional bloom (tight halo around bright light sources), off in Air.
+- Reworked sunbeams (contrast, wider angle, denser air, strength up to 0.40) and added screen-space sun rays through canopies.
+- Dark Fantasy palette warmed: olive shadows, golden-olive daytime sky.
+- Cheaper shadow-space matrix maths in sunbeams and shadows.
+
+## macOS Shaders 1.0
+
+- Renamed the pack from Metal to macOS Shaders and restarted version numbering at 1.0.
 - Build output is now `macOS-Shaders-v1.0.zip` with `config/macOS-Shaders-v1.0.zip.txt`, a byte-for-byte copy of the Metal 1.2 saved settings.
-- So far, shader programs, profiles, textures and option defaults are unchanged from Metal 1.2. Internal GLSL identifiers keep their `metal` prefix.
+- Shader programs, profiles, textures and option defaults unchanged from Metal 1.2. Internal GLSL identifiers keep their `metal` prefix.
 
 Entries below use the Metal name and its version numbers.
 
