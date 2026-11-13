@@ -26,7 +26,7 @@ def main():
                 raise ValueError(f'{file.name}: {name} format is undeclared GLSL; use the documented block comment')
         count += 1
     # Iris only binds scene color targets 4+ during gbuffers rendering.
-    water = (ROOT / 'shaders/lib/makeup_water.glsl').read_text()
+    water = (ROOT / 'shaders/lib/water.glsl').read_text()
     if re.search(r'uniform\s+sampler2D\s+(?:colortex[0-3]|gcolor|gdepth|gnormal|composite)\s*;', water):
         raise ValueError('Water cannot sample scene color targets 0-3 in Iris gbuffers; use target 4 or higher')
     for dimension in ['', 'world-1/', 'world1/']:

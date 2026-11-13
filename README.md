@@ -1,3 +1,23 @@
+# macOS Shader - Release Version
+
+Current release: **v1.5**.
+
+[Download macOS-Shaders-v1.5.zip](https://github.com/Oshakuru/Mac-os-Shaders/releases/download/v1.5/macOS-Shaders-v1.5.zip)
+
+User-tested successfully on **Minecraft 1.20.1 and 26.3**. The single ZIP also
+targets 1.20.x, 1.21.x, 26.1 and 26.2, with those intermediate versions still
+unverified in-game. Use Iris/Sodium matching your Minecraft version and OpenGL.
+Distant Horizons support is not included in this release.
+
+See [release notes](RELEASE-NOTES.md) and [compatibility details](COMPATIBILITY.md).
+Source checks passed: 6,960 program-stage preprocessing checks and block mappings
+at 10 version values. These are not driver compilation or full gameplay tests.
+
+---
+
+The documentation below is retained from earlier versions; current release and
+compatibility information above takes precedence.
+
 <p align="center"><img src="assets/branding/metal-vintage.png" width="240" alt="Metal vintage M logo"></p>
 
 # Metal

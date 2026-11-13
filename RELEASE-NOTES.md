@@ -1,12 +1,18 @@
-# Metal 1.2
+# macOS Shader - Release Version
 
-Imported from the author's supplied Metal-v1.2.zip and matching settings file. Next release: **1.3**.
+Version: **1.5**
 
-- Adds impact-colored quality values and renames the Default art style to Vanilla.
-- Imports compressed MakeUp water, Photon puddle-noise and SDV cloud textures, plus updated SDV metadata and notice.
-- Preserves the supplied Custom settings exactly: Dark Fantasy, MakeUp water off, AO on with 8 samples and strength 0.32, sunbeam strength 0.22 with 8 steps, and water-reflection selection 2.
-- Corrects stale internal 1.0 release identity in the repository to 1.2.
+User-tested successfully on **Minecraft 1.20.1 and 26.3**. Other targeted
+versions remain unverified in-game. Use Iris/Sodium matching the Minecraft
+version and OpenGL. Distant Horizons is not included.
 
-Shader programs, shared GLSL and profile definitions match the previous repository source byte for byte. ZIP integrity was checked; no new in-game or FPS testing was performed. The earlier [change report](docs/Metal-v1.0-changes.html) retains its original wording; the supplied settings supersede its Vanilla-settings description.
+# macOS Shaders 1.5
 
-Build with tools/build.py and place Metal-v1.2.zip beside Metal-v1.2.zip.txt in shaderpacks. Cubic celestial and weather PNGs remain local-only inputs under the repository's existing distribution policy, so the supplied full ZIP is not published here.
+- Extends the single-ZIP compatibility target to Minecraft 26.1, 26.2 and 26.3.
+- Adds 26.3-only poplar leaf mappings (exclude puddles, retain foliage wind).
+- Adds the red shrub to the existing small-plant wind/material mapping on 26.3.
+- Retains mappings and weather fallback for Minecraft 1.20.1–1.21.11.
+- No DH integration. Iris uses OpenGL; Vulkan is not a supported target.
+
+Source checks do not replace per-version Iris compilation and gameplay testing.
+See COMPATIBILITY.md.

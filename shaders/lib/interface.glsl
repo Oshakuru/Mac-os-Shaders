@@ -2,9 +2,6 @@
 #if defined(DIRECTIONAL) && !defined(NO_SHADOW)
 #define WORLD_LIGHTING
 #endif
-#if defined(WEATHER_PASS) && UNOBTRUSIVE_WEATHER == 1
-varying float weatherIsRain;
-#endif
 varying vec2 uv;
 varying vec4 tint;
 varying float fogDistance;

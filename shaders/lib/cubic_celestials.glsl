@@ -15,7 +15,7 @@ vec3 cubicCelestials(vec3 sky) {
     vec3 reference = abs(center.x) < 0.95 ? vec3(1.0, 0.0, 0.0) : vec3(0.0, 0.0, 1.0);
     vec3 up = normalize(cross(center, reference));
     vec3 right = cross(up, center);
-    float radius = sunSprite ? 0.30 : 0.20;
+    float radius = sunSprite ? 0.30 * SUN_SIZE : 0.20;
     vec2 spriteUV = vec2(dot(ray, right), -dot(ray, up)) / (abs(facingSun) * radius * 2.0) + 0.5;
     if (any(lessThan(spriteUV, vec2(0.0))) || any(greaterThan(spriteUV, vec2(1.0)))) return sky;
     vec3 sprite;

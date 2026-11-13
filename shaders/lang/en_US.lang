@@ -40,7 +40,7 @@ option.DARK_LIGHT_TINT=§aDark Fantasy light color§r
 option.DARK_LIGHT_TINT.comment=Original lighting only: separates cool shade, warm sunlight and block light. Independent lighting uses its own palette. Sky, fog and grading are controlled separately.
 
 screen.DIAGNOSTICS=Diagnostics
-profile.comment=Air is the former Pro. Pro reproduces the saved Custom configuration with FXAA off. Pro Max is the former Pro Max Plus, with FXAA off. Changing a tracked setting shows Custom; art style remains independent. Impact colors: §aGreen = Low§r, §eYellow = Medium§r, §cRed = High§r. Costs depend on the selected mode and scene.
+profile.comment=Air is the former Pro. Pro reproduces the author's saved Custom configuration (AO 0.32, sunbeams 0.40 with 6 steps, Sky water reflections, half-resolution wet reflections) with FXAA off. Pro Max is the former Pro Max Plus, with FXAA off. Changing a tracked setting shows Custom; art style remains independent. Impact colors: §aGreen = Low§r, §eYellow = Medium§r, §cRed = High§r. Costs depend on the selected mode and scene.
 option.VISUAL_STYLE.comment=Choose Vanilla, Dark Fantasy or Miyazaki independently of performance.
 
 value.VISUAL_STYLE.2=§bMIYAZAKI§r
@@ -58,7 +58,7 @@ value.MAX_AO.0=Off
 value.MAX_AO.1=On
 value.MAX_SUNBEAMS.0=Off
 value.MAX_SUNBEAMS.1=On
-option.MAX_AO.comment=MEDIUM impact. Contact shading is disabled in Air and Pro, enabled in Pro Max.
+option.MAX_AO.comment=MEDIUM impact. Contact shading is disabled in Air, enabled in Pro and Pro Max.
 option.MAX_SUNBEAMS.comment=HIGH impact outdoors. Sunbeams are disabled in Air, enabled in Pro and Pro Max.
 
 option.MAX_LIGHTING=§eIndependent lighting§r
@@ -93,7 +93,7 @@ option.CLOUD_STYLE=§cCloud style§r
 value.CLOUD_STYLE.0=Vanilla
 value.CLOUD_STYLE.1=SDV Skybox
 value.CLOUD_STYLE.2=Fading Clouds
-option.CLOUD_STYLE.comment=SDV Skybox uses the adapted reference renderer and cloud map with Metal preset tones and terrain-independent reach. Fading Clouds and Vanilla remain available.
+option.CLOUD_STYLE.comment=SDV Skybox uses the adapted reference renderer and cloud map with macOS Shaders preset tones and terrain-independent reach. Fading Clouds and Vanilla remain available.
 option.CLOUD_OPACITY=§aCustom cloud opacity§r
 option.CLOUD_OPACITY.comment=Opacity of custom clouds. Does not affect Vanilla clouds.
 
@@ -104,15 +104,10 @@ value.CUBIC_CELESTIALS.1=Cubic
 option.CUBIC_CELESTIALS.comment=LOW impact. Uses custom sun/moon sprites and eight moon phases. Available in all three tiers.
 
 screen.WATER_SETTINGS=§cWater§r
-option.MAKEUP_WATER=§cWater style§r
-value.MAKEUP_WATER.0=Game / Resource Pack
-value.MAKEUP_WATER.1=MakeUp Adaptation
-option.MAKEUP_WATER.comment=MEDIUM to HIGH combined cost. Custom waves and depth-based water add sampling and a scene snapshot. Reflections are the largest optional addition.
+option.CUSTOM_WATER=§cWater style§r
 
 option.WATER_WAVE_STRENGTH=§aWater wave strength§r
-option.WATER_WAVE_STRENGTH.comment=Controls procedural wave normals, without moving the water geometry.
 option.WATER_REFLECTIONS=§cWater reflections§r
-option.WATER_REFLECTIONS.comment=Sky + includes terrain and object reflections. HIGH impact around water. Sky + traces terrain reflections; Sky avoids that trace. Off disables reflections.
 
 screen.WET_GROUND_SETTINGS=§cPuddles and Wet Ground§r
 option.RAIN_PUDDLES=§eRain puddles§r
@@ -127,18 +122,11 @@ option.WET_GROUND_REFLECTIONS.comment=Sky + includes terrain and object reflecti
 
 screen.WEATHER_SETTINGS=§aWeather§r
 option.UNOBTRUSIVE_WEATHER=§aUnobtrusive weather§r
-option.UNOBTRUSIVE_WEATHER.comment=LOW impact. Replaces rain and snow texture sampling; does not add particle simulation. Available in all three tiers.
+option.UNOBTRUSIVE_WEATHER.comment=LOW impact. Reduces rain and snow opacity using the game or resource-pack textures. Works without version-specific texture detection.
 option.RAIN_RIPPLES=§eRain ripples§r
-option.RAIN_RIPPLES.comment=LOW to MEDIUM impact on rainy water. Requires custom water with refraction or reflections. Off removes the rain-ring calculations.
 option.RAIN_RIPPLE_STRENGTH=§aRain ripple strength§r
 
 
-option.WATER_REFRACTION=§eWater refraction§r
-option.WATER_ABSORPTION=§aWater absorption§r
-option.WATER_ABSORPTION.comment=Higher values make deep water more opaque.
-value.WATER_REFLECTIONS.0=Off
-value.WATER_REFLECTIONS.1=§aSky (low impact)§r
-value.WATER_REFLECTIONS.2=§cSky + (high impact)§r
 
 option.SDV_CLOUD_STEPS=§cSkybox cloud depth quality§r
 option.SDV_CLOUD_STEPS.comment=MEDIUM to HIGH impact when much of the sky is visible. More steps improve cloud thickness. One layer costs less than two.
@@ -155,7 +143,6 @@ value.MAX_AO_QUALITY.2=§cHigh impact: 8 samples§r
 option.SUNBEAM_STEPS=§cSunbeam quality§r
 option.SDV_CLOUD_LAYERS=§cCloud layers§r
 option.WATER_SSR_STEPS=§cWater scene reflection quality§r
-option.WATER_SSR_STEPS.comment=HIGH impact only with Sky + water reflections. More samples improve scene tracing but cost more per water pixel.
 
 option.shadowMapResolution.comment=HIGH impact while shadows are enabled. Higher resolution makes finer shadows but uses more graphics memory and shadow rendering work.
 
@@ -163,7 +150,6 @@ option.shadowDistance.comment=HIGH impact while shadows are enabled. Longer rang
 
 option.SDV_CLOUD_LAYERS.comment=MEDIUM to HIGH impact in open skies. Two layers run cloud sampling twice. Air uses one layer; Pro and Pro Max use two.
 
-option.WATER_REFRACTION.comment=MEDIUM impact over water. Distorts the scene beneath water and uses the scene snapshot. Turn off for simpler water.
 
 option.MAX_AO_QUALITY.comment=MEDIUM impact while AO is on. Eight samples shade more directions than four at greater cost.
 
@@ -193,9 +179,7 @@ value.SHADOWS.0=Off
 
 value.SHADOWS.1=On
 
-value.WATER_REFRACTION.0=Off
 
-value.WATER_REFRACTION.1=On
 
 value.UNOBTRUSIVE_WEATHER.0=Off
 
@@ -239,7 +223,38 @@ value.SDV_CLOUD_STEPS.16=§cHigh impact: 16 steps§r
 value.SDV_CLOUD_STEPS.32=§cVery high impact: 32 steps§r
 value.SDV_CLOUD_LAYERS.1=§eMedium impact: 1 layer§r
 value.SDV_CLOUD_LAYERS.2=§cHigh impact: 2 layers§r
+
+screen.BLOOM_SETTINGS=§eBloom§r
+option.BLOOM=§eBloom§r
+option.BLOOM.comment=MEDIUM impact. Tight glow around bright light sources such as torches, candles, lava, portals and the sun. Adds one full-screen pass. Off in Air, on in Pro and Pro Max.
+value.BLOOM.0=Off
+value.BLOOM.1=On
+option.BLOOM_STRENGTH=§aBloom strength§r
+option.BLOOM_STRENGTH.comment=How bright the glow is. Changing it does not change the cost.
+option.BLOOM_THRESHOLD=§aBloom threshold§r
+option.BLOOM_THRESHOLD.comment=How bright a pixel must be to glow. Lower values make more of the scene glow, including pale daylit blocks.
+option.SUN_SIZE=§aSun size§r
+option.SUN_SIZE.comment=Size of the sun disc, for both the game sun and the Cubic sun. No performance cost.
+option.LENS_FLARE=§aLens flare§r
+option.LENS_FLARE.comment=LOW impact. Small lens ghosts when looking towards the sun, fading as the sun is blocked. Needs Sunbeams on.
+value.LENS_FLARE.0=Off
+value.LENS_FLARE.1=On
+option.LENS_FLARE_STRENGTH=§aLens flare strength§r
+
+value.CUSTOM_WATER.0=Game / Resource Pack
+value.CUSTOM_WATER.1=macOS Shaders water
+option.CUSTOM_WATER.comment=LOW to MEDIUM impact. Blended water with depth fog, procedural waves and Fresnel reflections. No refraction copy of the screen.
+option.WATER_WAVE_STRENGTH.comment=Wave size: both the gentle surface movement and the ripples in its shading.
+option.WATER_FOG=§aWater depth fog§r
+option.WATER_FOG.comment=How quickly deeper water turns opaque. Higher values hide the bottom sooner.
+option.WATER_REFLECTIONS.comment=Off: none. Sky: sky and sun only, very cheap. Sky + Shore: adds one scene sample for distant shores and terrain, cheap. Screen-space: traces terrain reflections, highest quality and cost.
+value.WATER_REFLECTIONS.0=Off
+value.WATER_REFLECTIONS.1=§aSky (low impact)§r
+value.WATER_REFLECTIONS.2=§aSky + Shore (low impact)§r
+value.WATER_REFLECTIONS.3=§cScreen-space (high impact)§r
+option.WATER_SSR_STEPS.comment=Only used by Screen-space water reflections. More steps find thinner objects.
+value.WATER_SSR_STEPS.4=§aLow impact: 4 steps§r
 value.WATER_SSR_STEPS.6=§aLow impact: 6 steps§r
 value.WATER_SSR_STEPS.8=§eMedium impact: 8 steps§r
-value.WATER_SSR_STEPS.10=§cHigh impact: 10 steps§r
-value.WATER_SSR_STEPS.16=§cVery high impact: 16 steps§r
+value.WATER_SSR_STEPS.12=§cHigh impact: 12 steps§r
+option.RAIN_RIPPLES.comment=LOW impact on rainy water. Expanding rain rings on custom water.

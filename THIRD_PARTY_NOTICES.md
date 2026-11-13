@@ -20,15 +20,17 @@ The code experiment is preserved in imported source history, but its user-suppli
 
 ## Original work and references
 
-Metal's original contributions use the repository's existing license. Ni no Kuni and user-supplied animation images guided palette decisions; trailers and reference images are not included. The logo and alternate concepts were generated during project development; the vintage M is the selected identity. No Apple logo is included.
+This project was named Metal until it was renamed macOS Shaders; "Metal" below and in source comments refers to this project. Metal's original contributions use the repository's existing license. Ni no Kuni and user-supplied animation images guided palette decisions; trailers and reference images are not included. The logo and alternate concepts were generated during project development; the vintage M is the selected identity. No Apple logo is included.
 
 ## Unobtrusive Weather v2.0 — supplied archive
 
 Only rain.png and snow.png are read from the user's local ZIP by tools/build.py. The supplied archive has no author/license notice; no redistribution permission is inferred. These images are omitted from GitHub. Particle Rain-specific and splash textures are not integrated.
 
-## MakeUp Ultra Fast 9.6 — Javier Garduño
+## Mellow by TheCMK (MIT) — design reference only
 
-Water adaptation in shaders/lib/makeup_water.glsl, related interface/integration files, and shaders/textures/makeup/water_256_RG_8bit.png. Original wave sampling, rational absorption and reflection treatment adapted for Metal's GLSL 120 LDR pipeline and opaque snapshot; the bounded reflection trace and rain-ring integration are modified for Metal. Distributed with corresponding editable shader source, the root GPLv3 text and licenses/MakeUp-UltraFast-LGPL-3.0.txt. Original project: https://github.com/javiergcim/MakeUpUltraFast . Modified 2026-11-10. Photon now supplies only ground-puddle components, not the current water renderer.
+The water in shaders/lib/water.glsl and water.vsh is original code written for this project. Its approach (blended water instead of a refraction copy, depth-based opacity, Fresnel-weighted reflections and a one-sample reflection mode) was studied from Mellow 3.5 by TheCMK, released under the MIT License (Copyright (c) 2026 TheCMK). No Mellow code or assets are included. Project: https://codeberg.org/TheCMK/mellow-shader
+
+The earlier MakeUp Ultra Fast water adaptation, its wave texture and its LGPL-3.0 licence file were removed in macOS Shaders 1.3.
 
 ## Super Duper Vanilla v1.3.8 — Eldeston / FlameRender (C) Studios
 

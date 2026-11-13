@@ -14,7 +14,7 @@ varying vec2 uv;
 const bool colortex1Clear = true;
 const vec4 colortex1ClearColor = vec4(0.0, 0.0, 0.0, 0.0);
 #include "/lib/depth.glsl"
-#if MAKEUP_WATER == 1
+#if CUSTOM_WATER == 1 && WATER_REFLECTIONS >= 2
 const bool colortex4Clear = true;
 const vec4 colortex4ClearColor = vec4(0.0, 0.0, 0.0, 0.0);
 /* DRAWBUFFERS:04 */
@@ -79,7 +79,7 @@ void main() {
     }
 #endif
     gl_FragData[0] = vec4(color, 1.0);
-#if MAKEUP_WATER == 1
+#if CUSTOM_WATER == 1 && WATER_REFLECTIONS >= 2
     gl_FragData[1] = vec4(color, 1.0);
 #endif
 }
