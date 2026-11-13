@@ -36,6 +36,10 @@ const bool shadowtex0Nearest = true;
 
 #define MAX_LIGHTING 1 // [0 1]
 
+#define BLOOM 1 // [0 1]
+#define BLOOM_STRENGTH 0.25 // [0.10 0.25 0.40 0.60]
+#define BLOOM_THRESHOLD 0.80 // [0.70 0.80 0.90]
+
 #define APPLE_SUN_SETUP 1 // [0 1]
 #define APPLE_DEPTH_RECONSTRUCTION 1 // [0 1]
 

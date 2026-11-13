@@ -12,6 +12,23 @@ varying vec2 uv;
 #if (MAX_AO == 1 || (MAX_SUNBEAMS == 1 && SHADOWS == 1)) && !defined(NO_MAX_LIGHTING) && DEBUG_VIEW == 0
 #include "/lib/pro_max.glsl"
 #endif
+#if BLOOM == 1 && DEBUG_VIEW == 0
+uniform sampler2D colortex6;
+const bool colortex6MipmapEnabled = true;
+#if !((MAX_AO == 1 || (MAX_SUNBEAMS == 1 && SHADOWS == 1)) && !defined(NO_MAX_LIGHTING)) && FXAA == 0
+uniform float viewWidth;
+uniform float viewHeight;
+#endif
+vec3 bloomLevel(float lod) {
+    // Four diagonal taps per mip level hide the blocky look of a single coarse sample.
+    vec2 o = exp2(lod) * 0.5 / vec2(viewWidth, viewHeight);
+    return (texture2D(colortex6, uv + o, lod) + texture2D(colortex6, uv - o, lod)
+          + texture2D(colortex6, uv + vec2(o.x, -o.y), lod) + texture2D(colortex6, uv + vec2(-o.x, o.y), lod)).rgb * 0.25;
+}
+vec3 bloom() {
+    return bloomLevel(2.0) * 0.30 + bloomLevel(3.5) * 0.40 + bloomLevel(5.0) * 0.30;
+}
+#endif
 #if FXAA == 1 && DEBUG_VIEW == 0
 #if !((MAX_AO == 1 || (MAX_SUNBEAMS == 1 && SHADOWS == 1)) && !defined(NO_MAX_LIGHTING))
 uniform float viewWidth;
@@ -32,6 +49,9 @@ void main() {
 #endif
 #if (MAX_AO == 1 || (MAX_SUNBEAMS == 1 && SHADOWS == 1)) && !defined(NO_MAX_LIGHTING) && DEBUG_VIEW == 0
     color = proMaxLighting(color);
+#endif
+#if BLOOM == 1 && DEBUG_VIEW == 0
+    color += bloom() * BLOOM_STRENGTH;
 #endif
 #if VISUAL_STYLE == 1 && DEBUG_VIEW == 0
     color = darkFantasyGrade(color);

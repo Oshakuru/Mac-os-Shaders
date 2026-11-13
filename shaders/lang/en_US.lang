@@ -243,3 +243,13 @@ value.WATER_SSR_STEPS.6=§aLow impact: 6 steps§r
 value.WATER_SSR_STEPS.8=§eMedium impact: 8 steps§r
 value.WATER_SSR_STEPS.10=§cHigh impact: 10 steps§r
 value.WATER_SSR_STEPS.16=§cVery high impact: 16 steps§r
+
+screen.BLOOM_SETTINGS=§eBloom§r
+option.BLOOM=§eBloom§r
+option.BLOOM.comment=MEDIUM impact. Soft glow around bright light sources such as torches, candles, lava, portals and the sun. Adds one full-screen pass. Off in Air, on in Pro and Pro Max.
+value.BLOOM.0=Off
+value.BLOOM.1=On
+option.BLOOM_STRENGTH=§aBloom strength§r
+option.BLOOM_STRENGTH.comment=How bright the glow is. Changing it does not change the cost.
+option.BLOOM_THRESHOLD=§aBloom threshold§r
+option.BLOOM_THRESHOLD.comment=How bright a pixel must be to glow. Lower values make more of the scene glow, including pale daylit blocks.
