@@ -93,7 +93,7 @@ option.CLOUD_STYLE=§cCloud style§r
 value.CLOUD_STYLE.0=Vanilla
 value.CLOUD_STYLE.1=SDV Skybox
 value.CLOUD_STYLE.2=Fading Clouds
-option.CLOUD_STYLE.comment=SDV Skybox uses the adapted reference renderer and cloud map with Metal preset tones and terrain-independent reach. Fading Clouds and Vanilla remain available.
+option.CLOUD_STYLE.comment=SDV Skybox uses the adapted reference renderer and cloud map with macOS Shaders preset tones and terrain-independent reach. Fading Clouds and Vanilla remain available.
 option.CLOUD_OPACITY=§aCustom cloud opacity§r
 option.CLOUD_OPACITY.comment=Opacity of custom clouds. Does not affect Vanilla clouds.
 

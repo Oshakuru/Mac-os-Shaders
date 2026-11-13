@@ -1,5 +1,7 @@
-# Metal versioning
+# macOS Shaders versioning
 
-Current release: **1.2**. Next changed release: **1.3**, as directed by the author.
+Current release: **macOS Shaders 1.0**. Next changed release: **1.1**.
 
-Increment the minor version once per delivered revision: 1.3, 1.4, and so on, unless the author directs otherwise. Preserve the 0.9.x and 1.0 development history.
+The pack was called Metal through Metal 1.2. The author renamed it to macOS Shaders and restarted numbering at 1.0; macOS Shaders 1.0 follows Metal 1.2 and is unrelated to the earlier Metal 1.0.
+
+Increment the minor version once per delivered revision: 1.1, 1.2, and so on, unless the author directs otherwise. Preserve the Metal 0.9.x, 1.0 and 1.2 development history and their `config/Metal-v*.zip.txt` settings files.

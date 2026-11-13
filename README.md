@@ -1,10 +1,10 @@
-<p align="center"><img src="assets/branding/metal-vintage.png" width="240" alt="Metal vintage M logo"></p>
+<p align="center"><img src="assets/branding/metal-vintage.png" width="240" alt="Vintage M logo from the Metal era"></p>
 
-# Metal
+# macOS Shaders
 
 Minecraft Java Edition visual pack developed around Apple Silicon, with selectable art styles, shadows, procedural water and rain puddles.
 
-**Current release: Metal 1.2.** Imported from the author's supplied shaderpack and saved settings. Next release: **1.3**. See [release notes](RELEASE-NOTES.md).
+**Current release: macOS Shaders 1.0.** Formerly Metal; this release is Metal 1.2 under the new name, with no rendering changes. Next release: **1.1**. See [release notes](RELEASE-NOTES.md).
 
 ## Current features
 
@@ -21,7 +21,7 @@ Fresh Water and Fresh Rain were experimental and are removed from the current co
 
 ## Compatibility and testing
 
-Tested by the developer on **Apple M1, Minecraft 1.21.11 and Iris 1.10.4**. OptiFine compatibility has not been verified. Metal is the product name; this is a GLSL/Iris pack, not a native Apple Metal renderer.
+Tested by the developer on **Apple M1, Minecraft 1.21.11 and Iris 1.10.4**. OptiFine compatibility has not been verified. macOS Shaders is a GLSL/Iris pack, not a native Apple Metal renderer, and is not affiliated with or endorsed by Apple.
 
 The developer confirmed that Fading Clouds (formerly Story Mode clouds), both optimization switches, and Sky + Scene puddle reflections work with good performance. The approximately 215 FPS result belongs to an earlier optimized baseline, not a benchmark guarantee for the current pack. See [validation notes](docs/VALIDATION.md).
 
@@ -41,13 +41,13 @@ The cubic images carry an all-rights-reserved notice and are not uploaded here. 
 python3 tools/build.py --without-cubic
 ```
 
-Place both generated files from `dist/` into Minecraft's `shaderpacks` folder and select **Metal-v1.2.zip** in Iris. The matching settings file preserves the author's supplied Custom configuration, including Dark Fantasy, AO at 8 samples, sunbeam strength 0.22 and 8 steps, and MakeUp water disabled.
+Place both generated files from `dist/` into Minecraft's `shaderpacks` folder and select **macOS-Shaders-v1.0.zip** in Iris. The matching settings file preserves the author's supplied Custom configuration, including Dark Fantasy, AO at 8 samples, sunbeam strength 0.22 and 8 steps, and MakeUp water disabled.
 
 For visible terrain/lava reflections select **Atmosphere → Puddles and Wet Ground → Wet ground reflections → Sky + Scene**. Sky mode reflects only the sky and can be subtle on dark rainy nights.
 
 ## Development history
 
-Saved versions are imported as chronological source snapshots in Git history. These imports preserve old names and known failures; they do not pretend to be the original historical commit dates. See [CHANGELOG.md](CHANGELOG.md) and [history index](docs/HISTORY.md).
+Saved versions are imported as chronological source snapshots in Git history. These imports preserve old names, including Metal and M1-Light, and known failures; they do not pretend to be the original historical commit dates. See [CHANGELOG.md](CHANGELOG.md) and [history index](docs/HISTORY.md).
 
 The progression runs from **M1-Light 0.5.5** through the 0.8 experiments, **Metal 1.0**, the cleanup and Iris fixes, and finally the tested **Metal 0.9** baseline. Earlier broken snapshots are retained for development reference.
 

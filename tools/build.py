@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Assemble Metal from source, optionally using locally supplied cubic textures."""
+"""Assemble macOS Shaders from source, optionally using locally supplied cubic textures."""
 import argparse
 from pathlib import Path
 import zipfile
@@ -20,7 +20,7 @@ def main():
     args = parser.parse_args()
     version = (ROOT / 'VERSION').read_text().strip()
     args.output_dir.mkdir(parents=True, exist_ok=True)
-    output = args.output_dir / f'Metal-v{version}.zip'
+    output = args.output_dir / f'macOS-Shaders-v{version}.zip'
     extra = {}
     if args.cubic_pack:
         with zipfile.ZipFile(args.cubic_pack) as archive:
@@ -57,7 +57,7 @@ def main():
                 archive.write(file, name)
         if archive.testzip():
             raise RuntimeError('ZIP integrity check failed')
-    settings = (ROOT / f'config/Metal-v{version}.zip.txt').read_text()
+    settings = (ROOT / f'config/macOS-Shaders-v{version}.zip.txt').read_text()
     if not args.weather_pack:
         settings = settings.replace('UNOBTRUSIVE_WEATHER=1', 'UNOBTRUSIVE_WEATHER=0')
     if args.without_cubic:

@@ -1,5 +1,13 @@
 # Development progression
 
+## macOS Shaders 1.0
+
+- Renamed the pack from Metal to macOS Shaders and restarted version numbering at 1.0. Next release is 1.1.
+- Build output is now `macOS-Shaders-v1.0.zip` with `config/macOS-Shaders-v1.0.zip.txt`, a byte-for-byte copy of the Metal 1.2 saved settings.
+- Shader programs, profiles, textures and option defaults unchanged from Metal 1.2. Internal GLSL identifiers keep their `metal` prefix.
+
+Entries below use the Metal name and its version numbers.
+
 ## 1.2
 
 - Imported the author-supplied pack's menu labels, compressed public textures, SDV metadata and notice, and exact saved Custom settings.

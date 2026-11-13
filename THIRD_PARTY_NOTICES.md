@@ -20,7 +20,7 @@ The code experiment is preserved in imported source history, but its user-suppli
 
 ## Original work and references
 
-Metal's original contributions use the repository's existing license. Ni no Kuni and user-supplied animation images guided palette decisions; trailers and reference images are not included. The logo and alternate concepts were generated during project development; the vintage M is the selected identity. No Apple logo is included.
+This project was named Metal until it was renamed macOS Shaders; "Metal" below and in source comments refers to this project. Metal's original contributions use the repository's existing license. Ni no Kuni and user-supplied animation images guided palette decisions; trailers and reference images are not included. The logo and alternate concepts were generated during project development; the vintage M is the selected identity. No Apple logo is included.
 
 ## Unobtrusive Weather v2.0 — supplied archive
 
