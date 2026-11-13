@@ -1,11 +1,14 @@
 # Development progression
 
-## macOS Shaders 1.1 — in development
+## macOS Shaders 1.2 — in development
 
-- Added optional bloom (tight halo around bright light sources), off in Air.
 - Reworked sunbeams (contrast, wider angle, denser air, strength up to 0.40) and added screen-space sun rays through canopies.
 - Dark Fantasy palette warmed: olive shadows, golden-olive daytime sky.
 - Cheaper shadow-space matrix maths in sunbeams and shadows.
+
+## macOS Shaders 1.1
+
+- Added optional bloom (tight halo around bright light sources), off in Air.
 
 ## macOS Shaders 1.0
 

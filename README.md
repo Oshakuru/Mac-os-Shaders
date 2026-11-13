@@ -4,7 +4,7 @@
 
 Minecraft Java Edition visual pack developed around Apple Silicon, with selectable art styles, shadows, procedural water and rain puddles.
 
-**In development: macOS Shaders 1.1**, not yet released. The pack was formerly called Metal; macOS Shaders 1.0 is Metal 1.2 under the new name, and 1.1 adds bloom, reworked sunbeams and a warmer Dark Fantasy palette. See [release notes](RELEASE-NOTES.md).
+**In development: macOS Shaders 1.2**, not yet released. The pack was formerly called Metal; macOS Shaders 1.0 is Metal 1.2 under the new name, 1.1 added bloom, and 1.2 adds reworked sunbeams, screen-space sun rays and a warmer Dark Fantasy palette. See [release notes](RELEASE-NOTES.md).
 
 ## Current features
 
@@ -41,7 +41,7 @@ The cubic images carry an all-rights-reserved notice and are not uploaded here. 
 python3 tools/build.py --without-cubic
 ```
 
-Place both generated files from `dist/` into Minecraft's `shaderpacks` folder and select **macOS-Shaders-v1.1.zip** in Iris. The matching settings file preserves the author's supplied Custom configuration, including Dark Fantasy, AO at 8 samples, sunbeam strength 0.22 and 8 steps, and MakeUp water disabled.
+Place both generated files from `dist/` into Minecraft's `shaderpacks` folder and select **macOS-Shaders-v1.2.zip** in Iris. The matching settings file preserves the author's supplied Custom configuration, including Dark Fantasy, AO at 8 samples, sunbeam strength 0.22 and 8 steps, and MakeUp water disabled.
 
 For visible terrain/lava reflections select **Atmosphere → Puddles and Wet Ground → Wet ground reflections → Sky + Scene**. Sky mode reflects only the sky and can be subtle on dark rainy nights.
 
