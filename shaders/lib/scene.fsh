@@ -24,6 +24,9 @@ uniform vec4 entityColor;
 uniform int renderStage;
 #endif
 #endif
+#if defined(SKY_TEXTURED) && !defined(NO_SHADOW) && VISUAL_STYLE == 0
+uniform int renderStage;
+#endif
 #if CUBIC_CELESTIALS == 1 && defined(SKY_BASIC) && !defined(NO_SHADOW)
 #if VISUAL_STYLE == 0
 uniform int isEyeInWater;
@@ -41,7 +44,7 @@ uniform int renderStage;
 #include "/lib/sdv_clouds.glsl"
 #endif
 #include "/lib/weather.glsl"
-#include "/lib/makeup_water.glsl"
+#include "/lib/water.glsl"
 #include "/lib/wet_ground.glsl"
 #ifdef WET_MASK_OUTPUT
 /* DRAWBUFFERS:01 */
@@ -57,23 +60,33 @@ void main() {
     // alpha discard and before evaluateLighting's early-outs.
     prepareShadowReceiver();
 #endif
+#if defined(SKY_TEXTURED) && !defined(NO_SHADOW)
+    // Shrink the sun: magnify the quad's UVs about its centre and drop the rim.
+    vec2 sampleUV = uv;
+    if (renderStage == MC_RENDER_STAGE_SUN) {
+        sampleUV = (uv - 0.5) / SUN_SIZE + 0.5;
+        if (any(lessThan(sampleUV, vec2(0.0))) || any(greaterThan(sampleUV, vec2(1.0)))) discard;
+    }
+#else
+    vec2 sampleUV = uv;
+#endif
 #ifdef UNTEXTURED
     vec4 color = tint;
 #else
     vec4 surface;
-#if MAKEUP_WATER == 1 && defined(MAKEUP_WATER_PASS)
-    if (makeupWaterMask > 0.5) surface = MAKEUP_WATER_COLOR;
+#if CUSTOM_WATER == 1 && defined(WATER_PASS)
+    if (waterMask > 0.5) surface = CUSTOM_WATER_COLOR;
     else surface = texture2D(texture, uv);
 #else
 #if defined(WEATHER_PASS) && UNOBTRUSIVE_WEATHER == 1
     surface = metalWeatherTexture();
 #else
-    surface = texture2D(texture, uv);
+    surface = texture2D(texture, sampleUV);
 #endif
 #endif
     vec4 color = surface * tint;
-#if MAKEUP_WATER == 1 && defined(MAKEUP_WATER_PASS)
-    if (makeupWaterMask > 0.5) color = surface; // MakeUp custom color, no biome-color multiplication.
+#if CUSTOM_WATER == 1 && defined(WATER_PASS)
+    if (waterMask > 0.5) color = surface; // Custom water colour, no biome-colour multiplication.
 #endif
 #endif
     if (color.a < alphaTestRef) discard;
@@ -104,7 +117,7 @@ void main() {
         // Keep the supplied sun texture's silhouette and soft outer pixels.
         // Warm the core and rim independently, without an extra texture read.
         vec3 originalSun = color.rgb;
-        float edge = smoothstep(0.06, 0.32, max(abs(uv.x - 0.5), abs(uv.y - 0.5)));
+        float edge = smoothstep(0.06, 0.32, max(abs(sampleUV.x - 0.5), abs(sampleUV.y - 0.5)));
         vec3 core = mix(vec3(1.0, 0.91, 0.73), vec3(1.0, 0.72, 0.36), styleTwilight);
         vec3 rim = mix(vec3(0.94, 0.73, 0.46), vec3(0.94, 0.43, 0.17), styleTwilight);
 #if VISUAL_STYLE == 2
@@ -132,8 +145,8 @@ void main() {
     color.rgb *= evaluateLighting();
 #endif
 #endif
-#if MAKEUP_WATER == 1 && defined(MAKEUP_WATER_PASS) && DEBUG_VIEW == 0
-    if (makeupWaterMask > 0.5) color = applyMakeupWater(color);
+#if CUSTOM_WATER == 1 && defined(WATER_PASS) && DEBUG_VIEW == 0
+    if (waterMask > 0.5) color = applyWater(color);
 #endif
     float fog = clamp((fogDistance - fogStart) / max(fogEnd - fogStart, 0.001), 0.0, 1.0);
     vec3 atmosphereColor = fogColor;

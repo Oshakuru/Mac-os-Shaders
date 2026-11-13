@@ -19,7 +19,7 @@ const bool shadowtex0Nearest = true;
 #define NIGHT_AMBIENT 0.58 // [0.35 0.48 0.58 0.70 0.75 0.80]
 #define MOON_CONTRAST 0.45 // [0.15 0.25 0.45 0.65 1.0]
 
-#define VISUAL_STYLE 0 // [0 1 2]
+#define VISUAL_STYLE 1 // [0 1 2]
 #define DARK_STYLE_STRENGTH 1.0 // [0.0 0.5 0.75 1.0]
 #define DARK_HAZE 0.30 // [0.0 0.15 0.30 0.45]
 
@@ -27,14 +27,18 @@ const bool shadowtex0Nearest = true;
 
 #define CARTOON_STRENGTH 1.0 // [0.0 0.5 0.75 1.0]
 
-#define MAX_AO 0 // [0 1]
+#define MAX_AO 1 // [0 1]
 #define MAX_SUNBEAMS 1 // [0 1]
 #define MAX_AO_QUALITY 1 // [1 2]
-#define SUNBEAM_STEPS 4 // [4 6 8]
-#define MAX_AO_STRENGTH 0.22 // [0.0 0.12 0.22 0.32]
-#define MAX_SUNBEAM_STRENGTH 0.15 // [0.0 0.08 0.15 0.22]
+#define SUNBEAM_STEPS 6 // [4 6 8]
+#define MAX_AO_STRENGTH 0.32 // [0.0 0.12 0.22 0.32]
+#define MAX_SUNBEAM_STRENGTH 0.40 // [0.0 0.08 0.15 0.22 0.30 0.40]
 
 #define MAX_LIGHTING 1 // [0 1]
+
+#define BLOOM 1 // [0 1]
+#define BLOOM_STRENGTH 0.25 // [0.10 0.25 0.40]
+#define BLOOM_THRESHOLD 0.90 // [0.80 0.90 0.95]
 
 #define APPLE_SUN_SETUP 1 // [0 1]
 #define APPLE_DEPTH_RECONSTRUCTION 1 // [0 1]
@@ -44,19 +48,21 @@ const bool shadowtex0Nearest = true;
 #define SDV_CLOUD_LAYERS 2 // [1 2]
 #define CLOUD_OPACITY 1.0 // [0.4 0.6 0.8 1.0]
 
-#define CUBIC_CELESTIALS 1 // [0 1]
+#define CUBIC_CELESTIALS 0 // [0 1]
+#define SUN_SIZE 0.75 // [0.50 0.60 0.75 0.90 1.00]
+#define LENS_FLARE 1 // [0 1]
+#define LENS_FLARE_STRENGTH 0.30 // [0.15 0.30 0.50]
 
-#define MAKEUP_WATER 1 // [0 1]
-#define WATER_REFRACTION 0 // [0 1]
-#define WATER_ABSORPTION 0.10 // [0.02 0.06 0.10 0.20 0.40]
+#define CUSTOM_WATER 1 // [0 1]
+#define WATER_FOG 1.0 // [0.5 1.0 1.5]
 #define WATER_WAVE_STRENGTH 1.0 // [0.0 0.5 1.0 1.5]
-#define WATER_SSR_STEPS 6 // [6 8 10 16]
-#define WATER_REFLECTIONS 1 // [0 1 2]
+#define WATER_SSR_STEPS 8 // [4 6 8 12]
+#define WATER_REFLECTIONS 1 // [0 1 2 3]
 #define RAIN_PUDDLES 1 // [0 1]
 #define WET_REFLECTION_RESOLUTION 0 // [0 1]
 #define WET_GROUND_REFLECTIONS 1 // [0 1 2]
 
-#define UNOBTRUSIVE_WEATHER 1 // [0 1]
+#define UNOBTRUSIVE_WEATHER 0 // [0 1]
 #define RAIN_RIPPLES 1 // [0 1]
 #define RAIN_RIPPLE_STRENGTH 0.6 // [0.0 0.3 0.6 1.0]
 
