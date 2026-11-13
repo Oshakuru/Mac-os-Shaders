@@ -14,6 +14,7 @@ uniform vec3 sunPosition;
 uniform vec3 shadowLightPosition;
 uniform float rainStrength;
 uniform ivec2 eyeBrightnessSmooth;
+uniform mat4 gbufferProjection;
 #include "/lib/projection.glsl"
 #endif
 #if (MAX_SUNBEAMS == 1 && SHADOWS == 1) && APPLE_SUN_SETUP == 1
@@ -114,6 +115,35 @@ vec3 proMaxLighting(vec3 color) {
         // so beams between trees separate from the shade around them.
         color *= 1.0 - clamp(strength * density * (1.0 - litFraction) * 0.6, 0.0, 0.25);
         color = mix(color, shaftColor, clamp(strength * density * litFraction * 1.4, 0.0, 0.40));
+    }
+    // Screen-space crepuscular rays: march from this pixel towards the sun on
+    // screen and count sky pixels, so light streams through gaps in canopies.
+    // Complements the shadow-map shafts, which need open air to build up.
+    vec4 sunClip = gbufferProjection * vec4(sunPosition, 1.0);
+    if (sunClip.w > 0.0 && baseStrength > 0.001) {
+        vec2 sunUV = sunClip.xy / sunClip.w * 0.5 + 0.5;
+        vec2 toSun = sunUV - uv;
+        float screenDistance = length(toSun * vec2(viewWidth / viewHeight, 1.0));
+        float reach = 1.0 - smoothstep(0.0, 1.1, screenDistance);
+        if (reach > 0.001) {
+            const int SCREEN_SHAFT_SAMPLES = 16;
+            vec2 stepUV = toSun / float(SCREEN_SHAFT_SAMPLES);
+            vec2 p = uv + stepUV * fract(dot(gl_FragCoord.xy, vec2(0.569840296, 0.754877666)));
+            float sky = 0.0;
+            float weight = 1.0;
+            float totalWeight = 0.0;
+            for (int i = 0; i < SCREEN_SHAFT_SAMPLES; i++) {
+                if (all(greaterThanEqual(p, vec2(0.0))) && all(lessThanEqual(p, vec2(1.0)))) {
+                    sky += step(0.999999, texture2D(depthtex0, p).r) * weight;
+                }
+                totalWeight += weight;
+                weight *= 0.93;
+                p += stepUV;
+            }
+            float rays = sky / totalWeight;
+            vec3 rayColor = mix(vec3(1.0, 0.88, 0.66), vec3(1.0, 0.66, 0.38), 1.0 - smoothstep(0.08, 0.4, sunWorld.y));
+            color += rayColor * rays * reach * reach * baseStrength * 1.6;
+        }
     }
 #endif
     return color;
