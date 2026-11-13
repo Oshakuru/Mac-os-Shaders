@@ -4,7 +4,7 @@
 
 Minecraft Java Edition visual pack developed around Apple Silicon, with selectable art styles, shadows, procedural water and rain puddles.
 
-**Current release: macOS Shaders 1.0.** Formerly Metal; this release is Metal 1.2 under the new name, with no rendering changes. Next release: **1.1**. See [release notes](RELEASE-NOTES.md).
+**In development: macOS Shaders 1.0**, not yet released. The pack was formerly called Metal; the last released version is Metal 1.2, and the source currently matches it apart from the new name. See [release notes](RELEASE-NOTES.md).
 
 ## Current features
 
