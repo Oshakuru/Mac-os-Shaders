@@ -2,9 +2,9 @@
 
 ## Photon v1.4 — Benjamin Stott / SixthSurge
 
-Water and rain-puddle implementations were adapted for this pack's GLSL 120 pipeline. Photon credits Belmu for its wave-function basis. The original puddle-noise image is retained.
+The rain-puddle implementation was adapted for this pack's GLSL 120 pipeline. The original puddle-noise image is retained. The earlier Photon-derived water (`shaders/lib/photon_water.glsl`) has been removed; current water is original code, see the Mellow section below.
 
-Affected paths include `shaders/lib/photon_water.glsl`, `shaders/lib/wet_ground.glsl`, `shaders/textures/photon/puddle_noise.png` and related reflection integration. Original terms are preserved in `licenses/Photon-License.txt`; these components are not represented as newly relicensed by the root GPL license.
+Affected paths include `shaders/lib/wet_ground.glsl`, `shaders/textures/photon/puddle_noise.png` and related reflection integration. Original terms are preserved in `licenses/Photon-License.txt`; these components are not represented as newly relicensed by the root GPL license.
 
 ## Story Mode Clouds — not_thefirst and tixul
 
@@ -24,7 +24,7 @@ This project was named Metal until it was renamed macOS Shaders; "Metal" below a
 
 ## Unobtrusive Weather v2.0 — supplied archive
 
-Only rain.png and snow.png are read from the user's local ZIP by tools/build.py. The supplied archive has no author/license notice; no redistribution permission is inferred. These images are omitted from GitHub. Particle Rain-specific and splash textures are not integrated.
+Since macOS Shaders 1.4 the pack uses no Unobtrusive Weather files. The setting of that name only lowers the opacity of the game's own rain and snow textures in shaders/lib/weather.glsl, which is original code. Earlier versions read rain.png and snow.png from the user's local ZIP at build time; the supplied archive has no author/license notice, no redistribution permission was inferred, and those images were never uploaded to GitHub.
 
 ## Mellow by TheCMK (MIT) — design reference only
 

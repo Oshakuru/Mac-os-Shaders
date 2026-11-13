@@ -13,10 +13,13 @@ It no longer replaces weather textures or probes a 1.21.11-specific texture pixe
 
 Validation: archive integrity, includes, version-specific block mappings, and
 preprocessing of all program stages across visual styles and weather/water options.
-These checks do not compile shaders through Iris or launch Minecraft.
-The range above is a target, not a claim of completed in-game verification.
+These source checks do not compile shaders through Iris or launch Minecraft.
 
-In-game checks still needed on 1.20.1, 1.20.4, 1.21.1, 1.21.4 and 1.21.11:
+In-game testing: the developer ran v1.5 on Minecraft 1.20.1 and 26.3, the two
+ends of the range, in addition to the 1.21.11 development setup. Versions in
+between are covered by source checks only.
+
+In-game checks still worth running on 1.20.4, 1.21.1, 1.21.4, 26.1 and 26.2:
 all styles; sun/moon and clouds; rain/snow (including high altitude); foliage wind;
 water, puddles and shadows; Nether and End. Use isolated test worlds.
 
@@ -26,16 +29,16 @@ Previous v1.4 source checks passed; v1.5 results are recorded below.
 
 Use the matching Iris/Sodium release for the exact Minecraft version. For 26.2
 and 26.3 select Prefer OpenGL in Video Settings > Graphics API and restart.
-Vulkan is not supported by this Iris shader pack. Do not interpret source
-preprocessing as successful Iris compilation or in-game verification.
+Vulkan is not supported by this Iris shader pack.
 
 Iris formats 26.1, 26.2 and 26.3 as MC_VERSION 260100, 260200 and 260300.
 Existing grass/pale-oak guards continue to select the newer block IDs. Poplar
 leaves and red shrub are mapped only from 260300. No general shader-program
 rewrite was justified by the API/source review; runtime regressions remain possible.
 
-Verify rain/snow, water, shadows, sky, entities, translucency, foliage wind and
-all dimensions in each version before advertising tested support.
+26.3 was tested in game by the developer. Verify rain/snow, water, shadows, sky,
+entities, translucency, foliage wind and all dimensions on 26.1 and 26.2 before
+advertising them as tested.
 
 References reviewed:
 - https://raw.githubusercontent.com/IrisShaders/Iris/26.3/common/src/main/java/net/irisshaders/iris/gl/shader/StandardMacros.java
@@ -45,9 +48,7 @@ References reviewed:
 V1.5 source validation passed: mappings at 10 Minecraft version values and
 6,960 program-stage preprocessing checks covering 1.20.1, 1.21.11, 26.1,
 26.2 and 26.3 with all styles and weather/water options. Profile values passed.
-The author reports successful gameplay on Minecraft 1.20.1 and 26.3.
-Other listed versions remain unverified in-game. No independent Iris-driver
-compilation tests were performed by the source-check script.
+In game, 1.20.1 and 26.3 were tested by the developer; 26.1 and 26.2 were not.
 
 ## User-tested release
 

@@ -1,11 +1,3 @@
-# macOS Shader - Release Version
-
-Version: **1.5**
-
-User-tested successfully on **Minecraft 1.20.1 and 26.3**. Other targeted
-versions remain unverified in-game. Use Iris/Sodium matching the Minecraft
-version and OpenGL. Distant Horizons is not included.
-
 # macOS Shaders 1.5
 
 - Extends the single-ZIP compatibility target to Minecraft 26.1, 26.2 and 26.3.
@@ -14,5 +6,5 @@ version and OpenGL. Distant Horizons is not included.
 - Retains mappings and weather fallback for Minecraft 1.20.1–1.21.11.
 - No DH integration. Iris uses OpenGL; Vulkan is not a supported target.
 
-Source checks do not replace per-version Iris compilation and gameplay testing.
-See COMPATIBILITY.md.
+Tested in game by the developer on Minecraft 1.20.1 and 26.3; versions in between
+are covered by source checks only. See COMPATIBILITY.md.
