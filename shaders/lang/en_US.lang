@@ -40,7 +40,7 @@ option.DARK_LIGHT_TINT=§aDark Fantasy light color§r
 option.DARK_LIGHT_TINT.comment=Original lighting only: separates cool shade, warm sunlight and block light. Independent lighting uses its own palette. Sky, fog and grading are controlled separately.
 
 screen.DIAGNOSTICS=Diagnostics
-profile.comment=Air is the former Pro. Pro reproduces the saved Custom configuration with FXAA off. Pro Max is the former Pro Max Plus, with FXAA off. Changing a tracked setting shows Custom; art style remains independent. Impact colors: §aGreen = Low§r, §eYellow = Medium§r, §cRed = High§r. Costs depend on the selected mode and scene.
+profile.comment=Air is the former Pro. Pro reproduces the author's saved Custom configuration (AO 0.32, Sky + Scene water reflections, full-resolution wet reflections) with FXAA off. Pro Max is the former Pro Max Plus, with FXAA off. Changing a tracked setting shows Custom; art style remains independent. Impact colors: §aGreen = Low§r, §eYellow = Medium§r, §cRed = High§r. Costs depend on the selected mode and scene.
 option.VISUAL_STYLE.comment=Choose Vanilla, Dark Fantasy or Miyazaki independently of performance.
 
 value.VISUAL_STYLE.2=§bMIYAZAKI§r
@@ -58,7 +58,7 @@ value.MAX_AO.0=Off
 value.MAX_AO.1=On
 value.MAX_SUNBEAMS.0=Off
 value.MAX_SUNBEAMS.1=On
-option.MAX_AO.comment=MEDIUM impact. Contact shading is disabled in Air and Pro, enabled in Pro Max.
+option.MAX_AO.comment=MEDIUM impact. Contact shading is disabled in Air, enabled in Pro and Pro Max.
 option.MAX_SUNBEAMS.comment=HIGH impact outdoors. Sunbeams are disabled in Air, enabled in Pro and Pro Max.
 
 option.MAX_LIGHTING=§eIndependent lighting§r

@@ -3,7 +3,7 @@
 ## macOS Shaders 1.2 — in development
 
 - Reworked sunbeams (contrast, wider angle, denser air, strength up to 0.40) and added screen-space sun rays through canopies.
-- Dark Fantasy palette warmed: olive shadows, golden-olive daytime sky.
+- Pro preset and shader defaults now match the author's saved Custom settings; Dark Fantasy is the default style and keeps its original colours.
 - Cheaper shadow-space matrix maths in sunbeams and shadows.
 
 ## macOS Shaders 1.1
