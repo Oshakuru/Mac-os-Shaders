@@ -32,7 +32,7 @@ const bool shadowtex0Nearest = true;
 #define MAX_AO_QUALITY 1 // [1 2]
 #define SUNBEAM_STEPS 4 // [4 6 8]
 #define MAX_AO_STRENGTH 0.22 // [0.0 0.12 0.22 0.32]
-#define MAX_SUNBEAM_STRENGTH 0.15 // [0.0 0.08 0.15 0.22]
+#define MAX_SUNBEAM_STRENGTH 0.15 // [0.0 0.08 0.15 0.22 0.30 0.40]
 
 #define MAX_LIGHTING 1 // [0 1]
 

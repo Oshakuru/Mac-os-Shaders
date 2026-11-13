@@ -86,7 +86,8 @@ vec3 proMaxLighting(vec3 color) {
 #else
     float facing = max(dot(normalize(position), normalize(shadowLightPosition)), 0.0);
 #endif
-    float phase = 0.12 + 0.88 * facing * facing * facing * facing;
+    // Wider forward lobe so shafts still read when the sun is off to the side.
+    float phase = 0.25 + 0.75 * facing * facing;
     float strength = baseStrength * phase;
     if (strength > 0.001 && rayLength > 2.0) {
         vec3 endView = position * (rayLength / max(distanceToSurface, 0.001));
@@ -106,9 +107,13 @@ vec3 proMaxLighting(vec3 color) {
                 lit += step(q.z - 0.0002, texture2D(shadowtex0, q.xy).r);
             }
         }
-        float density = 1.0 - exp(-rayLength * 0.025);
+        float density = 1.0 - exp(-rayLength * 0.05);
+        float litFraction = lit / float(SUNBEAM_STEPS);
         vec3 shaftColor = mix(vec3(1.0, 0.86, 0.63), vec3(1.0, 0.65, 0.36), 1.0 - smoothstep(0.08, 0.4, sunWorld.y));
-        color = mix(color, shaftColor, clamp(strength * density * lit / float(SUNBEAM_STEPS), 0.0, 0.40));
+        // Shafts read through contrast: brighten sunlit air and dim shadowed air,
+        // so beams between trees separate from the shade around them.
+        color *= 1.0 - clamp(strength * density * (1.0 - litFraction) * 0.6, 0.0, 0.25);
+        color = mix(color, shaftColor, clamp(strength * density * litFraction * 1.4, 0.0, 0.40));
     }
 #endif
     return color;
