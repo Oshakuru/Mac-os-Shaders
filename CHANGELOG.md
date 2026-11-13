@@ -1,5 +1,20 @@
 # Development progression
 
+## macOS Shaders 1.5
+
+- Added Minecraft 26.1, 26.2 and 26.3 to the single-ZIP target, with poplar leaf and red shrub mappings from 26.3.
+- Documentation brought in line with the release; removed the unused MakeUp water files and licence left over from before 1.3.
+- Build output and settings file renamed from Metal-v* to macOS-Shaders-v*.
+
+## macOS Shaders 1.4
+
+- Version-aware block mappings for Minecraft 1.20.1 through 1.21.11.
+- Unobtrusive Weather now fades the game's own rain and snow instead of replacing textures.
+
+## macOS Shaders 1.0 to 1.3
+
+- 1.0: Metal 1.2 renamed, no rendering changes. 1.1: bloom. 1.2: sunbeam rework, sun rays, lens flare, sun size. 1.3: original blended water replacing the MakeUp adaptation.
+
 ## 1.2
 
 - Imported the author-supplied pack's menu labels, compressed public textures, SDV metadata and notice, and exact saved Custom settings.
