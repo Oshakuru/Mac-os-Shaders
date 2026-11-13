@@ -258,3 +258,6 @@ value.WATER_SSR_STEPS.6=§aLow impact: 6 steps§r
 value.WATER_SSR_STEPS.8=§eMedium impact: 8 steps§r
 value.WATER_SSR_STEPS.12=§cHigh impact: 12 steps§r
 option.RAIN_RIPPLES.comment=LOW impact on rainy water. Expanding rain rings on custom water.
+
+option.DH_DAY_BRIGHTNESS=DH Daylight Brightness
+option.DH_DAY_BRIGHTNESS.comment=Adjust distant terrain brightness in daylight. 1.0 disables correction. Night lighting and water are unaffected.

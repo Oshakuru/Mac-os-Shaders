@@ -18,3 +18,10 @@ Reference reviewed: Complementary Reimagined r5.9.3 by EminGT
 its supplied license imposes incompatible whole-pack licensing conditions.
 Near-depth occlusion for distant water and DH cloud suppression were independently
 implemented against the Iris interface after checking that reference.
+
+## Alpha 2: daylight calibration
+
+Adds DH Daylight Brightness under Lighting Settings, default 0.80. Adjusts
+Overworld opaque LOD surfaces after lighting and before fog, fading out at night
+and around strong block light. 1.0 restores alpha 1 brightness. This is an
+empirical calibration for reported bright daytime LODs, not a measured albedo fix.

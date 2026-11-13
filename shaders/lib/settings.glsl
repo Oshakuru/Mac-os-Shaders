@@ -7,6 +7,7 @@ const float shadowIntervalSize = 2.0;
 const bool shadowHardwareFiltering = false;
 const bool shadowtex0Nearest = true;
 #define SHADOWS 1 // [0 1]
+#define DH_DAY_BRIGHTNESS 0.80 // [0.60 0.70 0.80 0.90 1.0]
 #define SHADOW_STRENGTH 0.85 // [0.35 0.50 0.70 0.85 1.0]
 #define SHADOW_FILTER 1 // [0 1 2]
 #define AMBIENT_LIGHT 0.58 // [0.35 0.48 0.58 0.70 0.80]

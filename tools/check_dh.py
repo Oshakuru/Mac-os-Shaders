@@ -16,7 +16,7 @@ count=0
 for dh in [False,True]:
  for style in [0,1,2]:
   for custom in [0,1]:
-   opts={'VISUAL_STYLE':style,'CUSTOM_WATER':custom}
+   opts={'VISUAL_STYLE':style,'CUSTOM_WATER':custom,'DH_DAY_BRIGHTNESS':0.8}
    for path in sorted(shaders.rglob('*.vsh')):
     if 'lib' in path.relative_to(shaders).parts:continue
     if not dh and path.name.startswith('dh_'):continue

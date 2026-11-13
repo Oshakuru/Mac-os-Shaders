@@ -167,6 +167,13 @@ void main() {
     color.rgb *= evaluateLighting();
 #endif
 #endif
+#if defined(DH_PASS) && !defined(WATER_PASS) && defined(WORLD_LIGHTING) && DEBUG_VIEW == 0
+    // LOD surfaces lack the near mesh's fine shading; calibrate daylight only.
+    float blockProtection = clamp((lm.x - 0.03125) / 0.9375, 0.0, 1.0);
+    float dayCorrection = daylight * smoothstep(0.04, 0.90, lm.y)
+                        * (1.0 - blockProtection) * (1.0 - blockProtection);
+    color.rgb *= mix(1.0, DH_DAY_BRIGHTNESS, dayCorrection);
+#endif
 #if CUSTOM_WATER == 1 && defined(WATER_PASS) && DEBUG_VIEW == 0
     if (waterMask > 0.5) color = applyWater(color);
 #endif
