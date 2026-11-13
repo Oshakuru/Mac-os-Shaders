@@ -93,9 +93,9 @@ vec3 proMaxLighting(vec3 color) {
 #if APPLE_SUN_SETUP == 1
         vec4 startClip = appleStartClip;
 #else
-        vec4 startClip = shadowProjection * shadowModelView * gbufferModelViewInverse * vec4(0.0, 0.0, 0.0, 1.0);
+        vec4 startClip = shadowProjection * (shadowModelView * (gbufferModelViewInverse * vec4(0.0, 0.0, 0.0, 1.0)));
 #endif
-        vec4 endClip = shadowProjection * shadowModelView * gbufferModelViewInverse * vec4(endView, 1.0);
+        vec4 endClip = shadowProjection * (shadowModelView * (gbufferModelViewInverse * vec4(endView, 1.0)));
         float jitter = fract(dot(gl_FragCoord.xy, vec2(0.754877666, 0.569840296)));
         float lit = 0.0;
         for (int i = 0; i < SUNBEAM_STEPS; i++) {
@@ -108,7 +108,7 @@ vec3 proMaxLighting(vec3 color) {
         }
         float density = 1.0 - exp(-rayLength * 0.025);
         vec3 shaftColor = mix(vec3(1.0, 0.86, 0.63), vec3(1.0, 0.65, 0.36), 1.0 - smoothstep(0.08, 0.4, sunWorld.y));
-        color = mix(color, shaftColor, clamp(strength * density * lit / float(SUNBEAM_STEPS), 0.0, 0.25));
+        color = mix(color, shaftColor, clamp(strength * density * lit / float(SUNBEAM_STEPS), 0.0, 0.40));
     }
 #endif
     return color;

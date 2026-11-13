@@ -79,12 +79,12 @@ void main() {
     // vertices; keep the nonlinear focusing and depth comparison per pixel.
     float ndotl = max(lightCosine, 0.0);
     float texelWorldSize = 2.0 * shadowDistance / float(shadowMapResolution);
-    vec4 centerClip = shadowProjection * shadowModelView * vec4(playerPos, 1.0);
+    vec4 centerClip = shadowProjection * (shadowModelView * vec4(playerPos, 1.0));
     float focusScale = clamp(0.35 + 0.65 * length(centerClip.xy / centerClip.w), 0.35, 1.0);
     // Focused near-camera texels need less normal displacement than uniform
     // projection texels. This reduces excessive separation at contact points.
     float normalOffset = texelWorldSize * focusScale * (0.45 + 0.8 * (1.0 - ndotl)) * SHADOW_BIAS;
-    vec4 normalClip = shadowProjection * shadowModelView * vec4(worldNormal * normalOffset, 0.0);
+    vec4 normalClip = shadowProjection * (shadowModelView * vec4(worldNormal * normalOffset, 0.0));
     vec4 clip = centerClip + normalClip;
     shadowClip = clip.xyz / clip.w;
 #endif

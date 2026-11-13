@@ -5,10 +5,10 @@ vec3 darkFantasyGrade(vec3 source) {
     float luma = dot(c, vec3(0.2126, 0.7152, 0.0722));
     float shadowWeight = 1.0 - smoothstep(0.12, 0.65, luma);
     float highlightWeight = smoothstep(0.48, 0.95, luma);
-    // Muted midtones, cooler low values, restrained warm highlights.
+    // Muted midtones, olive low values, restrained warm highlights.
     float saturation = mix(0.64, 0.86, highlightWeight);
     c = mix(vec3(luma), c, saturation);
-    vec3 shadowTint = vec3(0.73, 0.86, 1.02);
+    vec3 shadowTint = vec3(0.94, 0.97, 0.80);
     vec3 highlightTint = vec3(1.02, 0.985, 0.94);
     c *= mix(vec3(1.0), shadowTint, shadowWeight * 0.65);
     c *= mix(vec3(1.0), highlightTint, highlightWeight * 0.70);
