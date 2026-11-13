@@ -1,11 +1,17 @@
 // Original macOS Shaders water, vertex side: water mask, gentle surface bob.
 #include "/lib/water_interface.glsl"
 #if CUSTOM_WATER == 1 && defined(WATER_PASS)
+#ifndef DH_PASS
 attribute vec4 mc_Entity;
+#endif
 uniform vec3 cameraPosition;
 uniform float frameTimeCounter;
 void prepareWater(inout vec4 viewPos) {
+#ifdef DH_PASS
+    waterMask = dhMaterialId == DH_BLOCK_WATER ? 1.0 : 0.0;
+#else
     waterMask = abs(mc_Entity.x - 10001.0) < 0.5 ? 1.0 : 0.0;
+#endif
     vec3 player = (gbufferModelViewInverse * viewPos).xyz;
     vec3 normal = mat3(gbufferModelViewInverse) * (gl_NormalMatrix * gl_Normal);
     if (waterMask > 0.5 && normal.y > 0.9) {

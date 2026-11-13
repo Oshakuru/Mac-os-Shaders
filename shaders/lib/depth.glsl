@@ -19,4 +19,18 @@ vec3 reconstructViewPosition(vec2 coord, float depth, mat4 inverseProjection) {
     vec4 v = inverseProjection * vec4(coord * 2.0 - 1.0, depth * 2.0 - 1.0, 1.0);
     return v.xyz / max(v.w, 0.000001);
 }
+#ifdef DISTANT_HORIZONS
+uniform sampler2D dhDepthTex0;
+uniform sampler2D dhDepthTex1;
+uniform float dhNearPlane;
+uniform float dhFarPlane;
+uniform mat4 dhProjectionInverse;
+float dhOpaqueDistance(vec2 coord) {
+    float d = texture2D(dhDepthTex1, coord).r;
+    return d < 1.0 ? linearDepth(d, dhNearPlane, dhFarPlane) : 1.0e20;
+}
+float dhSkyVisibility(vec2 coord) {
+    return step(1.0, texture2D(dhDepthTex0, coord).r);
+}
+#endif
 #endif

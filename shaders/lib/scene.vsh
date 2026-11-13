@@ -47,7 +47,11 @@ void main() {
     prepareWater(viewPos);
 #endif
     gl_Position = gl_ProjectionMatrix * viewPos;
+#ifdef DH_PASS
+    uv = vec2(0.0);
+#else
     uv = (gl_TextureMatrix[0] * gl_MultiTexCoord0).xy;
+#endif
     // Biome tint, vanilla AO and transparency must survive the lighting stage.
     tint = gl_Color;
     fogDistance = length(viewPos.xyz);
@@ -56,7 +60,11 @@ void main() {
     skySunDirection = mat3(gbufferModelViewInverse) * normalize(sunPosition);
 #endif
 #ifdef LIT
+#ifdef DH_PASS
+    lm = gl_MultiTexCoord2.xy;
+#else
     lm = (gl_TextureMatrix[1] * gl_MultiTexCoord1).xy;
+#endif
 #endif
 #ifdef WORLD_LIGHTING
     vec3 viewNormal = normalize(gl_NormalMatrix * gl_Normal);

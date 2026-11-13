@@ -49,7 +49,7 @@ float screenEdgeFade(vec2 p) {
     return smoothstep(0.0, 0.08, border);
 }
 
-#if WATER_REFLECTIONS == 2
+#if WATER_REFLECTIONS == 2 && !defined(DH_PASS)
 // One-sample reflection: look a fixed distance along the reflected ray and
 // reuse whatever opaque scene is there. Cheap and stable for distant shores.
 vec4 waterSceneReflection(vec3 origin, vec3 direction, float fresnel) {
@@ -64,7 +64,7 @@ vec4 waterSceneReflection(vec3 origin, vec3 direction, float fresnel) {
     if (linearDepth(depth, near, far) < -origin.z + 1.0) return vec4(0.0);
     return vec4(texture2D(colortex4, screen.xy).rgb, screenEdgeFade(screen.xy));
 }
-#elif WATER_REFLECTIONS == 3
+#elif WATER_REFLECTIONS == 3 && !defined(DH_PASS)
 // Screen-space march: steps are spread evenly across the screen, not world
 // space, and binary refinement only runs on glancing angles that show it.
 vec4 waterSceneReflection(vec3 origin, vec3 direction, float fresnel) {
@@ -116,8 +116,16 @@ vec4 applyWater(vec4 litColor) {
     }
     // Depth fog: shallow water stays clear, deep water turns opaque.
     vec2 screen = gl_FragCoord.xy / vec2(viewWidth, viewHeight);
+#ifdef DH_PASS
+    float surfaceDepth = -waterViewPosition.z;
+    float floorDepth = dhOpaqueDistance(screen);
+#else
     float surfaceDepth = linearDepth(gl_FragCoord.z, near, far);
     float floorDepth = linearDepth(texture2D(depthtex1, screen).r, near, far);
+#ifdef DISTANT_HORIZONS
+    floorDepth = min(floorDepth, dhOpaqueDistance(screen));
+#endif
+#endif
     float thickness = max(floorDepth - surfaceDepth, 0.0);
     float bodyAlpha = mix(0.45, 1.0, smoothstep(0.0, 20.0 / WATER_FOG, thickness));
     vec3 body = litColor.rgb;
@@ -137,7 +145,7 @@ vec4 applyWater(vec4 litColor) {
     reflected = mix(fogColor, skyColor, smoothstep(0.0, 1.0, pow(max(reflectedWorld.y, 0.0001), 0.333)));
 #endif
     reflected *= exposure;
-#if WATER_REFLECTIONS >= 2
+#if WATER_REFLECTIONS >= 2 && !defined(DH_PASS)
     if (fresnel > 0.03) {
         vec3 reflectedView = normalize(mat3(gbufferModelView) * reflectedWorld);
         vec4 scene = waterSceneReflection(waterViewPosition, reflectedView, fresnel);

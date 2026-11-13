@@ -40,6 +40,11 @@ vec3 proMaxLighting(vec3 color) {
     float depth = texture2D(depthtex0, uv).r;
     float solidDepth = texture2D(depthtex2, uv).r;
     vec3 position = reconstructViewPosition(uv, depth, gbufferProjectionInverse);
+#ifdef DISTANT_HORIZONS
+    float lodDepth = texture2D(dhDepthTex0, uv).r;
+    bool distantSurface = depth >= 0.999999 && lodDepth < 1.0;
+    if (distantSurface) position = reconstructViewPosition(uv, lodDepth, dhProjectionInverse);
+#endif
 #if MAX_AO == 1
     // Derivatives must execute on all pixels, before medium/geometry branches.
     vec3 n = cross(dFdx(position), dFdy(position));
@@ -80,6 +85,9 @@ vec3 proMaxLighting(vec3 color) {
     float skyAccess = smoothstep(0.02, 0.6, float(eyeBrightnessSmooth.y) / 240.0);
     float weather = 1.0 - clamp(rainStrength, 0.0, 1.0) * 0.85;
     float baseStrength = daylightAmount * skyAccess * weather * MAX_SUNBEAM_STRENGTH;
+#endif
+#ifdef DISTANT_HORIZONS
+    if (distantSurface) baseStrength = 0.0;
 #endif
     float rayLength = min(distanceToSurface, shadowDistance * 0.85);
 #if APPLE_SUN_SETUP == 1
@@ -133,7 +141,11 @@ vec3 proMaxLighting(vec3 color) {
             vec2 o = vec2(float(i == 1) - float(i == 2), float(i == 3) - float(i == 4)) * 0.008;
             vec2 q = sunUV + o;
             if (all(greaterThanEqual(q, vec2(0.0))) && all(lessThanEqual(q, vec2(1.0))))
-                sunVisible += step(0.999999, texture2D(depthtex0, q).r) * 0.2;
+                sunVisible += step(0.999999, texture2D(depthtex0, q).r)
+#ifdef DISTANT_HORIZONS
+                    * dhSkyVisibility(q)
+#endif
+ * 0.2;
         }
         if (sunVisible > 0.0) {
             vec2 aspect = vec2(viewWidth / viewHeight, 1.0);
@@ -157,7 +169,11 @@ vec3 proMaxLighting(vec3 color) {
             float totalWeight = 0.0;
             for (int i = 0; i < SCREEN_SHAFT_SAMPLES; i++) {
                 if (all(greaterThanEqual(p, vec2(0.0))) && all(lessThanEqual(p, vec2(1.0)))) {
-                    sky += step(0.999999, texture2D(depthtex0, p).r) * weight;
+                    sky += step(0.999999, texture2D(depthtex0, p).r)
+#ifdef DISTANT_HORIZONS
+                    * dhSkyVisibility(p)
+#endif
+ * weight;
                 }
                 totalWeight += weight;
                 weight *= 0.93;

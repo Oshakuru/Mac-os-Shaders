@@ -33,7 +33,7 @@ varying vec3 skyDirection;
 varying vec3 skySunDirection;
 #endif
 
-#if RAIN_PUDDLES == 1 && WET_GROUND_REFLECTIONS > 0 && DEBUG_VIEW == 0 && !defined(NO_SHADOW)
+#if RAIN_PUDDLES == 1 && WET_GROUND_REFLECTIONS > 0 && DEBUG_VIEW == 0 && !defined(NO_SHADOW) && !defined(DH_PASS)
 #define WET_MASK_OUTPUT
 #endif
 

@@ -147,3 +147,10 @@ Player shadow is separate in Performance → Shadows. Included Pro settings use 
 ## 0.9.15 source cleanup
 
 Consolidates repeated deferred shaders into shared implementations, tidies shader whitespace and formats quality profiles into readable blocks. Required dimension entry points are retained. All 110 expanded shader entry points match the 0.9.14 baseline ignoring whitespace; rendering algorithms, presets and assets are unchanged. See docs/CODE-AUDIT-0.9.14.md for the audit and deferred optimization candidates.
+
+## Distant Horizons compatibility branch
+
+This branch contains an experimental DH integration based on the supplied v1.3 pack.
+See [DH alpha notes](docs/DH-ALPHA-NOTES.md) for scope and limitations.
+Run `python3 tools/check_dh.py` for preprocessing/interface checks (requires clang).
+In-game Iris/DH testing is still required.

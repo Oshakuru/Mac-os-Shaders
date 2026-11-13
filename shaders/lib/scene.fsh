@@ -1,9 +1,20 @@
 #include "/lib/settings.glsl"
 #include "/lib/interface.glsl"
 uniform sampler2D texture;
+#if defined(DH_PASS) && defined(WATER_PASS)
+uniform sampler2D depthtex0;
+#if CUSTOM_WATER == 0
+uniform float viewWidth;
+uniform float viewHeight;
+#endif
+#endif
 uniform vec3 fogColor;
 uniform float fogStart;
 uniform float fogEnd;
+#ifdef DISTANT_HORIZONS
+uniform int dhRenderDistance;
+uniform int fogShape;
+#endif
 uniform float alphaTestRef;
 #if VISUAL_STYLE > 0
 uniform int isEyeInWater;
@@ -52,6 +63,11 @@ uniform int renderStage;
 /* DRAWBUFFERS:0 */
 #endif
 void main() {
+#if defined(DH_PASS) && defined(WATER_PASS)
+    // Near geometry has its own depth attachment and must occlude LOD water.
+    vec2 nearCoord = gl_FragCoord.xy / vec2(viewWidth, viewHeight);
+    if (texture2D(depthtex0, nearCoord).r < 1.0) discard;
+#endif
 #ifdef WET_MASK_OUTPUT
     gl_FragData[1] = vec4(0.0, 0.0, 0.0, 1.0);
 #endif
@@ -88,6 +104,12 @@ void main() {
 #if CUSTOM_WATER == 1 && defined(WATER_PASS)
     if (waterMask > 0.5) color = surface; // Custom water colour, no biome-colour multiplication.
 #endif
+#endif
+#if CUSTOM_WATER == 1 && defined(DH_PASS) && defined(WATER_PASS)
+    if (waterMask > 0.5) color = CUSTOM_WATER_COLOR;
+#endif
+#if defined(DH_PASS) && !defined(WATER_PASS)
+    color.a = 1.0;
 #endif
     if (color.a < alphaTestRef) discard;
 #if RAIN_PUDDLES == 1 && defined(WET_GROUND_PASS) && defined(WORLD_LIGHTING) && DEBUG_VIEW == 0
@@ -148,7 +170,16 @@ void main() {
 #if CUSTOM_WATER == 1 && defined(WATER_PASS) && DEBUG_VIEW == 0
     if (waterMask > 0.5) color = applyWater(color);
 #endif
-    float fog = clamp((fogDistance - fogStart) / max(fogEnd - fogStart, 0.001), 0.0, 1.0);
+    float atmosphereEnd = fogEnd;
+    float atmosphereStart = fogStart;
+#ifdef DISTANT_HORIZONS
+    // Short-range status/medium fog must retain Minecraft's original limits.
+    if (fogShape == 1 && fogEnd > 32.0) {
+        atmosphereEnd = max(fogEnd, float(dhRenderDistance));
+        atmosphereStart = min(fogStart, atmosphereEnd * 0.25);
+    }
+#endif
+    float fog = clamp((fogDistance - atmosphereStart) / max(atmosphereEnd - atmosphereStart, 0.001), 0.0, 1.0);
     vec3 atmosphereColor = fogColor;
 #if VISUAL_STYLE > 0 && !defined(NO_SHADOW) && DEBUG_VIEW == 0
     if (isEyeInWater == 0) {
@@ -157,7 +188,7 @@ void main() {
         exposure *= smoothstep(0.04, 0.70, lm.y);
 #endif
 #if VISUAL_STYLE == 1
-        float distanceHaze = clamp((fogDistance - 24.0) / max(fogEnd - 24.0, 1.0), 0.0, 1.0);
+        float distanceHaze = clamp((fogDistance - 24.0) / max(atmosphereEnd - 24.0, 1.0), 0.0, 1.0);
         float wet = clamp(rainStrength, 0.0, 1.0);
         fog = max(fog, min(0.85, DARK_HAZE * (1.0 + 0.75 * wet))
             * DARK_STYLE_STRENGTH * exposure * distanceHaze * distanceHaze);
@@ -166,7 +197,7 @@ void main() {
         mist = mix(mist, vec3(luma) * vec3(0.96, 1.0, 1.04), wet * 0.55);
         atmosphereColor = mix(fogColor, mist, 0.55 * DARK_STYLE_STRENGTH * exposure);
 #else
-        float distanceHaze = clamp((fogDistance - 32.0) / max(fogEnd - 32.0, 1.0), 0.0, 1.0);
+        float distanceHaze = clamp((fogDistance - 32.0) / max(atmosphereEnd - 32.0, 1.0), 0.0, 1.0);
         fog = max(fog, distanceHaze * distanceHaze * 0.16 * CARTOON_STRENGTH * exposure);
         atmosphereColor = mix(fogColor, cartoonHorizon(styleDay, styleTwilight), 0.60 * CARTOON_STRENGTH * exposure);
 #endif
