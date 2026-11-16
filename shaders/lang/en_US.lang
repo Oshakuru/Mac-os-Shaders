@@ -258,3 +258,8 @@ value.WATER_SSR_STEPS.6=§aLow impact: 6 steps§r
 value.WATER_SSR_STEPS.8=§eMedium impact: 8 steps§r
 value.WATER_SSR_STEPS.12=§cHigh impact: 12 steps§r
 option.RAIN_RIPPLES.comment=LOW impact on rainy water. Expanding rain rings on custom water.
+
+option.MIYAZAKI_OUTLINES=Soft Miyazaki outlines
+option.MIYAZAKI_OUTLINES.comment=Subtle depth edges in Miyazaki only, fading out by 48 blocks. Skips water, hands and underwater views. Adds up to six depth reads in the final pass; compare FPS with Off. Fine foliage edges can still shimmer.
+value.MIYAZAKI_OUTLINES.0=Off
+value.MIYAZAKI_OUTLINES.1=On

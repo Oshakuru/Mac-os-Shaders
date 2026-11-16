@@ -1,5 +1,10 @@
 # Development progression
 
+## macOS Shaders 1.7 update
+
+- Direct moonlight +20% and optional soft Miyazaki outlines. Tested and accepted by the author.
+- Further night lighting work is planned for 1.8.
+
 ## macOS Shaders 1.6
 
 - Water tone and depth fog follow the art style (Dark Fantasy muddy, Miyazaki light blue, Vanilla unchanged).

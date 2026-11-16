@@ -29,7 +29,7 @@ vec3 maxIllumination(vec3 vanilla) {
     float hemisphere = 0.65 + 0.35 * clamp((ambientHemisphere - 0.82) / 0.18, 0.0, 1.0);
     float fill = mix(NIGHT_AMBIENT * 0.055, AMBIENT_LIGHT * 0.62, daylight);
     vec3 ambient = skyTint * sky * hemisphere * fill * (1.0 + 0.35 * wet);
-    vec3 directional = sun * sky * direct * mix(0.07 * MOON_CONTRAST, 2.5, daylight) * (1.0 - 0.85 * wet);
+    vec3 directional = sun * sky * direct * mix(0.084 * MOON_CONTRAST, 2.5, daylight) * (1.0 - 0.85 * wet);
     vec3 local = vec3(1.0, 0.70, 0.38) * block * 1.8;
     // Retain lightmap-only effects such as Night Vision when unusually bright
     // light exists without either sky or block light; this is a heuristic.

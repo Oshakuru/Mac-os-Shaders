@@ -4,7 +4,9 @@
 
 Minecraft Java Edition visual pack developed around Apple Silicon, with selectable art styles, shadows, procedural water and rain puddles.
 
-**Current update: macOS Shaders 1.6.** In-game tested; published as a GitHub prerelease, not a full stable release. [Download the v1.6 ZIP](https://github.com/Oshakuru/Mac-os-Shaders/releases/download/v1.6/macOS-Shaders-v1.6.zip) and [matching settings](https://github.com/Oshakuru/Mac-os-Shaders/releases/download/v1.6/macOS-Shaders-v1.6.zip.txt). The pack was formerly called Metal; macOS Shaders 1.0 is Metal 1.2 under the new name, 1.1 added bloom, 1.2 added reworked sunbeams, sun rays and lens flare, 1.3 replaces the water with a lighter design, 1.4 is a multiversion compatibility patch extending support to Minecraft 1.20.1–1.21.11, 1.5 is a multiversion compatibility patch adding Minecraft 26.1, 26.2 and 26.3, and 1.6 gives each art style its own water tone and raises Miyazaki contrast by 20%. See [release notes](RELEASE-NOTES.md) and [compatibility notes](COMPATIBILITY.md).
+**Current update: macOS Shaders 1.7.** In-game tested; published as a GitHub prerelease, not a full stable release. [Download the v1.7 ZIP](https://github.com/Oshakuru/Mac-os-Shaders/releases/download/v1.7/macOS-Shaders-v1.7.zip) and [matching settings](https://github.com/Oshakuru/Mac-os-Shaders/releases/download/v1.7/macOS-Shaders-v1.7.zip.txt). The pack was formerly called Metal; macOS Shaders 1.0 is Metal 1.2 under the new name, 1.1 added bloom, 1.2 added reworked sunbeams, sun rays and lens flare, 1.3 replaces the water with a lighter design, 1.4 is a multiversion compatibility patch extending support to Minecraft 1.20.1–1.21.11, 1.5 is a multiversion compatibility patch adding Minecraft 26.1, 26.2 and 26.3, and 1.6 gives each art style its own water tone and raises Miyazaki contrast by 20%. See [release notes](RELEASE-NOTES.md) and [compatibility notes](COMPATIBILITY.md).
+
+Version 1.7 adds 20% stronger direct moonlight and optional soft Miyazaki outlines. Further night lighting work is planned for 1.8.
 
 ## Current features
 
@@ -41,7 +43,7 @@ The cubic images carry an all-rights-reserved notice and are not uploaded here. 
 python3 tools/build.py --without-cubic
 ```
 
-Place both generated files from `dist/` into Minecraft's `shaderpacks` folder and select **macOS-Shaders-v1.6.zip** in Iris. The matching settings file preserves the author's supplied 1.6 configuration: Miyazaki, AO at 0.22, sunbeams at 0.15 with 8 steps, screen-space water reflections and full-resolution wet-ground reflections. Presets retain their existing values.
+Place both generated files from `dist/` into Minecraft's `shaderpacks` folder and select **macOS-Shaders-v1.7.zip** in Iris. The matching settings file preserves the author's supplied 1.6 configuration: Miyazaki, AO at 0.22, sunbeams at 0.15 with 8 steps, screen-space water reflections and full-resolution wet-ground reflections. Presets retain their existing values.
 
 For visible terrain/lava reflections select **Atmosphere → Puddles and Wet Ground → Wet ground reflections → Sky + Scene**. Sky mode reflects only the sky and can be subtle on dark rainy nights.
 

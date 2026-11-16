@@ -3,8 +3,6 @@
 uniform sampler2D depthtex0;
 uniform sampler2D depthtex2;
 uniform mat4 gbufferProjectionInverse;
-uniform float viewWidth;
-uniform float viewHeight;
 uniform int isEyeInWater;
 #if (MAX_SUNBEAMS == 1 && SHADOWS == 1)
 uniform mat4 gbufferModelViewInverse;

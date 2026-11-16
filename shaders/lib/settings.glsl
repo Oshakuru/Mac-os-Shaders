@@ -26,6 +26,7 @@ const bool shadowtex0Nearest = true;
 #define DARK_LIGHT_TINT 0.50 // [0.0 0.20 0.35 0.50]
 
 #define CARTOON_STRENGTH 1.0 // [0.0 0.5 0.75 1.0]
+#define MIYAZAKI_OUTLINES 1 // [0 1]
 
 #define MAX_AO 1 // [0 1]
 #define MAX_SUNBEAMS 1 // [0 1]

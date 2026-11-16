@@ -1,3 +1,13 @@
+# macOS Shaders 1.7 update
+
+- Increases direct moonlight by 20% before tone mapping while retaining ambient night darkness.
+- Adds optional soft Miyazaki depth outlines, fading between 16 and 48 blocks. Toggle in Style Settings or Performance > Edge smoothing.
+- Retains v1.6 water, foliage movement, and shadow algorithms, plus the v1.4/v1.5 multiversion compatibility patches.
+
+Tested in game and accepted by the author. Source, profile, 576 outline-option and 6,960 compatibility preprocessing checks passed. No controlled FPS benchmark is claimed. Fine foliage edges can still shimmer with outlines enabled.
+
+Night lighting remains a focus for the planned 1.8 update; no additional 1.8 night changes are included here.
+
 # macOS Shaders 1.6
 
 - Water tone now follows the art style: muddy and slightly murkier in Dark Fantasy,

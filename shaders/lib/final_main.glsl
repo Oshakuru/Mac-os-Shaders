@@ -4,21 +4,27 @@ uniform sampler2D colortex0;
 uniform sampler2D shadowtex0;
 #endif
 varying vec2 uv;
+#if DEBUG_VIEW == 0
+#if VISUAL_STYLE == 2 && MIYAZAKI_OUTLINES == 1
+#define FINAL_OUTLINES
+#endif
+#if MAX_AO == 1 || (MAX_SUNBEAMS == 1 && SHADOWS == 1) || BLOOM == 1 || FXAA == 1 || defined(FINAL_OUTLINES)
+uniform float viewWidth;
+uniform float viewHeight;
+#endif
+#endif
 #if VISUAL_STYLE == 1 && DEBUG_VIEW == 0
 #include "/lib/dark_fantasy.glsl"
 #elif VISUAL_STYLE == 2 && DEBUG_VIEW == 0
 #include "/lib/cartoon.glsl"
 #endif
 #if (MAX_AO == 1 || (MAX_SUNBEAMS == 1 && SHADOWS == 1)) && !defined(NO_MAX_LIGHTING) && DEBUG_VIEW == 0
+#define FINAL_PRO_LIGHTING
 #include "/lib/pro_max.glsl"
 #endif
 #if BLOOM == 1 && DEBUG_VIEW == 0
 uniform sampler2D colortex6;
 const bool colortex6MipmapEnabled = true;
-#if !((MAX_AO == 1 || (MAX_SUNBEAMS == 1 && SHADOWS == 1)) && !defined(NO_MAX_LIGHTING)) && FXAA == 0
-uniform float viewWidth;
-uniform float viewHeight;
-#endif
 vec3 bloomLevel(float lod) {
     // Four diagonal taps per mip level hide the blocky look of a single coarse sample.
     vec2 o = exp2(lod) * 0.5 / vec2(viewWidth, viewHeight);
@@ -31,11 +37,10 @@ vec3 bloom() {
 }
 #endif
 #if FXAA == 1 && DEBUG_VIEW == 0
-#if !((MAX_AO == 1 || (MAX_SUNBEAMS == 1 && SHADOWS == 1)) && !defined(NO_MAX_LIGHTING))
-uniform float viewWidth;
-uniform float viewHeight;
-#endif
 #include "/lib/fxaa.glsl"
+#endif
+#ifdef FINAL_OUTLINES
+#include "/lib/miyazaki_outlines.glsl"
 #endif
 void main() {
 #if DEBUG_VIEW == 2
@@ -58,6 +63,9 @@ void main() {
     color = darkFantasyGrade(color);
 #elif VISUAL_STYLE == 2 && DEBUG_VIEW == 0
     color = cartoonGrade(color);
+#ifdef FINAL_OUTLINES
+    color = miyazakiOutlines(color);
+#endif
 #endif
 #if DEBUG_VIEW == 0
     color *= GRADE_BRIGHTNESS;

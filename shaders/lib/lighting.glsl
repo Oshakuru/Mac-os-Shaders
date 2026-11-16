@@ -29,7 +29,7 @@ vec3 evaluateLighting() {
     // Ambient fill is independent of direct sun/moon occlusion. The strength
     // option now affects cast shadows, rather than all face shading together.
     float directVisibility = mix(1.0, shadow, SHADOW_STRENGTH);
-    float skyResponse = ambient + (1.0 - ambient) * sunlight * directVisibility;
+    float skyResponse = ambient + (1.0 - ambient) * sunlight * directVisibility * mix(1.2, 1.0, daylight);
     // Under overcast skies or moonlight, soften the directional contrast while
     // retaining the time-of-day brightness already encoded by the lightmap.
     float directionalWeight = mix(MOON_CONTRAST, 1.0, daylight) * (1.0 - rainStrength * 0.85);
