@@ -25,7 +25,17 @@ uniform int biome_precipitation;
 #endif
 #include "/lib/water_interface.glsl"
 #include "/lib/depth.glsl"
+// Water tone follows the art style; the fog factor scales how soon depth hides the floor.
+#if VISUAL_STYLE == 1
+const vec4 CUSTOM_WATER_COLOR = vec4(0.23, 0.21, 0.13, 1.0); // Dark Fantasy: muddy
+#define WATER_STYLE_FOG 1.4
+#elif VISUAL_STYLE == 2
+const vec4 CUSTOM_WATER_COLOR = vec4(0.30, 0.56, 0.74, 1.0); // Miyazaki: light blue
+#define WATER_STYLE_FOG 0.75
+#else
 const vec4 CUSTOM_WATER_COLOR = vec4(0.17, 0.28, 0.32, 1.0);
+#define WATER_STYLE_FOG 1.0
+#endif
 
 // Four directional waves with a light domain warp; returns the surface slope.
 vec2 waterSlope(vec2 p, float t) {
@@ -119,7 +129,7 @@ vec4 applyWater(vec4 litColor) {
     float surfaceDepth = linearDepth(gl_FragCoord.z, near, far);
     float floorDepth = linearDepth(texture2D(depthtex1, screen).r, near, far);
     float thickness = max(floorDepth - surfaceDepth, 0.0);
-    float bodyAlpha = mix(0.45, 1.0, smoothstep(0.0, 20.0 / WATER_FOG, thickness));
+    float bodyAlpha = mix(0.45, 1.0, smoothstep(0.0, 20.0 / (WATER_FOG * WATER_STYLE_FOG), thickness));
     vec3 body = litColor.rgb;
     float fresnel = 0.0;
     vec3 reflected = vec3(0.0);

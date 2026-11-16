@@ -1,8 +1,10 @@
 # macOS Shaders versioning
 
-Current release: **macOS Shaders 1.5**. **1.0** is Metal 1.2 under the new name, with no rendering changes; **1.1** added bloom; **1.2** added the sunbeam rework, screen-space sun rays, lens flare and sun size; **1.3** replaces the water; **1.4** adds Minecraft 1.20.1–1.21.11 support and the texture-free Unobtrusive Weather; **1.5** adds Minecraft 26.1, 26.2 and 26.3.
+Current source baseline: **macOS Shaders 1.6**. Latest packaged GitHub release: **1.5**. **1.0** is Metal 1.2 under the new name, with no rendering changes; **1.1** added bloom; **1.2** added the sunbeam rework, screen-space sun rays, lens flare and sun size; **1.3** replaces the water; **1.4** is a multiversion compatibility patch that adds Minecraft 1.20.1–1.21.11 support and the texture-free Unobtrusive Weather; **1.5** is a multiversion compatibility patch that adds Minecraft 26.1, 26.2 and 26.3; **1.6** adds per-style water tones and 20% more Miyazaki contrast.
 
 The pack was called Metal through Metal 1.2. The author renamed it to macOS Shaders and restarted numbering at 1.0; macOS Shaders 1.0 follows Metal 1.2 and is unrelated to the earlier Metal 1.0.
+
+Versions 1.4 and 1.5 retain their existing numbers and tags; both are multiversion compatibility patches. Version 1.6 retains that compatibility and adds the water/contrast changes.
 
 Numbering rule, set by the author:
 

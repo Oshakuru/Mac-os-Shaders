@@ -4,7 +4,7 @@
 
 Minecraft Java Edition visual pack developed around Apple Silicon, with selectable art styles, shadows, procedural water and rain puddles.
 
-**Current release: macOS Shaders 1.5.** [Download macOS-Shaders-v1.5.zip](https://github.com/Oshakuru/Mac-os-Shaders/releases/download/v1.5/macOS-Shaders-v1.5.zip). The pack was formerly called Metal; macOS Shaders 1.0 is Metal 1.2 under the new name, 1.1 added bloom, 1.2 added reworked sunbeams, sun rays and lens flare, 1.3 replaces the water with a lighter design, 1.4 extends support to Minecraft 1.20.1–1.21.11, and 1.5 adds Minecraft 26.1, 26.2 and 26.3. See [release notes](RELEASE-NOTES.md) and [compatibility notes](COMPATIBILITY.md).
+**Current source baseline: macOS Shaders 1.6.** Latest packaged GitHub release: **1.5**. [Download macOS-Shaders-v1.5.zip](https://github.com/Oshakuru/Mac-os-Shaders/releases/download/v1.5/macOS-Shaders-v1.5.zip). The pack was formerly called Metal; macOS Shaders 1.0 is Metal 1.2 under the new name, 1.1 added bloom, 1.2 added reworked sunbeams, sun rays and lens flare, 1.3 replaces the water with a lighter design, 1.4 is a multiversion compatibility patch extending support to Minecraft 1.20.1–1.21.11, 1.5 is a multiversion compatibility patch adding Minecraft 26.1, 26.2 and 26.3, and 1.6 (available from source) gives each art style its own water tone and raises Miyazaki contrast by 20%. See [release notes](RELEASE-NOTES.md) and [compatibility notes](COMPATIBILITY.md).
 
 ## Current features
 
@@ -41,7 +41,7 @@ The cubic images carry an all-rights-reserved notice and are not uploaded here. 
 python3 tools/build.py --without-cubic
 ```
 
-Place both generated files from `dist/` into Minecraft's `shaderpacks` folder and select **macOS-Shaders-v1.5.zip** in Iris. The matching settings file is the author's latest saved configuration, which the Pro preset now matches: Dark Fantasy, AO at 0.32, sunbeams at 0.40 with 6 steps, Sky water reflections and half-resolution wet-ground reflections.
+Place both generated files from `dist/` into Minecraft's `shaderpacks` folder and select **macOS-Shaders-v1.6.zip** in Iris. The matching settings file preserves the author's supplied 1.6 configuration: Miyazaki, AO at 0.22, sunbeams at 0.15 with 8 steps, screen-space water reflections and full-resolution wet-ground reflections. Presets retain their existing values.
 
 For visible terrain/lava reflections select **Atmosphere → Puddles and Wet Ground → Wet ground reflections → Sky + Scene**. Sky mode reflects only the sky and can be subtle on dark rainy nights.
 
@@ -150,6 +150,6 @@ Player shadow is separate in Performance → Shadows. Included Pro settings use 
 
 Consolidates repeated deferred shaders into shared implementations, tidies shader whitespace and formats quality profiles into readable blocks. Required dimension entry points are retained. All 110 expanded shader entry points match the 0.9.14 baseline ignoring whitespace; rendering algorithms, presets and assets are unchanged. See docs/CODE-AUDIT-0.9.14.md for the audit and deferred optimization candidates.
 
-## Multi-version build 1.5
+## Multiversion compatibility patches 1.4 and 1.5
 
-Targets Minecraft Java 1.20.1–1.21.11 and 26.1, 26.2, 26.3 with Iris on OpenGL. See [compatibility notes](COMPATIBILITY.md) for requirements, changes and testing status. This build does not include Distant Horizons support.
+Patch 1.4 adds Minecraft Java 1.20.1–1.21.11 compatibility; patch 1.5 extends it to 26.1, 26.2 and 26.3 with Iris on OpenGL. Version 1.6 retains these compatibility mappings. See [compatibility notes](COMPATIBILITY.md) for requirements, changes and testing status. This build does not include Distant Horizons support.

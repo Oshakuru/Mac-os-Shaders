@@ -1,12 +1,17 @@
 # Development progression
 
-## macOS Shaders 1.5
+## macOS Shaders 1.6
+
+- Water tone and depth fog follow the art style (Dark Fantasy muddy, Miyazaki light blue, Vanilla unchanged).
+- Miyazaki grade carries 20% more contrast.
+
+## macOS Shaders 1.5 — multiversion compatibility patch
 
 - Added Minecraft 26.1, 26.2 and 26.3 to the single-ZIP target, with poplar leaf and red shrub mappings from 26.3.
 - Documentation brought in line with the release; removed the unused MakeUp water files and licence left over from before 1.3.
 - Build output and settings file renamed from Metal-v* to macOS-Shaders-v*.
 
-## macOS Shaders 1.4
+## macOS Shaders 1.4 — multiversion compatibility patch
 
 - Version-aware block mappings for Minecraft 1.20.1 through 1.21.11.
 - Unobtrusive Weather now fades the game's own rain and snow instead of replacing textures.

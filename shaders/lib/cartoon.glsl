@@ -28,6 +28,7 @@ vec3 cartoonGrade(vec3 source) {
     c = clamp(c, 0.0, 1.0);
     c += 0.12 * c * (1.0 - c);
     c = mix(c, c * c * (3.0 - 2.0 * c), 0.08);
+    c = (c - 0.5) * 1.2 + 0.5; // Miyazaki carries 20% extra contrast; the Contrast slider stacks on top.
     return mix(source, clamp(c, 0.0, 1.0), CARTOON_STRENGTH);
 }
 
