@@ -93,7 +93,8 @@ option.CLOUD_STYLE=§cCloud style§r
 value.CLOUD_STYLE.0=Vanilla
 value.CLOUD_STYLE.1=SDV Skybox
 value.CLOUD_STYLE.2=Fading Clouds
-option.CLOUD_STYLE.comment=SDV Skybox uses the adapted reference renderer and cloud map with macOS Shaders preset tones and terrain-independent reach. Fading Clouds and Vanilla remain available.
+value.CLOUD_STYLE.3=Miyazaki Skybox
+option.CLOUD_STYLE.comment=SDV Skybox uses the adapted reference renderer and cloud map with macOS Shaders preset tones and terrain-independent reach. Miyazaki Skybox is a pixel-art panorama of flat-toned clouds at several heights and distances over a low haze bank: LOW impact, one texture read, ignores the layer and depth settings. Fading Clouds and Vanilla remain available.
 option.CLOUD_OPACITY=§aCustom cloud opacity§r
 option.CLOUD_OPACITY.comment=Opacity of custom clouds. Does not affect Vanilla clouds.
 
@@ -257,7 +258,7 @@ value.WATER_SSR_STEPS.4=§aLow impact: 4 steps§r
 value.WATER_SSR_STEPS.6=§aLow impact: 6 steps§r
 value.WATER_SSR_STEPS.8=§eMedium impact: 8 steps§r
 value.WATER_SSR_STEPS.12=§cHigh impact: 12 steps§r
-option.RAIN_RIPPLES.comment=LOW impact on rainy water. Expanding rain rings on custom water.
+option.RAIN_RIPPLES.comment=LOW impact in rain. Expanding rain rings on custom water and on ground puddles (puddles need Rain puddles on).
 
 option.MIYAZAKI_OUTLINES=Soft Miyazaki outlines
 option.MIYAZAKI_OUTLINES.comment=Subtle depth edges in Miyazaki only, fading out by 48 blocks. Skips water, hands and underwater views. Adds up to six depth reads in the final pass; compare FPS with Off. Fine foliage edges can still shimmer.

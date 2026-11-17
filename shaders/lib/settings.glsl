@@ -16,8 +16,8 @@ const bool shadowtex0Nearest = true;
 
 #define RECEIVER_CORRECTION 1 // [0 1]
 
-#define NIGHT_AMBIENT 0.58 // [0.35 0.48 0.58 0.70 0.75 0.80]
-#define MOON_CONTRAST 0.45 // [0.15 0.25 0.45 0.65 1.0]
+#define NIGHT_AMBIENT 0.80 // [0.35 0.48 0.58 0.70 0.75 0.80]
+#define MOON_CONTRAST 0.65 // [0.15 0.25 0.45 0.65 1.0]
 
 #define VISUAL_STYLE 1 // [0 1 2]
 #define DARK_STYLE_STRENGTH 1.0 // [0.0 0.5 0.75 1.0]
@@ -44,7 +44,7 @@ const bool shadowtex0Nearest = true;
 #define APPLE_SUN_SETUP 1 // [0 1]
 #define APPLE_DEPTH_RECONSTRUCTION 1 // [0 1]
 
-#define CLOUD_STYLE 1 // [0 1 2]
+#define CLOUD_STYLE 1 // [0 1 2 3]
 #define SDV_CLOUD_STEPS 8 // [4 8 16 32]
 #define SDV_CLOUD_LAYERS 2 // [1 2]
 #define CLOUD_OPACITY 1.0 // [0.4 0.6 0.8 1.0]

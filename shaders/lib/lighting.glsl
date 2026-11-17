@@ -32,7 +32,7 @@ vec3 evaluateLighting() {
     float skyResponse = ambient + (1.0 - ambient) * sunlight * directVisibility * mix(1.2, 1.0, daylight);
     // Under overcast skies or moonlight, soften the directional contrast while
     // retaining the time-of-day brightness already encoded by the lightmap.
-    float directionalWeight = mix(MOON_CONTRAST, 1.0, daylight) * (1.0 - rainStrength * 0.85);
+    float directionalWeight = mix(min(MOON_CONTRAST * 2.2, 1.0), 1.0, daylight) * (1.0 - rainStrength * 0.85);
     float skyFactor = mix(1.0, skyResponse, skyAccess * directionalWeight);
     // lm.x is block light and lm.y is sky light. Torch falloff is evaluated
     // after interpolation to avoid vertex-dependent gradients on large faces.

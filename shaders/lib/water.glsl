@@ -111,13 +111,18 @@ vec4 applyWater(vec4 litColor) {
     vec3 baseNormal = normalize(waterWorldNormal);
     vec3 viewDirection = normalize(-waterPlayerPosition);
     vec3 normal = baseNormal;
+    float rippleShade = 0.0;
     if (baseNormal.y > 0.5) {
         vec3 worldPosition = waterPlayerPosition + cameraPosition;
         vec2 slope = waterSlope(worldPosition.xz, frameTimeCounter);
 #if RAIN_RIPPLES == 1
         if (rainStrength > 0.001 && biome_precipitation == 1 && lm.y > 0.75) {
-            slope += metalRainRippleSlope(worldPosition.xz) * 0.10 * rainStrength
+            vec2 ripple = metalRainRippleSlope(worldPosition.xz) * 0.10 * rainStrength
                 * RAIN_RIPPLE_STRENGTH * smoothstep(0.75, 0.95, lm.y);
+            slope += ripple;
+            // Looking down there is almost no reflection to bend, so the rings
+            // are also shaded directly; this is what shows them near the player.
+            rippleShade = (ripple.x + ripple.y) * 3.0;
         }
 #endif
         // Calm distant water so small waves do not shimmer between pixels.
@@ -130,7 +135,7 @@ vec4 applyWater(vec4 litColor) {
     float floorDepth = linearDepth(texture2D(depthtex1, screen).r, near, far);
     float thickness = max(floorDepth - surfaceDepth, 0.0);
     float bodyAlpha = mix(0.45, 1.0, smoothstep(0.0, 20.0 / (WATER_FOG * WATER_STYLE_FOG), thickness));
-    vec3 body = litColor.rgb;
+    vec3 body = litColor.rgb * (1.0 + rippleShade);
     float fresnel = 0.0;
     vec3 reflected = vec3(0.0);
     vec3 highlight = vec3(0.0);

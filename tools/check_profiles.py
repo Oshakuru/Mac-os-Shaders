@@ -40,7 +40,8 @@ def check():
     assert profiles['FAST']['SHADOWS'] == '1'
     assert profiles['BALANCED']['FOLIAGE_WIND'] == '1'
     assert profiles['BALANCED']['CUSTOM_WATER'] == '1'
-    assert profiles['BALANCED']['WATER_REFLECTIONS'] == '1'
+    # 1.9: Pro holds the author's in-game settings (config/macOS-Shaders-v1.9.zip.txt).
+    assert profiles['BALANCED']['WATER_REFLECTIONS'] == '2'
     assert all(p['FXAA'] == '0' for p in profiles.values())
     assert 'program.shadow.enabled=false' in text
     print(f'Validated three profiles and Custom matching for {len(controls)} performance controls.')

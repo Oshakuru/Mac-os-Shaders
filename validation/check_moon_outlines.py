@@ -46,7 +46,9 @@ with ThreadPoolExecutor(max_workers=8) as pool:
 
 source = (SHADERS / 'lib/max_surface.glsl').read_text()
 moon, day = map(float, re.search(r'mix\(([0-9.]+) \* MOON_CONTRAST, ([0-9.]+), daylight\)', source).groups())
-assert math.isclose(moon / 0.07, 1.2)
+# 1.9 night retune: moonlight scale 0.24 and night fill 0.040 (were 0.084 and 0.055).
+assert math.isclose(moon, 0.24)
+assert 'NIGHT_AMBIENT * 0.040' in source
 assert day == 2.5
 assert 'mix(1.2, 1.0, daylight)' in (SHADERS / 'lib/lighting.glsl').read_text()
 
@@ -62,4 +64,4 @@ assert edge(10, [10, 10, 10, 10]) == 0
 assert edge(10, [9, 11, 8, 12]) == 0
 assert edge(10, [10, 30, 10, 10]) == 1
 assert edge(30, [10, 30, 30, 30]) == 0
-print(f'PASS: {len(tasks)} final-stage combinations, unique uniforms, outline gating, moonlight +20%, and outline edge cases.')
+print(f'PASS: {len(tasks)} final-stage combinations, unique uniforms, outline gating, 1.9 moonlight values, and outline edge cases.')

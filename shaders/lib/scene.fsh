@@ -35,13 +35,19 @@ uniform int renderStage;
 #endif
 #include "/lib/cubic_celestials.glsl"
 #endif
-#if CLOUD_STYLE == 1 && defined(SKY_BASIC) && !defined(NO_SHADOW)
+#if (CLOUD_STYLE == 1 || CLOUD_STYLE == 3) && defined(SKY_BASIC) && !defined(NO_SHADOW)
 #if VISUAL_STYLE == 0 && CUBIC_CELESTIALS == 0
 uniform int isEyeInWater;
 uniform float rainStrength;
 uniform int renderStage;
 #endif
+#if CLOUD_STYLE == 3
+#include "/lib/painted_clouds.glsl"
+#define skyboxClouds paintedClouds
+#else
 #include "/lib/sdv_clouds.glsl"
+#define skyboxClouds metalSDVClouds
+#endif
 #endif
 #include "/lib/weather.glsl"
 #include "/lib/water.glsl"
@@ -95,7 +101,7 @@ void main() {
 #ifdef WET_MASK_OUTPUT
     gl_FragData[1] = wetSurface;
 #endif
-    color.rgb *= 1.0 - 0.33 * wetSurface.b;
+    color.rgb *= (1.0 - 0.33 * wetSurface.b) * (1.0 + wetRipple);
 #endif
 #if VISUAL_STYLE > 0 && defined(SKY_BASIC) && !defined(NO_SHADOW) && DEBUG_VIEW == 0
     // Full-strength styles replace the sky completely. Finish before computing
@@ -105,8 +111,8 @@ void main() {
 #if CUBIC_CELESTIALS == 1
         color.rgb = cubicCelestials(color.rgb);
 #endif
-#if CLOUD_STYLE == 1
-        color.rgb = metalSDVClouds(color.rgb);
+#if (CLOUD_STYLE == 1 || CLOUD_STYLE == 3)
+        color.rgb = skyboxClouds(color.rgb);
 #endif
         gl_FragData[0] = color;
         return;
@@ -190,8 +196,8 @@ void main() {
 #if CUBIC_CELESTIALS == 1 && defined(SKY_BASIC) && !defined(NO_SHADOW) && DEBUG_VIEW == 0
     if (renderStage == MC_RENDER_STAGE_SKY) color.rgb = cubicCelestials(color.rgb);
 #endif
-#if CLOUD_STYLE == 1 && defined(SKY_BASIC) && !defined(NO_SHADOW) && DEBUG_VIEW == 0
-    if (renderStage == MC_RENDER_STAGE_SKY) color.rgb = metalSDVClouds(color.rgb);
+#if (CLOUD_STYLE == 1 || CLOUD_STYLE == 3) && defined(SKY_BASIC) && !defined(NO_SHADOW) && DEBUG_VIEW == 0
+    if (renderStage == MC_RENDER_STAGE_SKY) color.rgb = skyboxClouds(color.rgb);
 #endif
     gl_FragData[0] = color;
 }
