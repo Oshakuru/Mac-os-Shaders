@@ -7,11 +7,11 @@
 - Lava and the nether portal stay vanilla for now; a rework is on the to-do list. A molten lava option tried during 1.8 testing was removed.
 - Links point to the renamed GitHub account, Oshakuru.
 
-Releases together with 1.8, which was developed as local test builds and not published on its own.
+Recorded in the development history together with 1.8. Neither is published as a GitHub release; build from source to try them.
 
 Source, profile and preprocessing checks pass. Not yet tested in game: the new Pro preset, and FPS against 1.7.
 
-# macOS Shaders 1.8 — SDV-style nights, Miyazaki Skybox clouds, rain ripples (unpublished, released in 1.9)
+# macOS Shaders 1.8 — SDV-style nights, Miyazaki Skybox clouds, rain ripples (historical update, not released)
 
 - Night only: the moonlight and night-fill scales were retuned so moonlit ground is roughly 5x brighter than shade (was about 2x) before tone mapping at the new defaults. Reference: Super Duper Vanilla's night contrast; no source copied.
 - New night defaults in the shader and all three presets, chosen in game by the developer: Night ambient fill 0.80, Moonlight contrast 0.65.

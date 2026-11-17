@@ -6,9 +6,9 @@
 - Wet ground reflections off by default and in all presets.
 - Code polish and Metal-era names renamed to macOS Shaders; builder runs the checks and writes repeatable ZIPs.
 - Links updated to the renamed GitHub account, Oshakuru.
-- Published together with 1.8.
+- Recorded in the development history with 1.8; not published as a release.
 
-## macOS Shaders 1.8 (unpublished; released in 1.9)
+## macOS Shaders 1.8 (historical update, not released)
 
 - SDV-style moonlit nights: moonlit ground about 5x brighter than shade (was about 2x); night fill 0.80 and moonlight contrast 0.65 as defaults in every preset.
 - New Cloud style "Miyazaki Skybox": pixel-art panorama clouds in three depth layers over a haze bank. One texture read per sky pixel.

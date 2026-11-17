@@ -74,7 +74,7 @@
   {
     "index": 8,
     "label": "M1-Light v0.8.1 atmosphere experiment",
-    "status": "User reported 20–30 FPS below v0.8; rejected as baseline",
+    "status": "User reported 20\u201330 FPS below v0.8; rejected as baseline",
     "sourceName": "M1-Light-v0.8.1.zip",
     "omittedAssets": [],
     "originalArchiveSha256": "737867c9c642451eb4f8568a8aa5e93b574df4e03f6914bb74eb0cb7a4aad426",
@@ -271,5 +271,21 @@
     ],
     "originalArchiveSha256": "9ee022c02c7b7292f58497dcd9f6c8d1293ebdb53ee7a1a07a17f582f634c1bb",
     "commit": "661f96bdbc6953dc0847f422fd43af0f8af58020"
+  },
+  {
+    "index": 26,
+    "label": "macOS Shaders 1.8",
+    "status": "Historical update, not released: SDV-style nights, Miyazaki Skybox clouds, rain ripple fix",
+    "sourceName": "macOS-Shaders-v1.8-test.zip",
+    "omittedAssets": [],
+    "commit": "3ee7f8fcaca3ae2bde0dbcd3862d1f87f481bbe8"
+  },
+  {
+    "index": 27,
+    "label": "macOS Shaders 1.9",
+    "status": "Historical update, not released: Pro preset, wet ground reflections off, macOS Shaders naming",
+    "sourceName": "source at main",
+    "omittedAssets": [],
+    "commit": "d49e247f1e7216e6aa51e54a6a1637819cf4d12f"
   }
 ]

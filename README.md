@@ -4,9 +4,9 @@
 
 Minecraft Java Edition visual pack developed around Apple Silicon, with selectable art styles, shadows, procedural water and rain puddles.
 
-**Current update: macOS Shaders 1.9** (prerelease, not a full stable release). [Download the v1.9 ZIP](https://github.com/Oshakuru/Mac-os-Shaders/releases/download/v1.9/macOS-Shaders-v1.9.zip) and [matching settings](https://github.com/Oshakuru/Mac-os-Shaders/releases/download/v1.9/macOS-Shaders-v1.9.zip.txt). The pack was formerly called Metal; macOS Shaders 1.0 is Metal 1.2 under the new name, 1.1 added bloom, 1.2 added reworked sunbeams, sun rays and lens flare, 1.3 replaces the water with a lighter design, 1.4 is a multiversion compatibility patch extending support to Minecraft 1.20.1–1.21.11, 1.5 is a multiversion compatibility patch adding Minecraft 26.1, 26.2 and 26.3, 1.6 gives each art style its own water tone and raises Miyazaki contrast by 20%, and 1.7 adds stronger moonlight and soft Miyazaki outlines. See [release notes](RELEASE-NOTES.md) and [compatibility notes](COMPATIBILITY.md).
+**Latest release: macOS Shaders 1.7** (GitHub prerelease, not a full stable release). [Download the v1.7 ZIP](https://github.com/Oshakuru/Mac-os-Shaders/releases/download/v1.7/macOS-Shaders-v1.7.zip) and [matching settings](https://github.com/Oshakuru/Mac-os-Shaders/releases/download/v1.7/macOS-Shaders-v1.7.zip.txt). The source here is at **1.9**; 1.8 and 1.9 are recorded as historical updates, not releases. Build them yourself with the steps below. The pack was formerly called Metal; macOS Shaders 1.0 is Metal 1.2 under the new name, 1.1 added bloom, 1.2 added reworked sunbeams, sun rays and lens flare, 1.3 replaces the water with a lighter design, 1.4 is a multiversion compatibility patch extending support to Minecraft 1.20.1–1.21.11, 1.5 is a multiversion compatibility patch adding Minecraft 26.1, 26.2 and 26.3, 1.6 gives each art style its own water tone and raises Miyazaki contrast by 20%, and 1.7 adds stronger moonlight and soft Miyazaki outlines. See [release notes](RELEASE-NOTES.md) and [compatibility notes](COMPATIBILITY.md).
 
-Versions 1.8 and 1.9 are released together: 1.8 brings SDV-style moonlit nights, a Miyazaki Skybox cloud style and rain ripples near the player and on puddles; 1.9 sets the Pro preset to the author's in-game settings, turns wet ground reflections off by default for performance, and finishes the rename from Metal to macOS Shaders.
+Versions 1.8 and 1.9 are source updates recorded in the [development history](docs/HISTORY.md), not releases: 1.8 brings SDV-style moonlit nights, a Miyazaki Skybox cloud style and rain ripples near the player and on puddles; 1.9 sets the Pro preset to the author's in-game settings, turns wet ground reflections off by default for performance, and finishes the rename from Metal to macOS Shaders.
 
 ## Current features
 
@@ -52,7 +52,7 @@ For visible terrain/lava reflections select **Atmosphere → Puddles and Wet Gro
 
 Saved versions are imported as chronological source snapshots in Git history. These imports preserve old names, including Metal and M1-Light, and known failures; they do not pretend to be the original historical commit dates. See [CHANGELOG.md](CHANGELOG.md) and [history index](docs/HISTORY.md).
 
-The progression runs from **M1-Light 0.5.5** through the 0.8 experiments, **Metal 1.0**, the cleanup and Iris fixes, and finally the tested **Metal 0.9** baseline. Earlier broken snapshots are retained for development reference.
+The progression runs from **M1-Light 0.5.5** through the 0.8 experiments, **Metal 1.0**, the cleanup and Iris fixes, and the tested **Metal 0.9** baseline, then the macOS Shaders releases up to **1.7**. The **1.8** and **1.9** updates are recorded in the history index as source updates without a GitHub release. Earlier broken snapshots are retained for development reference.
 
 ## To do
 

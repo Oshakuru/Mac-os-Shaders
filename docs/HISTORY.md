@@ -32,7 +32,10 @@ Restricted cubic and historical Fresh texture images are omitted from the public
 | 24 | Metal 1.0 Iris format fix | User confirmed pack loads after both Iris fixes | [view commit](https://github.com/Oshakuru/metal/commit/227345b21fa43574a7923d0bd22deaab9553a08e) |
 | 25 | Metal cleanup Iris format fix | User confirmed loading and working Sky + Scene puddle reflections | [view commit](https://github.com/Oshakuru/metal/commit/7e7458d7240e47f735f8a5e7b7cbadfeac82f6c1) |
 | 26 | Metal 0.9 current tested baseline | Current version; user confirmed reflections and good performance | [view commit](https://github.com/Oshakuru/metal/commit/661f96bdbc6953dc0847f422fd43af0f8af58020) |
+| 27 | macOS Shaders 1.8 | SDV-style nights, Miyazaki Skybox clouds, rain ripple fix; local test builds, not released | [view commit](https://github.com/Oshakuru/Mac-os-Shaders/commit/3ee7f8f) |
+| 28 | macOS Shaders 1.9 | Pro preset from the author's settings, wet ground reflections off, macOS Shaders naming, builder fixes; not released | [view commit](https://github.com/Oshakuru/Mac-os-Shaders/commit/d49e247) |
 
+Snapshots 27 and 28 are historical updates recorded after the published 1.7 release. They have no GitHub release; build them from source with tools/build.py.
 
 # Pre-1.0 release notes (moved from README in 1.9)
 
