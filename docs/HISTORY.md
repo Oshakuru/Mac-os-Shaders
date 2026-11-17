@@ -1,6 +1,6 @@
 # Saved development history
 
-These source snapshots were imported in development order on 2026-11-10. The import does not backdate commits. Current baseline: **Metal 0.9**; future versions: **0.9.1**, **0.9.2**.
+These source snapshots were imported in development order on 2026-11-10. The import does not backdate commits. Snapshots 1–26 run from M1-Light 0.5.5 to the Metal 0.9 baseline; 27 and 28 are macOS Shaders 1.8 and 1.9. Versions in between are in the version table and the changelog.
 
 Restricted cubic and historical Fresh texture images are omitted from the public snapshots; original filenames, source, attribution notices and status are retained. See THIRD_PARTY_NOTICES.md and the JSON index for omitted assets.
 
@@ -47,7 +47,7 @@ Supply Unobtrusive Weather v2.0 with `--weather-pack` to embed its rain and snow
 
 Atmosphere → Weather toggles the embedded weather. Atmosphere → Water contains Rain ripples and their strength. Ripples require the pack's custom water, appear during rain, and use skylight as an approximate outdoor mask. They are an original Metal effect rather than Particle Rain's Java particles. Particle splash sprites remain vanilla.
 
-See [release notes](RELEASE-NOTES.md) for the pending in-game checks. Iris uses Minecraft's limited legacy text colors for these labels; the exact requested RGB gradient strings are retained in `assets/branding/preset-labels.json`.
+See [release notes](../RELEASE-NOTES.md) for the pending in-game checks. Iris uses Minecraft's limited legacy text colors for these labels; the exact requested RGB gradient strings are retained in `assets/branding/preset-labels.json`.
 
 ### Skybox clouds in 0.9.2
 
