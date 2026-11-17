@@ -4,9 +4,14 @@
 
 Minecraft Java Edition visual pack developed around Apple Silicon, with selectable art styles, shadows, procedural water and rain puddles.
 
-**Latest release: macOS Shaders 1.7** (GitHub prerelease, not a full stable release). [Download the v1.7 ZIP](https://github.com/Oshakuru/Mac-os-Shaders/releases/download/v1.7/macOS-Shaders-v1.7.zip) and [matching settings](https://github.com/Oshakuru/Mac-os-Shaders/releases/download/v1.7/macOS-Shaders-v1.7.zip.txt). The source here is at **1.9**; 1.8 and 1.9 are recorded as historical updates, not releases. Build them yourself with the steps below. The pack was formerly called Metal; macOS Shaders 1.0 is Metal 1.2 under the new name, 1.1 added bloom, 1.2 added reworked sunbeams, sun rays and lens flare, 1.3 replaces the water with a lighter design, 1.4 is a multiversion compatibility patch extending support to Minecraft 1.20.1–1.21.11, 1.5 is a multiversion compatibility patch adding Minecraft 26.1, 26.2 and 26.3, 1.6 gives each art style its own water tone and raises Miyazaki contrast by 20%, and 1.7 adds stronger moonlight and soft Miyazaki outlines. See [release notes](RELEASE-NOTES.md) and [compatibility notes](COMPATIBILITY.md).
+**Latest update: macOS Shaders 1.9** (16 November 2026)
 
-Versions 1.8 and 1.9 are source updates recorded in the [development history](docs/HISTORY.md), not releases: 1.8 brings SDV-style moonlit nights, a Miyazaki Skybox cloud style and rain ripples near the player and on puddles; 1.9 sets the Pro preset to the author's in-game settings, turns wet ground reflections off by default for performance, and finishes the rename from Metal to macOS Shaders.
+- Pro preset set to the author's in-game settings.
+- Wet ground reflections off by default and in all presets, for performance.
+- Metal-era code names renamed to macOS Shaders.
+- Builder runs the source checks before packaging and makes repeatable ZIPs.
+
+See [release notes](RELEASE-NOTES.md) and [compatibility notes](COMPATIBILITY.md).
 
 ## Current features
 
