@@ -1,6 +1,6 @@
 // Original bright-pass for bloom. Writes only the bright part of the scene to
 // target 6; final.fsh blurs it by sampling its mipmaps. LDR input, so the
-// threshold is on 0..1 color: torches, lava, portals, the sun and lit windows.
+// threshold is on 0..1 color: torches, lava, the sun and lit windows.
 #include "/lib/settings.glsl"
 uniform sampler2D colortex0;
 varying vec2 uv;

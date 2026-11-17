@@ -49,7 +49,7 @@ void main() {
     gl_FragColor = vec4(vec3(depth), 1.0);
 #else
 #if FXAA == 1 && DEBUG_VIEW == 0
-    vec3 color = metalFXAA(uv);
+    vec3 color = macosFXAA(uv);
 #else
     vec3 color = texture2D(colortex0, uv).rgb;
 #endif

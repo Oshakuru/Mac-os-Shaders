@@ -1,7 +1,7 @@
 // Adapted from Super Duper Vanilla v1.3.8 — Eldeston / FlameRender (C) Studios.
 // Copyright (C) 2023 Eldeston. FlameRender (C) Studios License v1.6.
 // This file and the SDV cloud texture retain that license; not relicensed GPL.
-// Modified for Metal: GLSL 120 sampling, preset cloud tones and bounded LDR compositing.
+// Modified for macOS Shaders (formerly Metal): GLSL 120 sampling, preset cloud tones and bounded LDR compositing.
 uniform sampler2D sdvCloudMap;
 uniform vec3 cameraPosition;
 uniform float frameTimeCounter;
@@ -20,7 +20,7 @@ vec2 sdvCloudParallax(vec2 start, vec2 cameraPos) {
     }
     return cloudData;
 }
-vec3 metalSDVClouds(vec3 sky) {
+vec3 macosSDVClouds(vec3 sky) {
     if (isEyeInWater != 0) return sky;
     vec3 ray = normalize(skyDirection);
     float wet = clamp(rainStrength, 0.0, 1.0);

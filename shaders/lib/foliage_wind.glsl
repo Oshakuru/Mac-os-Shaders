@@ -1,11 +1,11 @@
-// Original Metal low-cost wind: vertex-only, no texture reads or new buffers.
+// Original macOS Shaders low-cost wind: vertex-only, no texture reads or new buffers.
 uniform float frameTimeCounter;
 uniform vec3 cameraPosition;
 attribute vec2 mc_midTexCoord;
-bool metalWindMaterial(float material) {
+bool macosWindMaterial(float material) {
     return material > 10001.5 && material < 10005.5;
 }
-vec3 metalFoliageOffset(vec3 playerPosition, float material) {
+vec3 macosFoliageOffset(vec3 playerPosition, float material) {
     float distanceSquared = dot(playerPosition.xz, playerPosition.xz);
     if (distanceSquared >= 2304.0 || FOLIAGE_WIND_STRENGTH <= 0.0) return vec3(0.0);
     float fade = 1.0 - smoothstep(576.0, 2304.0, distanceSquared);

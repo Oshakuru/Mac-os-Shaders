@@ -1,6 +1,6 @@
-// Original Metal expanding rain rings, anchored to world-space water.
+// Original macOS Shaders expanding rain rings, anchored to world-space water.
 // Two offset cell grids keep the cost bounded; rings die before cell edges.
-vec2 metalRainRippleSlope(vec2 worldXZ) {
+vec2 macosRainRippleSlope(vec2 worldXZ) {
     vec2 slope = vec2(0.0);
     for (int layer = 0; layer < 2; layer++) {
         vec2 p = worldXZ * 0.65 + vec2(float(layer) * 0.5);

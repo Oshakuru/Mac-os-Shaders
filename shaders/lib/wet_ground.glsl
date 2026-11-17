@@ -25,7 +25,7 @@ vec4 wetGroundSurface() {
 #if RAIN_RIPPLES == 1
     // Same rain rings as the water, on puddles only to bound the cost.
     if (puddle > 0.0) {
-        ring = metalRainRippleSlope(playerPos.xz + cameraPosition.xz) * rainStrength * RAIN_RIPPLE_STRENGTH * puddle;
+        ring = macosRainRippleSlope(playerPos.xz + cameraPosition.xz) * rainStrength * RAIN_RIPPLE_STRENGTH * puddle;
         wetRipple = (ring.x + ring.y) * 0.3;
     }
 #endif

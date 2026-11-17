@@ -117,7 +117,7 @@ vec4 applyWater(vec4 litColor) {
         vec2 slope = waterSlope(worldPosition.xz, frameTimeCounter);
 #if RAIN_RIPPLES == 1
         if (rainStrength > 0.001 && biome_precipitation == 1 && lm.y > 0.75) {
-            vec2 ripple = metalRainRippleSlope(worldPosition.xz) * 0.10 * rainStrength
+            vec2 ripple = macosRainRippleSlope(worldPosition.xz) * 0.10 * rainStrength
                 * RAIN_RIPPLE_STRENGTH * smoothstep(0.75, 0.95, lm.y);
             slope += ripple;
             // Looking down there is almost no reflection to bend, so the rings

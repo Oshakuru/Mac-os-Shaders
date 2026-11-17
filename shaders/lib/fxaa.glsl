@@ -1,6 +1,6 @@
 // Original lightweight spatial edge filter. No history buffers or jitter.
 // Smooths high-contrast stair steps; may soften fine texture detail.
-vec3 metalFXAA(vec2 coord) {
+vec3 macosFXAA(vec2 coord) {
     vec2 pixel = 1.0 / vec2(viewWidth, viewHeight);
     vec3 center = texture2D(colortex0, coord).rgb;
     vec3 north = texture2D(colortex0, coord + vec2(0.0, pixel.y)).rgb;

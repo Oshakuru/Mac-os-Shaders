@@ -1,5 +1,5 @@
-#ifndef M1_SETTINGS_INCLUDED
-#define M1_SETTINGS_INCLUDED
+#ifndef MACOS_SHADERS_SETTINGS_INCLUDED
+#define MACOS_SHADERS_SETTINGS_INCLUDED
 const int shadowMapResolution = 512; // [512 1024 2048]
 const float shadowDistance = 48.0; // [32.0 48.0 64.0 80.0]
 const float shadowDistanceRenderMul = 1.0;
@@ -61,7 +61,7 @@ const bool shadowtex0Nearest = true;
 #define WATER_REFLECTIONS 1 // [0 1 2 3]
 #define RAIN_PUDDLES 1 // [0 1]
 #define WET_REFLECTION_RESOLUTION 0 // [0 1]
-#define WET_GROUND_REFLECTIONS 1 // [0 1 2]
+#define WET_GROUND_REFLECTIONS 0 // [0 1 2]
 
 #define UNOBTRUSIVE_WEATHER 0 // [0 1]
 #define RAIN_RIPPLES 1 // [0 1]

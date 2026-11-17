@@ -26,9 +26,9 @@ uniform mat4 gbufferModelView;
 void main() {
     vec4 viewPos = gl_ModelViewMatrix * gl_Vertex;
 #if FOLIAGE_WIND == 1 && defined(WET_GROUND_PASS) && defined(WORLD_LIGHTING)
-    if (metalWindMaterial(mc_Entity.x)) {
+    if (macosWindMaterial(mc_Entity.x)) {
         vec3 windPosition = (gbufferModelViewInverse * viewPos).xyz;
-        viewPos.xyz += mat3(gbufferModelView) * metalFoliageOffset(windPosition, mc_Entity.x);
+        viewPos.xyz += mat3(gbufferModelView) * macosFoliageOffset(windPosition, mc_Entity.x);
     }
 #endif
 #if RAIN_PUDDLES == 1 && defined(WET_GROUND_PASS) && defined(WORLD_LIGHTING)

@@ -11,7 +11,7 @@ vec3 cartoonSky(vec3 direction, vec3 sunDirection, float day, float twilight, fl
     zenith = mix(zenith, vec3(0.37, 0.43, 0.56), twilight * 0.62);
     float wet = clamp(rain, 0.0, 1.0);
     vec3 warm = mix(vec3(1.0, 0.96, 0.82), vec3(1.0, 0.79, 0.51), twilight);
-    vec3 c = metalSkyBackground(direction, sunDirection, cartoonHorizon(day, twilight),
+    vec3 c = macosSkyBackground(direction, sunDirection, cartoonHorizon(day, twilight),
         zenith, warm, vec3(0.25, 0.40, 0.65), day, wet);
     float gray = dot(c, vec3(0.2126, 0.7152, 0.0722));
     return mix(c, vec3(gray) * vec3(0.90, 0.97, 1.0) * 0.8, wet * 0.7);

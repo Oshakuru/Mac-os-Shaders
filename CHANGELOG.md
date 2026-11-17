@@ -2,11 +2,18 @@
 
 ## macOS Shaders 1.9
 
-- Includes the unpublished 1.8 night lighting: moonlit ground about 5x brighter than shade (was about 2x); night fill 0.80 and moonlight contrast 0.65 as defaults in every preset.
+- Pro preset set to the author's in-game settings.
+- Wet ground reflections off by default and in all presets.
+- Code polish and Metal-era names renamed to macOS Shaders; builder runs the checks and writes repeatable ZIPs.
+- Links updated to the renamed GitHub account, Oshakuru.
+- Published together with 1.8.
+
+## macOS Shaders 1.8 (unpublished; released in 1.9)
+
+- SDV-style moonlit nights: moonlit ground about 5x brighter than shade (was about 2x); night fill 0.80 and moonlight contrast 0.65 as defaults in every preset.
 - New Cloud style "Miyazaki Skybox": pixel-art panorama clouds in three depth layers over a haze bank. One texture read per sky pixel.
 - Rain ripples now show on water near the player and on ground puddles.
-- Pro preset set to the author's in-game settings.
-- Lava and the nether portal stay vanilla; a molten lava option tried during 1.8 testing was removed.
+- A molten lava option was tried in test builds and removed; lava and the nether portal stay vanilla.
 
 ## macOS Shaders 1.7 update
 

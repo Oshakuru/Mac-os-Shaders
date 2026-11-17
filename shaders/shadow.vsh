@@ -12,10 +12,10 @@ varying vec4 tint;
 void main() {
     vec4 clip = ftransform();
 #if FOLIAGE_WIND == 1
-    if (metalWindMaterial(mc_Entity.x)) {
+    if (macosWindMaterial(mc_Entity.x)) {
         vec4 shadowView = gl_ModelViewMatrix * gl_Vertex;
         vec3 windPosition = (shadowModelViewInverse * shadowView).xyz;
-        shadowView.xyz += mat3(shadowModelView) * metalFoliageOffset(windPosition, mc_Entity.x);
+        shadowView.xyz += mat3(shadowModelView) * macosFoliageOffset(windPosition, mc_Entity.x);
         clip = gl_ProjectionMatrix * shadowView;
     }
 #endif

@@ -13,4 +13,6 @@ Numbering rule, set by the author:
 
 Bump `VERSION` and rename `config/macOS-Shaders-v<version>.zip.txt` together; the builder needs both to match. Update the release notes, changelog and README in the same change. Preserve the Metal 0.9.x, 1.0 and 1.2 development history and their `config/Metal-v*.zip.txt` settings files.
 
-**1.7** adds direct moonlight +20% and optional soft Miyazaki outlines, tested and accepted in game. **1.8** was the SDV-style night lighting work; it was developed as local test builds and never published on its own. **1.9** ships the 1.8 night lighting together with the Miyazaki Skybox cloud style, the rain ripple fix and a Pro preset matching the author's in-game settings.
+**1.7** adds direct moonlight +20% and optional soft Miyazaki outlines, tested and accepted in game. **1.8** adds SDV-style night lighting, the Miyazaki Skybox cloud style and the rain ripple fix; it was developed as local test builds and released together with 1.9. **1.9** sets the Pro preset to the author's in-game settings, turns wet ground reflections off by default, and renames Metal-era code to macOS Shaders.
+
+Planned: a vanilla-style rework of lava and the nether portal, and Distant Horizons compatibility.

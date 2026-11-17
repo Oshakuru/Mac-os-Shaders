@@ -5,12 +5,18 @@ uniform vec3 fogColor;
 uniform float fogStart;
 uniform float fogEnd;
 uniform float alphaTestRef;
-#if VISUAL_STYLE > 0
+// Sky-state uniforms, declared once; several optional sky features share them.
+#if VISUAL_STYLE > 0 || ((CUBIC_CELESTIALS == 1 || CLOUD_STYLE == 1 || CLOUD_STYLE == 3) && defined(SKY_BASIC) && !defined(NO_SHADOW))
 uniform int isEyeInWater;
-uniform ivec2 eyeBrightnessSmooth;
 #ifndef WORLD_LIGHTING
 uniform float rainStrength;
 #endif
+#endif
+#if VISUAL_STYLE > 0
+uniform ivec2 eyeBrightnessSmooth;
+#endif
+#if !defined(NO_SHADOW) && (defined(SKY_TEXTURED) || (defined(SKY_BASIC) && (VISUAL_STYLE > 0 || CUBIC_CELESTIALS == 1 || CLOUD_STYLE == 1 || CLOUD_STYLE == 3)))
+uniform int renderStage;
 #endif
 #ifdef ENTITY
 uniform vec4 entityColor;
@@ -20,33 +26,17 @@ uniform vec4 entityColor;
 #endif
 #if VISUAL_STYLE > 0 && !defined(NO_SHADOW)
 #include "/lib/art_sky.glsl"
-#if defined(SKY_BASIC) || defined(SKY_TEXTURED)
-uniform int renderStage;
-#endif
-#endif
-#if defined(SKY_TEXTURED) && !defined(NO_SHADOW) && VISUAL_STYLE == 0
-uniform int renderStage;
 #endif
 #if CUBIC_CELESTIALS == 1 && defined(SKY_BASIC) && !defined(NO_SHADOW)
-#if VISUAL_STYLE == 0
-uniform int isEyeInWater;
-uniform float rainStrength;
-uniform int renderStage;
-#endif
 #include "/lib/cubic_celestials.glsl"
 #endif
 #if (CLOUD_STYLE == 1 || CLOUD_STYLE == 3) && defined(SKY_BASIC) && !defined(NO_SHADOW)
-#if VISUAL_STYLE == 0 && CUBIC_CELESTIALS == 0
-uniform int isEyeInWater;
-uniform float rainStrength;
-uniform int renderStage;
-#endif
 #if CLOUD_STYLE == 3
 #include "/lib/painted_clouds.glsl"
 #define skyboxClouds paintedClouds
 #else
 #include "/lib/sdv_clouds.glsl"
-#define skyboxClouds metalSDVClouds
+#define skyboxClouds macosSDVClouds
 #endif
 #endif
 #include "/lib/weather.glsl"
@@ -85,7 +75,7 @@ void main() {
     else surface = texture2D(texture, uv);
 #else
 #if defined(WEATHER_PASS) && UNOBTRUSIVE_WEATHER == 1
-    surface = metalWeatherTexture();
+    surface = macosWeatherTexture();
 #else
     surface = texture2D(texture, sampleUV);
 #endif
