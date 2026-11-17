@@ -54,6 +54,23 @@ Saved versions are imported as chronological source snapshots in Git history. Th
 
 The progression runs from **M1-Light 0.5.5** through the 0.8 experiments, **Metal 1.0**, the cleanup and Iris fixes, and the tested **Metal 0.9** baseline, then the macOS Shaders releases up to **1.7**. The **1.8** and **1.9** updates are recorded in the history index as source updates without a GitHub release. Earlier broken snapshots are retained for development reference.
 
+### Versions
+
+| Version | Name | What was added | Status |
+|---|---|---|---|
+| 1.9 | Pro preset and polish | Pro preset set to the author's in-game settings; wet ground reflections off by default; Metal-era code renamed to macOS Shaders; builder runs the checks and writes repeatable ZIPs | Tested in game; not released |
+| 1.8 | SDV-style nights | Stronger moonlight and lower night fill (moonlit ground about 5x brighter than shade); Miyazaki Skybox cloud style; rain ripples near the player and on puddles | Tested in game; not released |
+| 1.7 | Moonlight and soft outlines | Direct moonlight +20%; optional soft Miyazaki depth outlines | Released (prerelease) |
+| 1.6 | Style water tones | Water tone and fog follow the art style (Dark Fantasy muddy, Miyazaki light blue); Miyazaki contrast +20% | Released |
+| 1.5 | Multiversion patch 2 | Minecraft 26.1, 26.2 and 26.3 support; files renamed from Metal to macOS Shaders | Released |
+| 1.4 | Multiversion patch 1 | Minecraft 1.20.1–1.21.11 support; texture-free Unobtrusive Weather | Released |
+| 1.3 | New water | Original lightweight blended water replacing the MakeUp adaptation | Released |
+| 1.2 | Sun and sunbeams | Sunbeam rework, screen-space sun rays, lens flare, sun size | Released |
+| 1.1 | Bloom | Tight bloom on light sources | Released |
+| 1.0 | Rename | Metal 1.2 renamed to macOS Shaders; no rendering changes | Released |
+
+Before the rename the pack was **Metal** (0.9 to 1.2) and, earlier, **M1-Light** (0.5.5 to 0.8). Their notes are in [CHANGELOG.md](CHANGELOG.md) and [docs/HISTORY.md](docs/HISTORY.md).
+
 ## To do
 
 - Vanilla-style rework of lava and the nether portal.
