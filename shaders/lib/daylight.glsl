@@ -1,5 +1,5 @@
-#ifndef METAL_DAYLIGHT
-#define METAL_DAYLIGHT
+#ifndef MACOS_DAYLIGHT
+#define MACOS_DAYLIGHT
 float daylightFactor(float sunHeight) {
     return smoothstep(-0.08, 0.12, sunHeight);
 }

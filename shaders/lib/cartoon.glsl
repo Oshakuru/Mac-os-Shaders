@@ -1,5 +1,5 @@
-#ifndef METAL_CARTOON
-#define METAL_CARTOON
+#ifndef MACOS_CARTOON
+#define MACOS_CARTOON
 #include "/lib/sky_background.glsl"
 // Reference-led storybook palette. Existing sky/final passes, no new samples.
 vec3 cartoonHorizon(float day, float twilight) {

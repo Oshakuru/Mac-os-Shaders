@@ -44,7 +44,7 @@ const bool shadowtex0Nearest = true;
 #define APPLE_SUN_SETUP 1 // [0 1]
 #define APPLE_DEPTH_RECONSTRUCTION 1 // [0 1]
 
-#define CLOUD_STYLE 1 // [0 1 2 3]
+#define CLOUD_STYLE 1 // [0 1 2]
 #define SDV_CLOUD_STEPS 8 // [4 8 16 32]
 #define SDV_CLOUD_LAYERS 2 // [1 2]
 #define CLOUD_OPACITY 1.0 // [0.4 0.6 0.8 1.0]

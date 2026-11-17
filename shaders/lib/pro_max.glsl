@@ -74,11 +74,14 @@ vec3 proMaxLighting(vec3 color) {
     float baseStrength = appleShaftStrength;
 #else
     vec3 sunWorld = mat3(gbufferModelViewInverse) * normalize(sunPosition);
-    float daylightAmount = smoothstep(0.02, 0.18, sunWorld.y);
+    // By night the moon drives the same shafts, rays and flare at 60% strength.
+    float daylightAmount = max(smoothstep(0.02, 0.18, sunWorld.y), smoothstep(0.02, 0.18, -sunWorld.y) * 0.6);
     float skyAccess = smoothstep(0.02, 0.6, float(eyeBrightnessSmooth.y) / 240.0);
     float weather = 1.0 - clamp(rainStrength, 0.0, 1.0) * 0.85;
     float baseStrength = daylightAmount * skyAccess * weather * MAX_SUNBEAM_STRENGTH;
 #endif
+    float night = smoothstep(0.0, 0.10, -sunWorld.y);
+    vec3 moonTint = vec3(0.62, 0.74, 1.0);
     float rayLength = min(distanceToSurface, shadowDistance * 0.85);
 #if APPLE_SUN_SETUP == 1
     float facing = max(dot(normalize(position), appleLightDirection), 0.0);
@@ -108,7 +111,7 @@ vec3 proMaxLighting(vec3 color) {
         }
         float density = 1.0 - exp(-rayLength * 0.05);
         float litFraction = lit / float(SUNBEAM_STEPS);
-        vec3 shaftColor = mix(vec3(1.0, 0.86, 0.63), vec3(1.0, 0.65, 0.36), 1.0 - smoothstep(0.08, 0.4, sunWorld.y));
+        vec3 shaftColor = mix(mix(vec3(1.0, 0.86, 0.63), vec3(1.0, 0.65, 0.36), 1.0 - smoothstep(0.08, 0.4, sunWorld.y)), moonTint, night);
         // Shafts read through contrast: brighten sunlit air and dim shadowed air,
         // so beams between trees separate from the shade around them.
         color *= 1.0 - clamp(strength * density * (1.0 - litFraction) * 0.6, 0.0, 0.25);
@@ -117,7 +120,8 @@ vec3 proMaxLighting(vec3 color) {
     // Screen-space crepuscular rays: march from this pixel towards the sun on
     // screen and count sky pixels, so light streams through gaps in canopies.
     // Complements the shadow-map shafts, which need open air to build up.
-    vec4 sunClip = gbufferProjection * vec4(sunPosition, 1.0);
+    // shadowLightPosition is the sun by day and the moon by night.
+    vec4 sunClip = gbufferProjection * vec4(shadowLightPosition, 1.0);
     if (sunClip.w > 0.0 && baseStrength > 0.001) {
         vec2 sunUV = sunClip.xy / sunClip.w * 0.5 + 0.5;
         vec2 toSun = sunUV - uv;
@@ -143,7 +147,17 @@ vec3 proMaxLighting(vec3 color) {
             vec2 g1 = 0.5 - axis * 0.80; flare += vec3(0.55, 0.85, 0.65) * (1.0 - smoothstep(0.045, 0.060, length((uv - g1) * aspect))) * 0.6;
             vec2 g2 = 0.5 - axis * 1.25; flare += vec3(0.60, 0.65, 1.00) * (1.0 - smoothstep(0.070, 0.085, length((uv - g2) * aspect))) * 0.4;
             vec2 g3 = 0.5 + axis * 0.30; flare += vec3(1.00, 0.70, 0.45) * (1.0 - smoothstep(0.010, 0.016, length((uv - g3) * aspect))) * 0.8;
+            flare = mix(flare, dot(flare, vec3(0.33)) * moonTint, night);
             color += flare * sunVisible * centred * baseStrength / MAX_SUNBEAM_STRENGTH * LENS_FLARE_STRENGTH * 0.25;
+        }
+#endif
+#if BLOOM == 1
+        // Round moon halo in place of the square sprite's bloom (the sprite is
+        // kept under the bloom threshold in scene.fsh). One depth read.
+        if (night > 0.001 && all(greaterThanEqual(sunUV, vec2(0.0))) && all(lessThanEqual(sunUV, vec2(1.0)))
+                && texture2D(depthtex0, sunUV).r >= 0.999999) {
+            float halo = 1.0 - smoothstep(0.0, 0.22, screenDistance);
+            color += moonTint * halo * halo * halo * night * baseStrength / MAX_SUNBEAM_STRENGTH * 0.18;
         }
 #endif
         if (reach > 0.001) {
@@ -162,7 +176,7 @@ vec3 proMaxLighting(vec3 color) {
                 p += stepUV;
             }
             float rays = sky / totalWeight;
-            vec3 rayColor = mix(vec3(1.0, 0.88, 0.66), vec3(1.0, 0.66, 0.38), 1.0 - smoothstep(0.08, 0.4, sunWorld.y));
+            vec3 rayColor = mix(mix(vec3(1.0, 0.88, 0.66), vec3(1.0, 0.66, 0.38), 1.0 - smoothstep(0.08, 0.4, sunWorld.y)), moonTint, night);
             color += rayColor * rays * reach * reach * baseStrength * 1.6;
         }
     }

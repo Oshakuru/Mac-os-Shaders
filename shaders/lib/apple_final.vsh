@@ -20,7 +20,8 @@ void main() {
     appleSunWorld = mat3(gbufferModelViewInverse) * normalize(sunPosition);
     appleLightDirection = normalize(shadowLightPosition);
     appleStartClip = shadowProjection * shadowModelView * gbufferModelViewInverse * vec4(0.0, 0.0, 0.0, 1.0);
-    appleShaftStrength = smoothstep(0.02, 0.18, appleSunWorld.y)
+    // By night the moon drives the same shafts, rays and flare at 60% strength.
+    appleShaftStrength = max(smoothstep(0.02, 0.18, appleSunWorld.y), smoothstep(0.02, 0.18, -appleSunWorld.y) * 0.6)
         * smoothstep(0.02, 0.6, float(eyeBrightnessSmooth.y) / 240.0)
         * (1.0 - clamp(rainStrength, 0.0, 1.0) * 0.85) * MAX_SUNBEAM_STRENGTH;
 #endif

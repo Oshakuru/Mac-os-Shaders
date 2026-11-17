@@ -4,7 +4,10 @@
 - Wet ground reflections are off by default and in all three presets (Air, Pro, Pro Max), which skips the two wet-reflection passes. They can still be turned on under Atmosphere > Puddles and Wet Ground.
 - Polish: the sky-state uniforms in the scene shader are declared in one place instead of three separately guarded copies; internal names left over from the Metal era (`metal…`, `M1_…`) are renamed to macOS Shaders; the Bloom tooltip no longer promises portal glow, which the portal texture is too dark to produce.
 - The builder now runs the source and profile checks before packaging and writes fixed ZIP timestamps, so the same source gives the same ZIP. It also no longer forces Unobtrusive weather off: that option has used the game's own weather textures since 1.4, so the old weather-pack rule was undoing Pro's setting.
-- Lava and the nether portal stay vanilla for now; a rework is on the to-do list. A molten lava option tried during 1.8 testing was removed.
+- The Miyazaki Skybox cloud style added in 1.8 is removed, with its texture. The SDV Skybox cloud style is renamed macOS Skybox in the menus (the code is still adapted from Super Duper Vanilla and credited in THIRD_PARTY_NOTICES.md; setting names in saved settings files are unchanged).
+- Moon: the square sprite is kept just under the bloom threshold and the final pass draws a round, moon-blue halo around it instead. At night the sunbeams, screen-space rays and lens flare follow the moon at 60% of their daytime strength, tinted moon-blue. Needs Sunbeams and shadows on (Pro and Pro Max); the halo also needs Bloom. One extra depth read at night, no new passes.
+- Nether portal: drawn self-lit, 35% brighter and nearly opaque, keeping its hue, so its bright swirls pass the bloom threshold and glow purple. Applies in every preset; the glow needs Bloom.
+- Lava stays vanilla for now; the nether portal texture itself is unchanged (only brightened); a rework of both is on the to-do list. A molten lava option tried during 1.8 testing was removed.
 - Links point to the renamed GitHub account, Oshakuru.
 
 Recorded in the development history together with 1.8. Neither is published as a GitHub release; build from source to try them.

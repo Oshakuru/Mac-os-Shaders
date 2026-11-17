@@ -1,5 +1,5 @@
-#ifndef METAL_DARK_ATMOSPHERE
-#define METAL_DARK_ATMOSPHERE
+#ifndef MACOS_DARK_ATMOSPHERE
+#define MACOS_DARK_ATMOSPHERE
 #include "/lib/sky_background.glsl"
 // Palette authored from supplied visual references, in the existing LDR space.
 vec3 fantasyHorizon(float day, float twilight) {

@@ -25,7 +25,7 @@ varying float styleDay;
 varying float styleTwilight;
 #endif
 
-#if (VISUAL_STYLE > 0 || CUBIC_CELESTIALS == 1 || CLOUD_STYLE == 1 || CLOUD_STYLE == 3) && defined(SKY_BASIC) && !defined(NO_SHADOW)
+#if (VISUAL_STYLE > 0 || CUBIC_CELESTIALS == 1 || CLOUD_STYLE == 1) && defined(SKY_BASIC) && !defined(NO_SHADOW)
 varying vec3 skyDirection;
 varying vec3 skySunDirection;
 #endif
@@ -38,4 +38,7 @@ varying vec3 skySunDirection;
 #define ART_STYLE_STRENGTH DARK_STYLE_STRENGTH
 #elif VISUAL_STYLE == 2
 #define ART_STYLE_STRENGTH CARTOON_STRENGTH
+#endif
+#ifdef WATER_PASS
+varying float portalMask; // 1 on nether portal blocks
 #endif

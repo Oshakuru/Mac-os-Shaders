@@ -1,5 +1,5 @@
-#ifndef METAL_WATER_INTERFACE
-#define METAL_WATER_INTERFACE
+#ifndef MACOS_WATER_INTERFACE
+#define MACOS_WATER_INTERFACE
 #if CUSTOM_WATER == 1 && defined(WATER_PASS)
 varying float waterMask;
 varying vec3 waterViewPosition;

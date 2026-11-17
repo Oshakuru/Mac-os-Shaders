@@ -1,5 +1,5 @@
-#ifndef METAL_DEPTH
-#define METAL_DEPTH
+#ifndef MACOS_DEPTH
+#define MACOS_DEPTH
 float linearDepth(float depth, float nearPlane, float farPlane) {
     return nearPlane * farPlane / max(farPlane - depth * (farPlane - nearPlane), 0.0001);
 }

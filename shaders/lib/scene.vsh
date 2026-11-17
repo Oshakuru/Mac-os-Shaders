@@ -10,7 +10,7 @@ uniform mat4 shadowProjection;
 uniform vec3 shadowLightPosition;
 
 #endif
-#if defined(WORLD_LIGHTING) || VISUAL_STYLE > 0 || ((CUBIC_CELESTIALS == 1 || CLOUD_STYLE == 1 || CLOUD_STYLE == 3) && defined(SKY_BASIC) && !defined(NO_SHADOW)) || (CUSTOM_WATER == 1 && defined(WATER_PASS))
+#if defined(WORLD_LIGHTING) || VISUAL_STYLE > 0 || ((CUBIC_CELESTIALS == 1 || CLOUD_STYLE == 1) && defined(SKY_BASIC) && !defined(NO_SHADOW)) || (CUSTOM_WATER == 1 && defined(WATER_PASS))
 uniform mat4 gbufferModelViewInverse;
 uniform vec3 sunPosition;
 #endif
@@ -18,6 +18,9 @@ uniform vec3 sunPosition;
 #include "/lib/wet_ground.vsh"
 #if defined(WET_GROUND_PASS) && defined(WORLD_LIGHTING) && RAIN_PUDDLES == 0
 attribute vec4 mc_Entity;
+#endif
+#if defined(WATER_PASS) && CUSTOM_WATER == 0
+attribute vec4 mc_Entity; // water.vsh declares it when custom water is on
 #endif
 #if FOLIAGE_WIND == 1 && defined(WET_GROUND_PASS) && defined(WORLD_LIGHTING)
 uniform mat4 gbufferModelView;
@@ -42,7 +45,10 @@ void main() {
     // Biome tint, vanilla AO and transparency must survive the lighting stage.
     tint = gl_Color;
     fogDistance = length(viewPos.xyz);
-#if (VISUAL_STYLE > 0 || CUBIC_CELESTIALS == 1 || CLOUD_STYLE == 1 || CLOUD_STYLE == 3) && defined(SKY_BASIC) && !defined(NO_SHADOW)
+#ifdef WATER_PASS
+    portalMask = abs(mc_Entity.x - 10006.0) < 0.5 ? 1.0 : 0.0;
+#endif
+#if (VISUAL_STYLE > 0 || CUBIC_CELESTIALS == 1 || CLOUD_STYLE == 1) && defined(SKY_BASIC) && !defined(NO_SHADOW)
     skyDirection = mat3(gbufferModelViewInverse) * viewPos.xyz;
     skySunDirection = mat3(gbufferModelViewInverse) * normalize(sunPosition);
 #endif

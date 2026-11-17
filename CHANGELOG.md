@@ -5,6 +5,9 @@
 - Tested in game by the author.
 - Pro preset set to the author's in-game settings.
 - Wet ground reflections off by default and in all presets.
+- Miyazaki Skybox clouds removed; SDV Skybox renamed macOS Skybox.
+- Round moon halo, moonbeams, moon rays and moon lens flare at night.
+- Brighter, self-lit nether portal with purple bloom.
 - Code polish and Metal-era names renamed to macOS Shaders; builder runs the checks and writes repeatable ZIPs.
 - Links updated to the renamed GitHub account, Oshakuru.
 - Recorded in the development history with 1.8; not published as a release.

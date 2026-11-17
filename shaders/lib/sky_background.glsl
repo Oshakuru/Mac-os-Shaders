@@ -1,5 +1,5 @@
-#ifndef METAL_SKY_BACKGROUND
-#define METAL_SKY_BACKGROUND
+#ifndef MACOS_SKY_BACKGROUND
+#define MACOS_SKY_BACKGROUND
 // Original macOS Shaders implementation: broad celestial diffusion and lower-sky falloff.
 // Reference: Super Duper Vanilla's sky presentation; no source/assets copied.
 vec3 macosSkyBackground(vec3 direction, vec3 sunDirection, vec3 horizonColor,

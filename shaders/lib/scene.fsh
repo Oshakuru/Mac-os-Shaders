@@ -6,7 +6,7 @@ uniform float fogStart;
 uniform float fogEnd;
 uniform float alphaTestRef;
 // Sky-state uniforms, declared once; several optional sky features share them.
-#if VISUAL_STYLE > 0 || ((CUBIC_CELESTIALS == 1 || CLOUD_STYLE == 1 || CLOUD_STYLE == 3) && defined(SKY_BASIC) && !defined(NO_SHADOW))
+#if VISUAL_STYLE > 0 || ((CUBIC_CELESTIALS == 1 || CLOUD_STYLE == 1) && defined(SKY_BASIC) && !defined(NO_SHADOW))
 uniform int isEyeInWater;
 #ifndef WORLD_LIGHTING
 uniform float rainStrength;
@@ -15,7 +15,7 @@ uniform float rainStrength;
 #if VISUAL_STYLE > 0
 uniform ivec2 eyeBrightnessSmooth;
 #endif
-#if !defined(NO_SHADOW) && (defined(SKY_TEXTURED) || (defined(SKY_BASIC) && (VISUAL_STYLE > 0 || CUBIC_CELESTIALS == 1 || CLOUD_STYLE == 1 || CLOUD_STYLE == 3)))
+#if !defined(NO_SHADOW) && (defined(SKY_TEXTURED) || (defined(SKY_BASIC) && (VISUAL_STYLE > 0 || CUBIC_CELESTIALS == 1 || CLOUD_STYLE == 1)))
 uniform int renderStage;
 #endif
 #ifdef ENTITY
@@ -30,14 +30,9 @@ uniform vec4 entityColor;
 #if CUBIC_CELESTIALS == 1 && defined(SKY_BASIC) && !defined(NO_SHADOW)
 #include "/lib/cubic_celestials.glsl"
 #endif
-#if (CLOUD_STYLE == 1 || CLOUD_STYLE == 3) && defined(SKY_BASIC) && !defined(NO_SHADOW)
-#if CLOUD_STYLE == 3
-#include "/lib/painted_clouds.glsl"
-#define skyboxClouds paintedClouds
-#else
+#if CLOUD_STYLE == 1 && defined(SKY_BASIC) && !defined(NO_SHADOW)
 #include "/lib/sdv_clouds.glsl"
 #define skyboxClouds macosSDVClouds
-#endif
 #endif
 #include "/lib/weather.glsl"
 #include "/lib/water.glsl"
@@ -86,6 +81,11 @@ void main() {
 #endif
 #endif
     if (color.a < alphaTestRef) discard;
+#if defined(SKY_TEXTURED) && !defined(NO_SHADOW) && BLOOM == 1 && MAX_SUNBEAMS == 1 && SHADOWS == 1 && DEBUG_VIEW == 0
+    // Keep the square moon sprite under the bloom threshold; the final pass
+    // draws a round halo and moonbeams around it instead.
+    if (renderStage == MC_RENDER_STAGE_MOON) color.rgb *= 0.85;
+#endif
 #if RAIN_PUDDLES == 1 && defined(WET_GROUND_PASS) && defined(WORLD_LIGHTING) && DEBUG_VIEW == 0
     vec4 wetSurface = wetGroundSurface();
 #ifdef WET_MASK_OUTPUT
@@ -101,7 +101,7 @@ void main() {
 #if CUBIC_CELESTIALS == 1
         color.rgb = cubicCelestials(color.rgb);
 #endif
-#if (CLOUD_STYLE == 1 || CLOUD_STYLE == 3)
+#if CLOUD_STYLE == 1
         color.rgb = skyboxClouds(color.rgb);
 #endif
         gl_FragData[0] = color;
@@ -140,6 +140,11 @@ void main() {
 #else
     color.rgb *= evaluateLighting();
 #endif
+#endif
+#ifdef WATER_PASS
+    // Nether portal: self-lit and 35% brighter, nearly opaque, so its bright
+    // swirls pass the bloom threshold and glow purple. Hue is kept.
+    if (portalMask > 0.5) color = vec4(min(surface.rgb * tint.rgb * 1.35, 1.0), max(color.a, 0.95));
 #endif
 #if CUSTOM_WATER == 1 && defined(WATER_PASS) && DEBUG_VIEW == 0
     if (waterMask > 0.5) color = applyWater(color);
@@ -186,7 +191,7 @@ void main() {
 #if CUBIC_CELESTIALS == 1 && defined(SKY_BASIC) && !defined(NO_SHADOW) && DEBUG_VIEW == 0
     if (renderStage == MC_RENDER_STAGE_SKY) color.rgb = cubicCelestials(color.rgb);
 #endif
-#if (CLOUD_STYLE == 1 || CLOUD_STYLE == 3) && defined(SKY_BASIC) && !defined(NO_SHADOW) && DEBUG_VIEW == 0
+#if CLOUD_STYLE == 1 && defined(SKY_BASIC) && !defined(NO_SHADOW) && DEBUG_VIEW == 0
     if (renderStage == MC_RENDER_STAGE_SKY) color.rgb = skyboxClouds(color.rgb);
 #endif
     gl_FragData[0] = color;

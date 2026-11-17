@@ -1,5 +1,5 @@
-#ifndef METAL_ART_SKY
-#define METAL_ART_SKY
+#ifndef MACOS_ART_SKY
+#define MACOS_ART_SKY
 #if VISUAL_STYLE == 1
 #include "/lib/dark_atmosphere.glsl"
 #elif VISUAL_STYLE == 2

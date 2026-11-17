@@ -9,6 +9,9 @@ Minecraft Java Edition visual pack developed around Apple Silicon, with selectab
 - Pro preset set to the author's in-game settings.
 - Wet ground reflections off by default and in all presets, for performance.
 - Metal-era code names renamed to macOS Shaders.
+- Miyazaki Skybox cloud style removed; the SDV Skybox cloud style is now called macOS Skybox.
+- Moon gets a round halo instead of square bloom, plus moonbeams, moon rays and a moon-tinted lens flare at night (Pro and Pro Max).
+- Nether portal is brighter and self-lit, so it glows purple with bloom.
 - Builder runs the source checks before packaging and makes repeatable ZIPs.
 
 See [release notes](RELEASE-NOTES.md) and [compatibility notes](COMPATIBILITY.md).
@@ -17,7 +20,7 @@ See [release notes](RELEASE-NOTES.md) and [compatibility notes](COMPATIBILITY.md
 
 - Vanilla, Miyazaki and Dark Fantasy art styles.
 - Air, Pro and Pro Max quality presets.
-- SDV skybox clouds by default, with Miyazaki Skybox (pixel-art panorama), Fading Clouds and Vanilla available.
+- macOS Skybox clouds by default (adapted from Super Duper Vanilla by Eldeston), with Fading Clouds and Vanilla available.
 - SDV-style moonlit nights with per-style colours, and optional soft Miyazaki outlines.
 - Original blended water with depth fog, procedural waves and Off / Sky / Sky + Shore / Screen-space reflections.
 - Rain-driven puddles with rain ripples and wet-ground darkening. Wet ground reflections (Sky or Sky + Scene) are optional and off by default.
@@ -63,7 +66,7 @@ The progression runs from **M1-Light 0.5.5** through the 0.8 experiments, **Meta
 
 | Version | Name | What was added | Status |
 |---|---|---|---|
-| 1.9 | Pro preset and polish | Pro preset set to the author's in-game settings; wet ground reflections off by default; Metal-era code renamed to macOS Shaders; builder runs the checks and writes repeatable ZIPs | Tested in game; not released |
+| 1.9 | Pro preset and polish | Pro preset set to the author's in-game settings; wet ground reflections off by default; Miyazaki Skybox clouds removed and SDV Skybox renamed macOS Skybox; round moon halo with moonbeams and lens flare; purple nether portal glow; Metal-era code renamed to macOS Shaders; builder runs the checks and writes repeatable ZIPs | Tested in game; not released |
 | 1.8 | SDV-style nights | Stronger moonlight and lower night fill (moonlit ground about 5x brighter than shade); Miyazaki Skybox cloud style; rain ripples near the player and on puddles | Tested in game; not released |
 | 1.7 | Moonlight and soft outlines | Direct moonlight +20%; optional soft Miyazaki depth outlines | GitHub prerelease (v1.7) |
 | 1.6 | Style water tones | Water tone and fog follow the art style (Dark Fantasy muddy, Miyazaki light blue); Miyazaki contrast +20% | GitHub tag v1.6 |
