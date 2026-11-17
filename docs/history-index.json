@@ -275,7 +275,7 @@
   {
     "index": 26,
     "label": "macOS Shaders 1.8",
-    "status": "Historical update, not released: SDV-style nights, Miyazaki Skybox clouds, rain ripple fix",
+    "status": "Tested in game by the author; historical update, not released: SDV-style nights, Miyazaki Skybox clouds, rain ripple fix",
     "sourceName": "macOS-Shaders-v1.8-test.zip",
     "omittedAssets": [],
     "commit": "3ee7f8fcaca3ae2bde0dbcd3862d1f87f481bbe8"
@@ -283,7 +283,7 @@
   {
     "index": 27,
     "label": "macOS Shaders 1.9",
-    "status": "Historical update, not released: Pro preset, wet ground reflections off, macOS Shaders naming",
+    "status": "Tested in game by the author; historical update, not released: Pro preset, wet ground reflections off, macOS Shaders naming",
     "sourceName": "source at main",
     "omittedAssets": [],
     "commit": "d49e247f1e7216e6aa51e54a6a1637819cf4d12f"

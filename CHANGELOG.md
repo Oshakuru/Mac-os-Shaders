@@ -1,6 +1,8 @@
 # Development progression
 
-## macOS Shaders 1.9
+## macOS Shaders 1.9 (historical update, not released)
+
+- Tested in game by the author.
 
 - Pro preset set to the author's in-game settings.
 - Wet ground reflections off by default and in all presets.
@@ -9,6 +11,8 @@
 - Recorded in the development history with 1.8; not published as a release.
 
 ## macOS Shaders 1.8 (historical update, not released)
+
+- Tested in game by the author.
 
 - SDV-style moonlit nights: moonlit ground about 5x brighter than shade (was about 2x); night fill 0.80 and moonlight contrast 0.65 as defaults in every preset.
 - New Cloud style "Miyazaki Skybox": pixel-art panorama clouds in three depth layers over a haze bank. One texture read per sky pixel.
