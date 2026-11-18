@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Portable source/metadata checks; does not replace Iris integration testing."""
-from pathlib import Path
+
 import re
+from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 
