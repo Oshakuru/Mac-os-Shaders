@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """Assemble macOS Shaders from source, optionally using locally supplied cubic textures."""
+
 import argparse
-from pathlib import Path
-import subprocess
-import sys
+import runpy
 import zipfile
+from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 # Fixed entry time so the same source always gives the same ZIP.
@@ -29,7 +29,7 @@ def main():
     args = parser.parse_args()
     # Refuse to package a pack that fails the source checks.
     for check in ['tools/validate.py', 'tools/check_profiles.py']:
-        subprocess.run([sys.executable, str(ROOT / check)], check=True)
+        runpy.run_path(str(ROOT / check), run_name="__main__")
     version = (ROOT / 'VERSION').read_text().strip()
     args.output_dir.mkdir(parents=True, exist_ok=True)
     output = args.output_dir / f'macOS-Shaders-v{version}.zip'

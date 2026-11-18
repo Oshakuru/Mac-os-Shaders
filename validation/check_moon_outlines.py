@@ -1,10 +1,11 @@
 """Preprocessor and numeric checks; does not replace GLSL/Iris or visual testing."""
-from pathlib import Path
-from concurrent.futures import ThreadPoolExecutor
+
 import itertools
 import math
 import re
-import subprocess
+import subprocess  # nosec B404 - Clang preprocesses local shader source.
+from concurrent.futures import ThreadPoolExecutor
+from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SHADERS = ROOT / 'shaders'
@@ -13,7 +14,7 @@ SHADERS = ROOT / 'shaders'
 def expand(path):
     return re.sub(r'^\s*#include\s+"([^"]+)"',
                   lambda m: expand(SHADERS / m[1].lstrip('/')),
-                  path.read_text(), flags=re.M)
+                  path.read_text(), flags=re.MULTILINE)
 
 
 programs = {d: expand(SHADERS / d / 'final.fsh') for d in ['', 'world-1', 'world1']}
@@ -21,16 +22,16 @@ programs = {d: expand(SHADERS / d / 'final.fsh') for d in ['', 'world-1', 'world
 
 def check(task):
     dimension, style, outlines, ao, beams, bloom, fxaa, shadows = task
-    options = dict(VISUAL_STYLE=style, MIYAZAKI_OUTLINES=outlines, MAX_AO=ao,
-                   MAX_SUNBEAMS=beams, BLOOM=bloom, FXAA=fxaa, SHADOWS=shadows)
+    options = {'VISUAL_STYLE': style, 'MIYAZAKI_OUTLINES': outlines, 'MAX_AO': ao,
+               'MAX_SUNBEAMS': beams, 'BLOOM': bloom, 'FXAA': fxaa, 'SHADOWS': shadows}
     text = programs[dimension]
     for key, value in options.items():
         text = re.sub(r'^(#define ' + key + r')\s+[^\n]+',
-                      lambda m: m[1] + ' ' + str(value), text, flags=re.M)
-    text = re.sub(r'^#version.*$', '', text, flags=re.M)
-    result = subprocess.run(['clang', '-E', '-P', '-x', 'c', '-nostdinc', '-'],
+                      rf'\g<1> {value}', text, flags=re.MULTILINE)
+    text = re.sub(r'^#version.*$', '', text, flags=re.MULTILINE)
+    result = subprocess.run(['clang', '-E', '-P', '-x', 'c', '-nostdinc', '-'],  # nosec B603
                             input=text, text=True, capture_output=True, check=True).stdout
-    uniforms = re.findall(r'^uniform\s+\w+\s+(\w+)\s*;', result, re.M)
+    uniforms = re.findall(r'^uniform\s+\w+\s+(\w+)\s*;', result, re.MULTILINE)
     assert len(uniforms) == len(set(uniforms)), task
     assert ('vec3 miyazakiOutlines(' in result) == bool(style == 2 and outlines), task
     for name in ['viewWidth', 'viewHeight', 'depthtex0', 'depthtex2', 'gbufferProjectionInverse', 'isEyeInWater']:

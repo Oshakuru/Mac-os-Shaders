@@ -1,24 +1,35 @@
 """Source checks only; does not replace Iris or in-game compilation/testing."""
-from pathlib import Path
+
+import itertools
+import re
+import subprocess  # nosec B404 - Clang preprocesses local shader source.
 from concurrent.futures import ThreadPoolExecutor
-import re,subprocess,itertools
+from pathlib import Path
+
 ROOT=Path(__file__).resolve().parents[1]
 SHADERS=ROOT/'shaders'
 def expand(path,chain=()):
     assert path not in chain, path
     text=path.read_text()
-    return re.sub(r'^\s*#include\s+"([^"]+)"',lambda m:expand(SHADERS/m[1].lstrip('/'),chain+(path,)),text,flags=re.M)
-def preprocess(text,version,options={}):
-    for key,value in options.items():
-        text=re.sub(r'^(#define '+key+r')\s+[^\n]+',lambda m:m[1]+' '+str(value),text,flags=re.M)
-    text=re.sub(r'^#version.*$','',text,flags=re.M)
+    return re.sub(r'^\s*#include\s+"([^"]+)"',lambda m:expand(SHADERS/m[1].lstrip('/'),chain+(path,)),text,flags=re.MULTILINE)
+def preprocess(text, version, options=None):
+    for key, value in (options or {}).items():
+        text=re.sub(r'^(#define '+key+r')\s+[^\n]+',rf'\g<1> {value}',text,flags=re.MULTILINE)
+    text=re.sub(r'^#version.*$','',text,flags=re.MULTILINE)
     # Clang handles conditional directives; GLSL is not compiled here.
-    p=subprocess.run(['clang','-E','-P','-x','c','-nostdinc','-'],input=f'#define MC_VERSION {version}\n#define IS_IRIS\n'+text,text=True,capture_output=True)
-    assert p.returncode==0,p.stderr
-    return p.stdout
+    result = subprocess.run(  # nosec B603 - fixed arguments, shader text goes to stdin.
+        ['clang', '-E', '-P', '-x', 'c', '-nostdinc', '-'],
+        input=f'#define MC_VERSION {version}\n#define IS_IRIS\n' + text,
+        text=True,
+        stdout=subprocess.PIPE,
+        check=True,
+    )
+    return result.stdout
+
+
 versions=[12001,12002,12003,12004,12101,12104,12111,260100,260200,260300]
 for version in versions:
-    s=preprocess(re.sub(r'^# (.*)$',r'// \1',(SHADERS/'block.properties').read_text(),flags=re.M),version)
+    s=preprocess(re.sub(r'^# (.*)$',r'// \1',(SHADERS/'block.properties').read_text(),flags=re.MULTILINE),version)
     ids=[x for x in s.splitlines() if x.startswith('block.10005=')]
     assert len(ids)==1
     assert ('minecraft:short_grass' in ids[0])==(version>=12003)
