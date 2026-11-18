@@ -33,6 +33,7 @@ jobs:
           python -m coverage run tools/validate.py
           python -m coverage run --append tools/check_profiles.py
           python -m coverage run --append tools/build.py --without-cubic
+          python -m coverage run --append -m unittest discover -s tests
           python -m coverage xml -o cobertura.xml
           python -m coverage report
 
