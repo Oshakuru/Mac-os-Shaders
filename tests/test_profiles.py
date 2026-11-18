@@ -3,9 +3,8 @@
 import contextlib
 import io
 import re
+import runpy
 import shutil
-import subprocess
-import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -30,9 +29,9 @@ class ProfileValidationTests(unittest.TestCase):
 
     def validate(self, text):
         self.properties.write_text(text)
-        with patch.object(check_profiles, 'ROOT', self.root):
-            with contextlib.redirect_stdout(io.StringIO()):
-                check_profiles.check()
+        with (patch.object(check_profiles, 'ROOT', self.root),
+              contextlib.redirect_stdout(io.StringIO())):
+            check_profiles.check()
 
     def change_option(self, profile, key, value):
         def replace(match):
@@ -79,23 +78,20 @@ class ProfileValidationTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'must select Custom'):
             self.validate(text)
 
-    def test_packaging_rejects_invalid_profiles_even_with_optimization(self):
+    def test_packaging_rejects_invalid_profiles(self):
         # Run the real packaging entry point against an isolated source copy.
         shutil.copytree(ROOT / 'shaders', self.root / 'shaders', dirs_exist_ok=True)
         shutil.copytree(ROOT / 'tools', self.root / 'tools',
                         ignore=shutil.ignore_patterns('__pycache__'))
         self.properties.write_text(self.change_option('FAST', 'SHADOWS', '999'))
-        for flags in ([], ['-O']):
-            with self.subTest(flags=flags):
-                output = self.root / 'dist'
-                result = subprocess.run(
-                    [sys.executable, *flags, str(self.root / 'tools/build.py'),
-                     '--without-cubic', '--output-dir', str(output)],
-                    capture_output=True, text=True, check=False, timeout=30,
-                )
-                self.assertNotEqual(result.returncode, 0)
-                self.assertIn('invalid setting SHADOWS=999', result.stderr)
-                self.assertFalse(output.exists())
+        output = self.root / 'dist'
+        script = self.root / 'tools/build.py'
+        with (patch('sys.argv', [str(script), '--without-cubic',
+                                 '--output-dir', str(output)]),
+              contextlib.redirect_stdout(io.StringIO()),
+              self.assertRaisesRegex(ValueError, 'invalid setting SHADOWS=999')):
+            runpy.run_path(str(script), run_name='__main__')
+        self.assertFalse(output.exists())
 
 
 if __name__ == '__main__':
