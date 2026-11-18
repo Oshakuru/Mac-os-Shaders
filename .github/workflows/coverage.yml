@@ -60,7 +60,10 @@ jobs:
       - name: Upload Python tooling coverage to Codacy
         if: steps.codacy.outputs.enabled == 'true'
         uses: codacy/codacy-coverage-reporter-action@89d6c85cfafaec52c72b6c5e8b2878d33104c699 # v1
+        # The reporter reads this variable directly. Avoid the action's token
+        # input, which interpolates credentials into shell source.
+        env:
+          CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
         with:
-          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
           coverage-reports: cobertura.xml
           language: Python
