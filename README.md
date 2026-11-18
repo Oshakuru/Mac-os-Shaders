@@ -4,6 +4,7 @@
 
 [![Codacy Grade](https://app.codacy.com/project/badge/Grade/429fae8a11c34180bee714fc966c0c42)](https://app.codacy.com/gh/Oshakuru/Mac-os-Shaders/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 [![Codacy Coverage](https://app.codacy.com/project/badge/Coverage/429fae8a11c34180bee714fc966c0c42)](https://app.codacy.com/gh/Oshakuru/Mac-os-Shaders/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_coverage)
+[![CurseForge Downloads](https://img.shields.io/curseforge/dt/1802109?logo=curseforge&label=CurseForge%20downloads)](https://www.curseforge.com/minecraft/shaders/macos-shaders)
 
 Minecraft Java Edition visual pack developed around Apple Silicon, with selectable art styles, shadows, procedural water and rain puddles.
 
