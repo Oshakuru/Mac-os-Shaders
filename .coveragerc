@@ -1,0 +1,6 @@
+[run]
+source = tools
+relative_files = True
+
+[xml]
+output = cobertura.xml

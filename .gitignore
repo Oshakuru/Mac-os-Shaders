@@ -8,3 +8,9 @@ shaders/textures/cubic/*.png
 shaders/textures/fresh/*.png
 
 shaders/textures/weather/*.png
+
+# Local coverage outputs
+.coverage
+.coverage.*
+cobertura.xml
+htmlcov/
